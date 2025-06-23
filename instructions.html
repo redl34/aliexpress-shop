@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкции - Ali.Reed</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+        header {
+            background: url('Kartinki/background.png') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        header h1, header p {
+            position: relative;
+            z-index: 2;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-top: 0;
+        }
+        .content p {
+            line-height: 1.6;
+            color: #333;
+        }
+        .content img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .content video {
+            max-width: 100%;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #1e90ff;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #4682b4;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Инструкции по использованию сайта Ali.Reed</h1>
+        <p>Узнайте, как легко находить и покупать товары!</p>
+    </header>
+
+    <div class="content">
+        <h2>Как пользоваться сайтом</h2>
+        <p>Добро пожаловать на Ali.Reed! Наш сайт помогает вам находить лучшие товары с AliExpress. Вот пошаговая инструкция:</p>
+        <ol>
+            <li><strong>Выберите категорию</strong>: На главной странице выберите категорию товаров (Электроника, Одежда, Сад и огород или Аксессуары для авто).</li>
+            <li><strong>Просмотрите товары</strong>: Ознакомьтесь с товарами в выбранной категории.</li>
+            <li><strong>Перейдите на AliExpress</strong>: Нажмите на товар, чтобы перейти на страницу покупки на AliExpress.</li>
+            <li><strong>Оформите заказ</strong>: Следуйте инструкциям AliExpress для покупки.</li>
+            <li><strong>Следите за новинками</strong>: Подписывайтесь на наш TikTok для обновлений!</li>
+        </ol>
+
+        <h2>Пример товара</h2>
+        <img src="Kartinki/sample-product.jpg" alt="Пример товара">
+        <p>На изображении выше показан пример товара из категории "Электроника".</p>
+
+        <h2>Видео-инструкция</h2>
+        <video controls>
+            <source src="Kartinki/instruction-video.mp4" type="video/mp4">
+            Ваш браузер не поддерживает воспроизведение видео.
+        </video>
+        <p>Посмотрите видео, чтобы узнать, как легко пользоваться сайтом.</p>
+
+        <a href="index.html" class="back-button">Вернуться на главную</a>
+    </div>
+
+    <footer>
+        <p>Следи за новинками в <a href="https://www.tiktok.com/@reedoffe" target="_blank">TikTok</a></p>
+    </footer>
+</body>
+</html>

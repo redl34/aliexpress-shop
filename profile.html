@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - Ali.Reed</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+        header {
+            background: url('Kartinki/background.png') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        header h1 {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-top: 0;
+        }
+        .favorites-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .favorite-item {
+            background-color: #f0f2f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .favorite-item img {
+            max-width: 100px;
+            border-radius: 5px;
+        }
+        .favorite-item-details {
+            flex-grow: 1;
+        }
+        .favorite-item button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .favorite-item button:hover {
+            background-color: #e55a5a;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Личный кабинет</h1>
+    </header>
+
+    <div class="content">
+        <h2>Ваши понравившиеся товары</h2>
+        <div id="favorites-list" class="favorites-list"></div>
+        <a href="index.html" class="back-link">Вернуться на главную</a>
+    </div>
+
+    <footer>
+        <p>Следи за новинками в <a href="https://www.tiktok.com/@reedoffe" target="_blank">TikTok</a></p>
+    </footer>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "ВАШ_API_KEY",
+            authDomain: "ВАШ_AUTH_DOMAIN",
+            projectId: "ВАШ_PROJECT_ID",
+            storageBucket: "ВАШ_STORAGE_BUCKET",
+            messagingSenderId: "ВАШ_MESSAGING_SENDER_ID",
+            appId: "ВАШ_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        auth.onAuthStateChanged(user => {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            const favoritesList = document.getElementById('favorites-list');
+            db.collection('favorites').where('userId', '==', user.uid).get()
+                .then(snapshot => {
+                    favoritesList.innerHTML = '';
+                    snapshot.forEach(doc => {
+                        const item = doc.data();
+                        const div = document.createElement('div');
+                        div.classList.add('favorite-item');
+                        div.innerHTML = `
+                            <img src="${item.image}" alt="${item.title}">
+                            <div class="favorite-item-details">
+                                <h3>${item.title}</h3>
+                                <a href="${item.link}" target="_blank">Перейти на AliExpress</a>
+                            </div>
+                            <button onclick="removeFavorite('${doc.id}')">Удалить</button>
+                        `;
+                        favoritesList.appendChild(div);
+                    });
+                });
+        });
+
+        function removeFavorite(docId) {
+            db.collection('favorites').doc(docId).delete()
+                .then(() => {
+                    window.location.reload();
+                });
+        }
+    </script>
+</body>
+</html>

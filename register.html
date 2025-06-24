@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация - Ali.Reed</title>
+    <style>
+        body { font-family: 'Roboto', Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; }
+        .container { max-width: 400px; margin: 50px auto; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #333; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #1e90ff; color: white; border: none; border-radius: 25px; cursor: pointer; font-size: 1em; }
+        button:hover { background-color: #4682b4; }
+        .error { color: red; text-align: center; margin-top: 10px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #1e90ff; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        #phone-section, #email-section { display: none; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Регистрация</h1>
+        <div class="form-group">
+            <label>Выберите способ регистрации:</label>
+            <select id="authMethod" onchange="toggleAuthMethod()">
+                <option value="email">Email</option>
+                <option value="phone">Номер телефона</option>
+            </select>
+        </div>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Имя пользователя:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div id="email-section" class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div id="phone-section" class="form-group">
+                <label for="phone">Номер телефона (например, +380XXXXXXXXX):</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" required>
+            </div>

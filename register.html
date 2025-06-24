@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация - Ali.Reed</title>
+    <style>
+        body { font-family: 'Roboto', Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; }
+        .container { max-width: 400px; margin: 50px auto; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #333; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #1e90ff; color: white; border: none; border-radius: 25px; cursor: pointer; font-size: 1em; }
+        button:hover { background-color: #4682b4; }
+        .error { color: red; text-align: center; margin-top: 10px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #1e90ff; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        #verification-section { display: none; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Регистрация</h1>
+        <div class="form-group">
+            <label>Выберите способ регистрации:</label>
+            <select id="authMethod" onchange="toggleAuthMethod()">
+                <option value="email">Email</option>
+                <option value="phone">Номер телефона</option>
+            </select>
+        </div>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="identifier">Email или номер телефона:</label>
+                <input type="text" id="identifier" required placeholder="Введите email или номер телефона">
+            </div>
+            <div class="form-group">
+                <label for="username">Имя пользователя:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" required>
+            </div>
+            <div id="verification-section" class="form-group">
+                <label for="verificationCode">Введите код из SMS:</label>
+                <input type="text" id="verificationCode" required>
+                <button type="button" id="verifyCodeBtn" style="margin-top: 10px;" onclick="verifyCode()">Подтвердить код</button>
+            </div>
+            <button type="submit" id="registerBtn">Зарегистрироваться</button>
+            <p class="error" id="error"></p>
+        </form>
+        <a href="index.html" class="back-link">Вернуться на главную</a>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
+            authDomain: "alishopping-ced60.firebaseapp.com",
+            projectId: "alishopping-ced60",
+            storageBucket: "alishopping-ced60.firebasestorage.app",
+            messagingSenderId: "869364972631",
+            appId: "1:869364972631:web:f9b736868d9844b3e7f712",
+            measurementId: "G-SF4MY2768F"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let verificationId = null;
+
+        function toggleAuthMethod() {
+            const authMethod = document.getElementById('authMethod').value;
+            const identifierInput = document.getElementById('identifier');
+            if (authMethod === 'email') {
+                identifierInput.placeholder = 'Введите email (example@domain.com)';
+                identifierInput.type = 'email';
+                document.getElementById('verification-section').style.display = 'none';
+            } else if (authMethod === 'phone') {
+                identifierInput.placeholder = 'Введите номер телефона (например, +380XXXXXXXXX)';
+                identifierInput.type = 'tel';
+                document.getElementById('verification-section').style.display = 'block';
+            }
+            identifierInput.value = ''; // Очищаємо поле при зміні
+            document.getElementById('verificationCode').value = '';
+            verificationId = null;
+            document.getElementById('registerBtn').disabled = authMethod === 'phone';
+        }
+
+        function sendVerificationCode() {
+            const phoneNumber = document.getElementById('identifier').value;
+            const errorElement = document.getElementById('error');
+            errorElement.textContent = '';
+
+            if (!phoneNumber || !phoneNumber.startsWith('+')) {
+                errorElement.textContent = 'Пожалуйста, введите номер телефона с кодом страны (например, +380XXXXXXXXX).';
+                return;
+            }
+
+            const recaptchaVerifier = new RecaptchaVerifier('registerForm', {
+                'size': 'invisible',
+                'callback': () => {}
+            }, auth);
+
+            signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier)
+                .then((confirmationResult) => {
+                    verificationId = confirmationResult.verificationId;
+                    document.getElementById('verifyCodeBtn').style.display = 'block';
+                })
+                .catch((error) => {
+                    errorElement.textContent = error.message;
+                });
+        }
+
+        function verifyCode() {
+            const code = document.getElementById('verificationCode').value;
+            const errorElement = document.getElementById('error');
+            errorElement.textContent = '';
+
+            if (!verificationId) {
+                errorElement.textContent = 'Сначала запросите код.';
+                return;
+            }
+
+            const credential = window.confirmationResult.confirm(code);
+            credential
+                .then(() => {
+                    document.getElementById('registerBtn').disabled = false;
+                    document.getElementById('registerForm').dispatchEvent(new Event('submit'));
+                })
+                .catch((error) => {
+                    errorElement.textContent = error.message;
+                });
+        }
+
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const identifier = document.getElementById('identifier').value;
+            const errorElement = document.getElementById('error');
+            errorElement.textContent = '';
+
+            const authMethod = document.getElementById('authMethod').value;
+
+            try {
+                let userCredential;
+                if (authMethod === 'email') {
+                    userCredential = await createUserWithEmailAndPassword(auth, identifier, password);
+                } else if (authMethod === 'phone' && verificationId) {
+                    // Користувач уже автентифікований через phone
+                    userCredential = auth.currentUser;
+                    // Пароль зберігаємо як додатковий параметр (опціонально)
+                    await setDoc(doc(db, 'users', userCredential.uid), {
+                        password: password
+                    }, { merge: true });
+                }
+
+                if (userCredential) {
+                    const user = userCredential.user;
+                    await setDoc(doc(db, 'users', user.uid), {
+                        username: username,
+                        email: authMethod === 'email' ? user.email : null,
+                        phoneNumber: authMethod === 'phone' ? user.phoneNumber : null
+                    }, { merge: true });
+                    window.location.href = 'profile.html';
+                }
+            } catch (error) {
+                errorElement.textContent = error.message;
+            }
+        });
+
+        // Ініціалізація при завантаженні
+        toggleAuthMethod();
+    </script>
+</body>
+</html>

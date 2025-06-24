@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali.Reed - Главная</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+        header {
+            background: url('Kartinki/background.png') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        header h1, .auth-buttons {
+            position: relative;
+            z-index: 2;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .auth-buttons {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .auth-buttons a {
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 8px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .auth-buttons a:hover {
+            background-color: #4682b4;
+        }
+        .products {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .product-card img {
+            max-width: 150px;
+            border-radius: 5px;
+        }
+        .product-details {
+            flex-grow: 1;
+        }
+        .product-details h3 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #2c3e50;
+        }
+        .product-details a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        .product-details a:hover {
+            text-decoration: underline;
+        }
+        .add-to-favorites {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-to-favorites:hover {
+            background-color: #e55a5a;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .product-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .product-card img {
+                max-width: 100%;
+            }
+            .auth-buttons a {
+                display: block;
+                width: 80%;
+                margin: 8px auto;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Ali.Reed</h1>
+        <div class="auth-buttons">
+            <a href="login.html" id="loginLink">Войти</a>
+            <a href="register.html" id="registerLink">Регистрация</a>
+            <a href="profile.html" id="profileLink" style="display: none;">Личный кабинет</a>
+            <a href="#" id="logoutLink" style="display: none;" onclick="logout()">Выйти</a>
+        </div>
+    </header>
+
+    <div class="products">
+        <div class="product-card">
+            <img src="Kartinki/sample-product.jpg" alt="Смартфон">
+            <div class="product-details">
+                <h3>Смартфон XYZ</h3>
+                <p>Современный смартфон с отличной камерой.</p>
+                <a href="https://aliexpress.com/item/123" target="_blank">Купить на AliExpress</a>
+            </div>
+            <button class="add-to-favorites" onclick="addToFavorites('123', 'Смартфон XYZ', 'Kartinki/sample-product.jpg', 'https://aliexpress.com/item/123')">Добавить в избранное</button>
+        </div>
+        <!-- Додайте інші товари за аналогією -->
+    </div>
+
+    <footer>
+        <p>Следи за новинками в <a href="https://www.tiktok.com/@reedoffe" target="_blank">TikTok</a></p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
+            authDomain: "alishopping-ced60.firebaseapp.com",
+            projectId: "alishopping-ced60",
+            storageBucket: "alishopping-ced60.firebasestorage.app",
+            messagingSenderId: "869364972631",
+            appId: "1:869364972631:web:f9b736868d9844b3e7f712",
+            measurementId: "G-SF4MY2768F"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Перевірка автентифікації
+        onAuthStateChanged(auth, user => {
+            const profileLink = document.getElementById('profileLink');
+            const logoutLink = document.getElementById('logoutLink');
+            const loginLink = document.getElementById('loginLink');
+            const registerLink = document.getElementById('registerLink');
+
+            if (user) {
+                profileLink.style.display = 'inline-block';
+                logoutLink.style.display = 'inline-block';
+                loginLink.style.display = 'none';
+                registerLink.style.display = 'none';
+            } else {
+                profileLink.style.display = 'none';
+                logoutLink.style.display = 'none';
+                loginLink.style.display = 'inline-block';
+                registerLink.style.display = 'inline-block';
+            }
+        });
+
+        window.logout = function() {
+            signOut(auth).then(() => {
+                window.location.href = 'index.html';
+            }).catch(error => {
+                console.error('Ошибка выхода:', error);
+            });
+        };
+
+        window.addToFavorites = async function(id, title, image, link) {
+            const user = auth.currentUser;
+            if (!user) {
+                alert('Пожалуйста, войдите в аккаунт.');
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                await addDoc(collection(db, 'favorites'), {
+                    userId: user.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
+                });
+                alert('Товар добавлен в избранное!');
+            } catch (error) {
+                console.error('Ошибка добавления в избранное:', error);
+                alert('Ошибка при добавлении товара: ' + error.message);
+            }
+        };
+    </script>
+</body>
+</html>

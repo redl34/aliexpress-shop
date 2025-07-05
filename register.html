@@ -109,6 +109,7 @@
             document.getElementById('verificationCode').value = '';
             confirmationResult = null;
             updateError('');
+            console.log('Метод изменен на:', authMethod);
         }
 
         function sendVerificationCode() {
@@ -208,7 +209,9 @@
                         throw new Error('Пользователь не автентифицирован. Подтвердите код.');
                     }
                     await setDoc(doc(db, 'users', userCredential.uid), {
-                        password: password
+                        password: password,
+                        username: username,
+                        phoneNumber: userCredential.phoneNumber
                     }, { merge: true });
                 }
 

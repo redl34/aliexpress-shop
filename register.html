@@ -14,10 +14,11 @@
         button { width: 100%; padding: 12px; background-color: #1e90ff; color: white; border: none; border-radius: 25px; cursor: pointer; font-size: 1em; }
         button:disabled { background-color: #cccccc; cursor: not-allowed; }
         button:hover:not(:disabled) { background-color: #4682b4; }
+        .social-button { background-color: #3b5998; margin-top: 10px; }
+        .social-button:hover { background-color: #344e86; }
         .error { color: red; text-align: center; margin-top: 10px; }
         .back-link { display: block; text-align: center; margin-top: 20px; color: #1e90ff; text-decoration: none; }
         .back-link:hover { text-decoration: underline; }
-        #verification-section, #sendCodeBtn { display: none; }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
@@ -31,12 +32,12 @@
             <label>Выберите способ регистрации:</label>
             <select id="authMethod" onchange="toggleAuthMethod()">
                 <option value="email">Email</option>
-                <option value="phone">Номер телефона</option>
+                <option value="facebook">Facebook</option>
             </select>
         </div>
         <form id="registerForm">
             <div class="form-group">
-                <label for="identifier">Email или номер телефона:</label>
+                <label for="identifier">Email:</label>
                 <input type="text" id="identifier" required>
             </div>
             <div class="form-group">
@@ -47,13 +48,8 @@
                 <label for="password">Пароль:</label>
                 <input type="password" id="password" required>
             </div>
-            <div id="sendCodeBtn" class="form-group">
-                <button type="button" onclick="sendVerificationCode()">Получить код</button>
-            </div>
-            <div id="verification-section" class="form-group">
-                <label for="verificationCode">Введите код из SMS:</label>
-                <input type="text" id="verificationCode" required>
-                <button type="button" id="verifyCodeBtn" style="margin-top: 10px;" onclick="verifyCode()">Подтвердить код</button>
+            <div id="facebookButton" class="form-group" style="display: none;">
+                <button type="button" class="social-button" onclick="signInWithFacebook()">Войти через Facebook</button>
             </div>
             <button type="submit" id="registerBtn">Зарегистрироваться</button>
             <p class="error" id="error"></p>
@@ -63,7 +59,7 @@
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
-        import { getAuth, createUserWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getAuth, createUserWithEmailAndPassword, signInWithPopup, FacebookAuthProvider } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
         import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
         const firebaseConfig = {
@@ -79,104 +75,54 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-
-        // Увімкнення тестового режиму
-        auth.settings.appVerificationDisabledForTesting = true;
-
-        let confirmationResult = null;
+        const provider = new FacebookAuthProvider();
 
         function toggleAuthMethod() {
             const authMethod = document.getElementById('authMethod').value;
             const identifierInput = document.getElementById('identifier');
-            const sendCodeBtn = document.getElementById('sendCodeBtn');
-            const verificationSection = document.getElementById('verification-section');
+            const facebookButton = document.getElementById('facebookButton');
             const registerBtn = document.getElementById('registerBtn');
 
             if (authMethod === 'email') {
                 identifierInput.placeholder = 'Введите email (example@domain.com)';
-                sendCodeBtn.style.display = 'none';
-                verificationSection.style.display = 'none';
+                facebookButton.style.display = 'none';
                 registerBtn.disabled = false;
-            } else if (authMethod === 'phone') {
-                identifierInput.placeholder = 'Введите номер телефона (например, +15005550001)';
-                sendCodeBtn.style.display = 'block';
-                verificationSection.style.display = 'block';
+            } else if (authMethod === 'facebook') {
+                identifierInput.placeholder = '';
+                identifierInput.value = '';
+                facebookButton.style.display = 'block';
                 registerBtn.disabled = true;
             }
-            identifierInput.value = '';
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
-            document.getElementById('verificationCode').value = '';
-            confirmationResult = null;
             updateError('');
             console.log('Метод изменен на:', authMethod);
         }
 
-        function sendVerificationCode() {
-            const phoneNumber = document.getElementById('identifier').value;
+        async function signInWithFacebook() {
             const errorElement = document.getElementById('error');
             errorElement.textContent = '';
 
-            if (!phoneNumber || !phoneNumber.match(/^\+\d{10,12}$/)) {
-                errorElement.textContent = 'Пожалуйста, введите корректный номер телефона (например, +15005550001).';
-                return;
-            }
-
-            const recaptchaVerifier = new RecaptchaVerifier('registerForm', {
-                'size': 'invisible',
-                'callback': () => console.log('reCAPTCHA пройдена'),
-                'expired-callback': () => {
-                    errorElement.textContent = 'reCAPTCHA истекла. Попробуйте снова.';
-                    recaptchaVerifier.clear();
-                }
-            }, auth);
-
-            recaptchaVerifier.render().then((widgetId) => {
-                console.log('reCAPTCHA инициализирована, widgetId:', widgetId);
-                signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier)
-                    .then((result) => {
-                        confirmationResult = result;
-                        document.getElementById('sendCodeBtn').style.display = 'none';
-                        document.getElementById('verifyCodeBtn').style.display = 'block';
-                        errorElement.textContent = 'Код отправлен (для теста используйте 123456).';
-                        console.log('SMS отправлен, confirmationResult:', confirmationResult);
-                    })
-                    .catch((error) => {
-                        errorElement.textContent = 'Ошибка отправки кода: ' + error.message;
-                        console.error('Ошибка:', error);
-                        recaptchaVerifier.clear();
-                    });
-            }).catch((error) => {
-                errorElement.textContent = 'Ошибка инициализации reCAPTCHA: ' + error.message;
-                console.error('Ошибка:', error);
-            });
-        }
-
-        function verifyCode() {
-            const code = document.getElementById('verificationCode').value;
-            const errorElement = document.getElementById('error');
-            errorElement.textContent = '';
-
-            if (!confirmationResult) {
-                errorElement.textContent = 'Сначала запросите код.';
-                return;
-            }
-
-            if (!code || code.length < 6) {
-                errorElement.textContent = 'Введите корректный 6-значный код.';
-                return;
-            }
-
-            confirmationResult.confirm(code)
-                .then((result) => {
-                    document.getElementById('registerBtn').disabled = false;
-                    errorElement.textContent = 'Код подтвержден. Можете зарегистрироваться.';
-                    console.log('Верификация успешна, пользователь:', result.user);
+            try {
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                const username = user.displayName || 'User_' + user.uid.substring(0, 8); // Генерація імені, якщо його немає
+                await setDoc(doc(db, 'users', user.uid), {
+                    username: username,
+                    email: user.email,
+                    phoneNumber: null
+                }, { merge: true })
+                .then(() => {
+                    console.log('Данные сохранены в Firestore');
+                    window.location.href = 'profile.html';
                 })
                 .catch((error) => {
-                    errorElement.textContent = 'Ошибка подтверждения кода: ' + error.message;
-                    console.error('Ошибка:', error);
+                    throw new Error('Ошибка сохранения в Firestore: ' + error.message);
                 });
+            } catch (error) {
+                errorElement.textContent = 'Ошибка входа через Facebook: ' + error.message;
+                console.error('Ошибка:', error);
+            }
         }
 
         function updateError(message) {
@@ -192,46 +138,23 @@
             const errorElement = document.getElementById('error');
             errorElement.textContent = '';
 
-            const authMethod = document.getElementById('authMethod').value;
-
-            console.log('Попытка регистрации:', { authMethod, identifier, username, password });
+            console.log('Попытка регистрации:', { identifier, username, password });
 
             try {
-                let userCredential;
-                if (authMethod === 'email') {
-                    if (!identifier.includes('@')) {
-                        throw new Error('Введите корректный email с символом @.');
-                    }
-                    userCredential = await createUserWithEmailAndPassword(auth, identifier, password);
-                } else if (authMethod === 'phone' && !document.getElementById('registerBtn').disabled) {
-                    userCredential = auth.currentUser;
-                    if (!userCredential) {
-                        throw new Error('Пользователь не автентифицирован. Подтвердите код.');
-                    }
-                    await setDoc(doc(db, 'users', userCredential.uid), {
-                        password: password,
-                        username: username,
-                        phoneNumber: userCredential.phoneNumber
-                    }, { merge: true });
-                }
-
-                if (userCredential) {
-                    const user = userCredential.user;
-                    await setDoc(doc(db, 'users', user.uid), {
-                        username: username,
-                        email: authMethod === 'email' ? user.email : null,
-                        phoneNumber: authMethod === 'phone' ? user.phoneNumber : null
-                    }, { merge: true })
-                    .then(() => {
-                        console.log('Данные сохранены в Firestore');
-                        window.location.href = 'profile.html';
-                    })
-                    .catch((error) => {
-                        throw new Error('Ошибка сохранения в Firestore: ' + error.message);
-                    });
-                } else {
-                    throw new Error('Не удалось создать учетную запись.');
-                }
+                const userCredential = await createUserWithEmailAndPassword(auth, identifier, password);
+                const user = userCredential.user;
+                await setDoc(doc(db, 'users', user.uid), {
+                    username: username,
+                    email: user.email,
+                    phoneNumber: null
+                }, { merge: true })
+                .then(() => {
+                    console.log('Данные сохранены в Firestore');
+                    window.location.href = 'profile.html';
+                })
+                .catch((error) => {
+                    throw new Error('Ошибка сохранения в Firestore: ' + error.message);
+                });
             } catch (error) {
                 errorElement.textContent = 'Ошибка регистрации: ' + error.message;
                 console.error('Ошибка:', error);

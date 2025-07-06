@@ -122,6 +122,17 @@
         footer a:hover {
             text-decoration: underline;
         }
+        .data-deletion-link {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+            color: #666;
+            text-decoration: none;
+        }
+        .data-deletion-link:hover {
+            text-decoration: underline;
+            color: #333;
+        }
         @media (max-width: 768px) {
             .product-card {
                 flex-direction: column;
@@ -166,6 +177,9 @@
         <!-- Додайте інші товари за аналогією -->
     </div>
 
+    <!-- Додано посилання на сторінку видалення даних -->
+    <a href="data-deletion.html" class="data-deletion-link">Запрос на удаление данных</a>
+
     <footer>
         <p>Следи за новинками в <a href="https://www.tiktok.com/@reedoffe" target="_blank">TikTok</a></p>
     </footer>
@@ -179,7 +193,7 @@
             apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
             authDomain: "alishopping-ced60.firebaseapp.com",
             projectId: "alishopping-ced60",
-            storageBucket: "alishopping-ced60.firebasestorage.app",
+            storageBucket: "alishopping-ced60.appspot.com",
             messagingSenderId: "869364972631",
             appId: "1:869364972631:web:f9b736868d9844b3e7f712",
             measurementId: "G-SF4MY2768F"

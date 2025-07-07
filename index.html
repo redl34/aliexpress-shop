@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aliexpress-shop - Інтерактивна галерея</title>
+    <title>AliShop - Інтерактивна галерея</title>
     <style>
         body {
             margin: 0;
@@ -17,8 +17,8 @@
         /* Шапка сайту з фоном */
         .header {
             position: relative;
-            height: 300px; /* Висота шапки, адаптована під зображення */
-            background: url('https://via.placeholder.com/1200x300?text=Replace+with+your+image+URL') no-repeat center/cover;
+            height: 300px;
+            background: url('Kartinki/background.jpg') no-repeat center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,7 +27,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         .header-content {
-            z-index: 1; /* Щоб текст був над зображенням */
+            z-index: 1;
         }
         .header .logo {
             font-size: 2.5em;
@@ -81,7 +81,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
-            padding: 340px 20px 20px; /* Відступ для шапки */
+            padding: 340px 20px 20px;
             min-height: calc(100vh - 100px);
         }
         .product-card {
@@ -161,7 +161,7 @@
             padding: 20px;
             background: #1A237E;
             position: relative;
-            top: -20px; /* Щоб трохи перекривати галерею */
+            top: -20px;
             z-index: 2;
         }
         .category-btn {

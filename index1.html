@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AliShop - Інтерактивна галерея</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #000000 70%, #B0BEC5 100%);
+            color: #FFFFFF;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        /* Шапка сайту з фоном */
+        .header {
+            position: relative;
+            height: 300px; /* Висота шапки, адаптована під зображення */
+            background: url('https://via.placeholder.com/1200x300?text=Replace+with+your+image+URL') no-repeat center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .header-content {
+            z-index: 1; /* Щоб текст був над зображенням */
+        }
+        .header .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+        .header .slogan {
+            font-size: 1.2em;
+            color: #B0BEC5;
+            margin-bottom: 20px;
+        }
+        .header .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .header .btn {
+            background: #1976D2;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header .btn:hover {
+            background: #1565C0;
+        }
+        .header .profile-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: #1976D2;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #FFFFFF;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .header .profile-btn:hover {
+            background: #1565C0;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 340px 20px 20px; /* Відступ для шапки */
+            min-height: calc(100vh - 100px);
+        }
+        .product-card {
+            border: 2px solid #B0BEC5;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #FFFFFF;
+            color: #000000;
+        }
+        .product-card:hover {
+            transform: scale(1.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .product-card:hover ~ .overlay {
+            display: block;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 0;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .product-card h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #1976D2;
+        }
+        .product-card p {
+            margin: 5px 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .buy-button {
+            background: #D32F2F;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .buy-button svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .buy-button svg rect {
+            fill: #D32F2F;
+        }
+        .buy-button svg text {
+            dominant-baseline: middle;
+            text-anchor: middle;
+        }
+        .buy-button:hover svg path {
+            stroke-dasharray: 200;
+            transition: stroke-dasharray 0.3s ease;
+        }
+        /* Категорії товарів */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background: #1A237E;
+            position: relative;
+            top: -20px; /* Щоб трохи перекривати галерею */
+            z-index: 2;
+        }
+        .category-btn {
+            background: #1976D2;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .category-btn:hover {
+            background: #1565C0;
+        }
+        /* Футер з соцмережами */
+        .footer {
+            background: #1A237E;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .footer .social-links a,
+        .footer .share-buttons a {
+            margin: 0 10px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        .footer .social-links a:hover,
+        .footer .share-buttons a:hover {
+            color: #1976D2;
+        }
+        .footer .share-buttons a {
+            background: #4CAF50;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        @media (max-width: 768px) {
+            .header {
+                height: 200px;
+                flex-direction: column;
+                padding: 10px;
+            }
+            .header .profile-btn {
+                top: 10px;
+                right: 10px;
+            }
+            .header .buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+                padding: 220px 10px 20px;
+            }
+            .categories {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+                top: 0;
+            }
+            .footer .social-links a,
+            .footer .share-buttons a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту з фоном -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">AliShop</div>
+            <div class="slogan">Найкращі товари з AliExpress тут</div>
+            <div class="buttons">
+                <button class="btn">Інструкція</button>
+                <button class="btn">Зареєструватися</button>
+            </div>
+        </div>
+        <button class="profile-btn" onclick="window.location.href='registration.html'">+</button>
+    </div>
+    <div class="overlay"></div>
+    <div class="gallery" id="gallery">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300x400?text=Навушники" alt="Навушники" loading="lazy">
+            <h3>Навушники</h3>
+            <p>$50</p>
+            <button class="buy-button" onclick="buyItem()">
+                <svg width="100" height="40">
+                    <rect x="0" y="0" width="100" height="40"/>
+                    <text x="50" y="25" text-anchor="middle">Купити</text>
+                    <path d="M0 0 L100 40" stroke="#4CAF50" stroke-width="2" fill="none" stroke-dasharray="0 200"/>
+                </svg>
+            </button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300x400?text=Сумка" alt="Сумка" loading="lazy">
+            <h3>Сумка</h3>
+            <p>$30</p>
+            <button class="buy-button" onclick="buyItem()">
+                <svg width="100" height="40">
+                    <rect x="0" y="0" width="100" height="40"/>
+                    <text x="50" y="25" text-anchor="middle">Купити</text>
+                    <path d="M0 0 L100 40" stroke="#4CAF50" stroke-width="2" fill="none" stroke-dasharray="0 200"/>
+                </svg>
+            </button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300x400?text=Куртка" alt="Куртка" loading="lazy">
+            <h3>Куртка</h3>
+            <p>$80</p>
+            <button class="buy-button" onclick="buyItem()">
+                <svg width="100" height="40">
+                    <rect x="0" y="0" width="100" height="40"/>
+                    <text x="50" y="25" text-anchor="middle">Купити</text>
+                    <path d="M0 0 L100 40" stroke="#4CAF50" stroke-width="2" fill="none" stroke-dasharray="0 200"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <!-- Категорії товарів -->
+    <div class="categories">
+        <button class="category-btn">Електроника</button>
+        <button class="category-btn">Одяг</button>
+        <button class="category-btn">Сад та город</button>
+        <button class="category-btn">Різне</button>
+    </div>
+    <!-- Футер з соцмережами -->
+    <div class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com" target="_blank">Facebook</a>
+            <a href="https://www.tiktok.com" target="_blank">TikTok</a>
+        </div>
+        <div class="share-buttons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://your-site-url" target="_blank">Поділитися на Facebook</a>
+            <a href="https://www.instagram.com" target="_blank">Поділитися на Instagram</a>
+            <a href="https://www.tiktok.com" target="_blank">Поділитися на TikTok</a>
+        </div>
+        <p>© 2025 AliShop. Усі права захищено.</p>
+    </div>
+
+    <script>
+        function buyItem() {
+            alert("Товар додано до кошика!");
+        }
+    </script>
+</body>
+</html>

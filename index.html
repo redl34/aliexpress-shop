@@ -17,8 +17,8 @@
         /* Шапка сайту з фоном */
         .header {
             position: relative;
-            height: 300px;
-            background: url('Kartinki/background1.jpg') no-repeat center/cover;
+            height: 450px; /* Збільшено в 1.5 раза (300px * 1.5) */
+            background: url('Kartinki/background.jpg') no-repeat center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -77,11 +77,47 @@
         .header .profile-btn:hover {
             background: #1565C0;
         }
+        .categories-title {
+            text-align: center;
+            font-size: 1.5em;
+            padding: 20px 0;
+            background: #1A237E;
+            margin-top: -20px; /* Щоб трохи перекривати галерею */
+            z-index: 2;
+        }
+        /* Категорії товарів */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background: #1A237E;
+            z-index: 2;
+        }
+        .category-btn {
+            display: flex;
+            align-items: center;
+            background: #1976D2;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .category-btn:hover {
+            background: #1565C0;
+        }
+        .category-btn img {
+            width: 30px; /* Маленьке зображення */
+            height: 30px;
+            margin-right: 10px;
+        }
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
-            padding: 340px 20px 20px;
+            padding: 490px 20px 20px; /* Оновлено відступ для нової висоти шапки */
             min-height: calc(100vh - 100px);
         }
         .product-card {
@@ -153,29 +189,6 @@
             stroke-dasharray: 200;
             transition: stroke-dasharray 0.3s ease;
         }
-        /* Категорії товарів */
-        .categories {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-            background: #1A237E;
-            position: relative;
-            top: -20px;
-            z-index: 2;
-        }
-        .category-btn {
-            background: #1976D2;
-            color: #FFFFFF;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .category-btn:hover {
-            background: #1565C0;
-        }
         /* Футер з соцмережами */
         .footer {
             background: #1A237E;
@@ -205,7 +218,7 @@
         }
         @media (max-width: 768px) {
             .header {
-                height: 200px;
+                height: 300px;
                 flex-direction: column;
                 padding: 10px;
             }
@@ -217,15 +230,18 @@
                 flex-direction: column;
                 gap: 10px;
             }
-            .gallery {
-                grid-template-columns: 1fr;
-                padding: 220px 10px 20px;
+            .categories-title {
+                font-size: 1.2em;
+                padding: 10px 0;
             }
             .categories {
                 flex-direction: column;
                 gap: 10px;
                 padding: 10px;
-                top: 0;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+                padding: 310px 10px 20px;
             }
             .footer .social-links a,
             .footer .share-buttons a {
@@ -247,6 +263,22 @@
             </div>
         </div>
         <button class="profile-btn" onclick="window.location.href='registration.html'">+</button>
+    </div>
+    <div class="categories-title">Категорії товарів</div>
+    <!-- Категорії товарів -->
+    <div class="categories">
+        <button class="category-btn" onclick="window.location.href='electronics.html'">
+            <img src="Kartinki/electronics_preview.jpg" alt="Електроника">Електроника
+        </button>
+        <button class="category-btn" onclick="window.location.href='clothing.html'">
+            <img src="Kartinki/clothing_preview.jpg" alt="Одяг">Одяг
+        </button>
+        <button class="category-btn" onclick="window.location.href='garden.html'">
+            <img src="Kartinki/garden_preview.jpg" alt="Сад та город">Сад та город
+        </button>
+        <button class="category-btn" onclick="window.location.href='misc.html'">
+            <img src="Kartinki/misc_preview.jpg" alt="Різне">Різне
+        </button>
     </div>
     <div class="overlay"></div>
     <div class="gallery" id="gallery">
@@ -286,13 +318,6 @@
                 </svg>
             </button>
         </div>
-    </div>
-    <!-- Категорії товарів -->
-    <div class="categories">
-        <button class="category-btn">Електроника</button>
-        <button class="category-btn">Одяг</button>
-        <button class="category-btn">Сад та город</button>
-        <button class="category-btn">Різне</button>
     </div>
     <!-- Футер з соцмережами -->
     <div class="footer">

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AliShop - Інтерактивна галерея</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #000000 70%, #B0BEC5 100%);
+            color: #FFFFFF;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        /* Шапка сайту з фоном */
+        .header {
+            position: relative;
+            height: 675px; /* Збільшено в 1.5 раза від 450px */
+            background: url('Kartinki/background.jpg') no-repeat center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .header-content {
+            z-index: 1;
+        }
+        .header .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+        .header .slogan {
+            font-size: 1.2em;
+            color: #B0BEC5;
+            margin-bottom: 20px;
+        }
+        .header .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .header .btn {
+            background: #1976D2;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header .btn:hover {
+            background: #1565C0;
+        }
+        .header .profile-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: #1976D2;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #FFFFFF;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .header .profile-btn:hover {
+            background: #1565C0;
+        }
+        /* Вертикальний список категорій */
+        .categories {
+            background: #132F13; /* Темно-зелений відтінок */
+            padding: 20px;
+            margin-top: -20px; /* Щоб перекривати шапку */
+            z-index: 2;
+        }
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .category-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #2E4F2E;
+        }
+        .category-btn {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            transition: color 0.3s;
+        }
+        .category-btn:hover {
+            color: #1976D2;
+        }
+        .category-btn img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        /* Футер з соцмережами */
+        .footer {
+            background: #1A237E;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .footer .social-links a,
+        .footer .share-buttons a {
+            margin: 0 10px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        .footer .social-links a:hover,
+        .footer .share-buttons a:hover {
+            color: #1976D2;
+        }
+        .footer .share-buttons a {
+            background: #4CAF50;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        @media (max-width: 768px) {
+            .header {
+                height: 450px; /* Адаптивна висота */
+                flex-direction: column;
+                padding: 10px;
+            }
+            .header .profile-btn {
+                top: 10px;
+                right: 10px;
+            }
+            .header .buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .categories {
+                padding: 10px;
+            }
+            .category-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .category-btn {
+                width: auto;
+            }
+            .footer .social-links a,
+            .footer .share-buttons a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту з фоном -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">AliShop</div>
+            <div class="slogan">Найкращі товари з AliExpress тут</div>
+            <div class="buttons">
+                <button class="btn">Інструкція</button>
+                <button class="btn">Зареєструватися</button>
+            </div>
+        </div>
+        <button class="profile-btn" onclick="window.location.href='registration.html'">+</button>
+    </div>
+    <!-- Вертикальний список категорій -->
+    <div class="categories">
+        <ul class="category-list">
+            <li class="category-item">
+                <button class="category-btn" onclick="window.location.href='electronics.html'">
+                    <img src="Kartinki/electronics_preview.jpg" alt="Електроника">Електроника
+                </button>
+            </li>
+            <li class="category-item">
+                <button class="category-btn" onclick="window.location.href='clothing.html'">
+                    <img src="Kartinki/clothing_preview.jpg" alt="Одяг">Одяг
+                </button>
+            </li>
+            <li class="category-item">
+                <button class="category-btn" onclick="window.location.href='garden.html'">
+                    <img src="Kartinki/garden_preview.jpg" alt="Сад та город">Сад та город
+                </button>
+            </li>
+            <li class="category-item">
+                <button class="category-btn" onclick="window.location.href='misc.html'">
+                    <img src="Kartinki/misc_preview.jpg" alt="Різне">Різне
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!-- Футер з соцмережами -->
+    <div class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com" target="_blank">Facebook</a>
+            <a href="https://www.tiktok.com" target="_blank">TikTok</a>
+        </div>
+        <div class="share-buttons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://your-site-url" target="_blank">Поділитися на Facebook</a>
+            <a href="https://www.instagram.com" target="_blank">Поділитися на Instagram</a>
+            <a href="https://www.tiktok.com" target="_blank">Поділитися на TikTok</a>
+        </div>
+        <p>© 2025 AliShop. Усі права захищено.</p>
+    </div>
+
+    <script>
+        function buyItem() {
+            alert("Товар додано до кошика!");
+        }
+    </script>
+</body>
+</html>

@@ -15,7 +15,7 @@
             background: url('Kartinki/electronics.jpg') no-repeat center center/cover;
             color: white;
             text-align: center;
-            padding: 120px 20px; /* Збільшено висоту вдвічі */
+            padding: 120px 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             position: relative;
         }
@@ -36,17 +36,21 @@
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        header .home-link {
+        header .home-link, header .profile-link {
             position: relative;
             z-index: 2;
             color: white;
             text-decoration: none;
             font-size: 1.2em;
             display: inline-block;
-            margin-top: 20px;
+            margin: 10px 20px;
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            border-radius: 5px;
         }
-        header .home-link:hover {
-            text-decoration: underline;
+        header .home-link:hover, header .profile-link:hover {
+            background-color: #e55a5a;
+            text-decoration: none;
         }
         .products {
             max-width: 800px;
@@ -122,6 +126,7 @@
     <header>
         <h1>Електроніка</h1>
         <a href="index.html" class="home-link">Повернутися на головну</a>
+        <a href="#" class="profile-link" id="profileLink">Мій профіль</a>
     </header>
 
     <div class="products">
@@ -143,7 +148,7 @@
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
-        import { getAuth } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
         import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
         const firebaseConfig = {
@@ -160,10 +165,24 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        // Перевірка статусу авторизації для кнопки профілю
+        const profileLink = document.getElementById('profileLink');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Користувач авторизований, перенаправляємо на login.html
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Мій профіль';
+            } else {
+                // Користувач не авторизований, перенаправляємо на register.html
+                profileLink.href = 'register.html';
+                profileLink.textContent = 'Зареєструватися';
+            }
+        });
+
         window.addToFavorites = async function(id, title, image, link) {
             if (!auth.currentUser) {
                 alert('Будь ласка, увійдіть до облікового запису.');
-                window.location.href = 'login.html';
+                window.location.href = 'register.html'; // Змінено на register.html для неавторизованих
                 return;
             }
             try {

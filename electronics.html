@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Электроника - Ali.Reed</title>
+    <title>Електроніка - Ali.Reed</title>
     <style>
         body {
             font-family: 'Roboto', Arial, sans-serif;
@@ -15,7 +15,7 @@
             background: url('Kartinki/electronics.jpg') no-repeat center center/cover;
             color: white;
             text-align: center;
-            padding: 60px 20px;
+            padding: 120px 20px; /* Збільшено висоту вдвічі */
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             position: relative;
         }
@@ -35,6 +35,18 @@
             margin: 0;
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        header .home-link {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        header .home-link:hover {
+            text-decoration: underline;
         }
         .products {
             max-width: 800px;
@@ -108,7 +120,8 @@
 </head>
 <body>
     <header>
-        <h1>Электроника</h1>
+        <h1>Електроніка</h1>
+        <a href="index.html" class="home-link">Повернутися на головну</a>
     </header>
 
     <div class="products">
@@ -116,16 +129,16 @@
             <img src="Kartinki/sample-product.jpg" alt="Смартфон">
             <div class="product-details">
                 <h3>Смартфон XYZ</h3>
-                <p>Современный смартфон с отличной камерой.</p>
-                <a href="https://aliexpress.com/item/123" target="_blank">Купить на AliExpress</a>
+                <p>Сучасний смартфон з чудовою камерою.</p>
+                <a href="https://aliexpress.com/item/123" target="_blank">Купити на AliExpress</a>
             </div>
-            <button class="add-to-favorites" onclick="addToFavorites('123', 'Смартфон XYZ', 'Kartinki/sample-product.jpg', 'https://aliexpress.com/item/123')">Добавить в избранное</button>
+            <button class="add-to-favorites" onclick="addToFavorites('123', 'Смартфон XYZ', 'Kartinki/sample-product.jpg', 'https://aliexpress.com/item/123')">Додати до обраного</button>
         </div>
         <!-- Додайте інші товари за аналогією -->
     </div>
 
     <footer>
-        <p>Следи за новинками в <a href="https://www.tiktok.com/@reedoffe" target="_blank">TikTok</a></p>
+        <p>Слідкуй за новинками в <a href="https://www.tiktok.com/@reedoffe" target="_blank">TikTok</a></p>
     </footer>
 
     <script type="module">
@@ -149,7 +162,7 @@
 
         window.addToFavorites = async function(id, title, image, link) {
             if (!auth.currentUser) {
-                alert('Пожалуйста, войдите в аккаунт.');
+                alert('Будь ласка, увійдіть до облікового запису.');
                 window.location.href = 'login.html';
                 return;
             }
@@ -161,7 +174,7 @@
                     image: image,
                     link: link
                 });
-                alert('Товар добавлен в избранное!');
+                alert('Товар додано до обраного!');
             } catch (error) {
                 console.error('Помилка додавання:', error);
             }

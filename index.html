@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AliShop - Інтерактивна галерея</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #000000;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            /* Змінено з position: absolute на relative для кращої адаптивності */
+            position: relative;
+            height: 840px; /* Висота для десктопу */
+            width: 100%;
+            background: url('Kartinki/background.jpg') no-repeat center/cover;
+            background-color: #1A237E; /* Резервний фон */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 28px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .header-content {
+            z-index: 2;
+        }
+        .header .logo {
+            font-size: 5.25em;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 14px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+        .header .slogan {
+            font-size: 2.52em;
+            color: #B0BEC5;
+            margin-bottom: 28px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+        .header .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            justify-content: center;
+            align-items: center;
+        }
+        .header .btn {
+            background: #1976D2;
+            color: #FFFFFF;
+            border: none;
+            padding: 14px 28px;
+            cursor: pointer;
+            border-radius: 7px;
+            transition: background 0.3s;
+            font-size: 1.68em;
+            width: 200px; /* Додано фіксовану ширину для кращого вигляду на мобільних */
+        }
+        .header .btn:hover {
+            background: #1565C0;
+        }
+        .header .secondary-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+        }
+        .header .profile-btn {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 56px;
+            height: 56px;
+            background: #1976D2;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #FFFFFF;
+            font-size: 2.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 3;
+        }
+        .header .profile-btn:hover {
+            background: #1565C0;
+        }
+        .categories {
+            padding: 28px;
+            /* Змінено margin-top для коректного відображення після шапки */
+            margin-top: 0; /* Шапка тепер relative, тому margin не потрібен */
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background: linear-gradient(to right, #39181E 0% 20%, #132F13 20% 80%, #39181E 80% 100%);
+            flex-grow: 1; /* Забезпечено заповнення доступного простору */
+            min-height: 0; /* Усунуто конфлікт із flex-grow */
+            margin-bottom: 0;
+        }
+        .categories-title {
+            font-size: 2.8em;
+            font-weight: bold;
+            margin-bottom: 28px;
+            text-align: center;
+            width: 100%;
+        }
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            max-width: 70%;
+        }
+        .category-item {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 21px 28px;
+            border-bottom: 1px solid #2E4F2E;
+            margin: 0 14px;
+        }
+        .category-btn {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            color: #FFFFFF;
+            border: none;
+            padding: 14px 28px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 2.8em;
+            white-space: nowrap;
+            transition: color 0.3s;
+        }
+        .category-btn:hover {
+            color: #1976D2;
+        }
+        .category-btn img {
+            width: 126px;
+            height: 126px;
+            margin-right: 14px;
+        }
+        .social-section {
+            background: #000000;
+            padding: 2px;
+            text-align: center;
+            margin-top: 0;
+            flex-shrink: 0;
+            min-height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .social-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 1px;
+            line-height: 1;
+        }
+        .social-section .social-links a,
+        .social-section .share-buttons a {
+            margin: 0 2px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 1.2em;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+        .social-section .social-links a:hover,
+        .social-section .share-buttons a:hover {
+            color: #1976D2;
+        }
+        .social-section .share-buttons a {
+            background: #4CAF50;
+            padding: 1px 2px;
+            border-radius: 1px;
+        }
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: space-between;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding-top: 0; /* Прибрано padding-top, оскільки шапка тепер relative */
+            }
+            .header {
+                height: 400px; /* Зменшено висоту для мобільних */
+                padding: 10px;
+            }
+            .header .profile-btn {
+                top: 10px;
+                right: 10px;
+            }
+            .header .buttons {
+                flex-direction: column;
+                gap: 7px;
+            }
+            .header .logo {
+                font-size: 3.5em;
+            }
+            .header .slogan {
+                font-size: 1.68em;
+            }
+            .categories {
+                padding: 14px;
+                margin-top: 0; /* Корекція для мобільних */
+                flex-grow: 1;
+                background: linear-gradient(to right, #39181E 0% 20%, #132F13 20% 80%, #39181E 80% 100%);
+            }
+            .categories-title {
+                font-size: 2.1em;
+            }
+            .category-list {
+                max-width: 90%;
+            }
+            .category-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 14px 14px;
+                margin: 0 7px;
+            }
+            .category-btn {
+                width: auto;
+                font-size: 2.1em;
+                text-align: left;
+            }
+            .category-btn img {
+                width: 105px;
+                height: 105px;
+                margin-right: 7px;
+            }
+            .social-section {
+                padding: 1px;
+                min-height: 15px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+            .social-section h2 {
+                font-size: 1.4em;
+                margin-bottom: 1px;
+                line-height: 1;
+            }
+            .social-section .social-links a,
+            .social-section .share-buttons a {
+                font-size: 1.0em;
+                line-height: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <!-- Шапка сайту з фоном -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo">AliShop</div>
+                <div class="slogan">Найкращі товари з AliExpress тут</div>
+                <div class="buttons">
+                    <button class="btn" onclick="window.location.href='login.html'">Увійти</button>
+                    <div class="secondary-buttons">
+                        <button class="btn">Інструкція</button>
+                        <button class="btn" onclick="window.location.href='register.html'">Зареєструватися</button>
+                    </div>
+                </div>
+            </div>
+            <button class="profile-btn" onclick="window.location.href='register.html'">+</button>
+        </div>
+        <!-- Вертикальний список категорій -->
+        <div class="categories">
+            <div class="categories-title">Категорії товарів</div>
+            <ul class="category-list">
+                <li class="category-item">
+                    <button class="category-btn" onclick="window.location.href='electronics.html'">
+                        <img src="Kartinki/electronics_preview.jpg" alt="Електроника">Електроника
+                    </button>
+                </li>
+                <li class="category-item">
+                    <button class="category-btn" onclick="window.location.href='clothing.html'">
+                        <img src="Kartinki/clothing_preview.jpg" alt="Одяг">Одяг
+                    </button>
+                </li>
+                <li class="category-item">
+                    <button class="category-btn" onclick="window.location.href='garden.html'">
+                        <img src="Kartinki/garden_preview.jpg" alt="Сад та город">Сад та город
+                    </button>
+                </li>
+                <li class="category-item">
+                    <button class="category-btn" onclick="window.location.href='misc.html'">
+                        <img src="Kartinki/misc_preview.jpg" alt="Різне">Різне
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <!-- Блок соціальних мереж -->
+        <div class="social-section">
+            <h2>Соціальні мережі</h2>
+            <div class="social-links">
+                <a href="https://www.facebook.com" target="_blank">Facebook</a>
+                <a href="https://www.tiktok.com" target="_blank">TikTok</a>
+            </div>
+            <h2>Поділитися</h2>
+            <div class="share-buttons">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://your-site-url" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com" target="_blank">Instagram</a>
+                <a href="https://www.tiktok.com" target="_blank">TikTok</a>
+            </div>
+            <p>© 2025 AliShop</p>
+        </div>
+    </div>
+
+    <script>
+        function buyItem() {
+            alert("Товар додано до кошика!");
+        }
+    </script>
+</body>
+</html>

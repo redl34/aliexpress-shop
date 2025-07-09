@@ -9,22 +9,21 @@
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background: #000000; /* Основний чорний фон, залишимо як резерв */
+            background: #000000;
             color: #FFFFFF;
             overflow-x: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Змінено з 140vh на 100vh, щоб уникнути зайвої висоти */
+            min-height: 100vh;
         }
-        /* Шапка сайту з фоном */
         .header {
             position: absolute;
             top: 0;
-            height: 840px; /* Висота шапки */
+            height: 840px;
             width: 100%;
             background: url('Kartinki/background.jpg') no-repeat center/cover;
-            background-color: #1A237E; /* Резервний фон */
+            background-color: #1A237E;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -51,8 +50,10 @@
         }
         .header .buttons {
             display: flex;
+            flex-direction: column; /* Змінено на вертикальне розташування */
             gap: 14px;
             justify-content: center;
+            align-items: center; /* Вирівнювання по центру */
         }
         .header .btn {
             background: #1976D2;
@@ -88,18 +89,17 @@
         .header .profile-btn:hover {
             background: #1565C0;
         }
-        /* Вертикальний список категорій */
         .categories {
             padding: 28px;
-            margin-top: 868px; /* 840px (висота шапки) + 28px (margin-top) */
+            margin-top: 868px;
             z-index: 2;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            background: linear-gradient(to right, #39181E 0% 20%, #132F13 20% 80%, #39181E 80% 100%); /* Розтягуємо цей фон */
-            flex-grow: 1; /* Розтягуємо категорії на всю доступну висоту */
-            margin-bottom: 0; /* Прибрано відступ знизу для упритул розташування */
+            background: linear-gradient(to right, #39181E 0% 20%, #132F13 20% 80%, #39181E 80% 100%);
+            flex-grow: 1;
+            margin-bottom: 0;
         }
         .categories-title {
             font-size: 2.8em;
@@ -112,12 +112,12 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            text-align: center;
+            text-align: left;
             max-width: 70%;
         }
         .category-item {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             padding: 21px 0;
             border-bottom: 1px solid #2E4F2E;
@@ -130,43 +130,42 @@
             border: none;
             padding: 14px 28px;
             cursor: pointer;
-            text-align: center;
+            text-align: left;
             font-size: 2.8em;
-            white-space: normal;
+            white-space: nowrap;
             transition: color 0.3s;
         }
         .category-btn:hover {
             color: #1976D2;
         }
         .category-btn img {
-            width: 42px;
-            height: 42px;
+            width: 84px;
+            height: 84px;
             margin-right: 14px;
         }
-        /* Блок соціальних мереж */
         .social-section {
             background: #000000;
             padding: 2px;
             text-align: center;
-            margin-top: 0; /* Прибрано автоматичний відступ, щоб упритул */
+            margin-top: 0;
             flex-shrink: 0;
-            min-height: 20px; /* Залишаємо без змін */
+            min-height: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Текст вирівняно по нижньому краю */
+            justify-content: flex-end;
         }
         .social-section h2 {
-            font-size: 1.5em; /* Збільшено в 1.7 раза (з 0.9em) */
+            font-size: 1.5em;
             margin-bottom: 1px;
-            line-height: 1; /* Щоб текст вміщався */
+            line-height: 1;
         }
         .social-section .social-links a,
         .social-section .share-buttons a {
             margin: 0 2px;
             color: #FFFFFF;
             text-decoration: none;
-            font-size: 1.2em; /* Збільшено в 1.7 раза (з 0.7em) */
-            line-height: 1; /* Щоб текст вміщався */
+            font-size: 1.2em;
+            line-height: 1;
             transition: color 0.3s;
         }
         .social-section .social-links a:hover,
@@ -178,12 +177,11 @@
             padding: 1px 2px;
             border-radius: 1px;
         }
-        /* Контейнер для гнучкості */
         .content-wrapper {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Змінено з 140vh на 100vh */
-            justify-content: space-between; /* Розподіл простору між елементами */
+            min-height: 100vh;
+            justify-content: space-between;
         }
         @media (max-width: 768px) {
             body {
@@ -210,8 +208,8 @@
             }
             .categories {
                 padding: 14px;
-                margin-top: 644px; /* 630px (висота шапки) + 14px (margin-top) */
-                flex-grow: 1; /* Розтягуємо категорії на всю доступну висоту */
+                margin-top: 644px;
+                flex-grow: 1;
                 background: linear-gradient(to right, #39181E 0% 20%, #132F13 20% 80%, #39181E 80% 100%);
             }
             .categories-title {
@@ -222,34 +220,35 @@
             }
             .category-item {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
                 padding: 14px 0;
             }
             .category-btn {
                 width: auto;
                 font-size: 2.1em;
+                text-align: left;
             }
             .category-btn img {
-                width: 35px;
-                height: 35px;
+                width: 70px;
+                height: 70px;
                 margin-right: 7px;
             }
             .social-section {
                 padding: 1px;
-                min-height: 15px; /* Залишаємо без змін */
+                min-height: 15px;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
             }
             .social-section h2 {
-                font-size: 1.4em; /* Збільшено в 1.7 раза (з 0.8em) */
+                font-size: 1.4em;
                 margin-bottom: 1px;
-                line-height: 1; /* Щоб текст вміщався */
+                line-height: 1;
             }
             .social-section .social-links a,
             .social-section .share-buttons a {
-                font-size: 1.0em; /* Збільшено в 1.7 раза (з 0.6em) */
-                line-height: 1; /* Щоб текст вміщався */
+                font-size: 1.0em;
+                line-height: 1;
             }
         }
     </style>
@@ -262,17 +261,20 @@
                 <div class="logo">AliShop</div>
                 <div class="slogan">Найкращі товари з AliExpress тут</div>
                 <div class="buttons">
-                    <button class="btn">Інструкція</button>
-                    <button class="btn">Зареєструватися</button>
+                    <button class="btn" onclick="window.location.href='login.html'">Увійти</button>
+                    <div class="secondary-buttons">
+                        <button class="btn">Інструкція</button>
+                        <button class="btn" onclick="window.location.href='register.html'">Зареєструватися</button>
+                    </div>
                 </div>
             </div>
-            <button class="profile-btn" onclick="window.location.href='registration.html'">+</button>
+            <button class="profile-btn" onclick="window.location.href='register.html'">+</button>
         </div>
         <!-- Вертикальний список категорій -->
         <div class="categories">
             <div class="categories-title">Категорії товарів</div>
             <ul class="category-list">
-                <li class="category-item">
+                <لي class="category-item">
                     <button class="category-btn" onclick="window.location.href='electronics.html'">
                         <img src="Kartinki/electronics_preview.jpg" alt="Електроника">Електроника
                     </button>

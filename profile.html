@@ -6,7 +6,6 @@
     <title>Профіль - AliShop</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* (Попередні стилі залишаються без змін) */
         /* Скидання базових стилів */
         * {
             margin: 0;
@@ -16,20 +15,21 @@
 
         body {
             font-family: 'Roboto', Arial, sans-serif;
-            background-color: #ffffff;
+            background-color: #ffffff; /* Білий фон основної частини */
             color: #000000;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
+        /* Шапка */
         .header {
-            background-color: #1a1a1a;
+            background-color: #1a1a1a; /* Темний фон шапки */
             padding: 30px;
             text-align: center;
             color: #ffffff;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            position: relative;
+            position: relative; /* Для позиціонування кнопок */
             min-height: 120px;
         }
 
@@ -42,10 +42,9 @@
             transform: translate(-50%, -50%);
         }
 
-        .header .home-btn {
+        .header .home-btn, .header .logout-btn {
             position: absolute;
             top: 50%;
-            left: 40%;
             transform: translateY(-50%);
             background-color: #1976D2;
             color: #ffffff;
@@ -58,10 +57,19 @@
             transition: background-color 0.3s;
         }
 
-        .header .home-btn:hover {
+        .header .home-btn {
+            left: 40%; /* Трохи лівіше центру */
+        }
+
+        .header .logout-btn {
+            right: 40%; /* Трохи правіше центру */
+        }
+
+        .header .home-btn:hover, .header .logout-btn:hover {
             background-color: #1565C0;
         }
 
+        /* Основний контейнер */
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -73,9 +81,10 @@
             justify-content: center;
         }
 
+        /* Картка товару */
         .product-card {
             width: 250px;
-            height: 250px;
+            height: 250px; /* Квадратна форма */
             background-color: #f9f9f9;
             border-radius: 15px;
             overflow: hidden;
@@ -126,14 +135,16 @@
             background-color: #cc0000;
         }
 
+        /* Нижня частина */
         .footer {
-            background-color: #1a1a1a;
+            background-color: #1a1a1a; /* Темний фон знизу */
             padding: 10px;
             text-align: center;
             color: #ffffff;
             font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
 
+        /* Адаптивність */
         @media (max-width: 600px) {
             .header {
                 padding: 15px;
@@ -144,7 +155,7 @@
                 font-size: clamp(1.2rem, 4vw, 1.5rem);
             }
 
-            .header .home-btn {
+            .header .home-btn, .header .logout-btn {
                 padding: 8px 15px;
                 font-size: clamp(0.9rem, 2.5vw, 1rem);
             }
@@ -167,6 +178,7 @@
     <div class="header">
         <h2 id="userName">Завантаження...</h2>
         <button class="home-btn" onclick="window.location.href='index.html'">Повернутися на головну</button>
+        <button class="logout-btn" onclick="signOut()">Вийти</button>
     </div>
     <div class="container" id="productContainer"></div>
     <div class="footer">
@@ -175,7 +187,7 @@
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
-        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
         import { getFirestore, doc, getDoc, setDoc, arrayUnion, updateDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
         const firebaseConfig = {
@@ -253,6 +265,18 @@
                 window.location.href = 'login.html';
             }
         };
+
+        // Функція для виходу
+        function signOut() {
+            signOut(auth)
+                .then(() => {
+                    console.log('Успішний вихід');
+                    window.location.href = 'index.html'; // Перенаправлення на головну після виходу
+                })
+                .catch((error) => {
+                    console.error('Помилка виходу:', error);
+                });
+        }
     </script>
 </body>
 </html>

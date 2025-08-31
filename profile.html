@@ -1,282 +1,511 @@
 <!DOCTYPE html>
+
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профіль - AliShop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Скидання базових стилів */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background-color: #ffffff; /* Білий фон основної частини */
-            color: #000000;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Шапка */
-        .header {
-            background-color: #1a1a1a; /* Темний фон шапки */
-            padding: 30px;
-            text-align: center;
-            color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            position: relative; /* Для позиціонування кнопок */
-            min-height: 120px;
-        }
-
-        .header h2 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 700;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .header .home-btn, .header .logout-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #1976D2;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            font-weight: 700;
-            transition: background-color 0.3s;
-        }
-
-        .header .home-btn {
-            left: 40%; /* Трохи лівіше центру */
-        }
-
-        .header .logout-btn {
-            right: 40%; /* Трохи правіше центру */
-        }
-
-        .header .home-btn:hover, .header .logout-btn:hover {
-            background-color: #1565C0;
-        }
-
-        /* Основний контейнер */
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        /* Картка товару */
-        .product-card {
-            width: 250px;
-            height: 250px; /* Квадратна форма */
-            background-color: #f9f9f9;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            padding: 10px;
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: scale(1.05);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px 10px 0 0;
-        }
-
-        .product-card .description {
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            font-weight: 700;
-            margin: 10px 0;
-            color: #333;
-        }
-
-        .product-card .price {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 10px;
-        }
-
-        .product-card .buy-btn {
-            background-color: #ff4444;
-            color: #ffffff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: clamp(0.85rem, 2vw, 1rem);
-            font-weight: 700;
-            transition: background-color 0.3s;
-        }
-
-        .product-card .buy-btn:hover {
-            background-color: #cc0000;
-        }
-
-        /* Нижня частина */
-        .footer {
-            background-color: #1a1a1a; /* Темний фон знизу */
-            padding: 10px;
-            text-align: center;
-            color: #ffffff;
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
-        }
-
-        /* Адаптивність */
-        @media (max-width: 600px) {
-            .header {
-                padding: 15px;
-                min-height: 90px;
-            }
-
-            .header h2 {
-                font-size: clamp(1.2rem, 4vw, 1.5rem);
-            }
-
-            .header .home-btn, .header .logout-btn {
-                padding: 8px 15px;
-                font-size: clamp(0.9rem, 2.5vw, 1rem);
-            }
-
-            .product-card {
-                width: 200px;
-                height: 200px;
-            }
-
-            .product-card img {
-                height: 120px;
-            }
-        }
-    </style>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Одяг - Сторінка 5 - Ali.Reed</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="images/favicon.png" rel="icon" type="image/png"/>
+<style>
+    body {
+        font-family: 'Roboto', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #3E717A;
+    }
+    header {
+        background: url('images/clothing.jpg') no-repeat center center/cover;
+        color: white;
+        text-align: center;
+        padding: 120px 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        position: relative;
+    }
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        z-index: 1;
+    }
+    header h1 {
+        position: relative;
+                    z-index: 2;
+                    margin: 0;
+                    font-size: 2.5em;
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+                }
+                header .home-link, header .profile-link {
+                    position: relative;
+                    z-index: 2;
+                    color: white;
+                    text-decoration: none;
+                    font-size: 1.2em;
+                    display: inline-block;
+                    margin: 10px 20px;
+                    padding: 10px 20px;
+                    background-color: #ff6b6b;
+                    border-radius: 5px;
+                }
+                header .home-link:hover, header .profile-link:hover {
+                    background-color: #e55a5a;
+                    text-decoration: none;
+                }
+                .search-container {
+                    position: relative;
+                    z-index: 2;
+                    margin: 20px auto;
+                    max-width: 500px;
+                    display: flex;
+                    gap: 10px;
+                }
+                .search-container input {
+                    flex-grow: 1;
+                    padding: 10px;
+                    font-size: 1em;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    outline: none;
+                }
+                .search-container button {
+                    padding: 10px 20px;
+                    background-color: #ff6b6b;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 1em;
+                }
+                .search-container button:hover {
+                    background-color: #e55a5a;
+                }
+                .products {
+                    margin: 20px auto;
+                    padding: 20px 10px;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 20px;
+                    max-width: 1200px;
+                }
+                .product-card {
+                    background-color: white;
+                    border: 1px solid #ddd;
+                    border-radius: 10px;
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                    aspect-ratio: 3 / 4;
+                }
+                .product-image-carousel {
+                    position: relative;
+                    width: 100%;
+                    max-height: 50%;
+                    overflow: hidden;
+                }
+                .carousel-container {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+                .carousel-image {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                    display: none;
+                    object-fit: contain;
+                }
+                .carousel-image.active {
+                    display: block;
+                }
+                .carousel-prev, .carousel-next {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background-color: rgba(0, 0, 0, 0.5);
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    cursor: pointer;
+                    z-index: 10;
+                }
+                .carousel-prev {
+                    left: 0;
+                }
+                .carousel-next {
+                    right: 0;
+                }
+                .carousel-indicators {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 5px;
+                }
+                .indicator {
+                    width: 10px;
+                    height: 10px;
+                    background-color: rgba(0, 0, 0, 0.3);
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+                .indicator.active {
+                    background-color: rgba(0, 0, 0, 0.7);
+                }
+                .product-details {
+                    flex-grow: 1;
+                    text-align: center;
+                    margin: 10px 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+                .product-details h3 {
+                    margin: 10px 0;
+                    font-size: 1.3em;
+                    color: #2c3e50;
+                }
+                .product-details .articul {
+                    font-size: 0.9375em;
+                    font-weight: bold;
+                    color: #000000;
+                    margin: 10px 0;
+                }
+                .product-details .price {
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    color: #000000;
+                    margin: 10px 0;
+                }
+                .product-details p {
+                    font-size: 1em;
+                    color: #2c3e50;
+                    margin: 10px 0;
+                }
+                .product-details a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    background-color: #132F13;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    display: block;
+                    margin: 10px 0;
+                    font-size: 1em;
+                }
+                .product-details a:hover {
+                    background-color: #0e240e;
+                }
+                .add-to-favorites {
+                    background-color: #A9A34C;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 1em;
+                    width: 100%;
+                }
+                .add-to-favorites:hover {
+                    background-color: #8e8a3f;
+                }
+                footer {
+                    background-color: #000000;
+                    color: white;
+                    text-align: center;
+                    padding: 20px;
+                    position: relative;
+                    bottom: 0;
+                    width: 100%;
+                }
+                footer .social-links {
+                    text-align: center;
+                }
+                footer .social-links h2 {
+                    font-size: clamp(1.2rem, 3vw, 1.4rem);
+                    margin-bottom: 15px;
+                }
+                footer .social-buttons {
+                    display: flex;
+                    justify-content: center;
+                    gap: 15px;
+                    margin-top: 10px;
+                }
+                footer .social-buttons a {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    color: white;
+                    text-decoration: none;
+                    font-weight: bold;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    font-size: clamp(0.9rem, 2.5vw, 1rem);
+                    transition: transform 0.2s, box-shadow 0.2s;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                }
+                footer .social-buttons a.tiktok {
+                    background-color: #000000;
+                    border: 1px solid #fff;
+                }
+                footer .social-buttons a.facebook {
+                    background-color: #1877f2;
+                }
+                footer .social-buttons a.instagram {
+                    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+                }
+                footer .social-buttons a:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+                }
+                footer .social-buttons a i {
+                    font-size: 1.2em;
+                }
+                .pagination {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    margin: 20px 0;
+                }
+                .pagination a {
+                    color: white;
+                    text-decoration: none;
+                    padding: 10px 15px;
+                    background-color: #ff6b6b;
+                    border-radius: 5px;
+                    font-size: 1em;
+                }
+                .pagination a:hover {
+                    background-color: #e55a5a;
+                }
+                .pagination a.active {
+                    background-color: #e55a5a;
+                    font-weight: bold;
+                }
+                .pagination a.disabled {
+                    background-color: #555;
+                    cursor: not-allowed;
+                }
+                @media (max-width: 1200px) {
+                    .products {
+                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                        max-width: 900px;
+                    }
+                }
+                @media (max-width: 900px) {
+                    .products {
+                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                        max-width: 600px;
+                    }
+                    .carousel-prev, .carousel-next {
+                        display: none;
+                    }
+                    .product-image-carousel {
+                        max-height: 50%;
+                    }
+                    .carousel-image {
+                        max-height: 100%;
+                    }
+                    .product-details h3 {
+                        font-size: 1.1em;
+                    }
+                    .product-details .articul {
+                        font-size: 0.8125em;
+                    }
+                    .product-details .price {
+                        font-size: 1.3em;
+                    }
+                    .product-details a, .add-to-favorites {
+                        font-size: 0.9em;
+                        padding: 8px 16px;
+                    }
+                    .search-container {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    .search-container input, .search-container button {
+                        width: 100%;
+                        max-width: 200px;
+                    }
+                }
+                @media (max-width: 600px) {
+                    .products {
+                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                        max-width: 290px;
+                        padding: 20px 10px;
+                    }
+                }
+            </style>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js" type="module"></script>
 </head>
 <body>
-    <div class="header">
-        <h2 id="userName">Завантаження...</h2>
-        <button class="home-btn" onclick="window.location.href='index.html'">Повернутися на головну</button>
-        <button class="logout-btn" onclick="signOut()">Вийти</button>
-    </div>
-    <div class="container" id="productContainer"></div>
-    <div class="footer">
-        © 2025 AliShop. Усі права захищено.
-    </div>
+<header>
+<h1>Одяг - Сторінка 5</h1>
+<a class="home-link" href="index.html">Повернутися на головну</a>
+<a class="profile-link" href="#" id="profileLink">Мій профіль</a>
+<div class="search-container">
+<input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
+<button onclick="searchProducts()">Пошук</button>
+</div>
+</header>
+<div class="products">
+<div class="product-card" data-articul="0013B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Вітровка " class="carousel-image active" src="D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0013B1.jpg"/><img alt="Вітровка " class="carousel-image" src="D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0013B2.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Вітровка </h3><p>Чоловіча легка вітровка весняно-осіння куртка пальто чоловіча вітрозахисна на відкритому повітрі повсякденна стильна блискавка кишенькова куртка</p><p class="articul">арт. 0013B</p><p class="price">294.13 грн</p><a href="https://s.click.aliexpress.com/e/_oCujKd" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0013B', 'Вітровка ', 'D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0013B1.jpg', 'https://s.click.aliexpress.com/e/_oCujKd')">Додати до обраного</button></div></div><div class="product-card" data-articul="0015B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Кофта " class="carousel-image active" src="D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0015B1.jpg"/><img alt="Кофта " class="carousel-image" src="D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0015B2.jpg"/><img alt="Кофта " class="carousel-image" src="D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0015B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кофта </h3><p>Чоловіча літня сонцезахисна сорочка з тонким швидковисихаючим капюшоном, вітрозахисна куртка, дихаюча, з принтом літера, повсякденний та універсальний кардиган</p><p class="articul">арт. 0015B</p><p class="price"> 45.15 грн</p><a href="https://s.click.aliexpress.com/e/_onkR4El" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0015B', 'Кофта ', 'D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0015B1.jpg', 'https://s.click.aliexpress.com/e/_onkR4El')">Додати до обраного</button></div></div><div class="product-card" data-articul="0016B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Куртка " class="carousel-image active" src="D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0016B1.jpg"/><img alt="Куртка " class="carousel-image" src="D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0016B2.jpg"/><img alt="Куртка " class="carousel-image" src="D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0016B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Куртка </h3><p>Чоловіча легка вітровка весняно-осіння куртка пальто чоловіча вітрозахисна на відкритому повітрі повсякденна стильна блискавка кишенькова куртка</p><p class="articul">арт. 0016B</p><p class="price">295.19 грн</p><a href="https://s.click.aliexpress.com/e/_oDyMXP3" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0016B', 'Куртка ', 'D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0016B1.jpg', 'https://s.click.aliexpress.com/e/_oDyMXP3')">Додати до обраного</button></div></div><div class="product-card" data-articul="0017B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Літня куртка" class="carousel-image active" src="D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0017B1.jpg"/><img alt="Літня куртка" class="carousel-image" src="D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0017B2.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Літня куртка</h3><p>Літня куртка з капюшоном 2025 року для чоловіків і жінок, одяг для захисту від сонця, риболовля, полювання, швидковисихаюча вітровка</p><p class="articul">арт. 0017B</p><p class="price">70.17 грн</p><a href="https://s.click.aliexpress.com/e/_ood1BP7" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0017B', 'Літня куртка', 'D:\Kntent\Алиекспрес\Оригинал\OstatocnaVersiy\FinishVersiy\Одяг\Жіночий одяг\Одяг/Одяг/0017B1.jpg', 'https://s.click.aliexpress.com/e/_ood1BP7')">Додати до обраного</button></div></div></div>
+<footer>
+<div class="pagination">
+</div>
+<div class="social-links">
+<h2>Слідкуй за новинками в</h2>
+<div class="social-buttons">
+<a class="tiktok" href="https://www.tiktok.com/@reedoffe" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+<a class="facebook" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+<a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</div>
+</div>
+<p>© 2025 Ali.Reed</p>
+</footer>
+<script type="module">
+                import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+                import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+                import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
-        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-        import { getFirestore, doc, getDoc, setDoc, arrayUnion, updateDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+                const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
-            authDomain: "alishopping-ced60.firebaseapp.com",
-            projectId: "alishopping-ced60",
-            storageBucket: "alishopping-ced60.firebasestorage.app",
-            messagingSenderId: "869364972631",
-            appId: "1:869364972631:web:f9b736868d9844b3e7f712",
-            measurementId: "G-SF4MY2768F"
-        };
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const db = getFirestore(app);
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+                const profileLink = document.getElementById('profileLink');
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        profileLink.href = 'profile.html';
+                        profileLink.textContent = 'Мій профіль';
+                    } else {
+                        profileLink.href = 'login.html';
+                        profileLink.textContent = 'Увійти';
+                    }
+                });
 
-        // Перевірка стану автентифікації та перенаправлення
-        onAuthStateChanged(auth, (user) => {
-            if (!user) {
-                window.location.href = 'login.html'; // Перенаправлення на вхід, якщо не авторизований
-            } else {
-                loadUserData();
-            }
-        });
+                window.addToFavorites = async function(id, title, image, link) {
+                    if (!auth.currentUser) {
+                        alert('Будь ласка, увійдіть до облікового запису.');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    try {
+                        await addDoc(collection(db, 'favorites'), {
+                            userId: auth.currentUser.uid,
+                            id: id,
+                            title: title,
+                            image: image,
+                            link: link
+                        });
+                        alert('Товар додано до обраного!');
+                    } catch (error) {
+                        console.error('Помилка додавання:', error);
+                    }
+                };
 
-        // Отримання імені користувача та завантаження обраних товарів
-        async function loadUserData() {
-            const user = auth.currentUser;
-            if (user) {
-                const userDoc = await getDoc(doc(db, 'users', user.uid));
-                if (userDoc.exists()) {
-                    const userData = userDoc.data();
-                    document.getElementById('userName').textContent = `Привіт, ${userData.username || 'Користувач'}!`;
-                }
-                loadFavorites();
-            }
-        }
+                document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+                    const images = carousel.querySelectorAll('.carousel-image');
+                    const indicators = carousel.querySelectorAll('.indicator');
+                    const prevButton = carousel.querySelector('.carousel-prev');
+                    const nextButton = carousel.querySelector('.carousel-next');
+                    let currentIndex = 0;
 
-        // Завантаження обраних товарів
-        async function loadFavorites() {
-            const user = auth.currentUser;
-            if (user) {
-                const userDoc = await getDoc(doc(db, 'users', user.uid));
-                if (userDoc.exists()) {
-                    const favorites = userDoc.data().favorites || [];
-                    const container = document.getElementById('productContainer');
-                    container.innerHTML = ''; // Очищаємо контейнер
-                    favorites.forEach(item => {
-                        const card = document.createElement('div');
-                        card.className = 'product-card';
-                        card.innerHTML = `
-                            <img src="${item.image || 'https://via.placeholder.com/150'}" alt="${item.description}">
-                            <div class="description">${item.description || 'Опис товару'}</div>
-                            <div class="price">${item.price || 'Ціна не вказана'}</div>
-                            <a href="${item.link}" target="_blank" class="buy-btn">Придбати на AliExpress</a>
-                        `;
-                        container.appendChild(card);
+                    function updateCarousel() {
+                        images.forEach((img, index) => {
+                            img.classList.toggle('active', index === currentIndex);
+                        });
+                        indicators.forEach((indicator, index) => {
+                            indicator.classList.toggle('active', index === currentIndex);
+                        });
+                    }
+
+                    if (prevButton) {
+                        prevButton.addEventListener('click', () => {
+                            currentIndex = (currentIndex - 1 + images.length) % images.length;
+                            updateCarousel();
+                        });
+                    }
+
+                    if (nextButton) {
+                        nextButton.addEventListener('click', () => {
+                            currentIndex = (currentIndex + 1) % images.length;
+                            updateCarousel();
+                        });
+                    }
+
+                    indicators.forEach((indicator, index) => {
+                        indicator.addEventListener('click', () => {
+                            currentIndex = index;
+                            updateCarousel();
+                        });
                     });
-                }
-            }
-        }
 
-        // Функція для додавання товару до обраного
-        window.addToFavorites = async (image, description, price, link) => {
-            const user = auth.currentUser;
-            if (user) {
-                const userRef = doc(db, 'users', user.uid);
-                await updateDoc(userRef, {
-                    favorites: arrayUnion({ image, description, price, link })
-                });
-                alert('Товар додано до обраного!');
-                loadFavorites(); // Оновлення списку
-            } else {
-                alert('Увійдіть, щоб додати товар до обраного.');
-                window.location.href = 'login.html';
-            }
-        };
+                    let touchStartX = 0;
+                    let touchEndX = 0;
 
-        // Функція для виходу
-        function signOut() {
-            signOut(auth)
-                .then(() => {
-                    console.log('Успішний вихід');
-                    window.location.href = 'index.html'; // Перенаправлення на головну після виходу
-                })
-                .catch((error) => {
-                    console.error('Помилка виходу:', error);
+                    carousel.addEventListener('touchstart', (e) => {
+                        touchStartX = e.changedTouches[0].screenX;
+                    });
+
+                    carousel.addEventListener('touchend', (e) => {
+                        touchEndX = e.changedTouches[0].screenX;
+                        if (touchEndX < touchStartX - 50) {
+                            currentIndex = (currentIndex + 1) % images.length;
+                            updateCarousel();
+                        } else if (touchEndX > touchStartX + 50) {
+                            currentIndex = (currentIndex - 1 + images.length) % images.length;
+                            updateCarousel();
+                        }
+                    });
                 });
-        }
-    </script>
+
+                window.searchProducts = function() {
+                    const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+                    const products = document.querySelectorAll('.product-card');
+
+                    products.forEach(product => {
+                        const articul = product.getAttribute('data-articul').toLowerCase();
+                        const title = product.querySelector('.product-details h3').textContent.toLowerCase();
+
+                        if (articul.includes(searchInput) || title.includes(searchInput)) {
+                            product.style.display = 'flex';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+
+                    if (!searchInput) {
+                        products.forEach(product => {
+                            product.style.display = 'flex';
+                        });
+                    }
+                };
+
+                window.onload = function() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const searchQuery = urlParams.get('search');
+                    if (searchQuery) {
+                        document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
+                        searchProducts();
+                    }
+                };
+
+                document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchProducts();
+                    }
+                });
+            </script>
 </body>
 </html>
+

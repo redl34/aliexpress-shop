@@ -156,7 +156,7 @@
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
         import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-        import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+        import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
         const firebaseConfig = {
             apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
@@ -178,29 +178,30 @@
         // Перевірка стану автентифікації
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                console.log('Користувач:', user.uid, user.email);
+                console.log('Користувач увійшов:', user.uid, user.email);
                 try {
-                    const userDoc = await getDoc(doc(db, 'users', user.uid));
+                    const userDocRef = doc(db, 'users', user.uid);
+                    const userDoc = await getDoc(userDocRef);
                     console.log('Документ користувача:', userDoc.exists(), userDoc.data());
+
                     if (userDoc.exists() && userDoc.data().role === 'admin') {
-                        console.log('Перенаправлення адміністратора на admin.html');
+                        console.log('Роль: admin, перенаправлення на admin.html');
                         window.location.href = 'admin.html';
                     } else if (adminEmails.includes(user.email)) {
-                        // Резервна перевірка за email
-                        console.log('Резервна перевірка: email є адміністраторським');
-                        await db.collection('users').doc(user.uid).set({
-                            email: user.email,
-                            role: 'admin'
-                        }, { merge: true });
+                        console.log('Email є адміністраторським, встановлення role: admin');
+                        await setDoc(userDocRef, { email: user.email, role: 'admin' }, { merge: true });
+                        console.log('Роль встановлено, перенаправлення на admin.html');
                         window.location.href = 'admin.html';
                     } else {
-                        console.log('Перенаправлення звичайного користувача на profile.html');
+                        console.log('Роль: user або відсутня, перенаправлення на profile.html');
                         window.location.href = 'profile.html';
                     }
                 } catch (error) {
                     console.error('Помилка перевірки ролі:', error);
-                    document.getElementById('error').textContent = 'Помилка доступу. Спробуйте ще раз або зверніться до адміністратора.';
+                    document.getElementById('error').textContent = 'Помилка доступу до даних користувача. Спробуйте ще раз.';
                 }
+            } else {
+                console.log('Користувач не автентифікований');
             }
         });
 
@@ -220,31 +221,33 @@
                 if (!email.includes('@')) {
                     throw new Error('Введіть коректний email з символом @.');
                 }
+                console.log('Спроба входу:', email);
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
                 console.log('Успішний вхід:', user.uid, user.email);
-                const userDoc = await getDoc(doc(db, 'users', user.uid));
+
+                const userDocRef = doc(db, 'users', user.uid);
+                const userDoc = await getDoc(userDocRef);
+                console.log('Документ користувача:', userDoc.exists(), userDoc.data());
+
                 if (userDoc.exists() && userDoc.data().role === 'admin') {
-                    console.log('Перенаправлення адміністратора на admin.html');
+                    console.log('Роль: admin, перенаправлення на admin.html');
                     window.location.href = 'admin.html';
                 } else if (adminEmails.includes(user.email)) {
-                    // Резервна перевірка за email
-                    console.log('Резервна перевірка: email є адміністраторським');
-                    await db.collection('users').doc(user.uid).set({
-                        email: user.email,
-                        role: 'admin'
-                    }, { merge: true });
+                    console.log('Email є адміністраторським, встановлення role: admin');
+                    await setDoc(userDocRef, { email: user.email, role: 'admin' }, { merge: true });
+                    console.log('Роль встановлено, перенаправлення на admin.html');
                     window.location.href = 'admin.html';
                 } else {
-                    console.log('Перенаправлення звичайного користувача на profile.html');
+                    console.log('Роль: user або відсутня, перенаправлення на profile.html');
                     window.location.href = 'profile.html';
                 }
             } catch (error) {
                 console.error('Помилка входу:', error);
                 if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
                     errorElement.textContent = 'Неправильний email або пароль.';
-                } else if (error.code === 'permission-denied') {
-                    errorElement.textContent = 'Помилка доступу до даних. Зверніться до адміністратора.';
+                } else if (error.code === 'auth/too-many-requests') {
+                    errorElement.textContent = 'Забагато спроб входу. Спробуйте пізніше.';
                 } else {
                     errorElement.textContent = 'Помилка входу: ' + error.message;
                 }

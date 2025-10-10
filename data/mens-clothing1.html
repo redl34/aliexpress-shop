@@ -1,0 +1,46 @@
+// Замініть поточний код завантаження на цей
+async function loadProducts() {
+    try {
+        const response = await fetch('./data/mens_clothing1.json');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        displayProducts(data.products);
+    } catch (error) {
+        console.error('Помилка завантаження товарів:', error);
+        
+        // Створення заглушки для тестування
+        const fallbackProducts = [
+            {
+                id: 1,
+                name: "Тестовий товар",
+                price: 999,
+                image: "images/placeholder.jpg",
+                category: "Тест",
+                description: "Тимчасовий товар для тестування"
+            }
+        ];
+        displayProducts(fallbackProducts);
+    }
+}
+
+function displayProducts(products) {
+    const container = document.getElementById('products-container');
+    if (!container) {
+        console.error('Контейнер для товарів не знайдено');
+        return;
+    }
+    
+    container.innerHTML = products.map(product => `
+        <div class="product-item">
+            <img src="${product.image}" alt="${product.name}" onerror="this.src='images/placeholder.jpg'">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <p class="price">${product.price} грн</p>
+            <button onclick="addToCart(${product.id})">Додати в кошик</button>
+        </div>
+    `).join('');
+}

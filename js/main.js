@@ -1,298 +1,117 @@
-// Глобальні змінні
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let currentProducts = [];
+/* Стилі для сповіщень */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+}
 
-// Ініціалізація при завантаженні сторінки
-document.addEventListener('DOMContentLoaded', function() {
-    initializePage();
-    updateCartCounter();
-});
+.notification.error { background: #f44336; }
+.notification.info { background: #2196F3; }
 
-// Ініціалізація сторінки
-function initializePage() {
-    const currentPage = getCurrentPage();
-    
-    switch(currentPage) {
-        case 'mens-clothing':
-            loadProducts('./data/mens_clothing1.json');
-            break;
-        case 'womens-clothing':
-            loadProducts('./data/womens_clothing1.json');
-            break;
-        case 'electronics':
-            loadProducts('./data/electronics1.json');
-            break;
-        case 'home':
-        default:
-            loadFeaturedProducts();
-            break;
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Стилі для завантаження та помилок */
+.loading, .error, .no-products {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+}
+
+.loading { color: #2196F3; }
+.error { color: #f44336; }
+.no-products { color: #666; }
+
+/* Стилі для адмін-панелі */
+.product-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.actions {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.btn-edit, .btn-delete {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.btn-edit { background: #4CAF50; color: white; }
+.btn-delete { background: #f44336; color: white; }
+
+.btn-edit:hover { background: #45a049; }
+.btn-delete:hover { background: #da190b; }
+
+/* Посилання на сторінки */
+.page-link {
+    color: #2196F3;
+    text-decoration: none;
+    font-size: 12px;
+    word-break: break-all;
+}
+
+.page-link:hover {
+    text-decoration: underline;
+}
+
+/* Модальне вікно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Комірка з описом */
+.description-cell {
+    max-width: 200px;
+    word-wrap: break-word;
+}
+
+/* Адаптивність для адмін таблиці */
+@media (max-width: 768px) {
+    .actions {
+        flex-direction: column;
     }
     
-    // Ініціалізація пошуку
-    initializeSearch();
-}
-
-// Отримання поточної сторінки
-function getCurrentPage() {
-    const path = window.location.pathname;
-    if (path.includes('mens-clothing')) return 'mens-clothing';
-    if (path.includes('womens-clothing')) return 'womens-clothing';
-    if (path.includes('electronics')) return 'electronics';
-    return 'home';
-}
-
-// Завантаження товарів
-async function loadProducts(jsonPath) {
-    try {
-        showLoading();
-        
-        const response = await fetch(jsonPath);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        currentProducts = data.products || [];
-        
-        displayProducts(currentProducts);
-        
-    } catch (error) {
-        console.error('Помилка завантаження товарів:', error);
-        showError('Не вдалося завантажити товари. Спробуйте оновити сторінку.');
-        
-        // Заглушка для тестування
-        loadFallbackProducts();
-    } finally {
-        hideLoading();
+    .description-cell {
+        max-width: 150px;
     }
 }
-
-// Завантаження рекомендованих товарів (для головної сторінки)
-async function loadFeaturedProducts() {
-    try {
-        // Завантажуємо товари з різних категорій
-        const responses = await Promise.all([
-            fetch('./data/mens_clothing1.json').catch(() => null),
-            fetch('./data/womens_clothing1.json').catch(() => null),
-            fetch('./data/electronics1.json').catch(() => null)
-        ]);
-        
-        let allProducts = [];
-        
-        for (const response of responses) {
-            if (response && response.ok) {
-                const data = await response.json();
-                if (data.products) {
-                    // Беремо перші 4 товари з кожної категорії
-                    allProducts = allProducts.concat(data.products.slice(0, 4));
-                }
-            }
-        }
-        
-        currentProducts = allProducts;
-        displayProducts(currentProducts);
-        
-    } catch (error) {
-        console.error('Помилка завантаження рекомендованих товарів:', error);
-        loadFallbackProducts();
-    }
-}
-
-// Заглушка для тестування
-function loadFallbackProducts() {
-    const fallbackProducts = [
-        {
-            id: 1,
-            name: "Тестовий товар",
-            price: 999,
-            image: "images/placeholder.jpg",
-            category: "Тест",
-            description: "Тимчасовий товар для тестування"
-        },
-        {
-            id: 2,
-            name: "Тестовий товар 2",
-            price: 1499,
-            image: "images/placeholder.jpg",
-            category: "Тест",
-            description: "Ще один тестовий товар"
-        }
-    ];
-    
-    currentProducts = fallbackProducts;
-    displayProducts(currentProducts);
-}
-
-// Відображення товарів
-function displayProducts(products) {
-    const container = document.getElementById('products-container');
-    if (!container) {
-        console.error('Контейнер для товарів не знайдено');
-        return;
-    }
-    
-    if (products.length === 0) {
-        container.innerHTML = '<p class="no-products">Товари не знайдено</p>';
-        return;
-    }
-    
-    container.innerHTML = products.map(product => `
-        <div class="product-item" data-id="${product.id}">
-            <div class="product-image">
-                <img src="${product.image}" alt="${product.name}" 
-                     onerror="this.src='images/placeholder.jpg'">
-            </div>
-            <div class="product-info">
-                <h3 class="product-name">${product.name}</h3>
-                <p class="product-description">${product.description}</p>
-                <p class="product-category">Категорія: ${product.category}</p>
-                <p class="product-price">${product.price} грн</p>
-                <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
-                    Додати в кошик
-                </button>
-            </div>
-        </div>
-    `).join('');
-}
-
-// Додавання в кошик
-function addToCart(productId) {
-    const product = currentProducts.find(p => p.id === productId);
-    
-    if (!product) {
-        showNotification('Товар не знайдено', 'error');
-        return;
-    }
-    
-    const existingItem = cart.find(item => item.id === productId);
-    
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({
-            ...product,
-            quantity: 1
-        });
-    }
-    
-    // Зберігаємо в localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-    
-    // Оновлюємо лічильник
-    updateCartCounter();
-    
-    showNotification('Товар додано в кошик!', 'success');
-}
-
-// Оновлення лічильника кошика
-function updateCartCounter() {
-    const cartCounter = document.getElementById('cart-counter');
-    if (cartCounter) {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartCounter.textContent = totalItems;
-        cartCounter.style.display = totalItems > 0 ? 'block' : 'none';
-    }
-}
-
-// Пошук товарів
-function initializeSearch() {
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-button');
-    
-    if (searchInput) {
-        searchInput.addEventListener('input', function(e) {
-            if (e.target.value.length >= 2) {
-                searchProducts(e.target.value);
-            } else if (e.target.value.length === 0) {
-                // Показати всі товари при очищенні пошуку
-                displayProducts(currentProducts);
-            }
-        });
-        
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchProducts(e.target.value);
-            }
-        });
-    }
-    
-    if (searchButton) {
-        searchButton.addEventListener('click', function() {
-            const searchInput = document.getElementById('search-input');
-            if (searchInput) {
-                searchProducts(searchInput.value);
-            }
-        });
-    }
-}
-
-function searchProducts(query) {
-    if (!query.trim()) {
-        displayProducts(currentProducts);
-        return;
-    }
-    
-    const filteredProducts = currentProducts.filter(product =>
-        product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.description.toLowerCase().includes(query.toLowerCase()) ||
-        product.category.toLowerCase().includes(query.toLowerCase())
-    );
-    
-    displayProducts(filteredProducts);
-}
-
-// Утиліти
-function showLoading() {
-    const container = document.getElementById('products-container');
-    if (container) {
-        container.innerHTML = '<div class="loading">Завантаження товарів...</div>';
-    }
-}
-
-function hideLoading() {
-    // Можна додати анімацію завантаження
-}
-
-function showError(message) {
-    const container = document.getElementById('products-container');
-    if (container) {
-        container.innerHTML = `<div class="error">${message}</div>`;
-    }
-}
-
-function showNotification(message, type = 'info') {
-    // Створюємо сповіщення
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.textContent = message;
-    
-    // Стилі для сповіщення
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 20px;
-        background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : '#2196F3'};
-        color: white;
-        border-radius: 5px;
-        z-index: 1000;
-        animation: slideIn 0.3s ease;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Автоматично видаляємо через 3 секунди
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 300);
-    }, 3000);
-}
-
-// Глобальні функції для HTML
-window.addToCart = addToCart;
-window.searchProducts = searchProducts;

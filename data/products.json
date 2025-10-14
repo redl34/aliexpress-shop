@@ -1,0 +1,54 @@
+{
+  "categories": {
+    "mens-clothing": {
+      "name": "Чоловічий одяг",
+      "description": "Стильний одяг для чоловіків"
+    },
+    "womens-clothing": {
+      "name": "Жіночий одяг",
+      "description": "Елегантний одяг для жінок"
+    },
+    "electronics": {
+      "name": "Електроніка",
+      "description": "Сучасна техніка та гаджети"
+    }
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "Чоловіча футболка Basic",
+      "category": "mens-clothing",
+      "price": 299,
+      "image": "https://via.placeholder.com/300x300/007bff/ffffff?text=T-Shirt",
+      "description": "Зручна чоловіча футболка з бавовни",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "name": "Джинси Classic",
+      "category": "mens-clothing",
+      "price": 799,
+      "image": "https://via.placeholder.com/300x300/28a745/ffffff?text=Jeans",
+      "description": "Класичні чоловічі джинси",
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "name": "Жіноча сукня Elegant",
+      "category": "womens-clothing",
+      "price": 1299,
+      "image": "https://via.placeholder.com/300x300/e83e8c/ffffff?text=Dress",
+      "description": "Елегантна жіноча сукня",
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "name": "Смартфон SmartX",
+      "category": "electronics",
+      "price": 8999,
+      "image": "https://via.placeholder.com/300x300/6f42c1/ffffff?text=Phone",
+      "description": "Сучасний смартфон",
+      "status": "active"
+    }
+  ]
+}

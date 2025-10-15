@@ -23,25 +23,30 @@ jobs:
     - name: Install dependencies
       run: |
         cd price-checker
-        npm ci  # Використовуємо npm ci замість npm install для CI
+        npm install
         
     - name: Run price checker
       run: |
         cd price-checker
         node index.js
         
-    - name: Commit and push if changes found
+    - name: Commit and push report
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
-        # Перевіряємо чи є новий звіт
+        # Створюємо папку reports якщо її немає
+        mkdir -p reports
+        
+        # Копіюємо звіт
         if [ -f "price-checker/report.json" ]; then
-          mkdir -p reports
           cp price-checker/report.json "reports/report-$(date +%Y%m%d-%H%M%S).json"
           cp price-checker/report.json "reports/latest.json"
           
           git add reports/
-          git commit -m "🤖 Auto-update: Price check report $(date +%Y%m%d-%H%M%S)" || exit 0
+          git diff --staged --quiet || git commit -m "🤖 Auto-update: Price check report $(date +%Y%m%d-%H%M%S)"
           git push
+        else
+          echo "❌ Звіт не знайдено!"
+          exit 1
         fi

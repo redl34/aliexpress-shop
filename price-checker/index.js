@@ -1,44 +1,42 @@
-const puppeteer = require('puppeteer');
-const axios = require('axios');
-const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-class AliExpressChecker {
-    constructor() {
-        this.results = [];
-        // Зберігаємо звіт в корені проекту
-        this.reportPath = path.join(__dirname, '..', 'reports', 'latest.json');
+console.log('🚀 Starting AliExpress Price Checker...');
+
+// Тестовий звіт для перевірки
+const testReport = {
+  generatedAt: new Date().toISOString(),
+  totalProducts: 3,
+  needsUpdate: 1,
+  successCount: 3,
+  results: [
+    {
+      product: "Чоловіча футболка",
+      yourPrice: "₴250",
+      aliPrice: "₴230",
+      needsUpdate: true,
+      checkedAt: new Date().toISOString()
+    },
+    {
+      product: "Джинси", 
+      yourPrice: "₴500",
+      aliPrice: "₴500",
+      needsUpdate: false,
+      checkedAt: new Date().toISOString()
+    },
+    {
+      product: "Кросівки",
+      yourPrice: "₴800", 
+      aliPrice: "₴750",
+      needsUpdate: true,
+      checkedAt: new Date().toISOString()
     }
+  ]
+};
 
-    // ... (решта коду залишається без змін)
+// Зберігаємо звіт
+const reportPath = path.join(__dirname, 'report.json');
+fs.writeFileSync(reportPath, JSON.stringify(testReport, null, 2));
 
-    generateReport() {
-        const report = {
-            generatedAt: new Date().toISOString(),
-            totalProducts: this.results.length,
-            needsUpdate: this.results.filter(r => r.needsUpdate).length,
-            successCount: this.results.filter(r => !r.error).length,
-            results: this.results
-        };
-
-        // Створюємо папку reports якщо її немає
-        const reportsDir = path.join(__dirname, '..', 'reports');
-        if (!fs.existsSync(reportsDir)) {
-            fs.mkdirSync(reportsDir, { recursive: true });
-        }
-
-        // Зберігаємо звіт
-        fs.writeFileSync(this.reportPath, JSON.stringify(report, null, 2));
-        
-        console.log('\n📊 ===== ЗВІТ ПЕРЕВІРКИ =====');
-        console.log(`📦 Всього товарів: ${report.totalProducts}`);
-        console.log(`🔴 Потребують оновлення: ${report.needsUpdate}`);
-        
-        // ... (решта generateReport)
-    }
-}
-
-// Запуск
-const checker = new AliExpressChecker();
-checker.runCheck().catch(console.error);
+console.log('✅ Test report generated successfully!');
+console.log('📊 Products needing update:', testReport.needsUpdate);

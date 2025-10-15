@@ -13,17 +13,17 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v6.0.0
       with:
-        node-version: '18'
-        cache: 'npm'
-        cache-dependency-path: 'price-checker/package-lock.json'
+        node-version: '18.x'           # Версія Node.js
+        cache: 'npm'                   # Кешування npm пакетів
+        cache-dependency-path: 'price-checker/package-lock.json'  # Шлях до lock файлу
         
     - name: Install dependencies
       run: |
         cd price-checker
-        npm install
+        npm ci                         # Використовуємо npm ci для CI
         
     - name: Run price checker
       run: |

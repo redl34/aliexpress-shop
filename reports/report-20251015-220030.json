@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2025-10-15T22:00:30.659Z",
+  "totalProducts": 3,
+  "needsUpdate": 1,
+  "successCount": 3,
+  "results": [
+    {
+      "product": "Чоловіча футболка",
+      "yourPrice": "₴250",
+      "aliPrice": "₴230",
+      "needsUpdate": true,
+      "checkedAt": "2025-10-15T22:00:30.659Z"
+    },
+    {
+      "product": "Джинси",
+      "yourPrice": "₴500",
+      "aliPrice": "₴500",
+      "needsUpdate": false,
+      "checkedAt": "2025-10-15T22:00:30.659Z"
+    },
+    {
+      "product": "Кросівки",
+      "yourPrice": "₴800",
+      "aliPrice": "₴750",
+      "needsUpdate": true,
+      "checkedAt": "2025-10-15T22:00:30.659Z"
+    }
+  ]
+}

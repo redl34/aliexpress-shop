@@ -1,0 +1,18 @@
+{
+  "name": "aliexpress-price-checker",
+  "version": "1.0.0",
+  "description": "Automated price checker for AliExpress shop",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "check": "node index.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "axios": "^1.5.0",
+    "sharp": "^0.32.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

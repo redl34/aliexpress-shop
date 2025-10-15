@@ -4,8 +4,6 @@ on:
   schedule:
     - cron: '0 8 * * *'  # Щодня о 8:00 UTC
   workflow_dispatch:      # Можливість запуску вручну
-  push:
-    branches: [ main, master ]
 
 jobs:
   check-prices:
@@ -14,20 +12,18 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        
+      
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
         cache: 'npm'
-        cache-dependency-path: './price-checker/package-lock.json'
+        cache-dependency-path: 'price-checker/package-lock.json'
         
     - name: Install dependencies
       run: |
         cd price-checker
-        npm ci
+        npm ci  # Використовуємо npm ci замість npm install для CI
         
     - name: Run price checker
       run: |
@@ -39,7 +35,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
-        # Перевіряємо чи є звіт
+        # Перевіряємо чи є новий звіт
         if [ -f "price-checker/report.json" ]; then
           mkdir -p reports
           cp price-checker/report.json "reports/report-$(date +%Y%m%d-%H%M%S).json"

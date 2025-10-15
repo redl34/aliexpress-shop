@@ -12,18 +12,20 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}  # ← ← ← ДОДАЙТЕ ЦЕЙ РЯДОК
       
     - name: Setup Node.js environment
       uses: actions/setup-node@v6.0.0
       with:
-        node-version: '18.x'           # Версія Node.js
-        cache: 'npm'                   # Кешування npm пакетів
-        cache-dependency-path: 'price-checker/package-lock.json'  # Шлях до lock файлу
+        node-version: '18.x'
+        cache: 'npm'
+        cache-dependency-path: 'price-checker/package-lock.json'
         
     - name: Install dependencies
       run: |
         cd price-checker
-        npm ci                         # Використовуємо npm ci для CI
+        npm ci
         
     - name: Run price checker
       run: |
@@ -35,15 +37,13 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
-        # Створюємо папку reports якщо її немає
         mkdir -p reports
         
-        # Копіюємо звіт
         if [ -f "price-checker/report.json" ]; then
           cp price-checker/report.json "reports/report-$(date +%Y%m%d-%H%M%S).json"
           cp price-checker/report.json "reports/latest.json"
           
-          git add reports/
+          git add -f reports/
           git diff --staged --quiet || git commit -m "🤖 Auto-update: Price check report $(date +%Y%m%d-%H%M%S)"
           git push
         else

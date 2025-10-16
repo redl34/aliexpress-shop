@@ -21,58 +21,161 @@ class AliExpressChecker {
     async parseYourSite() {
         const page = await this.browser.newPage();
         
+        // Додаємо логування для налагодження
+        page.on('console', msg => {
+            console.log('PAGE LOG:', msg.text());
+        });
+
         await page.goto('https://redl34.github.io/aliexpress-shop/mens-clothing1.html', {
             waitUntil: 'networkidle2',
             timeout: 30000
         });
 
+        // Чекаємо завантаження товарів
+        await page.waitForSelector('.product, [class*="product"], .item, .card', {
+            timeout: 10000
+        }).catch(() => {
+            console.log('⚠️ Не знайдено основних селекторів товарів');
+        });
+
         const products = await page.evaluate(() => {
             const items = [];
-            const productElements = document.querySelectorAll('.product');
             
-            productElements.forEach(product => {
+            // Спроба 1: Шукаємо всі можливі контейнери товарів
+            const possibleSelectors = [
+                '.product',
+                '.item', 
+                '.card',
+                '.goods',
+                '[class*="product"]',
+                '[class*="item"]',
+                '[class*="card"]'
+            ];
+            
+            let productElements = [];
+            
+            for (const selector of possibleSelectors) {
+                const elements = document.querySelectorAll(selector);
+                if (elements.length > 0) {
+                    console.log(`✅ Знайдено елементів з селектором ${selector}:`, elements.length);
+                    productElements = Array.from(elements);
+                    break;
+                }
+            }
+            
+            // Якщо не знайшли, шукаємо будь-які блоки з зображеннями та цінами
+            if (productElements.length === 0) {
+                console.log('🔍 Шукаємо будь-які елементи з зображеннями...');
+                const allElements = document.querySelectorAll('div, article, section');
+                productElements = Array.from(allElements).filter(el => {
+                    return el.querySelector('img') && el.querySelector('[class*="price"]');
+                });
+                console.log('✅ Знайдено елементів з зображеннями та цінами:', productElements.length);
+            }
+
+            productElements.forEach((product, index) => {
                 try {
-                    const titleElem = product.querySelector('.product-title');
-                    const priceElem = product.querySelector('.product-price');
-                    const imageElem = product.querySelector('.product-image');
-                    const buttonElem = product.querySelector('.buy-button');
+                    console.log(`\n🔍 Аналіз елемента ${index + 1}:`, product);
                     
-                    // Шукаємо артикул - спробуємо різні місця
+                    // Шукаємо назву товару
+                    const titleSelectors = [
+                        '.product-title',
+                        '.title',
+                        '.name',
+                        'h2', 'h3', 'h4',
+                        '[class*="title"]',
+                        '[class*="name"]'
+                    ];
+                    
+                    let titleElem = null;
+                    for (const selector of titleSelectors) {
+                        titleElem = product.querySelector(selector);
+                        if (titleElem && titleElem.textContent.trim()) {
+                            break;
+                        }
+                    }
+                    
+                    // Шукаємо ціну
+                    const priceSelectors = [
+                        '.product-price',
+                        '.price',
+                        '.cost',
+                        '[class*="price"]',
+                        '[class*="cost"]'
+                    ];
+                    
+                    let priceElem = null;
+                    for (const selector of priceSelectors) {
+                        priceElem = product.querySelector(selector);
+                        if (priceElem && priceElem.textContent.trim()) {
+                            break;
+                        }
+                    }
+                    
+                    // Шукаємо зображення
+                    const imageElem = product.querySelector('img');
+                    
+                    // Шукаємо кнопку купити
+                    const buttonSelectors = [
+                        '.buy-button',
+                        '.buy-now',
+                        '.btn-buy',
+                        'a[href*="aliexpress"]',
+                        'a[href*="alibaba"]',
+                        'button',
+                        'a'
+                    ];
+                    
+                    let buttonElem = null;
+                    for (const selector of buttonSelectors) {
+                        buttonElem = product.querySelector(selector);
+                        if (buttonElem && buttonElem.href && buttonElem.href.includes('aliexpress')) {
+                            break;
+                        }
+                    }
+                    
+                    // Шукаємо артикул
                     let article = '';
+                    const articleSelectors = [
+                        '.article',
+                        '.sku',
+                        '.product-id',
+                        '[class*="article"]',
+                        '[class*="sku"]',
+                        '[class*="id"]'
+                    ];
                     
-                    // Спосіб 1: З data-атрибуту
-                    if (product.dataset.article) {
-                        article = product.dataset.article;
-                    }
-                    // Спосіб 2: З класу product-article
-                    else if (product.querySelector('.product-article')) {
-                        article = product.querySelector('.product-article').textContent.trim();
-                    }
-                    // Спосіб 3: З класу article
-                    else if (product.querySelector('.article')) {
-                        article = product.querySelector('.article').textContent.trim();
-                    }
-                    // Спосіб 4: З ID товару в URL
-                    else if (buttonElem && buttonElem.href) {
-                        const url = new URL(buttonElem.href);
-                        const params = new URLSearchParams(url.search);
-                        article = params.get('id') || params.get('article') || '';
+                    for (const selector of articleSelectors) {
+                        const articleElem = product.querySelector(selector);
+                        if (articleElem && articleElem.textContent.trim()) {
+                            article = articleElem.textContent.trim();
+                            break;
+                        }
                     }
                     
-                    if (titleElem && priceElem && imageElem && buttonElem) {
-                        items.push({
-                            article: article || 'Не знайдено', // Додаємо артикул
-                            title: titleElem.innerText.trim(),
-                            yourPrice: priceElem.innerText.trim(),
+                    // Якщо знайшли мінімум зображення та назву/ціну
+                    if (imageElem && (titleElem || priceElem)) {
+                        const productData = {
+                            article: article || `ITEM_${index + 1}`,
+                            title: titleElem ? titleElem.textContent.trim() : 'Без назви',
+                            yourPrice: priceElem ? priceElem.textContent.trim() : 'Ціна не вказана',
                             imageUrl: imageElem.src,
-                            aliExpressUrl: buttonElem.href
-                        });
+                            aliExpressUrl: buttonElem ? buttonElem.href : '',
+                            elementIndex: index
+                        };
+                        
+                        console.log('✅ Знайдено товар:', productData);
+                        items.push(productData);
+                    } else {
+                        console.log('❌ Елемент не містить достатньо даних');
                     }
+                    
                 } catch (e) {
-                    console.log('Помилка парсингу товару:', e);
+                    console.log('❌ Помилка парсингу товару:', e);
                 }
             });
             
+            console.log(`📊 Всього знайдено товарів: ${items.length}`);
             return items;
         });
 

@@ -49,7 +49,7 @@ class AliExpressChecker {
         return allProducts;
     }
 
-    // Парсинг однієї сторінки
+    // Парсинг однієї сторінки - ВИПРАВЛЕНА ВЕРСІЯ
     async parseSinglePage(pageUrl) {
         const page = await this.browser.newPage();
         
@@ -61,78 +61,36 @@ class AliExpressChecker {
         const products = await page.evaluate((url) => {
             const items = [];
             
-            // Спробуємо різні селектори для пошуку товарів
-            const productSelectors = [
-                '.product',
-                '.item',
-                '.card',
-                '[class*="product"]',
-                '[class*="item"]',
-                '[class*="card"]'
-            ];
+            // Шукаємо всі блоки товарів
+            const productElements = document.querySelectorAll('.product');
             
-            let productElements = [];
-            
-            for (const selector of productSelectors) {
-                const elements = document.querySelectorAll(selector);
-                if (elements.length > 0) {
-                    console.log(`Знайдено елементів з ${selector}:`, elements.length);
-                    productElements = Array.from(elements);
-                    break;
-                }
-            }
-            
-            // Якщо не знайшли за селекторами, шукаємо будь-які блоки з зображеннями
-            if (productElements.length === 0) {
-                const allElementsWithImages = document.querySelectorAll('div, article');
-                productElements = Array.from(allElementsWithImages).filter(el => {
-                    return el.querySelector('img') && 
-                          (el.querySelector('button') || el.querySelector('a[href*="aliexpress"]'));
-                });
-            }
-
             productElements.forEach((product, index) => {
                 try {
-                    // Шукаємо назву
-                    const titleSelectors = ['.product-title', '.title', 'h2', 'h3', 'h4'];
-                    let titleElem = null;
-                    for (const selector of titleSelectors) {
-                        titleElem = product.querySelector(selector);
-                        if (titleElem) break;
-                    }
+                    const titleElem = product.querySelector('.product-title');
+                    const priceElem = product.querySelector('.product-price');
+                    const imageElem = product.querySelector('.product-image');
+                    const buttonElem = product.querySelector('.buy-button');
                     
-                    // Шукаємо ціну
-                    const priceSelectors = ['.product-price', '.price', '.cost'];
-                    let priceElem = null;
-                    for (const selector of priceSelectors) {
-                        priceElem = product.querySelector(selector);
-                        if (priceElem) break;
-                    }
-                    
-                    // Шукаємо зображення
-                    const imageElem = product.querySelector('img');
-                    
-                    // Шукаємо кнопку купити
-                    const buttonElem = product.querySelector('.buy-button') || 
-                                      product.querySelector('a[href*="aliexpress"]');
-                    
-                    // Шукаємо артикул - шукаємо текст "арт." у всьому блоці товару
+                    // ПОКРАЩЕНИЙ ПОШУК АРТИКУЛУ - шукаємо тільки текст між "арт." і ціною
                     let article = '';
                     const productText = product.textContent || '';
-                    const articleMatch = productText.match(/арт\.\s*([^\s\n\r]+)/i);
+                    
+                    // Шукаємо "арт." і беремо тільки наступне слово (без пробілів)
+                    const articleMatch = productText.match(/арт\.\s*([A-Za-z0-9]+)/i);
                     if (articleMatch) {
-                        article = articleMatch[1].trim();
+                        article = articleMatch[1].trim(); // Беремо тільки артикул без ціни
                     }
 
                     if (imageElem && titleElem && priceElem && buttonElem) {
                         items.push({
                             article: article || `ART_${index + 1}`,
                             title: titleElem.textContent.trim(),
-                            yourPrice: priceElem.textContent.trim(),
+                            yourPrice: priceElem.textContent.trim(), // Ціна з вашого сайту
+                            yourPriceRaw: priceElem.textContent.trim(), // Додаємо окреме поле для ціни
                             imageUrl: imageElem.src,
                             aliExpressUrl: buttonElem.href,
-                            pageUrl: url, // Додаємо URL сторінки
-                            pageName: url.split('/').pop() // Назва сторінки
+                            pageUrl: url,
+                            pageName: url.split('/').pop()
                         });
                     }
                     
@@ -148,20 +106,21 @@ class AliExpressChecker {
         return products;
     }
 
-    // Парсинг AliExpress
+    // Парсинг AliExpress - ОНОВЛЕНА ВЕРСІЯ
     async parseAliExpress(url) {
         const page = await this.browser.newPage();
         
-        await page.waitForTimeout(Math.random() * 3000 + 2000);
+        await page.waitForTimeout(Math.random() * 5000 + 3000);
         
         try {
             await page.goto(url, {
                 waitUntil: 'domcontentloaded',
-                timeout: 30000
+                timeout: 45000
             });
 
-            await page.waitForSelector('[data-product-price], .product-price, .price--current', {
-                timeout: 10000
+            // Додаємо більше селекторів для ціни
+            await page.waitForSelector('[data-product-price], .product-price, .price--current, .snow-price_SnowPrice__mainM__jo8n2, .uniform-banner-box-price, [class*="price"]', {
+                timeout: 15000
             });
 
             const aliData = await page.evaluate(() => {
@@ -169,37 +128,29 @@ class AliExpressChecker {
                     '[data-product-price]',
                     '.product-price',
                     '.price--current',
-                    '.uniform-banner-box-price'
+                    '.snow-price_SnowPrice__mainM__jo8n2',
+                    '.uniform-banner-box-price',
+                    '[class*="price"]'
                 ];
                 
-                let price = '';
+                let price = 'Не знайдено';
                 for (const selector of priceSelectors) {
                     const element = document.querySelector(selector);
-                    if (element) {
+                    if (element && element.innerText && element.innerText.trim()) {
                         price = element.innerText.trim();
                         break;
                     }
                 }
 
-                const imageSelectors = [
-                    '.main-image img',
-                    '.gallery-img',
-                    '.image-viewer img'
-                ];
-                
-                let imageUrl = '';
-                for (const selector of imageSelectors) {
-                    const element = document.querySelector(selector);
-                    if (element && element.src) {
-                        imageUrl = element.src;
-                        break;
-                    }
-                }
+                // Спрощуємо пошук зображення
+                const imageElem = document.querySelector('img');
+                let imageUrl = imageElem ? imageElem.src : '';
 
                 return {
                     price: price,
                     imageUrl: imageUrl,
-                    title: document.title
+                    title: document.title,
+                    url: window.location.href
                 };
             });
 
@@ -208,7 +159,7 @@ class AliExpressChecker {
             
         } catch (error) {
             await page.close();
-            console.log(`Помилка парсингу ${url}:`, error.message);
+            console.log(`❌ Помилка парсингу AliExpress: ${error.message}`);
             return null;
         }
     }
@@ -308,11 +259,13 @@ class AliExpressChecker {
                     const priceCheck = this.comparePrices(product.yourPrice, aliData.price);
                     const imagesMatch = await this.compareImages(product.imageUrl, aliData.imageUrl);
                     
+                    // ОНОВЛЕНА СТРУКТУРА РЕЗУЛЬТАТУ
                     this.results.push({
                         article: product.article,
                         product: product.title,
-                        yourPrice: product.yourPrice,
-                        aliPrice: aliData.price,
+                        yourPrice: product.yourPrice, // Ціна з вашого сайту
+                        yourPriceRaw: product.yourPriceRaw, // Додаємо окреме поле для ціни
+                        aliPrice: aliData.price, // Ціна з AliExpress
                         priceCheck,
                         imagesMatch,
                         needsUpdate: priceCheck.needsUpdate || !imagesMatch,
@@ -324,7 +277,8 @@ class AliExpressChecker {
                         checkedAt: new Date().toISOString()
                     });
 
-                    console.log(`   💰 Ціна: ${product.yourPrice} vs ${aliData.price}`);
+                    console.log(`   💰 Ціна на сайті: ${product.yourPrice}`);
+                    console.log(`   💰 Ціна на AliExpress: ${aliData.price}`);
                     console.log(`   📊 Різниця: ${priceCheck.percentageDiff}%`);
                     console.log(`   🖼️ Зображення: ${imagesMatch ? '✓ Співпадають' : '✗ Різні'}`);
                     console.log(`   🔄 Оновлення: ${priceCheck.needsUpdate || !imagesMatch ? 'ТАК' : 'НІ'}`);
@@ -378,8 +332,10 @@ class AliExpressChecker {
                     console.log(`\n${index + 1}. ${result.product}`);
                     console.log(`   📋 Артикул: ${result.article}`);
                     console.log(`   📄 Сторінка: ${result.pageName}`);
-                    if (result.priceCheck.needsUpdate) {
-                        console.log(`   💰 Ціна: ${result.yourPrice} → ${result.aliPrice} (різниця: ${result.priceCheck.percentageDiff}%)`);
+                    console.log(`   💰 Ціна на сайті: ${result.yourPrice}`);
+                    console.log(`   💰 Ціна на AliExpress: ${result.aliPrice}`);
+                    if (result.priceCheck && result.priceCheck.needsUpdate) {
+                        console.log(`   📊 Різниця: ${result.priceCheck.percentageDiff}%`);
                     }
                     if (!result.imagesMatch) {
                         console.log(`   🖼️  Зображення не співпадають`);

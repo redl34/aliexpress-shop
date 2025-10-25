@@ -133,69 +133,89 @@ class AliExpressChecker {
         await page.waitForTimeout(Math.random() * 5000 + 3000);
         
         try {
+            // Додаємо заголовки для обходу блокування
+            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+            
             await page.goto(url, {
-                waitUntil: 'domcontentloaded',
-                timeout: 45000
+                waitUntil: 'networkidle0',
+                timeout: 60000
             });
 
-            // Чекаємо на завантаження ціни
-            await page.waitForSelector('[data-product-price], .product-price, .price--current, .uniform-banner-box-price, [class*="price"]', {
-                timeout: 15000
-            }).catch(() => {
-                console.log('⚠️ Не знайдено селекторів ціни, спробуємо знайти будь-яку ціну');
-            });
+            // Чекаємо на завантаження сторінки
+            await page.waitForTimeout(5000);
 
             const aliData = await page.evaluate(() => {
-                // Список селекторів для пошуку ціни
+                // ПОКРАЩЕНИЙ ПОШУК ЦІНИ
+                let price = 'Не знайдено';
+                
+                // Список селекторів для пошуку актуальної ціни
                 const priceSelectors = [
-                    '[data-product-price]',
-                    '.product-price',
+                    '.product-price-value',
                     '.price--current',
                     '.uniform-banner-box-price',
+                    '[data-product-price]',
                     '.snow-price_SnowPrice__mainM__jo8n2',
-                    '[class*="price"]'
+                    '.snow-price_SnowPrice__main__1pOJ_',
+                    '.product-price-current'
                 ];
                 
-                let price = 'Не знайдено';
                 for (const selector of priceSelectors) {
-                    const element = document.querySelector(selector);
-                    if (element && element.textContent && element.textContent.trim()) {
-                        const priceText = element.textContent.trim();
-                        // Перевіряємо, чи текст містить цифри (ціну)
-                        if (/\d/.test(priceText)) {
-                            price = priceText;
-                            console.log(`✅ Знайдено ціну за селектором ${selector}: ${price}`);
-                            break;
+                    const elements = document.querySelectorAll(selector);
+                    for (const element of elements) {
+                        if (element && element.textContent) {
+                            const text = element.textContent.trim();
+                            // Шукаємо числове значення ціни
+                            const priceMatch = text.match(/[£$€]?(\d+\.?\d*)/);
+                            if (priceMatch) {
+                                price = text;
+                                console.log(`✅ Знайдено ціну: ${price}`);
+                                break;
+                            }
                         }
                     }
+                    if (price !== 'Не знайдено') break;
                 }
 
-                // Спрощений пошук зображення
+                // ПОКРАЩЕНИЙ ПОШУК ЗОБРАЖЕННЯ
                 let imageUrl = '';
                 const imageSelectors = [
+                    '.magnifier-image',
                     '.main-image img',
-                    '.gallery-img',
+                    '.gallery-image img',
+                    '.detail-gallery-img',
                     '.image-viewer img',
+                    '[class*="image"] img',
                     'img[src*="jpg"], img[src*="png"], img[src*="jpeg"]'
                 ];
                 
                 for (const selector of imageSelectors) {
                     const element = document.querySelector(selector);
-                    if (element && element.src) {
+                    if (element && element.src && !element.src.includes('blank') && !element.src.includes('placeholder')) {
                         imageUrl = element.src;
+                        if (imageUrl.startsWith('//')) {
+                            imageUrl = 'https:' + imageUrl;
+                        }
+                        console.log(`✅ Знайдено зображення: ${imageUrl.substring(0, 50)}...`);
                         break;
                     }
                 }
 
+                // Визначаємо валюту
+                let currency = 'UAH';
+                if (price.includes('£')) currency = 'GBP';
+                if (price.includes('$')) currency = 'USD';
+                if (price.includes('€')) currency = 'EUR';
+
                 return {
                     price: price,
                     imageUrl: imageUrl,
+                    currency: currency,
                     title: document.title,
                     url: window.location.href
                 };
             });
 
-            console.log(`✅ Отримано дані з AliExpress: ${aliData.price}`);
+            console.log(`✅ Отримано дані з AliExpress: ${aliData.price} (${aliData.currency})`);
             await page.close();
             return aliData;
             
@@ -206,8 +226,8 @@ class AliExpressChecker {
         }
     }
 
-    // Порівняння цін
-    comparePrices(yourPrice, aliPrice) {
+    // Порівняння цін з конвертацією валют
+    comparePrices(yourPrice, aliPrice, aliCurrency) {
         const extractPrice = (priceStr) => {
             if (!priceStr || priceStr === 'Не знайдено') return 0;
             const match = priceStr.replace(/[^\d.,]/g, '').match(/([\d.,]+)/);
@@ -215,7 +235,21 @@ class AliExpressChecker {
         };
 
         const your = extractPrice(yourPrice);
-        const ali = extractPrice(aliPrice);
+        let ali = extractPrice(aliPrice);
+
+        // Конвертація валют (приблизні курси)
+        const exchangeRates = {
+            'GBP': 45,  // Фунт до гривні
+            'USD': 38,   // Долар до гривні  
+            'EUR': 41,   // Євро до гривні
+            'UAH': 1     // Гривня до гривні
+        };
+
+        // Конвертуємо ціну з AliExpress в гривні
+        if (aliCurrency && aliCurrency !== 'UAH' && exchangeRates[aliCurrency]) {
+            ali = ali * exchangeRates[aliCurrency];
+            console.log(`💰 Конвертація: ${aliPrice} ${aliCurrency} → ${ali.toFixed(2)} UAH`);
+        }
 
         if (your === 0 || ali === 0) {
             return { 
@@ -230,9 +264,11 @@ class AliExpressChecker {
         const percentageDiff = (difference / your) * 100;
 
         return {
-            needsUpdate: percentageDiff > 5,
+            needsUpdate: percentageDiff > 10, // Збільшимо поріг до 10%
             yourPrice: your,
             aliPrice: ali,
+            aliPriceOriginal: aliPrice,
+            aliCurrency: aliCurrency,
             difference: difference,
             percentageDiff: percentageDiff.toFixed(2)
         };
@@ -317,7 +353,7 @@ class AliExpressChecker {
                 const aliData = await this.parseAliExpress(product.aliExpressUrl);
                 
                 if (aliData && aliData.price && aliData.price !== 'Не знайдено') {
-                    const priceCheck = this.comparePrices(product.yourPrice, aliData.price);
+                    const priceCheck = this.comparePrices(product.yourPrice, aliData.price, aliData.currency);
                     const imagesMatch = await this.compareImages(product.imageUrl, aliData.imageUrl);
                     
                     this.results.push({
@@ -336,7 +372,7 @@ class AliExpressChecker {
                         checkedAt: new Date().toISOString()
                     });
 
-                    console.log(`   💰 Ціна на AliExpress: ${aliData.price}`);
+                    console.log(`   💰 Ціна на AliExpress: ${aliData.price} (${aliData.currency})`);
                     console.log(`   📊 Різниця: ${priceCheck.percentageDiff}%`);
                     console.log(`   🖼️ Зображення: ${imagesMatch ? '✓ Співпадають' : '✗ Різні'}`);
                     console.log(`   🔄 Потрібно оновлення: ${priceCheck.needsUpdate || !imagesMatch ? 'ТАК' : 'НІ'}`);

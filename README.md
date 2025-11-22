@@ -21,3 +21,5 @@
 1. Перейдіть в [Actions](https://github.com/redl34/aliexpress-shop/actions)
 2. Виберіть "Check AliExpress Prices"
 3. Натисніть "Run workflow"
+
+<!-- Auto-update: 2025-11-22 04:47:55 -->

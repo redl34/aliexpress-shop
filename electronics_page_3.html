@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Електроніка - Ali.Reed</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="Kartinki/favicon.png" rel="icon" type="image/png"/>
+<style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3E717A;
+        }
+        header {
+            background: url('Kartinki/clothing.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        header h1 {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        header .home-link, header .profile-link {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            border-radius: 5px;
+        }
+        header .home-link:hover, header .profile-link:hover {
+            background-color: #e55a5a;
+            text-decoration: none;
+        }
+        .search-container {
+            position: relative;
+            z-index: 2;
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            gap: 10px;
+        }
+        .search-container input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .search-container button:hover {
+            background-color: #e55a5a;
+        }
+        .products {
+            margin: 20px auto;
+            padding: 20px 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+        }
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 3 / 4;
+        }
+        .product-image-carousel {
+            position: relative;
+            width: 100%;
+            max-height: 50%;
+            overflow: hidden;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            display: none;
+            object-fit: contain;
+        }
+        .carousel-image.active {
+            display: block;
+        }
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-prev {
+            left: 0;
+        }
+        .carousel-next {
+            right: 0;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .indicator.active {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .product-details {
+            flex-grow: 1;
+            text-align: center;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-details h3 {
+            margin: 10px 0;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        .product-details .articul {
+            font-size: 0.9375em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details p {
+            font-size: 1em;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        .product-details a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #132F13;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: block;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        .product-details a:hover {
+            background-color: #0e240e;
+        }
+        .add-to-favorites {
+            background-color: #A9A34C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+        .add-to-favorites:hover {
+            background-color: #8e8a3f;
+        }
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer .social-links {
+            text-align: center;
+        }
+        footer .social-links h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 15px;
+        }
+        footer .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        footer .social-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 900px;
+            }
+        }
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 600px;
+            }
+            .carousel-prev, .carousel-next {
+                display: none;
+            }
+            .product-image-carousel {
+                max-height: 50%;
+            }
+            .carousel-image {
+                max-height: 100%;
+            }
+            .product-details h3 {
+                font-size: 1.1em;
+            }
+            .product-details .articul {
+                font-size: 0.8125em;
+            }
+            .product-details .price {
+                font-size: 1.3em;
+            }
+            .product-details a, .add-to-favorites {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 290px;
+                padding: 20px 10px;
+            }
+        }
+    </style>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js" type="module"></script>
+</head>
+<body>
+<header>
+<h1>Електроніка</h1>
+<a class="home-link" href="index.html">Повернутися на головну</a>
+<a class="profile-link" href="#" id="profileLink">Мій профіль</a>
+<div class="search-container">
+<input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
+<button onclick="searchProducts()">Пошук</button>
+</div>
+</header>
+<div class="products">
+<div class="product-card" data-articul="0065A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Гірлядна штора " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0065A1.jpg"/><img alt="Гірлядна штора " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0065A2.jpg"/><img alt="Гірлядна штора " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0065A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Гірлядна штора </h3><p>Різдвяні сніжинки світлодіодні штори 8 режимів плагінні гірлянди для дому вікно різдвяна ялинка святковий декор вечірка приладдя
+
+1 продано</p><p class="articul">арт. 0065A</p><p class="price">234.31 грн</p><a href="https://s.click.aliexpress.com/e/_c35cX5w9" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0065A', 'Гірлядна штора ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0065A1.jpg', 'https://s.click.aliexpress.com/e/_c35cX5w9')">Додати до обраного</button></div></div><div class="product-card" data-articul="0066A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Гірлянда Новорічна " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0066A1.jpg"/><img alt="Гірлянда Новорічна " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0066A2.jpg"/><img alt="Гірлянда Новорічна " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0066A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Гірлянда Новорічна </h3><p>Сніжинка світлодіодні гірлянди світлодіодні феєрверки на батарейках феєрверки весільна вечірка гірлянда прикраси кімнати</p><p class="articul">арт. 0066A</p><p class="price">67.12 грн</p><a href="https://s.click.aliexpress.com/e/_c45irlD7" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0066A', 'Гірлянда Новорічна ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0066A1.jpg', 'https://s.click.aliexpress.com/e/_c45irlD7')">Додати до обраного</button></div></div><div class="product-card" data-articul="0067A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Гірлянда " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0067A1.jpg"/><img alt="Гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0067A2.jpg"/><img alt="Гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0067A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Гірлянда </h3><p>Різдвяні світлодіодні гірлянди Санта-Клауса підвісні вогні сніговик креативна атмосфера вікно різдвяна ялинка прикраса</p><p class="articul">арт. 0067A</p><p class="price">216.19 грн</p><a href="https://s.click.aliexpress.com/e/_c4kFkRZx" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0067A', 'Гірлянда ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0067A1.jpg', 'https://s.click.aliexpress.com/e/_c4kFkRZx')">Додати до обраного</button></div></div><div class="product-card" data-articul="0068A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Різдвяна прикраса " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0068A1.jpg"/><img alt="Різдвяна прикраса " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0068A2.jpg"/><img alt="Різдвяна прикраса " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0068A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Різдвяна прикраса </h3><p>Різдвяна світлодіодна гірлянда, Санта-Клаус, Сніговик, Світлодіодна гірлянда, Різдвяні прикраси для дому</p><p class="articul">арт. 0068A</p><p class="price">104.88 грн</p><a href="https://s.click.aliexpress.com/e/_c3WGAssH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0068A', 'Різдвяна прикраса ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0068A1.jpg', 'https://s.click.aliexpress.com/e/_c3WGAssH')">Додати до обраного</button></div></div><div class="product-card" data-articul="0069A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Гірлянда новорічна " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0069A1.jpg"/><img alt="Гірлянда новорічна " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0069A2.jpg"/><img alt="Гірлянда новорічна " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0069A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Гірлянда новорічна </h3><p>Різдвяна світлодіодна стрічка Сніговик Санта-Клаус Різдвяна ялинка висячі барвисті світлові прикраси для дому Різдвяний декор Navidad</p><p class="articul">арт. 0069A</p><p class="price">64.24 грн</p><a href="https://s.click.aliexpress.com/e/_c4mPPepX" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0069A', 'Гірлянда новорічна ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0069A1.jpg', 'https://s.click.aliexpress.com/e/_c4mPPepX')">Додати до обраного</button></div></div><div class="product-card" data-articul="0070A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Різдвяна гірлянда " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0070A1.jpg"/><img alt="Різдвяна гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0070A2.jpg"/><img alt="Різдвяна гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0070A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Різдвяна гірлянда </h3><p>Різдвяні творчі декоративні атмосферні вогні сонячні лампи рядок світлодіодні Санта-Клаус сніговик рядок вогнів вечірні прикраси</p><p class="articul">арт. 0070A</p><p class="price">232.85 грн</p><a href="https://s.click.aliexpress.com/e/_c3lPMLyh" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0070A', 'Різдвяна гірлянда ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0070A1.jpg', 'https://s.click.aliexpress.com/e/_c3lPMLyh')">Додати до обраного</button></div></div><div class="product-card" data-articul="0071A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Гірлянда " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0071A1.jpg"/><img alt="Гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0071A2.jpg"/><img alt="Гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0071A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Гірлянда </h3><p>1,5/3 м різдвяна світлодіодна гірка Санта-Клаус Сніговик ялинкові прикраси 2024 різдвяна прикраса для дому 2025 новорічний подарунок</p><p class="articul">арт. 0071A</p><p class="price">172.87 грн</p><a href="https://s.click.aliexpress.com/e/_c3AeMSNB" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0071A', 'Гірлянда ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0071A1.jpg', 'https://s.click.aliexpress.com/e/_c3AeMSNB')">Додати до обраного</button></div></div><div class="product-card" data-articul="0072A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Гірлянда Navidad" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0072A1.jpg"/><img alt="Гірлянда Navidad" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0072A2.jpg"/><img alt="Гірлянда Navidad" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0072A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Гірлянда Navidad</h3><p>Різдвяні світлодіодні гірлянди Санта-Клауса Сніговика Ялинкові прикраси 2024 Різдвяна прикраса для дому 2025 Новий рік Подарунок Navidad</p><p class="articul">арт. 0072A</p><p class="price">150.58 грн</p><a href="https://s.click.aliexpress.com/e/_c3Qs4E5r" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0072A', 'Гірлянда Navidad', 'D:\Директорія сайту\electronics\electronics/Електроніка/0072A1.jpg', 'https://s.click.aliexpress.com/e/_c3Qs4E5r')">Додати до обраного</button></div></div><div class="product-card" data-articul="0073A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Гірлянда " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0073A1.jpg"/><img alt="Гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0073A2.jpg"/><img alt="Гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0073A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Гірлянда </h3><p>Санта-Клаус Гірлянда Сніговик Лось Світлодіодний рядок світла Різдвяна ялинка Декор для дому Різдвяні прикраси Navidad подарунки Новорічна прикраса</p><p class="articul">арт. 0073A</p><p class="price">194.30 грн</p><a href="https://s.click.aliexpress.com/e/_c3Ccm8bx" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0073A', 'Гірлянда ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0073A1.jpg', 'https://s.click.aliexpress.com/e/_c3Ccm8bx')">Додати до обраного</button></div></div><div class="product-card" data-articul="0074A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Яскрава гірлянда " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0074A1.jpg"/><img alt="Яскрава гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0074A2.jpg"/><img alt="Яскрава гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0074A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Яскрава гірлянда </h3><p>Новий 1,5 м 10 світлодіодних різдвяних гірлянд у формі Санта-Клауса, батарейний блок, маленькі кольорові вогні, світлодіодні гірлянди сніговика, різдвяні вогні</p><p class="articul">арт. 0074A</p><p class="price">342.85 грн</p><a href="https://s.click.aliexpress.com/e/_c3SAqGit" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0074A', 'Яскрава гірлянда ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0074A1.jpg', 'https://s.click.aliexpress.com/e/_c3SAqGit')">Додати до обраного</button></div></div><div class="product-card" data-articul="0075A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Гірлянда Санта Клаус" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0075A1.jpg"/><img alt="Гірлянда Санта Клаус" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0075A2.jpg"/><img alt="Гірлянда Санта Клаус" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0075A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Гірлянда Санта Клаус</h3><p>3M Санта Клаус сходи для скелелазіння відкритий різдвяний декор дім сад різдвяна ялинка Орнамент новорічний подарунок різдвяна ялинка декор</p><p class="articul">арт. 0075A</p><p class="price">429.09 грн</p><a href="https://s.click.aliexpress.com/e/_c4n5prAl" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0075A', 'Гірлянда Санта Клаус', 'D:\Директорія сайту\electronics\electronics/Електроніка/0075A1.jpg', 'https://s.click.aliexpress.com/e/_c4n5prAl')">Додати до обраного</button></div></div><div class="product-card" data-articul="0076A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Світлодіодний цифровий годинник настінний" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0076A1.jpg"/><img alt="Світлодіодний цифровий годинник настінний" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0076A2.jpg"/><img alt="Світлодіодний цифровий годинник настінний" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0076A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Світлодіодний цифровий годинник настінний</h3><p>3D світлодіодний цифровий годинник настінний декор світіння нічний режим прикраса для спальні регульований електронний годинник декор кімнати естетика</p><p class="articul">арт. 0076A</p><p class="price">134.92 грн</p><a href="https://s.click.aliexpress.com/e/_c3zfOC9f" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0076A', 'Світлодіодний цифровий годинник настінний', 'D:\Директорія сайту\electronics\electronics/Електроніка/0076A1.jpg', 'https://s.click.aliexpress.com/e/_c3zfOC9f')">Додати до обраного</button></div></div><div class="product-card" data-articul="0077A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Настіний годиник" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0077A1.jpg"/><img alt="Настіний годиник" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0077A2.jpg"/><img alt="Настіний годиник" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0077A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Настіний годиник</h3><p>3D світлодіодний цифровий годинник настінний декор світіння нічний режим прикраса для спальні регульований електронний годинник декор кімнати естетика</p><p class="articul">арт. 0077A</p><p class="price">266.05 грн</p><a href="https://s.click.aliexpress.com/e/_c4OhXuAv" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0077A', 'Настіний годиник', 'D:\Директорія сайту\electronics\electronics/Електроніка/0077A1.jpg', 'https://s.click.aliexpress.com/e/_c4OhXuAv')">Додати до обраного</button></div></div><div class="product-card" data-articul="0078A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Настіний безрамний годиник " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0078A1.jpg"/><img alt="Настіний безрамний годиник " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0078A2.jpg"/><img alt="Настіний безрамний годиник " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0078A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Настіний безрамний годиник </h3><p>Креативний безрамний DIY настінний годинник настінна наклейка домашній безшумний годинник вітальня офіс настінна прикраса</p><p class="articul">арт. 0078A</p><p class="price">98.73 грн</p><a href="https://s.click.aliexpress.com/e/_c45B772H" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0078A', 'Настіний безрамний годиник ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0078A1.jpg', 'https://s.click.aliexpress.com/e/_c45B772H')">Додати до обраного</button></div></div><div class="product-card" data-articul="0079A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Електроний настіний годиник " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0079A1.jpg"/><img alt="Електроний настіний годиник " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0079A2.jpg"/><img alt="Електроний настіний годиник " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0079A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Електроний настіний годиник </h3><p>Великий електронний настінний годинник з дистанційним керуванням, датою, температурою та вимкненням, пам'яттю та настільним годинником, настінним, з подвійним будильником, цифровим світлодіодним годинником</p><p class="articul">арт. 0079A</p><p class="price">1146.46 грн</p><a href="https://s.click.aliexpress.com/e/_c41vCtpb" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0079A', 'Електроний настіний годиник ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0079A1.jpg', 'https://s.click.aliexpress.com/e/_c41vCtpb')">Додати до обраного</button></div></div><div class="product-card" data-articul="0080A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Бездротові Bluetooth-навушники Xiaomi True Wireless" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0080A1.jpg"/><img alt="Бездротові Bluetooth-навушники Xiaomi True Wireless" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0080A2.jpg"/><img alt="Бездротові Bluetooth-навушники Xiaomi True Wireless" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0080A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Бездротові Bluetooth-навушники Xiaomi True Wireless</h3><p>Бездротові Bluetooth-навушники Xiaomi True Wireless Translator BD2 з ANC та шумозаглушенням ENC, цифровий дисплей, вбудований мікрофон, HiFi стерео</p><p class="articul">арт. 0080A</p><p class="price">698.96 грн</p><a href="https://s.click.aliexpress.com/e/_c4OSDNtL" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0080A', 'Бездротові Bluetooth-навушники Xiaomi True Wireless', 'D:\Директорія сайту\electronics\electronics/Електроніка/0080A1.jpg', 'https://s.click.aliexpress.com/e/_c4OSDNtL')">Додати до обраного</button></div></div><div class="product-card" data-articul="0081A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Петличний мікрофон Xiaomi" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0081A1.jpg"/><img alt="Петличний мікрофон Xiaomi" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0081A2.jpg"/><img alt="Петличний мікрофон Xiaomi" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0081A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Петличний мікрофон Xiaomi</h3><p>Портативний бездротовий петличний мікрофон Xiaomi Mini для прямої трансляції, ігор, аудіо та відеозапису iPhone, Android</p><p class="articul">арт. 0081A</p><p class="price">291.89 грн</p><a href="https://s.click.aliexpress.com/e/_c3OY12tB" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0081A', 'Петличний мікрофон Xiaomi', 'D:\Директорія сайту\electronics\electronics/Електроніка/0081A1.jpg', 'https://s.click.aliexpress.com/e/_c3OY12tB')">Додати до обраного</button></div></div><div class="product-card" data-articul="0082A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Електроний кантер " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0082A1.jpg"/><img alt="Електроний кантер " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0082A2.jpg"/><img alt="Електроний кантер " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0082A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Електроний кантер </h3><p>Портативні електронні ручні ваги з РК-дисплеєм 50 кг/10 г, підвісні ваги з висувною рулеткою довжиною 100 см</p><p class="articul">арт. 0082A</p><p class="price">96.76 грн</p><a href="https://s.click.aliexpress.com/e/_c4b6sbW5" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0082A', 'Електроний кантер ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0082A1.jpg', 'https://s.click.aliexpress.com/e/_c4b6sbW5')">Додати до обраного</button></div></div><div class="product-card" data-articul="0083A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Електорні ваги" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0083A1.jpg"/><img alt="Електорні ваги" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0083A2.jpg"/><img alt="Електорні ваги" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0083A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Електорні ваги</h3><p>Міні-електронні цифрові кишенькові ваги 200 г/0,01 г у стилі ключа портативні прецизійні ваги з РК-дисплеєм золота для зважування ювелірних виробів</p><p class="articul">арт. 0083A</p><p class="price">96.45 грн</p><a href="https://s.click.aliexpress.com/e/_c3ou708d" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0083A', 'Електорні ваги', 'D:\Директорія сайту\electronics\electronics/Електроніка/0083A1.jpg', 'https://s.click.aliexpress.com/e/_c3ou708d')">Додати до обраного</button></div></div><div class="product-card" data-articul="0084A"><div class="product-image-carousel"><div class="carousel-container"><img alt="XIAOMI V9 " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0084A1.jpg"/><img alt="XIAOMI V9 " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0084A2.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>XIAOMI V9 </h3><p>XIAOMI V9 Bluetooth Одномісний Вушний Спортивний Підвісний Навушники з Мікрофоном HD Музика Бізнес Навушники Сенсорне Керування</p><p class="articul">арт. 0084A</p><p class="price">139.73 грн</p><a href="https://s.click.aliexpress.com/e/_c3l0KIcH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0084A', 'XIAOMI V9 ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0084A1.jpg', 'https://s.click.aliexpress.com/e/_c3l0KIcH')">Додати до обраного</button></div></div><div class="product-card" data-articul="0085A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Кантер електроний" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0085A1.jpg"/><img alt="Кантер електроний" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0085A2.jpg"/><img alt="Кантер електроний" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0085A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кантер електроний</h3><p>50 кг 10 г цифрові ваги електронні балансові кухонні ваги підвісні ваги ваги валіза подорожі ваги багаж сумка вага інструмент</p><p class="articul">арт. 0085A</p><p class="price">137.46 грн</p><a href="https://s.click.aliexpress.com/e/_c3ZNAXpx" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0085A', 'Кантер електроний', 'D:\Директорія сайту\electronics\electronics/Електроніка/0085A1.jpg', 'https://s.click.aliexpress.com/e/_c3ZNAXpx')">Додати до обраного</button></div></div><div class="product-card" data-articul="0086A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Колонка до компютера " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0086A1.jpg"/><img alt="Колонка до компютера " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0086A2.jpg"/><img alt="Колонка до компютера " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0086A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Колонка до компютера </h3><p>Настільний комп'ютер Високоякісний Bluetooth Дротовий Двоцільовий Мікрофон Високої Гучності Два-в-одному Динамік</p><p class="articul">арт. 0086A</p><p class="price">609.51 грн</p><a href="https://s.click.aliexpress.com/e/_c3HfPZdb" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0086A', 'Колонка до компютера ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0086A1.jpg', 'https://s.click.aliexpress.com/e/_c3HfPZdb')">Додати до обраного</button></div></div><div class="product-card" data-articul="0087A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Електрона книга " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0087A1.jpg"/><img alt="Електрона книга " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0087A2.jpg"/><img alt="Електрона книга " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0087A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Електрона книга </h3><p>BK576 Відкритий електронний читач книг Словниковий калькулятор Читач електронних книг може бути розроблений</p><p class="articul">арт. 0087A</p><p class="price">2911.19 грн</p><a href="https://s.click.aliexpress.com/e/_c4LgR5WH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0087A', 'Електрона книга ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0087A1.jpg', 'https://s.click.aliexpress.com/e/_c4LgR5WH')">Додати до обраного</button></div></div><div class="product-card" data-articul="0088A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Цифрові кишенькові електронні ваги" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0088A1.jpg"/><img alt="Цифрові кишенькові електронні ваги" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0088A2.jpg"/><img alt="Цифрові кишенькові електронні ваги" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0088A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Цифрові кишенькові електронні ваги</h3><p>Цифрові кишенькові електронні ваги для ювелірних виробів 3000 г x 0,1 г / Без роздрібної упаковки</p><p class="articul">арт. 0088A</p><p class="price">180.57 грн</p><a href="https://s.click.aliexpress.com/e/_c3qmjzy1" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0088A', 'Цифрові кишенькові електронні ваги', 'D:\Директорія сайту\electronics\electronics/Електроніка/0088A1.jpg', 'https://s.click.aliexpress.com/e/_c3qmjzy1')">Додати до обраного</button></div></div><div class="product-card" data-articul="0089A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Портативнв колонка" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0089A1.jpg"/><img alt="Портативнв колонка" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0089A2.jpg"/><img alt="Портативнв колонка" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0089A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Портативнв колонка</h3><p>Портативна бездротова колонка Ortizan Bluetooth 40 Вт із покращеними басами, 30 годин, водонепроникна колонка IP7, Bluetooth</p><p class="articul">арт. 0089A</p><p class="price">1209.85 грн</p><a href="https://s.click.aliexpress.com/e/_c3YTM08l" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0089A', 'Портативнв колонка', 'D:\Директорія сайту\electronics\electronics/Електроніка/0089A1.jpg', 'https://s.click.aliexpress.com/e/_c3YTM08l')">Додати до обраного</button></div></div><div class="product-card" data-articul="0090A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Новорічна ялика електрона " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0090A1.jpg"/><img alt="Новорічна ялика електрона " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0090A2.jpg"/><img alt="Новорічна ялика електрона " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0090A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Новорічна ялика електрона </h3><p>Комплект для виготовлення різнокольорової різдвяної ялинки "Зроби сам" світлодіодний миготливий світлодіодний комплект DC5V Електронний веселий комплект для практики паяння</p><p class="articul">арт. 0090A</p><p class="price">147.90 грн</p><a href="https://s.click.aliexpress.com/e/_c358Jxml" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0090A', 'Новорічна ялика електрона ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0090A1.jpg', 'https://s.click.aliexpress.com/e/_c358Jxml')">Додати до обраного</button></div></div><div class="product-card" data-articul="0091A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Електрична Міні-запальничка" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0091A1.jpg"/><img alt="Електрична Міні-запальничка" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0091A2.jpg"/><img alt="Електрична Міні-запальничка" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0091A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Електрична Міні-запальничка</h3><p>Міні-запальничка вітрозахисна нагрівальна дріт електронна запальничка для зовнішньої портативної компактної запальнички зі світлодіодним підвісним світлом
+
+7 продано</p><p class="articul">арт. 0091A</p><p class="price">92.54 грн</p><a href="https://s.click.aliexpress.com/e/_c380ndXJ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0091A', 'Електрична Міні-запальничка', 'D:\Директорія сайту\electronics\electronics/Електроніка/0091A1.jpg', 'https://s.click.aliexpress.com/e/_c380ndXJ')">Додати до обраного</button></div></div><div class="product-card" data-articul="0092A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Bluetooth-колонка TG166" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0092A1.jpg"/><img alt="Bluetooth-колонка TG166" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0092A2.jpg"/><img alt="Bluetooth-колонка TG166" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0092A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Bluetooth-колонка TG166</h3><p>Bluetooth-колонка TG166 Портативна міні-бездротова звукова панель сабвуфер зовнішня/приміська гучномовець підтримка TF-карти FM-радіо водонепроникна</p><p class="articul">арт. 0092A</p><p class="price">264.42 грн</p><a href="https://s.click.aliexpress.com/e/_c4Ka6StR" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0092A', 'Bluetooth-колонка TG166', 'D:\Директорія сайту\electronics\electronics/Електроніка/0092A1.jpg', 'https://s.click.aliexpress.com/e/_c4Ka6StR')">Додати до обраного</button></div></div><div class="product-card" data-articul="0093A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Колонка Zealot-S32PRO" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0093A1.jpg"/><img alt="Колонка Zealot-S32PRO" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0093A2.jpg"/><img alt="Колонка Zealot-S32PRO" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0093A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Колонка Zealot-S32PRO</h3><p>Zealot-S32PRO Потужний Bluetooth-колонка, бездротовий бас, світлодіодне підсвічування, зовнішні колонки, сабвуфер, водонепроникний саундбокс</p><p class="articul">арт. 0093A</p><p class="price">781.43 грн</p><a href="https://s.click.aliexpress.com/e/_c3h3c8Wp" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0093A', 'Колонка Zealot-S32PRO', 'D:\Директорія сайту\electronics\electronics/Електроніка/0093A1.jpg', 'https://s.click.aliexpress.com/e/_c3h3c8Wp')">Додати до обраного</button></div></div><div class="product-card" data-articul="0094A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Блютоз наушники SonoFlow" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0094A1.jpg"/><img alt="Блютоз наушники SonoFlow" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0094A2.jpg"/><img alt="Блютоз наушники SonoFlow" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0094A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Блютоз наушники SonoFlow</h3><p>SonoFlow Pro Bluetooth-навушники Бездротові гарнітури Hi-Res ANC спалах-розпродаж предметів проникнення електроніка</p><p class="articul">арт. 0094A</p><p class="price">3028.28 грн</p><a href="https://s.click.aliexpress.com/e/_c3Meoi3T" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0094A', 'Блютоз наушники SonoFlow', 'D:\Директорія сайту\electronics\electronics/Електроніка/0094A1.jpg', 'https://s.click.aliexpress.com/e/_c3Meoi3T')">Додати до обраного</button></div></div><div class="product-card" data-articul="0095A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ноутбук LENO Ultra Slim" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0095A1.jpg"/><img alt="Ноутбук LENO Ultra Slim" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0095A2.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ноутбук LENO Ultra Slim</h3><p>Новий ультратонкий ноутбук 14.1 дюймів, 16 ГБ оперативної пам'яті, 2 ТБ SSD, Intel N3700, ігровий ПК, дисплей 1920*1080, офісний комп'ютер, ПК, Windows 11 Pro</p><p class="articul">арт. 0095A</p><p class="price">11619.44 грн</p><a href="https://s.click.aliexpress.com/e/_c3PtwTbP" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0095A', 'Ноутбук LENO Ultra Slim', 'D:\Директорія сайту\electronics\electronics/Електроніка/0095A1.jpg', 'https://s.click.aliexpress.com/e/_c3PtwTbP')">Додати до обраного</button></div></div><div class="product-card" data-articul="0096A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ноутбук I9" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0096A1.jpg"/><img alt="Ноутбук I9" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0096A2.jpg"/><img alt="Ноутбук I9" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0096A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ноутбук I9</h3><p>14,1-дюймовий ноутбук, ультратонкий ігровий ПК з Windows 11 Pro, Intel Core i9 8950HK, офісний, навчальний</p><p class="articul">арт. 0096A</p><p class="price">16658.10 грн</p><a href="https://s.click.aliexpress.com/e/_c3hPVrUD" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0096A', 'Ноутбук I9', 'D:\Директорія сайту\electronics\electronics/Електроніка/0096A1.jpg', 'https://s.click.aliexpress.com/e/_c3hPVrUD')">Додати до обраного</button></div></div></div>
+<div class_="pagination" style="display: flex; justify-content: center; gap: 10px; background-color: #e0e0e0; padding: 10px; border-radius: 10px; margin: 20px auto; max-width: 33%;"><a href="electronics_page_1.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">1</a><a href="electronics_page_2.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">2</a><a class="active" href="electronics_page_3.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: white; color: black; border: 5px solid #e0930d; text-decoration: none; border-radius: 9px;">3</a><a href="electronics_page_4.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">4</a></div><footer>
+<div class="social-links">
+<h2>Слідкуй за новинками в</h2>
+<div class="social-buttons">
+<a class="tiktok" href="https://www.tiktok.com/@reedoffe" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+<a class="facebook" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+<a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</div>
+</div>
+<p>© 2025 Ali.Reed</p>
+</footer>
+<script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const profileLink = document.getElementById('profileLink');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                profileLink.href = 'profile.html';
+                profileLink.textContent = 'Мій профіль';
+            } else {
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
+            }
+        });
+
+        window.addToFavorites = async function(id, title, image, link) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
+                });
+                alert('Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка додавання:', error);
+            }
+        };
+
+        document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('.carousel-image');
+            const indicators = carousel.querySelectorAll('.indicator');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.toggle('active', index === currentIndex);
+                });
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                } else if (touchEndX > touchStartX + 50) {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                }
+            });
+        });
+
+        window.searchProducts = function() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+            const products = document.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                const articul = product.getAttribute('data-articul').toLowerCase();
+                const title = product.querySelector('.product-details h3').textContent.toLowerCase();
+                
+                if (articul.includes(searchInput) || title.includes(searchInput)) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            if (!searchInput) {
+                products.forEach(product => {
+                    product.style.display = 'flex';
+                });
+            }
+        };
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
+                searchProducts();
+            }
+        };
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+    </script>
+</body>
+</html>

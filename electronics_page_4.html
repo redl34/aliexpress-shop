@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Електроніка - Ali.Reed</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="Kartinki/favicon.png" rel="icon" type="image/png"/>
+<style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3E717A;
+        }
+        header {
+            background: url('Kartinki/clothing.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        header h1 {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        header .home-link, header .profile-link {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            border-radius: 5px;
+        }
+        header .home-link:hover, header .profile-link:hover {
+            background-color: #e55a5a;
+            text-decoration: none;
+        }
+        .search-container {
+            position: relative;
+            z-index: 2;
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            gap: 10px;
+        }
+        .search-container input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .search-container button:hover {
+            background-color: #e55a5a;
+        }
+        .products {
+            margin: 20px auto;
+            padding: 20px 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+        }
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 3 / 4;
+        }
+        .product-image-carousel {
+            position: relative;
+            width: 100%;
+            max-height: 50%;
+            overflow: hidden;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            display: none;
+            object-fit: contain;
+        }
+        .carousel-image.active {
+            display: block;
+        }
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-prev {
+            left: 0;
+        }
+        .carousel-next {
+            right: 0;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .indicator.active {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .product-details {
+            flex-grow: 1;
+            text-align: center;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-details h3 {
+            margin: 10px 0;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        .product-details .articul {
+            font-size: 0.9375em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details p {
+            font-size: 1em;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        .product-details a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #132F13;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: block;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        .product-details a:hover {
+            background-color: #0e240e;
+        }
+        .add-to-favorites {
+            background-color: #A9A34C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+        .add-to-favorites:hover {
+            background-color: #8e8a3f;
+        }
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer .social-links {
+            text-align: center;
+        }
+        footer .social-links h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 15px;
+        }
+        footer .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        footer .social-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 900px;
+            }
+        }
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 600px;
+            }
+            .carousel-prev, .carousel-next {
+                display: none;
+            }
+            .product-image-carousel {
+                max-height: 50%;
+            }
+            .carousel-image {
+                max-height: 100%;
+            }
+            .product-details h3 {
+                font-size: 1.1em;
+            }
+            .product-details .articul {
+                font-size: 0.8125em;
+            }
+            .product-details .price {
+                font-size: 1.3em;
+            }
+            .product-details a, .add-to-favorites {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 290px;
+                padding: 20px 10px;
+            }
+        }
+    </style>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js" type="module"></script>
+</head>
+<body>
+<header>
+<h1>Електроніка</h1>
+<a class="home-link" href="index.html">Повернутися на головну</a>
+<a class="profile-link" href="#" id="profileLink">Мій профіль</a>
+<div class="search-container">
+<input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
+<button onclick="searchProducts()">Пошук</button>
+</div>
+</header>
+<div class="products">
+<div class="product-card" data-articul="0097A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ноутбук Laptop" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0097A1.jpg"/><img alt="Ноутбук Laptop" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0097A2.jpg"/><img alt="Ноутбук Laptop" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0097A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ноутбук Laptop</h3><p>Новий 14,1-дюймовий ноутбук Intel Core i9-9900 32 ГБ 2 ТБ Ігровий ПК Ультратонкий офісний навчальний комп'ютер Windows 11 Pro 1920*1080 HD</p><p class="articul">арт. 0097A</p><p class="price">12192.01 грн</p><a href="https://s.click.aliexpress.com/e/_c3mcu8ud" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0097A', 'Ноутбук Laptop', 'D:\Директорія сайту\electronics\electronics/Електроніка/0097A1.jpg', 'https://s.click.aliexpress.com/e/_c3mcu8ud')">Додати до обраного</button></div></div><div class="product-card" data-articul="0098A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ігрова миш " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Електроніка/0098A1.jpg"/><img alt="Ігрова миш " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0098A2.jpg"/><img alt="Ігрова миш " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Електроніка/0098A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ігрова миш </h3><p>Бездротова вертикальна ігрова миша Jomaa з RGB-підсвічуванням та вертикальним керуванням для геймерів, 24000DPI, регульовані програмовані кнопки, дротова</p><p class="articul">арт. 0098A</p><p class="price">1079.38 грн</p><a href="https://s.click.aliexpress.com/e/_c30ZaeQD" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0098A', 'Ігрова миш ', 'D:\Директорія сайту\electronics\electronics/Електроніка/0098A1.jpg', 'https://s.click.aliexpress.com/e/_c30ZaeQD')">Додати до обраного</button></div></div></div>
+<div class_="pagination" style="display: flex; justify-content: center; gap: 10px; background-color: #e0e0e0; padding: 10px; border-radius: 10px; margin: 20px auto; max-width: 33%;"><a href="electronics_page_1.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">1</a><a href="electronics_page_2.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">2</a><a href="electronics_page_3.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">3</a><a class="active" href="electronics_page_4.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: white; color: black; border: 5px solid #e0930d; text-decoration: none; border-radius: 9px;">4</a></div><footer>
+<div class="social-links">
+<h2>Слідкуй за новинками в</h2>
+<div class="social-buttons">
+<a class="tiktok" href="https://www.tiktok.com/@reedoffe" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+<a class="facebook" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+<a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</div>
+</div>
+<p>© 2025 Ali.Reed</p>
+</footer>
+<script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const profileLink = document.getElementById('profileLink');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                profileLink.href = 'profile.html';
+                profileLink.textContent = 'Мій профіль';
+            } else {
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
+            }
+        });
+
+        window.addToFavorites = async function(id, title, image, link) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
+                });
+                alert('Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка додавання:', error);
+            }
+        };
+
+        document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('.carousel-image');
+            const indicators = carousel.querySelectorAll('.indicator');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.toggle('active', index === currentIndex);
+                });
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                } else if (touchEndX > touchStartX + 50) {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                }
+            });
+        });
+
+        window.searchProducts = function() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+            const products = document.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                const articul = product.getAttribute('data-articul').toLowerCase();
+                const title = product.querySelector('.product-details h3').textContent.toLowerCase();
+                
+                if (articul.includes(searchInput) || title.includes(searchInput)) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            if (!searchInput) {
+                products.forEach(product => {
+                    product.style.display = 'flex';
+                });
+            }
+        };
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
+                searchProducts();
+            }
+        };
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+    </script>
+</body>
+</html>

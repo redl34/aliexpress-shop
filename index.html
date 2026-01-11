@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AliShop - Інтерактивна галерея</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .search-container {
+            margin: 20px auto;
+            max-width: 500px;
+            text-align: center;
+        }
+        .search-container p {
+            color: white;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            margin-bottom: 10px;
+        }
+        .search-container input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        .search-container button:hover {
+            background-color: #e55a5a;
+        }
+        
+        /* Стилі для кнопок соціальних мереж як на сторінці "Одяг" */
+        .social-links {
+            text-align: center;
+        }
+        .social-links h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 15px;
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .social-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            min-width: 140px;
+            justify-content: center;
+        }
+        .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .social-buttons a i {
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                padding: 0 20px;
+            }
+            .search-container input {
+                width: 100%;
+            }
+            .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .buttons {
+                flex-wrap: wrap;
+            }
+            
+            /* Адаптивність для соціальних кнопок */
+            .social-buttons {
+                gap: 10px;
+            }
+            
+            .social-buttons a {
+                min-width: 120px;
+                padding: 8px 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .social-buttons a {
+                width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">AliShop</div>
+                    <div class="slogan">Найкращі товари з AliExpress тут</div>
+                    <div class="buttons">
+                        <button class="btn" onclick="window.location.href='login.html'">Увійти</button>
+                        <button class="btn" onclick="window.location.href='register.html'">Зареєструватися</button>
+                        <button class="btn" onclick="window.location.href='instructions.html'">Інструкція</button>
+                    </div>
+                    <div class="search-container">
+                        <p>Для зручного пошуку товару використовуй ключові слова або артикул товару</p>
+                        <input type="text" id="searchInput" placeholder="Введіть артикул або назву товару">
+                        <button onclick="redirectToSearch()">Пошук</button>
+                    </div>
+                </div>
+                <button class="profile-btn" id="profileBtn">+</button>
+            </div>
+        </header>
+        <section class="categories">
+            <div class="container">
+                <h2 class="categories-title">Категорії товарів</h2>
+                <ul class="category-list">
+                    <li class="category-item">
+                        <button class="category-btn" onclick="window.location.href='electronics.html'">
+                            <img src="" alt="Електроника" class="category-image" data-image="electronics_preview.jpg">Електроника
+                        </button>
+                    </li>
+                    <li class="category-item">
+                        <button class="category-btn" onclick="window.location.href='clothing.html'">
+                            <img src="" alt="Одяг" class="category-image" data-image="clothing_preview.jpg">Одяг
+                        </button>
+                    </li>
+                    <li class="category-item">
+                        <button class="category-btn" onclick="window.location.href='garden.html'">
+                            <img src="" alt="Сад та город" class="category-image" data-image="garden_preview.jpg">Сад та город
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <footer class="social-section">
+            <div class="container">
+                <div class="social-links">
+                    <h2>Слідкуй за новинками в</h2>
+                    <div class="social-buttons">
+                        <a href="https://www.facebook.com/groups/1626039174741385/" target="_blank" class="facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://www.tiktok.com/@ali.hopping?_r=1&_t=ZM-92aHDDxkprs" target="_blank" class="tiktok">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
+                        <a href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank" class="instagram">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </div>
+                </div>
+                <p>© 2025 Ali.Reed</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Функція пошуку
+        window.redirectToSearch = function() {
+            const searchInput = document.getElementById('searchInput').value.trim();
+            if (searchInput) {
+                window.location.href = `electronics.html?search=${encodeURIComponent(searchInput)}`;
+            } else {
+                window.location.href = 'electronics.html';
+            }
+        };
+
+        // Обробка натискання Enter в пошуку
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                redirectToSearch();
+            }
+        });
+
+        // Обробка кнопки профілю
+        document.getElementById('profileBtn').addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+
+        // Функція для встановлення правильних шляхів до зображень
+        function setupImagePaths() {
+            const images = document.querySelectorAll('.category-image');
+            const header = document.querySelector('.header');
+            
+            // Масив з назвами файлів зображень
+            const imageFiles = {
+                background: 'background.jpg',
+                electronics: 'electronics_preview.jpg',
+                clothing: 'clothing_preview.jpg',
+                garden: 'garden_preview.jpg'
+            };
+            
+            // Визначаємо базовий шлях для зображень
+            const localBasePath = 'Oformlennya_imeg/';
+            const githubBasePath = 'https://raw.githubusercontent.com/redl34/aliexpress-shop/Oformlennya_imeg/';
+            
+            // Перевіряємо, чи працюємо локально (з file:// протоколом)
+            const isLocal = window.location.protocol === 'file:';
+            
+            if (isLocal) {
+                // Локальний режим - використовуємо локальні шляхи
+                console.log('Локальний режим - шлях до папки:', localBasePath);
+                
+                // Для категорій
+                images.forEach(img => {
+                    const imageName = img.getAttribute('data-image');
+                    if (imageName) {
+                        // Повний шлях: папка + назва файлу
+                        img.src = localBasePath + imageName;
+                        console.log('Завантажую локальне зображення:', img.src);
+                    }
+                });
+                
+                // Для фонового зображення
+                if (header) {
+                    const fullBgPath = localBasePath + imageFiles.background;
+                    header.style.backgroundImage = `url('${fullBgPath}')`;
+                    console.log('Фонове зображення:', fullBgPath);
+                }
+            } else {
+                // Онлайн режим - використовуємо GitHub шляхи
+                console.log('Онлайн режим - шлях на GitHub:', githubBasePath);
+                
+                // Для категорій
+                images.forEach(img => {
+                    const imageName = img.getAttribute('data-image');
+                    if (imageName) {
+                        // Повний шлях: папка на GitHub + назва файлу
+                        img.src = githubBasePath + imageName;
+                        console.log('Завантажую онлайн зображення:', img.src);
+                    }
+                });
+                
+                // Для фонового зображення
+                if (header) {
+                    const fullBgPath = githubBasePath + imageFiles.background;
+                    header.style.backgroundImage = `url('${fullBgPath}')`;
+                    console.log('Фонове зображення (GitHub):', fullBgPath);
+                }
+            }
+            
+            // Додаємо обробник помилок для зображень
+            images.forEach(img => {
+                img.onerror = function() {
+                    console.error('Не вдалося завантажити зображення:', this.src);
+                    // Запасний варіант - градієнт або кольоровий блок
+                    this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232196F3"/><text x="50" y="50" font-family="Arial" font-size="14" fill="white" text-anchor="middle" dy=".3em">' + this.alt + '</text></svg>';
+                };
+                
+                img.onload = function() {
+                    console.log('Зображення успішно завантажено:', this.src);
+                };
+            });
+            
+            // Також додаємо обробник помилок для фонового зображення
+            if (header) {
+                const bgImage = new Image();
+                const bgUrl = header.style.backgroundImage.replace('url("', '').replace('")', '');
+                if (bgUrl) {
+                    bgImage.src = bgUrl;
+                    bgImage.onerror = function() {
+                        console.error('Не вдалося завантажити фонове зображення:', this.src);
+                        header.style.backgroundImage = 'linear-gradient(to right, #1A237E, #3949AB)';
+                    };
+                    bgImage.onload = function() {
+                        console.log('Фонове зображення успішно завантажено:', this.src);
+                    };
+                }
+            }
+        }
+
+        // Запускаємо при завантаженні сторінки
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Головна сторінка завантажена');
+            setupImagePaths();
+        });
+    </script>
+</body>
+</html>

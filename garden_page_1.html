@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Сад та город - Ali.Reed</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="Kartinki/favicon.png" rel="icon" type="image/png"/>
+<style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3E717A;
+        }
+        header {
+            background: url('Kartinki/clothing.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        header h1 {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        header .home-link, header .profile-link {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            border-radius: 5px;
+        }
+        header .home-link:hover, header .profile-link:hover {
+            background-color: #e55a5a;
+            text-decoration: none;
+        }
+        .search-container {
+            position: relative;
+            z-index: 2;
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            gap: 10px;
+        }
+        .search-container input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .search-container button:hover {
+            background-color: #e55a5a;
+        }
+        .products {
+            margin: 20px auto;
+            padding: 20px 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+        }
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 3 / 4;
+        }
+        .product-image-carousel {
+            position: relative;
+            width: 100%;
+            max-height: 50%;
+            overflow: hidden;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            display: none;
+            object-fit: contain;
+        }
+        .carousel-image.active {
+            display: block;
+        }
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-prev {
+            left: 0;
+        }
+        .carousel-next {
+            right: 0;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .indicator.active {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .product-details {
+            flex-grow: 1;
+            text-align: center;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-details h3 {
+            margin: 10px 0;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        .product-details .articul {
+            font-size: 0.9375em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details p {
+            font-size: 1em;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        .product-details a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #132F13;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: block;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        .product-details a:hover {
+            background-color: #0e240e;
+        }
+        .add-to-favorites {
+            background-color: #A9A34C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+        .add-to-favorites:hover {
+            background-color: #8e8a3f;
+        }
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer .social-links {
+            text-align: center;
+        }
+        footer .social-links h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 15px;
+        }
+        footer .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        footer .social-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 900px;
+            }
+        }
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 600px;
+            }
+            .carousel-prev, .carousel-next {
+                display: none;
+            }
+            .product-image-carousel {
+                max-height: 50%;
+            }
+            .carousel-image {
+                max-height: 100%;
+            }
+            .product-details h3 {
+                font-size: 1.1em;
+            }
+            .product-details .articul {
+                font-size: 0.8125em;
+            }
+            .product-details .price {
+                font-size: 1.3em;
+            }
+            .product-details a, .add-to-favorites {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 290px;
+                padding: 20px 10px;
+            }
+        }
+    </style>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js" type="module"></script>
+</head>
+<body>
+<header>
+<h1>Сад та город</h1>
+<a class="home-link" href="index.html">Повернутися на головну</a>
+<a class="profile-link" href="#" id="profileLink">Мій профіль</a>
+<div class="search-container">
+<input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
+<button onclick="searchProducts()">Пошук</button>
+</div>
+</header>
+<div class="products">
+<div class="product-card" data-articul="0001C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Дитячий ігровий будиночок" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0001C1.jpg"/><img alt="Дитячий ігровий будиночок" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0001C2.jpg"/><img alt="Дитячий ігровий будиночок" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0001C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Дитячий ігровий будиночок</h3><p>Дитячий ігровий будиночок на відкритому повітрі, гірка, будиночок на дереві для дітей, мобільна альтанка для саду, дерев'яний будинок</p><p class="articul">арт. 0001C</p><p class="price">19686.87 грн</p><a href="https://s.click.aliexpress.com/e/_c4BXq5KD" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0001C', 'Дитячий ігровий будиночок', 'D:\Директорія сайту\electronics\electronics/Сад та город/0001C1.jpg', 'https://s.click.aliexpress.com/e/_c4BXq5KD')">Додати до обраного</button></div></div><div class="product-card" data-articul="0002C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Годівниця для птахів " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0002C1.jpg"/><img alt="Годівниця для птахів " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0002C2.jpg"/><img alt="Годівниця для птахів " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0002C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Годівниця для птахів </h3><p>Вінтажна металева годівниця для птахів у формі метелика, підвісна ванна для птахів та декор для саду</p><p class="articul">арт. 0002C</p><p class="price">637.21  грн</p><a href="https://s.click.aliexpress.com/e/_c3nrNaE9" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0002C', 'Годівниця для птахів ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0002C1.jpg', 'https://s.click.aliexpress.com/e/_c3nrNaE9')">Додати до обраного</button></div></div><div class="product-card" data-articul="0003C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Прикраса для саду ,,Сніговик,, " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0003C1.jpg"/><img alt="Прикраса для саду ,,Сніговик,, " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0003C2.jpg"/><img alt="Прикраса для саду ,,Сніговик,, " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0003C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Прикраса для саду ,,Сніговик,, </h3><p>Сонячне освітлення для саду, патіо, гірлянди, садових прикрас, критий, відкритий, святковий, фестиваль, світлодіодний, фея, сніговик, Різдво</p><p class="articul">арт. 0003C</p><p class="price">445.26 грн</p><a href="https://s.click.aliexpress.com/e/_c3f41y8v" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0003C', 'Прикраса для саду ,,Сніговик,, ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0003C1.jpg', 'https://s.click.aliexpress.com/e/_c3f41y8v')">Додати до обраного</button></div></div><div class="product-card" data-articul="0004C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Світильник ,,Маяк,," class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0004C1.jpg"/><img alt="Світильник ,,Маяк,," class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0004C2.jpg"/><img alt="Світильник ,,Маяк,," class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0004C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Світильник ,,Маяк,,</h3><p>Сонячний маяк, що обертається на 360 градусів, водонепроникні світлодіодні сонячні ліхтарі, огорожа для внутрішнього двору, сад, підсвічування статуй, прикраса газону</p><p class="articul">арт. 0004C</p><p class="price">810.39 грн</p><a href="https://s.click.aliexpress.com/e/_c2yvQLX7" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0004C', 'Світильник ,,Маяк,,', 'D:\Директорія сайту\electronics\electronics/Сад та город/0004C1.jpg', 'https://s.click.aliexpress.com/e/_c2yvQLX7')">Додати до обраного</button></div></div><div class="product-card" data-articul="0005C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Світильник садовий ,,Зайчення,, " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0005C1.jpg"/><img alt="Світильник садовий ,,Зайчення,, " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0005C2.jpg"/><img alt="Світильник садовий ,,Зайчення,, " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0005C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Світильник садовий ,,Зайчення,, </h3><p>Садові сонячні вуличні статуї кролика світловий кролик з метеликом та 7-кольоровою лампою для зміни кольору патіо пасхальна прикраса для балкону газону</p><p class="articul">арт. 0005C</p><p class="price">806.26 грн</p><a href="https://s.click.aliexpress.com/e/_c4Uofxn3" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0005C', 'Світильник садовий ,,Зайчення,, ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0005C1.jpg', 'https://s.click.aliexpress.com/e/_c4Uofxn3')">Додати до обраного</button></div></div><div class="product-card" data-articul="0006C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Електричний сікатор " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0006C1.jpg"/><img alt="Електричний сікатор " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0006C2.jpg"/><img alt="Електричний сікатор " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0006C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Електричний сікатор </h3><p>30 мм бездротові електричні обрізки ножиці 2 передачі ручні безщіткові ножиці для різання гілок дерев електроінструменти для акумулятора Makita Pin</p><p class="articul">арт. 0006C</p><p class="price">1791.47 грн</p><a href="https://s.click.aliexpress.com/e/_c3dfVtOt" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0006C', 'Електричний сікатор ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0006C1.jpg', 'https://s.click.aliexpress.com/e/_c3dfVtOt')">Додати до обраного</button></div></div><div class="product-card" data-articul="0007C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Садоувий візок " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0007C1.jpg"/><img alt="Садоувий візок " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0007C2.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Садоувий візок </h3><p>Сільськогосподарський садовий інструментальний візок зеленого завантаження, візок для зняття навантаження, пасторальний інструментальний візок, візок для зняття опалого листя, садовий візок</p><p class="articul">арт. 0007C</p><p class="price">2566.16 грн</p><a href="https://s.click.aliexpress.com/e/_c4TksWqN" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0007C', 'Садоувий візок ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0007C1.jpg', 'https://s.click.aliexpress.com/e/_c4TksWqN')">Додати до обраного</button></div></div><div class="product-card" data-articul="0008C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Садові ножиці " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0008C1.jpg"/><img alt="Садові ножиці " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0008C2.jpg"/><img alt="Садові ножиці " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0008C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Садові ножиці </h3><p>Обрізка гілок ножиці з нержавіючої сталі з нековзною ручкою гостра садова обрізка фруктових дерев дуже гострі садові інструменти</p><p class="articul">арт. 0008C</p><p class="price">204.03 грн</p><a href="https://s.click.aliexpress.com/e/_c3X12rbT" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0008C', 'Садові ножиці ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0008C1.jpg', 'https://s.click.aliexpress.com/e/_c3X12rbT')">Додати до обраного</button></div></div><div class="product-card" data-articul="0009C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Мікрокультиватор" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0009C1.jpg"/><img alt="Мікрокультиватор" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0009C2.jpg"/><img alt="Мікрокультиватор" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0009C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Мікрокультиватор</h3><p>Ручний мікрокультиватор сільськогосподарського саду багатофункціональний легкий роторний культиватор для квітників
+
+1 продано
+
+від Ninety-Nine Tools St... ( 4.2 | продано понад 10 000 одиниць )</p><p class="articul">арт. 0009C</p><p class="price">12052.38 грн</p><a href="https://s.click.aliexpress.com/e/_c31bP4Db" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0009C', 'Мікрокультиватор', 'D:\Директорія сайту\electronics\electronics/Сад та город/0009C1.jpg', 'https://s.click.aliexpress.com/e/_c31bP4Db')">Додати до обраного</button></div></div><div class="product-card" data-articul="0010C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Садовий інструмент " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0010C1.jpg"/><img alt="Садовий інструмент " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0010C2.jpg"/><img alt="Садовий інструмент " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0010C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Садовий інструмент </h3><p>Інструмент для садівничого мистецтва Delixi Horticultural Spade Flower Art Tool, що веде море, мала лопата, побутовий інструмент для садівничого мистецтва квітів</p><p class="articul">арт. 0010C</p><p class="price">494.16 грн</p><a href="https://s.click.aliexpress.com/e/_c3BAbdZf" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0010C', 'Садовий інструмент ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0010C1.jpg', 'https://s.click.aliexpress.com/e/_c3BAbdZf')">Додати до обраного</button></div></div><div class="product-card" data-articul="0011C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Машина для обв'язування рослин" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0011C1.jpg"/><img alt="Машина для обв'язування рослин" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0011C2.jpg"/><img alt="Машина для обв'язування рослин" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0011C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Машина для обв'язування рослин</h3><p>ALLSOME Машина для обв'язування рослин, садові рослини, стрічковий інструмент Tapener + 10 рулонів стрічки набір для овочів, винограду, помідорів, огірків, перцю, квітів</p><p class="articul">арт. 0011C</p><p class="price">1222.18 грн</p><a href="https://s.click.aliexpress.com/e/_c33p88nJ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0011C', 'Машина для обв'язування рослин', 'D:\Директорія сайту\electronics\electronics/Сад та город/0011C1.jpg', 'https://s.click.aliexpress.com/e/_c33p88nJ')">Додати до обраного</button></div></div><div class="product-card" data-articul="0012C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Інструмент для облязування рослин " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0012C1.jpg"/><img alt="Інструмент для облязування рослин " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0012C2.jpg"/><img alt="Інструмент для облязування рослин " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0012C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Інструмент для облязування рослин </h3><p>Нові садові інструменти для обв'язування гілок помідорів, машина для обв'язування розсади, інструмент для обв'язування винограду, овочеві стрічки, домашній сад</p><p class="articul">арт. 0012C</p><p class="price">939.97 грн</p><a href="https://s.click.aliexpress.com/e/_c4c5KJa1" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0012C', 'Інструмент для облязування рослин ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0012C1.jpg', 'https://s.click.aliexpress.com/e/_c4c5KJa1')">Додати до обраного</button></div></div><div class="product-card" data-articul="0013C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Система поливу" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0013C1.jpg"/><img alt="Система поливу" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0013C2.jpg"/><img alt="Система поливу" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0013C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Система поливу</h3><p>3-важільна регульована система поливу з автоматичним обертанням на 360° - водозберігаючий садовий інструмент для поливу газонів для великих подвір'їв та важких умов експлуатації</p><p class="articul">арт. 0013C</p><p class="price">216.07 грн</p><a href="https://s.click.aliexpress.com/e/_c3oobu25" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0013C', 'Система поливу', 'D:\Директорія сайту\electronics\electronics/Сад та город/0013C1.jpg', 'https://s.click.aliexpress.com/e/_c3oobu25')">Додати до обраного</button></div></div><div class="product-card" data-articul="0014C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Система поливу " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0014C1.jpg"/><img alt="Система поливу " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0014C2.jpg"/><img alt="Система поливу " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0014C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Система поливу </h3><p>Регульований розпилювач з автоматичним обертанням на 360° для газону, саду, сільського господарства, зрошення, економії води за допомогою швидкоз'єднувальної системи дощувальних систем</p><p class="articul">арт. 0014C</p><p class="price">265.38 грн</p><a href="https://s.click.aliexpress.com/e/_c3U7upPT" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0014C', 'Система поливу ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0014C1.jpg', 'https://s.click.aliexpress.com/e/_c3U7upPT')">Додати до обраного</button></div></div><div class="product-card" data-articul="0015C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Акамуляторна міні пила " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0015C1.jpg"/><img alt="Акамуляторна міні пила " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0015C2.jpg"/><img alt="Акамуляторна міні пила " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0015C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Акамуляторна міні пила </h3><p>Міні-бензопила VILASTING 4/6 дюймів Бездротова деревообробка Садова електрична пилка різання електроінструмент підходить для Dewalt/Milwaukee 18V акумуляторний контактний штифт</p><p class="articul">арт. 0015C</p><p class="price">2116.37 грн</p><a href="https://s.click.aliexpress.com/e/_c4BP7j1J" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0015C', 'Акамуляторна міні пила ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0015C1.jpg', 'https://s.click.aliexpress.com/e/_c4BP7j1J')">Додати до обраного</button></div></div><div class="product-card" data-articul="0016C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Міні пила " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0016C1.jpg"/><img alt="Міні пила " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0016C2.jpg"/><img alt="Міні пила " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0016C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Міні пила </h3><p>Makita 6 дюймів ланцюгова пилка бездротова бензопила для деревообробки електрична пилка ручна портативна лісозаготівельна бензопила електроінструменти</p><p class="articul">арт. 0016C</p><p class="price">977.71 грн</p><a href="https://s.click.aliexpress.com/e/_c4onYQFB" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0016C', 'Міні пила ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0016C1.jpg', 'https://s.click.aliexpress.com/e/_c4onYQFB')">Додати до обраного</button></div></div><div class="product-card" data-articul="0017C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Міні пила " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0017C1.jpg"/><img alt="Міні пила " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0017C2.jpg"/><img alt="Міні пила " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0017C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Міні пила </h3><p>6-дюймова міні-літій-іонна електрична бензопила однією рукою портативна електрична пилка підходить для акумулятора Makita 18V</p><p class="articul">арт. 0017C</p><p class="price">1455.30 грн</p><a href="https://s.click.aliexpress.com/e/_c3hO4J4d" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0017C', 'Міні пила ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0017C1.jpg', 'https://s.click.aliexpress.com/e/_c3hO4J4d')">Додати до обраного</button></div></div><div class="product-card" data-articul="0018C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ножовка ручна садова " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0018C1.jpg"/><img alt="Ножовка ручна садова " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0018C2.jpg"/><img alt="Ножовка ручна садова " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0018C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ножовка ручна садова </h3><p>Складана ручна пилка для зовнішнього використання для обрізки гілок дерев, кемпінгу, походів, ергономічної нековзної ручки</p><p class="articul">арт. 0018C</p><p class="price">162.83 грн</p><a href="https://s.click.aliexpress.com/e/_c3D2QCrr" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0018C', 'Ножовка ручна садова ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0018C1.jpg', 'https://s.click.aliexpress.com/e/_c3D2QCrr')">Додати до обраного</button></div></div><div class="product-card" data-articul="0019C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Складна садова пилка " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0019C1.jpg"/><img alt="Складна садова пилка " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0019C2.jpg"/><img alt="Складна садова пилка " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0019C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Складна садова пилка </h3><p>Складана ручна пилка компактного дизайну ручна пилка для дерев та кемпінгу обрізка пилки з твердими зубцями ножівка для саду інструменти для обрізки</p><p class="articul">арт. 0019C</p><p class="price">365.76 грн</p><a href="https://s.click.aliexpress.com/e/_c4OwbNvf" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0019C', 'Складна садова пилка ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0019C1.jpg', 'https://s.click.aliexpress.com/e/_c4OwbNvf')">Додати до обраного</button></div></div><div class="product-card" data-articul="0020C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Садова ножовка " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0020C1.jpg"/><img alt="Садова ножовка " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0020C2.jpg"/><img alt="Садова ножовка " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0020C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Садова ножовка </h3><p>Садова ножовка. Зручний ручний садовий інструментдля обрізування гілок.</p><p class="articul">арт. 0020C</p><p class="price">468.16 грн</p><a href="https://s.click.aliexpress.com/e/_c3Bzb3yl" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0020C', 'Садова ножовка ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0020C1.jpg', 'https://s.click.aliexpress.com/e/_c3Bzb3yl')">Додати до обраного</button></div></div><div class="product-card" data-articul="0021C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Пилка Wellhike" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0021C1.jpg"/><img alt="Пилка Wellhike" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0021C2.jpg"/><img alt="Пилка Wellhike" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0021C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Пилка Wellhike</h3><p>Відкритий Складаний Ручний Пилка Багатофункціональний Портативний Ручний Пилка Кемпінг Швидкий Сталевий Бар Дика Дереворізальний Інструмент</p><p class="articul">арт. 0021C</p><p class="price">625.59 грн</p><a href="https://s.click.aliexpress.com/e/_c3LWcDf3" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0021C', 'Пилка Wellhike', 'D:\Директорія сайту\electronics\electronics/Сад та город/0021C1.jpg', 'https://s.click.aliexpress.com/e/_c3LWcDf3')">Додати до обраного</button></div></div><div class="product-card" data-articul="0022C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Бур садовий " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0022C1.jpg"/><img alt="Бур садовий " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0022C2.jpg"/><img alt="Бур садовий " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0022C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Бур садовий </h3><p>Садовий бур для земляних шнеків із запобіжним болтом та адаптером, бур для земляних робіт 800 мм для буріння пальових свердловин, земляних робіт, садового спірального бура</p><p class="articul">арт. 0022C</p><p class="price">2891.77 грн</p><a href="https://s.click.aliexpress.com/e/_c2RASUGt" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0022C', 'Бур садовий ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0022C1.jpg', 'https://s.click.aliexpress.com/e/_c2RASUGt')">Додати до обраного</button></div></div><div class="product-card" data-articul="0023C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Садовий ліхтар" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0023C1.jpg"/><img alt="Садовий ліхтар" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0023C2.jpg"/><img alt="Садовий ліхтар" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0023C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Садовий ліхтар</h3><p>Сонячний імітація бамбукового ліхтаря зовнішній водонепроникний пластиковий ротанговий ліхтар для прикраси внутрішнього двору перезаряджається садовий ліхтар</p><p class="articul">арт. 0023C</p><p class="price">408.70 грн</p><a href="https://s.click.aliexpress.com/e/_c4kD7e5F" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0023C', 'Садовий ліхтар', 'D:\Директорія сайту\electronics\electronics/Сад та город/0023C1.jpg', 'https://s.click.aliexpress.com/e/_c4kD7e5F')">Додати до обраного</button></div></div><div class="product-card" data-articul="0024C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Вуличний садовий ліхтар " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0024C1.jpg"/><img alt="Вуличний садовий ліхтар " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0024C2.jpg"/><img alt="Вуличний садовий ліхтар " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0024C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Вуличний садовий ліхтар </h3><p>Ліхтар-підвіс на сонячній енергії з лампочкою, підходить для прикраси садів, патіо, газонів та доріжок.</p><p class="articul">арт. 0024C</p><p class="price">311.49 грн</p><a href="https://s.click.aliexpress.com/e/_c2xyoiPX" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0024C', 'Вуличний садовий ліхтар ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0024C1.jpg', 'https://s.click.aliexpress.com/e/_c2xyoiPX')">Додати до обраного</button></div></div><div class="product-card" data-articul="0025C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ручний міні інструмен для домашніх квітів " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0025C1.jpg"/><img alt="Ручний міні інструмен для домашніх квітів " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0025C2.jpg"/><img alt="Ручний міні інструмен для домашніх квітів " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0025C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ручний міні інструмен для домашніх квітів </h3><p>3 шт./лот міні-садові інструменти мала лопата граблі лопата дерев'яна ручка металева головка садові інструменти малий міні</p><p class="articul">арт. 0025C</p><p class="price">45.89 грн</p><a href="https://s.click.aliexpress.com/e/_c3VsFdq1" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0025C', 'Ручний міні інструмен для домашніх квітів ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0025C1.jpg', 'https://s.click.aliexpress.com/e/_c3VsFdq1')">Додати до обраного</button></div></div><div class="product-card" data-articul="0026C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Садова сонячна гірлянда " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0026C1.jpg"/><img alt="Садова сонячна гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0026C2.jpg"/><img alt="Садова сонячна гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0026C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Садова сонячна гірлянда </h3><p>7 м/12 м/22 м/32 м світлодіодні сонячні гірлянди фея вогні відкритий шлях гірлянди лампа патіо водонепроникний різдвяний весільний сад вуличні ліхтарі</p><p class="articul">арт. 0026C</p><p class="price">101.54 грн</p><a href="https://s.click.aliexpress.com/e/_c3ldgUXP" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0026C', 'Садова сонячна гірлянда ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0026C1.jpg', 'https://s.click.aliexpress.com/e/_c3ldgUXP')">Додати до обраного</button></div></div><div class="product-card" data-articul="0027C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Гірлянда садова у вигляді лійки" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0027C1.jpg"/><img alt="Гірлянда садова у вигляді лійки" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0027C2.jpg"/><img alt="Гірлянда садова у вигляді лійки" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0027C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Гірлянда садова у вигляді лійки</h3><p>Металевий ліхтар Сонячне світло для лійки - Вуличні водонепроникні душові ліхтарі для садових прикрас Світлодіодні декоративні ліхтарі казкового мистецтва</p><p class="articul">арт. 0027C</p><p class="price">491.60 грн</p><a href="https://s.click.aliexpress.com/e/_c3UhjJCl" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0027C', 'Гірлянда садова у вигляді лійки', 'D:\Директорія сайту\electronics\electronics/Сад та город/0027C1.jpg', 'https://s.click.aliexpress.com/e/_c3UhjJCl')">Додати до обраного</button></div></div><div class="product-card" data-articul="0028C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Вулична сонячна гірлянда " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0028C1.jpg"/><img alt="Вулична сонячна гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0028C2.jpg"/><img alt="Вулична сонячна гірлянда " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0028C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Вулична сонячна гірлянда </h3><p>1 шт. сонячна кришталева куля фея гірлянда 5M20L відкритий водонепроникний різдвяний декор кемпінг фея гірлянда садова вечірка</p><p class="articul">арт. 0028C</p><p class="price">100.30 грн</p><a href="https://s.click.aliexpress.com/e/_c4NEmKrX" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0028C', 'Вулична сонячна гірлянда ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0028C1.jpg', 'https://s.click.aliexpress.com/e/_c4NEmKrX')">Додати до обраного</button></div></div><div class="product-card" data-articul="0029C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Садове освітлення ,,Фламінго,," class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0029C1.jpg"/><img alt="Садове освітлення ,,Фламінго,," class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0029C2.jpg"/><img alt="Садове освітлення ,,Фламінго,," class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0029C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Садове освітлення ,,Фламінго,,</h3><p>1/3PCS Фламінго Сонячне світло IP65 Водонепроникний Світлодіодний Світильник для Ландшафтного Наземного Світильника для Зовнішньої Доріжки Різдвяний Садовий Декор</p><p class="articul">арт. 0029C</p><p class="price">236.07 грн</p><a href="https://s.click.aliexpress.com/e/_c3MGJrQD" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0029C', 'Садове освітлення ,,Фламінго,,', 'D:\Директорія сайту\electronics\electronics/Сад та город/0029C1.jpg', 'https://s.click.aliexpress.com/e/_c3MGJrQD')">Додати до обраного</button></div></div><div class="product-card" data-articul="0030C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ліхтар садовий" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0030C1.jpg"/><img alt="Ліхтар садовий" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0030C2.jpg"/><img alt="Ліхтар садовий" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0030C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ліхтар садовий</h3><p>1 шт./2 упаковки. Шестигранний підвісний палацовий ліхтар на сонячній енергії, підходить для садів, внутрішніх дворів, газонів та доріжок на відкритому повітрі.</p><p class="articul">арт. 0030C</p><p class="price">129.76 грн</p><a href="https://s.click.aliexpress.com/e/_c2uFgL9f" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0030C', 'Ліхтар садовий', 'D:\Директорія сайту\electronics\electronics/Сад та город/0030C1.jpg', 'https://s.click.aliexpress.com/e/_c2uFgL9f')">Додати до обраного</button></div></div><div class="product-card" data-articul="0031C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ліхтарик садовий " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0031C1.jpg"/><img alt="Ліхтарик садовий " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0031C2.jpg"/><img alt="Ліхтарик садовий " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0031C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ліхтарик садовий </h3><p>Сонячна кругла куля світлодіодна сонячна енергія світло відкритий водонепроникний сад прикраса двір газон вулиця куля наземний світильник</p><p class="articul">арт. 0031C</p><p class="price">87.70 грн</p><a href="https://s.click.aliexpress.com/e/_c3JoUfrT" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0031C', 'Ліхтарик садовий ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0031C1.jpg', 'https://s.click.aliexpress.com/e/_c3JoUfrT')">Додати до обраного</button></div></div><div class="product-card" data-articul="0032C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Сонячний тротуарний ліхтар " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0032C1.jpg"/><img alt="Сонячний тротуарний ліхтар " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0032C2.jpg"/><img alt="Сонячний тротуарний ліхтар " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0032C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Сонячний тротуарний ліхтар </h3><p>10 шт. Сонячні вуличні ліхтарі садові ліхтарі сонячні лампи водонепроникні ландшафтні освітлення доріжки двір газон сад прикраса</p><p class="articul">арт. 0032C</p><p class="price">518.91 грн</p><a href="https://s.click.aliexpress.com/e/_c2I8ukBn" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0032C', 'Сонячний тротуарний ліхтар ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0032C1.jpg', 'https://s.click.aliexpress.com/e/_c2I8ukBn')">Додати до обраного</button></div></div></div>
+<div class_="pagination" style="display: flex; justify-content: center; gap: 10px; background-color: #e0e0e0; padding: 10px; border-radius: 10px; margin: 20px auto; max-width: 33%;"><a class="active" href="garden_page_1.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: white; color: black; border: 5px solid #e0930d; text-decoration: none; border-radius: 9px;">1</a><a href="garden_page_2.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">2</a></div><footer>
+<div class="social-links">
+<h2>Слідкуй за новинками в</h2>
+<div class="social-buttons">
+<a class="tiktok" href="https://www.tiktok.com/@reedoffe" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+<a class="facebook" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+<a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</div>
+</div>
+<p>© 2025 Ali.Reed</p>
+</footer>
+<script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const profileLink = document.getElementById('profileLink');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                profileLink.href = 'profile.html';
+                profileLink.textContent = 'Мій профіль';
+            } else {
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
+            }
+        });
+
+        window.addToFavorites = async function(id, title, image, link) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
+                });
+                alert('Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка додавання:', error);
+            }
+        };
+
+        document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('.carousel-image');
+            const indicators = carousel.querySelectorAll('.indicator');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.toggle('active', index === currentIndex);
+                });
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                } else if (touchEndX > touchStartX + 50) {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                }
+            });
+        });
+
+        window.searchProducts = function() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+            const products = document.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                const articul = product.getAttribute('data-articul').toLowerCase();
+                const title = product.querySelector('.product-details h3').textContent.toLowerCase();
+                
+                if (articul.includes(searchInput) || title.includes(searchInput)) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            if (!searchInput) {
+                products.forEach(product => {
+                    product.style.display = 'flex';
+                });
+            }
+        };
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
+                searchProducts();
+            }
+        };
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+    </script>
+</body>
+</html>

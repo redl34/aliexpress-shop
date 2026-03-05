@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Сад та город - Ali.Reed</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="Kartinki/favicon.png" rel="icon" type="image/png"/>
+<style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3E717A;
+        }
+        header {
+            background: url('Kartinki/clothing.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        header h1 {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        header .home-link, header .profile-link {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            border-radius: 5px;
+        }
+        header .home-link:hover, header .profile-link:hover {
+            background-color: #e55a5a;
+            text-decoration: none;
+        }
+        .search-container {
+            position: relative;
+            z-index: 2;
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            gap: 10px;
+        }
+        .search-container input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .search-container button:hover {
+            background-color: #e55a5a;
+        }
+        .products {
+            margin: 20px auto;
+            padding: 20px 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+        }
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 3 / 4;
+        }
+        .product-image-carousel {
+            position: relative;
+            width: 100%;
+            max-height: 50%;
+            overflow: hidden;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            display: none;
+            object-fit: contain;
+        }
+        .carousel-image.active {
+            display: block;
+        }
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-prev {
+            left: 0;
+        }
+        .carousel-next {
+            right: 0;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .indicator.active {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .product-details {
+            flex-grow: 1;
+            text-align: center;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-details h3 {
+            margin: 10px 0;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        .product-details .articul {
+            font-size: 0.9375em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details p {
+            font-size: 1em;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        .product-details a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #132F13;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: block;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        .product-details a:hover {
+            background-color: #0e240e;
+        }
+        .add-to-favorites {
+            background-color: #A9A34C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+        .add-to-favorites:hover {
+            background-color: #8e8a3f;
+        }
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer .social-links {
+            text-align: center;
+        }
+        footer .social-links h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 15px;
+        }
+        footer .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        footer .social-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 900px;
+            }
+        }
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 600px;
+            }
+            .carousel-prev, .carousel-next {
+                display: none;
+            }
+            .product-image-carousel {
+                max-height: 50%;
+            }
+            .carousel-image {
+                max-height: 100%;
+            }
+            .product-details h3 {
+                font-size: 1.1em;
+            }
+            .product-details .articul {
+                font-size: 0.8125em;
+            }
+            .product-details .price {
+                font-size: 1.3em;
+            }
+            .product-details a, .add-to-favorites {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 290px;
+                padding: 20px 10px;
+            }
+        }
+    </style>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js" type="module"></script>
+</head>
+<body>
+<header>
+<h1>Сад та город</h1>
+<a class="home-link" href="index.html">Повернутися на головну</a>
+<a class="profile-link" href="#" id="profileLink">Мій профіль</a>
+<div class="search-container">
+<input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
+<button onclick="searchProducts()">Пошук</button>
+</div>
+</header>
+<div class="products">
+<div class="product-card" data-articul="0033C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ліхтар садовий у вигляді квітів " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0033C1.jpg"/><img alt="Ліхтар садовий у вигляді квітів " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0033C2.jpg"/><img alt="Ліхтар садовий у вигляді квітів " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0033C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ліхтар садовий у вигляді квітів </h3><p>Світлодіодна сонячна різдвяна квітка пуансетія штучна квітка, підходить для прикрашання різдвяних садів, газонів та внутрішніх дворів</p><p class="articul">арт. 0033C</p><p class="price">139.33 грн</p><a href="https://s.click.aliexpress.com/e/_c3dhBOlL" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0033C', 'Ліхтар садовий у вигляді квітів ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0033C1.jpg', 'https://s.click.aliexpress.com/e/_c3dhBOlL')">Додати до обраного</button></div></div><div class="product-card" data-articul="0034C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Сонячний садовий ліхтар " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0034C1.jpg"/><img alt="Сонячний садовий ліхтар " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0034C2.jpg"/><img alt="Сонячний садовий ліхтар " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0034C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Сонячний садовий ліхтар </h3><p>Сонячні ліхтарі Lotus Flower Garden Lights Flowers Lights Сонячні світлодіодні газонні вогні Відкритий сад Декор Двору Ландшафтний декор</p><p class="articul">арт. 0034C</p><p class="price">383.96 грн</p><a href="https://s.click.aliexpress.com/e/_c4MSpq65" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0034C', 'Сонячний садовий ліхтар ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0034C1.jpg', 'https://s.click.aliexpress.com/e/_c4MSpq65')">Додати до обраного</button></div></div><div class="product-card" data-articul="0035C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ліхтар садовий " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0035C1.jpg"/><img alt="Ліхтар садовий " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0035C2.jpg"/><img alt="Ліхтар садовий " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0035C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ліхтар садовий </h3><p>Сонячні феєрверки Вуличні водонепроникні сонячні садові вогні 8 режимів освітлення з дистанційним керуванням Прикраси Світло</p><p class="articul">арт. 0035C</p><p class="price">114.47 грн</p><a href="https://s.click.aliexpress.com/e/_c4FuyOYZ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0035C', 'Ліхтар садовий ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0035C1.jpg', 'https://s.click.aliexpress.com/e/_c4FuyOYZ')">Додати до обраного</button></div></div><div class="product-card" data-articul="0036C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Інструмент для отворів " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0036C1.jpg"/><img alt="Інструмент для отворів " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0036C2.jpg"/><img alt="Інструмент для отворів " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0036C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Інструмент для отворів </h3><p>1/2PCS T-подібна дерев'яна ручка рука сіяти Dibbler посів насіння цибулин копання сад Dibber плантатор інструмент пересадка насіння Диспенсер сад</p><p class="articul">арт. 0036C</p><p class="price">151.30 грн</p><a href="https://s.click.aliexpress.com/e/_c439bA8t" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0036C', 'Інструмент для отворів ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0036C1.jpg', 'https://s.click.aliexpress.com/e/_c439bA8t')">Додати до обраного</button></div></div><div class="product-card" data-articul="0037C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Сікатор " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0037C1.jpg"/><img alt="Сікатор " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0037C2.jpg"/><img alt="Сікатор " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0037C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Сікатор </h3><p>Садові ножиці Pruner Професійна обрізка гілок Овочеві фруктові дерева Гострі ножиці для обрізки Побутові садові ножиці</p><p class="articul">арт. 0037C</p><p class="price">112.78 грн</p><a href="https://s.click.aliexpress.com/e/_c4NkAvi1" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0037C', 'Сікатор ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0037C1.jpg', 'https://s.click.aliexpress.com/e/_c4NkAvi1')">Додати до обраного</button></div></div><div class="product-card" data-articul="0038C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Сівалка " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0038C1.jpg"/><img alt="Сівалка " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0038C2.jpg"/><img alt="Сівалка " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0038C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Сівалка </h3><p>Інструмент для посадки насіння машини, кілька рядів, багатофункціональний ручний штовхач сівалки, морква, шпинат, овочева сівалка, плівкове пресування</p><p class="articul">арт. 0038C</p><p class="price">11268.36 грн</p><a href="https://s.click.aliexpress.com/e/_c30Xqc8t" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0038C', 'Сівалка ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0038C1.jpg', 'https://s.click.aliexpress.com/e/_c30Xqc8t')">Додати до обраного</button></div></div><div class="product-card" data-articul="0039C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ножиці садові " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0039C1.jpg"/><img alt="Ножиці садові " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0039C2.jpg"/><img alt="Ножиці садові " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0039C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ножиці садові </h3><p>14-дюймові обрізки садові ножиці портативні секатори бонсай рослини ферма домашнє обладнання для обрізки грубої гілки зрізані вручну садові інструменти</p><p class="articul">арт. 0039C</p><p class="price">524.57 грн</p><a href="https://s.click.aliexpress.com/e/_c4mvB5xF" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0039C', 'Ножиці садові ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0039C1.jpg', 'https://s.click.aliexpress.com/e/_c4mvB5xF')">Додати до обраного</button></div></div><div class="product-card" data-articul="0040C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Інструмен для бонсай " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0040C1.jpg"/><img alt="Інструмен для бонсай " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0040C2.jpg"/><img alt="Інструмен для бонсай " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0040C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Інструмен для бонсай </h3><p>Бонсай Ручка Різак Увігнутий Край Різак Корінь Різак Плоскогубці Кулькові Зсуви Ножиці Ландшафтне Моделювання Садові Інструменти Бонсай 210 ​​мм</p><p class="articul">арт. 0040C</p><p class="price">567.41 грн</p><a href="https://s.click.aliexpress.com/e/_c3W0jmaV" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0040C', 'Інструмен для бонсай ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0040C1.jpg', 'https://s.click.aliexpress.com/e/_c3W0jmaV')">Додати до обраного</button></div></div><div class="product-card" data-articul="0041C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Інструмент для бонсай " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0041C1.jpg"/><img alt="Інструмент для бонсай " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0041C2.jpg"/><img alt="Інструмент для бонсай " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0041C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Інструмент для бонсай </h3><p>1 шт. професійний бонсай ручка різак увігнутий край різак плоскогубці кулька зсувні ножиці ландшафтне моделювання сад бонсай інструменти</p><p class="articul">арт. 0041C</p><p class="price">169.08 грн</p><a href="https://s.click.aliexpress.com/e/_c3p8UGXP" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0041C', 'Інструмент для бонсай ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0041C1.jpg', 'https://s.click.aliexpress.com/e/_c3p8UGXP')">Додати до обраного</button></div></div><div class="product-card" data-articul="0042C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Інструмент для бонсай" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0042C1.jpg"/><img alt="Інструмент для бонсай" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0042C2.jpg"/><img alt="Інструмент для бонсай" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0042C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Інструмент для бонсай</h3><p>1 шт. професійний бонсай ручка різак увігнутий край різак плоскогубці кулька зсувні ножиці ландшафтне моделювання сад бонсай інструменти</p><p class="articul">арт. 0042C</p><p class="price">312.73 грн</p><a href="https://s.click.aliexpress.com/e/_c3gkm8ql" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0042C', 'Інструмент для бонсай', 'D:\Директорія сайту\electronics\electronics/Сад та город/0042C1.jpg', 'https://s.click.aliexpress.com/e/_c3gkm8ql')">Додати до обраного</button></div></div><div class="product-card" data-articul="0043C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ковшик садовий " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0043C1.jpg"/><img alt="Ковшик садовий " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0043C2.jpg"/><img alt="Ковшик садовий " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0043C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ковшик садовий </h3><p>Садова лопатка для ґрунту з ручкою, лопатка для посадки сукулентів, садівництво, ручні інструменти, пляжний ігровий горщик, посадка ґрунту, копання ґрунту</p><p class="articul">арт. 0043C</p><p class="price">417.67 грн</p><a href="https://s.click.aliexpress.com/e/_c32ZIIoZ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0043C', 'Ковшик садовий ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0043C1.jpg', 'https://s.click.aliexpress.com/e/_c32ZIIoZ')">Додати до обраного</button></div></div><div class="product-card" data-articul="0044C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Набір міні інструменту " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0044C1.jpg"/><img alt="Набір міні інструменту " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0044C2.jpg"/><img alt="Набір міні інструменту " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0044C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Набір міні інструменту </h3><p>3 шт./1 набір міні-інструментів для садівництва портативний невеликий садовий інструмент з ручками лопатою граблі критий садівництво посадка квіткових інструментів</p><p class="articul">арт. 0044C</p><p class="price">46.11 грн</p><a href="https://s.click.aliexpress.com/e/_c4NSbKo" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0044C', 'Набір міні інструменту ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0044C1.jpg', 'https://s.click.aliexpress.com/e/_c4NSbKo')">Додати до обраного</button></div></div><div class="product-card" data-articul="0045C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Інструмен садовий" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0045C1.jpg"/><img alt="Інструмен садовий" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0045C2.jpg"/><img alt="Інструмен садовий" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0045C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Інструмен садовий</h3><p>Багатоцільова садова лопата для ефективного догляду за квітами та рослинами в горщиках Y4QC</p><p class="articul">арт. 0045C</p><p class="price">88.66 грн</p><a href="https://s.click.aliexpress.com/e/_c4nvBXK1" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0045C', 'Інструмен садовий', 'D:\Директорія сайту\electronics\electronics/Сад та город/0045C1.jpg', 'https://s.click.aliexpress.com/e/_c4nvBXK1')">Додати до обраного</button></div></div><div class="product-card" data-articul="0046C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Набір міні інструменту " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0046C1.jpg"/><img alt="Набір міні інструменту " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0046C2.jpg"/><img alt="Набір міні інструменту " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0046C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Набір міні інструменту </h3><p>3 шт. Набір міні-садівничих інструментів з нержавіючої сталі, лопатою, граблями, культиватором, протиковзкою ручкою, портативний квітковий горщик, прополювання, посадка</p><p class="articul">арт. 0046C</p><p class="price">247.01 грн</p><a href="https://s.click.aliexpress.com/e/_c3hVpN9P" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0046C', 'Набір міні інструменту ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0046C1.jpg', 'https://s.click.aliexpress.com/e/_c3hVpN9P')">Додати до обраного</button></div></div><div class="product-card" data-articul="0047C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Набір садових інструментів" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0047C1.jpg"/><img alt="Набір садових інструментів" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0047C2.jpg"/><img alt="Набір садових інструментів" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0047C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Набір садових інструментів</h3><p>Набір садових інструментів, подарунок для садівництва, 10 предметів набору ручних інструментів для рослин, підходить для жінок та чоловіків-садівників</p><p class="articul">арт. 0047C</p><p class="price">1004.55 грн</p><a href="https://s.click.aliexpress.com/e/_c3m8KfJT" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0047C', 'Набір садових інструментів', 'D:\Директорія сайту\electronics\electronics/Сад та город/0047C1.jpg', 'https://s.click.aliexpress.com/e/_c3m8KfJT')">Додати до обраного</button></div></div><div class="product-card" data-articul="0048C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Набір інструменту за доглядом за рослинами " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0048C1.jpg"/><img alt="Набір інструменту за доглядом за рослинами " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0048C2.jpg"/><img alt="Набір інструменту за доглядом за рослинами " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0048C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Набір інструменту за доглядом за рослинами </h3><p>4 шт. садові інструменти лопати набір розпушувачів ґрунту граблі наконечник круглий лопата розсада пристрій для посадки квітів лопатою ґрунту рослини в горщиках</p><p class="articul">арт. 0048C</p><p class="price">303.17 грн</p><a href="https://s.click.aliexpress.com/e/_c4TdPRVJ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0048C', 'Набір інструменту за доглядом за рослинами ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0048C1.jpg', 'https://s.click.aliexpress.com/e/_c4TdPRVJ')">Додати до обраного</button></div></div><div class="product-card" data-articul="0049C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ножиці" class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0049C1.jpg"/><img alt="Ножиці" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0049C2.jpg"/><img alt="Ножиці" class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0049C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ножиці</h3><p>1 шт. Висотний подовжувач для гілок Лоппер Ножиці Розсувний фруктовий дерев Обрізка Пилка Різак Садовий Триммер Інструмент з мотузкою</p><p class="articul">арт. 0049C</p><p class="price">415.04 грн</p><a href="https://s.click.aliexpress.com/e/_c4Cto4VF" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0049C', 'Ножиці', 'D:\Директорія сайту\electronics\electronics/Сад та город/0049C1.jpg', 'https://s.click.aliexpress.com/e/_c4Cto4VF')">Додати до обраного</button></div></div><div class="product-card" data-articul="0050C"><div class="product-image-carousel"><div class="carousel-container"><img alt="Пила електрична " class="carousel-image active" src="D:\Директорія сайту\electronics\electronics/Сад та город/0050C1.jpg"/><img alt="Пила електрична " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0050C2.jpg"/><img alt="Пила електрична " class="carousel-image" src="D:\Директорія сайту\electronics\electronics/Сад та город/0050C3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Пила електрична </h3><p>12-дюймова бездротова ручна садова електрична ланцюгова пилка для різання гілок дерев для акумулятора DeWalt 20v</p><p class="articul">арт. 0050C</p><p class="price">3774.43 грн</p><a href="https://s.click.aliexpress.com/e/_c3vEfoqd" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0050C', 'Пила електрична ', 'D:\Директорія сайту\electronics\electronics/Сад та город/0050C1.jpg', 'https://s.click.aliexpress.com/e/_c3vEfoqd')">Додати до обраного</button></div></div></div>
+<div class_="pagination" style="display: flex; justify-content: center; gap: 10px; background-color: #e0e0e0; padding: 10px; border-radius: 10px; margin: 20px auto; max-width: 33%;"><a href="garden_page_1.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">1</a><a class="active" href="garden_page_2.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: white; color: black; border: 5px solid #e0930d; text-decoration: none; border-radius: 9px;">2</a></div><footer>
+<div class="social-links">
+<h2>Слідкуй за новинками в</h2>
+<div class="social-buttons">
+<a class="tiktok" href="https://www.tiktok.com/@reedoffe" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+<a class="facebook" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+<a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</div>
+</div>
+<p>© 2025 Ali.Reed</p>
+</footer>
+<script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const profileLink = document.getElementById('profileLink');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                profileLink.href = 'profile.html';
+                profileLink.textContent = 'Мій профіль';
+            } else {
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
+            }
+        });
+
+        window.addToFavorites = async function(id, title, image, link) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
+                });
+                alert('Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка додавання:', error);
+            }
+        };
+
+        document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('.carousel-image');
+            const indicators = carousel.querySelectorAll('.indicator');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.toggle('active', index === currentIndex);
+                });
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                } else if (touchEndX > touchStartX + 50) {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                }
+            });
+        });
+
+        window.searchProducts = function() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+            const products = document.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                const articul = product.getAttribute('data-articul').toLowerCase();
+                const title = product.querySelector('.product-details h3').textContent.toLowerCase();
+                
+                if (articul.includes(searchInput) || title.includes(searchInput)) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            if (!searchInput) {
+                products.forEach(product => {
+                    product.style.display = 'flex';
+                });
+            }
+        };
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
+                searchProducts();
+            }
+        };
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+    </script>
+</body>
+</html>

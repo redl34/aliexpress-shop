@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Одяг - Ali.Reed</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="Kartinki/favicon.png" rel="icon" type="image/png"/>
+<style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3E717A;
+        }
+        header {
+            background: url('Kartinki/clothing.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        header h1 {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        header .home-link, header .profile-link {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            border-radius: 5px;
+        }
+        header .home-link:hover, header .profile-link:hover {
+            background-color: #e55a5a;
+            text-decoration: none;
+        }
+        .search-container {
+            position: relative;
+            z-index: 2;
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            gap: 10px;
+        }
+        .search-container input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .search-container button:hover {
+            background-color: #e55a5a;
+        }
+        .products {
+            margin: 20px auto;
+            padding: 20px 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+        }
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 3 / 4;
+        }
+        .product-image-carousel {
+            position: relative;
+            width: 100%;
+            max-height: 50%;
+            overflow: hidden;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            display: none;
+            object-fit: contain;
+        }
+        .carousel-image.active {
+            display: block;
+        }
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-prev {
+            left: 0;
+        }
+        .carousel-next {
+            right: 0;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .indicator.active {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .product-details {
+            flex-grow: 1;
+            text-align: center;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-details h3 {
+            margin: 10px 0;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        .product-details .articul {
+            font-size: 0.9375em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details p {
+            font-size: 1em;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        .product-details a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #132F13;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: block;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        .product-details a:hover {
+            background-color: #0e240e;
+        }
+        .add-to-favorites {
+            background-color: #A9A34C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+        .add-to-favorites:hover {
+            background-color: #8e8a3f;
+        }
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer .social-links {
+            text-align: center;
+        }
+        footer .social-links h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 15px;
+        }
+        footer .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        footer .social-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 900px;
+            }
+        }
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 600px;
+            }
+            .carousel-prev, .carousel-next {
+                display: none;
+            }
+            .product-image-carousel {
+                max-height: 50%;
+            }
+            .carousel-image {
+                max-height: 100%;
+            }
+            .product-details h3 {
+                font-size: 1.1em;
+            }
+            .product-details .articul {
+                font-size: 0.8125em;
+            }
+            .product-details .price {
+                font-size: 1.3em;
+            }
+            .product-details a, .add-to-favorites {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 290px;
+                padding: 20px 10px;
+            }
+        }
+    </style>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js" type="module"></script>
+</head>
+<body>
+<header>
+<h1>Одяг</h1>
+<a class="home-link" href="index.html">Повернутися на головну</a>
+<a class="profile-link" href="#" id="profileLink">Мій профіль</a>
+<div class="search-container">
+<input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
+<button onclick="searchProducts()">Пошук</button>
+</div>
+</header>
+<div class="products">
+<div class="product-card" data-articul="0092B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Спідниця LOUIS YAO Нова елегантна чорна жіноча спідниця міді, осінь 2025, висока талія, повсякденна спідниця А-силуету з розрізом та кишенями, довга спідниця" class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0092B1.jpg"/><img alt="Спідниця LOUIS YAO Нова елегантна чорна жіноча спідниця міді, осінь 2025, висока талія, повсякденна спідниця А-силуету з розрізом та кишенями, довга спідниця" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0092B2.jpg"/><img alt="Спідниця LOUIS YAO Нова елегантна чорна жіноча спідниця міді, осінь 2025, висока талія, повсякденна спідниця А-силуету з розрізом та кишенями, довга спідниця" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0092B3.jpg"/><img alt="Спідниця LOUIS YAO Нова елегантна чорна жіноча спідниця міді, осінь 2025, висока талія, повсякденна спідниця А-силуету з розрізом та кишенями, довга спідниця" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0092B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Спідниця LOUIS YAO Нова елегантна чорна жіноча спідниця міді, осінь 2025, висока талія, повсякденна спідниця А-силуету з розрізом та кишенями, довга спідниця</h3><p>LOUIS YAO Нова елегантна чорна жіноча спідниця міді,на осінь, висока талія, повсякденна спідниця А-силуету з розрізом та кишенями, довга спідниця</p><p class="articul">арт. 0092B</p><p class="price">1318.92 грн</p><a href="https://s.click.aliexpress.com/e/_c4lUEcKD" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0092B', 'Спідниця LOUIS YAO Нова елегантна чорна жіноча спідниця міді, осінь 2025, висока талія, повсякденна спідниця А-силуету з розрізом та кишенями, довга спідниця', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0092B1.jpg', 'https://s.click.aliexpress.com/e/_c4lUEcKD')">Додати до обраного</button></div></div><div class="product-card" data-articul="0093B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Светр теплий " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0093B1.jpg"/><img alt="Светр теплий " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0093B2.jpg"/><img alt="Светр теплий " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0093B3.jpg"/><img alt="Светр теплий " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0093B4.jpg"/><img alt="Светр теплий " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0093B5.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Светр теплий </h3><p>Новий осінньо-зимовий светр зі 100% мериносової вовни, суцільний колір, з довгими рукавами, високим коміром, теплий жіночий светр 19 кольорів WQ708</p><p class="articul">арт. 0093B</p><p class="price">629.00 грн</p><a href="https://s.click.aliexpress.com/e/_c34PrLWN" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0093B', 'Светр теплий ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0093B1.jpg', 'https://s.click.aliexpress.com/e/_c34PrLWN')">Додати до обраного</button></div></div><div class="product-card" data-articul="0094B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Жіночий жилет " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0094B1.jpg"/><img alt="Жіночий жилет " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0094B2.jpg"/><img alt="Жіночий жилет " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0094B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Жіночий жилет </h3><p>Жіночий жилет осінь-зима без рукавів теплий легкий пуховик жіночий топ верхній одяг</p><p class="articul">арт. 0094B</p><p class="price">414.87 грн</p><a href="https://s.click.aliexpress.com/e/_c40cfe9j" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0094B', 'Жіночий жилет ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0094B1.jpg', 'https://s.click.aliexpress.com/e/_c40cfe9j')">Додати до обраного</button></div></div><div class="product-card" data-articul="0095B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Стильна вітровка " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0095B1.jpg"/><img alt="Стильна вітровка " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0095B2.jpg"/><img alt="Стильна вітровка " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0095B3.jpg"/><img alt="Стильна вітровка " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0095B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Стильна вітровка </h3><p>Ультралегка модна вітровка із захистом від ультрафіолету, швидковисихаюча, проти зморшок, вітровка, градієнтний принт, щоденний одяг</p><p class="articul">арт. 0095B</p><p class="price">280.45 грн</p><a href="https://s.click.aliexpress.com/e/_c3QYghMl" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0095B', 'Стильна вітровка ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0095B1.jpg', 'https://s.click.aliexpress.com/e/_c3QYghMl')">Додати до обраного</button></div></div><div class="product-card" data-articul="0096B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Затишна жилетка " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0096B1.jpg"/><img alt="Затишна жилетка " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0096B2.jpg"/><img alt="Затишна жилетка " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0096B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Затишна жилетка </h3><p>Жіночі безрукавки без рукавів куртки зимові модні чоловічі бавовняні пальта з підкладкою жіночі теплі жилети з коміром-стійкою</p><p class="articul">арт. 0096B</p><p class="price">452.52 грн</p><a href="https://s.click.aliexpress.com/e/_c2xoV4nf" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0096B', 'Затишна жилетка ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0096B1.jpg', 'https://s.click.aliexpress.com/e/_c2xoV4nf')">Додати до обраного</button></div></div><div class="product-card" data-articul="0097B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зимові джинси" class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0097B1.jpg"/><img alt="Зимові джинси" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0097B2.jpg"/><img alt="Зимові джинси" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0097B3.jpg"/><img alt="Зимові джинси" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0097B4.jpg"/><img alt="Зимові джинси" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0097B5.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зимові джинси</h3><p>Жіночі зимові флісові теплі джинси розкльошені тонкі м'які еластичні вінтажні джинси з високою талією, модні корейські потовщені джинсові штани, модні корейські</p><p class="articul">арт. 0097B</p><p class="price">928.69 грн</p><a href="https://s.click.aliexpress.com/e/_c4t7x1NX" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0097B', 'Зимові джинси', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0097B1.jpg', 'https://s.click.aliexpress.com/e/_c4t7x1NX')">Додати до обраного</button></div></div><div class="product-card" data-articul="0098B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Джинси теплі " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0098B1.jpg"/><img alt="Джинси теплі " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0098B2.jpg"/><img alt="Джинси теплі " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0098B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Джинси теплі </h3><p>Жіночі джинси , теплі, з м'яким принтом, м'які, з коротким рукавом, джинси для дівчаток, жіночі джинси, корейські джинси, вільні штани</p><p class="articul">арт. 0098B</p><p class="price">895.36 грн</p><a href="https://s.click.aliexpress.com/e/_c3zcwtKZ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0098B', 'Джинси теплі ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0098B1.jpg', 'https://s.click.aliexpress.com/e/_c3zcwtKZ')">Додати до обраного</button></div></div><div class="product-card" data-articul="0099B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Стильні джинси " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0099B1.jpg"/><img alt="Стильні джинси " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0099B2.jpg"/><img alt="Стильні джинси " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0099B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Стильні джинси </h3><p>Зимові жіночі плюшеві теплі джинси з високою талією, тонкі флісові джинси для дівчаток, теплі джинсові штани для жінок, зручні прямі штани</p><p class="articul">арт. 0099B</p><p class="price">364.18 грн</p><a href="https://s.click.aliexpress.com/e/_c2vzgtFF" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0099B', 'Стильні джинси ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0099B1.jpg', 'https://s.click.aliexpress.com/e/_c2vzgtFF')">Додати до обраного</button></div></div><div class="product-card" data-articul="0100B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Джинси на флісі теплі " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0100B1.jpg"/><img alt="Джинси на флісі теплі " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0100B2.jpg"/><img alt="Джинси на флісі теплі " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0100B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Джинси на флісі теплі </h3><p>Жіночі зимові дизайнерські джинси з високою талією, теплі флісові джинсові штани, жіночі шикарні корейські модні плюшеві штани</p><p class="articul">арт. 0100B</p><p class="price">288.96 грн</p><a href="https://s.click.aliexpress.com/e/_c3RlUgyh" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0100B', 'Джинси на флісі теплі ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0100B1.jpg', 'https://s.click.aliexpress.com/e/_c3RlUgyh')">Додати до обраного</button></div></div><div class="product-card" data-articul="0101B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Джампер " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0101B1.jpg"/><img alt="Джампер " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0101B2.jpg"/><img alt="Джампер " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0101B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Джампер </h3><p>Жіночий бежевий вузький светр ZIQIAO з рюшами, дизайном печворк, в'язаний чорний, універсальний светр з довгими рукавами</p><p class="articul">арт. 0101B</p><p class="price">525.57 грн</p><a href="https://s.click.aliexpress.com/e/_c2QBi43R" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0101B', 'Джампер ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0101B1.jpg', 'https://s.click.aliexpress.com/e/_c2QBi43R')">Додати до обраного</button></div></div><div class="product-card" data-articul="0102B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Роскішний светр " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0102B1.jpg"/><img alt="Роскішний светр " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0102B2.jpg"/><img alt="Роскішний светр " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0102B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Роскішний светр </h3><p>Зимовий кавовий ребристий в'язаний светр з рюшами та косими плечима, жіночий светр з повним рукавом, вільний товстий трикотаж, оверсайз-джемпер бежевого кольору</p><p class="articul">арт. 0102B</p><p class="price">1238.10 грн</p><a href="https://s.click.aliexpress.com/e/_c3UstYA9" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0102B', 'Роскішний светр ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0102B1.jpg', 'https://s.click.aliexpress.com/e/_c3UstYA9')">Додати до обраного</button></div></div><div class="product-card" data-articul="0103B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Половер " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0103B1.jpg"/><img alt="Половер " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0103B2.jpg"/><img alt="Половер " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0103B3.jpg"/><img alt="Половер " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0103B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Половер </h3><p>Жіночий топ Shestyle з повним рукавом, абрикосового бежевого кольору, з низьким вирізом, однотонні облягаючі милі футболки</p><p class="articul">арт. 0103B</p><p class="price">322.32 грн</p><a href="https://s.click.aliexpress.com/e/_c4UwLkAl" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0103B', 'Половер ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0103B1.jpg', 'https://s.click.aliexpress.com/e/_c4UwLkAl')">Додати до обраного</button></div></div><div class="product-card" data-articul="0104B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Класичні штани " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0104B1.jpg"/><img alt="Класичні штани " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0104B2.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Класичні штани </h3><p>Класичні стильні штани для жінок.Легкі звисокою талією, гарні, вільні, елегантні, зручні.</p><p class="articul">арт. 0104B</p><p class="price">1262.76 грн</p><a href="https://s.click.aliexpress.com/e/_c4qP8c81" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0104B', 'Класичні штани ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0104B1.jpg', 'https://s.click.aliexpress.com/e/_c4qP8c81')">Додати до обраного</button></div></div><div class="product-card" data-articul="0105B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Спортивні штани " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0105B1.jpg"/><img alt="Спортивні штани " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0105B2.jpg"/><img alt="Спортивні штани " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0105B3.jpg"/><img alt="Спортивні штани " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0105B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Спортивні штани </h3><p>Жіночі вільні спортивні штани для бігуни з еластичною талією, повсякденні хіп-хоп спортивні штани білого бежево-рожевого кольору</p><p class="articul">арт. 0105B</p><p class="price">284.98 грн</p><a href="https://s.click.aliexpress.com/e/_c3rMVufn" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0105B', 'Спортивні штани ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0105B1.jpg', 'https://s.click.aliexpress.com/e/_c3rMVufn')">Додати до обраного</button></div></div><div class="product-card" data-articul="0106B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Легка сукня " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0106B1.jpg"/><img alt="Легка сукня " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0106B2.jpg"/><img alt="Легка сукня " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0106B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Легка сукня </h3><p>Не звичайно гарна легка жіноча сукня з принтом красивих квітів.</p><p class="articul">арт. 0106B</p><p class="price">873.66 грн</p><a href="https://s.click.aliexpress.com/e/_c3oT3KwN" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0106B', 'Легка сукня ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0106B1.jpg', 'https://s.click.aliexpress.com/e/_c3oT3KwN')">Додати до обраного</button></div></div><div class="product-card" data-articul="0107B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Спідниця Falda Largas" class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0107B1.jpg"/><img alt="Спідниця Falda Largas" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0107B2.jpg"/><img alt="Спідниця Falda Largas" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0107B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Спідниця Falda Largas</h3><p>Мода корейський стиль риб'ячий хвіст довга спідниця жінка весна вінтажна висока талія облягаюча жіноча спідниця бежевий чорний сірий Falda Largas</p><p class="articul">арт. 0107B</p><p class="price">618.52 грн</p><a href="https://s.click.aliexpress.com/e/_c3bFC5Hf" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0107B', 'Спідниця Falda Largas', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0107B1.jpg', 'https://s.click.aliexpress.com/e/_c3bFC5Hf')">Додати до обраного</button></div></div><div class="product-card" data-articul="0108B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Комплек спідниця та светр " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0108B1.jpg"/><img alt="Комплек спідниця та светр " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0108B2.jpg"/><img alt="Комплек спідниця та светр " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0108B3.jpg"/><img alt="Комплек спідниця та светр " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0108B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Комплек спідниця та светр </h3><p>Нові осінньо-зимові в'язані комплекти з двох предметів: бежевий чорний светр з косим вирізом та довга спідниця-олівець, повсякденні костюми з 2 предметів</p><p class="articul">арт. 0108B</p><p class="price">1763.99 грн</p><a href="https://s.click.aliexpress.com/e/_c3u8yCpF" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0108B', 'Комплек спідниця та светр ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0108B1.jpg', 'https://s.click.aliexpress.com/e/_c3u8yCpF')">Додати до обраного</button></div></div><div class="product-card" data-articul="0109B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Блузка " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0109B1.jpg"/><img alt="Блузка " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0109B2.jpg"/><img alt="Блузка " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0109B3.jpg"/><img alt="Блузка " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0109B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Блузка </h3><p>Стильна блузка підкреслює жіночу фігуру , декілька кольорів.</p><p class="articul">арт. 0109B</p><p class="price">644.63 грн</p><a href="https://s.click.aliexpress.com/e/_c3aCP6AH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0109B', 'Блузка ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0109B1.jpg', 'https://s.click.aliexpress.com/e/_c3aCP6AH')">Додати до обраного</button></div></div><div class="product-card" data-articul="0111B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Светр Q108" class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0111B1.jpg"/><img alt="Светр Q108" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0111B2.jpg"/><img alt="Светр Q108" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0111B3.jpg"/><img alt="Светр Q108" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0111B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Светр Q108</h3><p>Бежевий жіночий повсякденний мішкуватий светр жіночий пуловер вуличний одяг з довгими рукавами в'язані топи жіночий джемпер вільні в'язані светри Q108</p><p class="articul">арт. 0111B</p><p class="price">958.11 грн</p><a href="https://s.click.aliexpress.com/e/_c36vyaq9" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0111B', 'Светр Q108', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0111B1.jpg', 'https://s.click.aliexpress.com/e/_c36vyaq9')">Додати до обраного</button></div></div><div class="product-card" data-articul="0112B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Шикарний довгий светр" class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0112B1.jpg"/><img alt="Шикарний довгий светр" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0112B2.jpg"/><img alt="Шикарний довгий светр" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0112B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Шикарний довгий светр</h3><p>Сексуальний шикарний довгий в'язаний светр та світшоти з двох частин для жінок, осінньо-зимовий, для схуднення, модний одяг</p><p class="articul">арт. 0112B</p><p class="price">473.00  грн</p><a href="https://s.click.aliexpress.com/e/_c4sFlACZ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0112B', 'Шикарний довгий светр', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0112B1.jpg', 'https://s.click.aliexpress.com/e/_c4sFlACZ')">Додати до обраного</button></div></div><div class="product-card" data-articul="0113B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Водоласка" class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0113B1.jpg"/><img alt="Водоласка" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0113B2.jpg"/><img alt="Водоласка" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0113B3.jpg"/><img alt="Водоласка" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0113B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Водоласка</h3><p>Жіночі білі осінні та зимові футболки з довгим рукавом Y2K з високим коміром, повсякденні чорні та сірі базові сексуальні топи, модні вінтажні топи</p><p class="articul">арт. 0113B</p><p class="price">161.39 грн</p><a href="https://s.click.aliexpress.com/e/_c3HppkIl" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0113B', 'Водоласка', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0113B1.jpg', 'https://s.click.aliexpress.com/e/_c3HppkIl')">Додати до обраного</button></div></div><div class="product-card" data-articul="0114B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Однотоний светр " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0114B1.jpg"/><img alt="Однотоний светр " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0114B2.jpg"/><img alt="Однотоний светр " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0114B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Однотоний светр </h3><p>Однотонний светр з довгими рукавами та круглим вирізом, в'язаний косою, товсто-голоподібною ребристою вставкою для жінок</p><p class="articul">арт. 0114B</p><p class="price">1096.25 грн</p><a href="https://s.click.aliexpress.com/e/_c3P5CMy" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0114B', 'Однотоний светр ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0114B1.jpg', 'https://s.click.aliexpress.com/e/_c3P5CMy')">Додати до обраного</button></div></div><div class="product-card" data-articul="0115B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Повсякдений комплект " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0115B1.jpg"/><img alt="Повсякдений комплект " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0115B2.jpg"/><img alt="Повсякдений комплект " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0115B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Повсякдений комплект </h3><p>Жіночий осінньо-зимовий ребристий в'язаний комплект із двох частин, V-подібним вирізом, довгим рукавом, широкими штанами, домашній одяг, повсякденний суцільний колір</p><p class="articul">арт. 0115B</p><p class="price">746.98 грн</p><a href="https://s.click.aliexpress.com/e/_c3uLJCe9" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0115B', 'Повсякдений комплект ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0115B1.jpg', 'https://s.click.aliexpress.com/e/_c3uLJCe9')">Додати до обраного</button></div></div><div class="product-card" data-articul="0116B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Полувер" class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0116B1.jpg"/><img alt="Полувер" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0116B2.jpg"/><img alt="Полувер" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0116B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Полувер</h3><p>Жіночий осінньо-зимовий светр з довгим рукавом та V-подібним вирізом, ребристий в'язаний светр, приталений суцільний колір, базовий пуловер, шикарний модний теплий трикотаж</p><p class="articul">арт. 0116B</p><p class="price">249.59 грн</p><a href="https://s.click.aliexpress.com/e/_c3rnVPq1" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0116B', 'Полувер', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0116B1.jpg', 'https://s.click.aliexpress.com/e/_c3rnVPq1')">Додати до обраного</button></div></div><div class="product-card" data-articul="0117B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Светр" class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0117B1.jpg"/><img alt="Светр" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0117B2.jpg"/><img alt="Светр" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0117B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Светр</h3><p>Жіночий однотонний ребристий пуловер з довгими рукавами та круглим вирізом, простий, вільний, лінивий та модний</p><p class="articul">арт. 0117B</p><p class="price">564.61 грн</p><a href="https://s.click.aliexpress.com/e/_c4S0RB7F" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0117B', 'Светр', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0117B1.jpg', 'https://s.click.aliexpress.com/e/_c4S0RB7F')">Додати до обраного</button></div></div><div class="product-card" data-articul="0118B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Жіноча  повсякдкна сукня " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0118B1.jpg"/><img alt="Жіноча  повсякдкна сукня " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0118B2.jpg"/><img alt="Жіноча  повсякдкна сукня " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0118B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Жіноча  повсякдкна сукня </h3><p>Жіноча мода елегантний повсякденний в'язаний тонкий довгий плаття дами суцільний колір лацкан ґудзики короткий рукав повсякденне плаття один ряд ґудзиків
+
+1 продано
+
+від Johnson Xing ( 4.7 | продано понад 10 000 )
+
+1 продано</p><p class="articul">арт. 0118B</p><p class="price">664.16 грн</p><a href="https://s.click.aliexpress.com/e/_c39eNhvn" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0118B', 'Жіноча  повсякдкна сукня ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0118B1.jpg', 'https://s.click.aliexpress.com/e/_c39eNhvn')">Додати до обраного</button></div></div><div class="product-card" data-articul="0119B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Светр " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0119B1.jpg"/><img alt="Светр " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0119B2.jpg"/><img alt="Светр " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0119B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Светр </h3><p>Повсякденний суцільний легкий светр з довгими рукавами та ребристим квадратним вирізом</p><p class="articul">арт. 0119B</p><p class="price">529.23 грн</p><a href="https://s.click.aliexpress.com/e/_c36Wh5dJ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0119B', 'Светр ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0119B1.jpg', 'https://s.click.aliexpress.com/e/_c36Wh5dJ')">Додати до обраного</button></div></div><div class="product-card" data-articul="0120B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Туніка LIBIELIY" class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0120B1.jpg"/><img alt="Туніка LIBIELIY" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0120B2.jpg"/><img alt="Туніка LIBIELIY" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0120B3.jpg"/><img alt="Туніка LIBIELIY" class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0120B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Туніка LIBIELIY</h3><p>LIBIELIY Нова осінньо-зимова жіноча ребриста в'язана сукня суцільний колір жіночий светр з високим коміром і довгими рукавами светр жіночий</p><p class="articul">арт. 0120B</p><p class="price">2616.67 грн</p><a href="https://s.click.aliexpress.com/e/_c3aA9TXT" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0120B', 'Туніка LIBIELIY', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0120B1.jpg', 'https://s.click.aliexpress.com/e/_c3aA9TXT')">Додати до обраного</button></div></div><div class="product-card" data-articul="0121B"><div class="product-image-carousel"><div class="carousel-container"><img alt="В'язана довга сукня " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0121B1.jpg"/><img alt="В'язана довга сукня " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0121B2.jpg"/><img alt="В'язана довга сукня " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0121B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>В'язана довга сукня </h3><p>Осінь-зима жіноча в'язана сукня міді з довгим рукавом суцільний колір елегантний чорний светр сукні повсякденне ребристе в'язане плаття</p><p class="articul">арт. 0121B</p><p class="price">1301.82 грн</p><a href="https://s.click.aliexpress.com/e/_c4KWLJ6D" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0121B', 'В'язана довга сукня ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0121B1.jpg', 'https://s.click.aliexpress.com/e/_c4KWLJ6D')">Додати до обраного</button></div></div><div class="product-card" data-articul="0122B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зручний джапер " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0122B1.jpg"/><img alt="Зручний джапер " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0122B2.jpg"/><img alt="Зручний джапер " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0122B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зручний джапер </h3><p>Модна жіноча осінньо-зимова трикотажна сорочка з довгими рукавами та круглим вирізом, з еластичною ребристою коміром та низом</p><p class="articul">арт. 0122B</p><p class="price">613.50 грн</p><a href="https://s.click.aliexpress.com/e/_c3O3WWnR" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0122B', 'Зручний джапер ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0122B1.jpg', 'https://s.click.aliexpress.com/e/_c3O3WWnR')">Додати до обраного</button></div></div><div class="product-card" data-articul="0123B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Тепла довга сукня " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0123B1.jpg"/><img alt="Тепла довга сукня " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0123B2.jpg"/><img alt="Тепла довга сукня " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0123B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Тепла довга сукня </h3><p>Жіночий одяг для вагітних осінь вагітність сукні довгим рукавом розріз ребро в'язання суцільний колір сукня одяг для матері вагітних жінок спідниця</p><p class="articul">арт. 0123B</p><p class="price">1651.23 грн</p><a href="https://s.click.aliexpress.com/e/_c4B1xil3" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0123B', 'Тепла довга сукня ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0123B1.jpg', 'https://s.click.aliexpress.com/e/_c4B1xil3')">Додати до обраного</button></div></div><div class="product-card" data-articul="0124B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Светир " class="carousel-image active" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0124B1.jpg"/><img alt="Светир " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0124B2.jpg"/><img alt="Светир " class="carousel-image" src="D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0124B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Светир </h3><p>Жіночий светр з V-подібним вирізом і довгими рукавами, ребристі смугасті светри, суцільний колір, вінтажний жіночий трикотаж, зручний жіночий одяг</p><p class="articul">арт. 0124B</p><p class="price">474.25 грн</p><a href="https://s.click.aliexpress.com/e/_c3sqMIkD" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0124B', 'Светир ', 'D:\Директорія сайту\Сlothing\Women's clothing/Одяг/0124B1.jpg', 'https://s.click.aliexpress.com/e/_c3sqMIkD')">Додати до обраного</button></div></div></div>
+<div class_="pagination" style="display: flex; justify-content: center; gap: 10px; background-color: #e0e0e0; padding: 10px; border-radius: 10px; margin: 20px auto; max-width: 33%;"><a href="women's-clothing_page_1.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">1</a><a class="active" href="women's-clothing_page_2.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: white; color: black; border: 5px solid #e0930d; text-decoration: none; border-radius: 9px;">2</a><a href="women's-clothing_page_3.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">3</a></div><footer>
+<div class="social-links">
+<h2>Слідкуй за новинками в</h2>
+<div class="social-buttons">
+<a class="tiktok" href="https://www.tiktok.com/@reedoffe" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+<a class="facebook" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+<a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</div>
+</div>
+<p>© 2025 Ali.Reed</p>
+</footer>
+<script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const profileLink = document.getElementById('profileLink');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                profileLink.href = 'profile.html';
+                profileLink.textContent = 'Мій профіль';
+            } else {
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
+            }
+        });
+
+        window.addToFavorites = async function(id, title, image, link) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
+                });
+                alert('Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка додавання:', error);
+            }
+        };
+
+        document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('.carousel-image');
+            const indicators = carousel.querySelectorAll('.indicator');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.toggle('active', index === currentIndex);
+                });
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                } else if (touchEndX > touchStartX + 50) {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                }
+            });
+        });
+
+        window.searchProducts = function() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+            const products = document.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                const articul = product.getAttribute('data-articul').toLowerCase();
+                const title = product.querySelector('.product-details h3').textContent.toLowerCase();
+                
+                if (articul.includes(searchInput) || title.includes(searchInput)) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            if (!searchInput) {
+                products.forEach(product => {
+                    product.style.display = 'flex';
+                });
+            }
+        };
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
+                searchProducts();
+            }
+        };
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+    </script>
+</body>
+</html>

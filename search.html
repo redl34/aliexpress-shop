@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пошук - AliShop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Копіюємо стилі з electronics_page_1.html, але можна винести в загальний styles.css */
+        /* Тут мають бути всі необхідні стилі для header, products, product-card, carousel тощо */
+        /* Для стислості вони не наведені повністю, але їх треба скопіювати з electronics_page_1.html */
+    </style>
+</head>
+<body>
+    <header style="background: url('Oformlennya_imeg/poshuk.jpg') no-repeat center center/cover;">
+        <h1>Пошук товарів</h1>
+        <a class="home-link" href="index.html">Повернутися на головну</a>
+        <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Введіть артикул або назву товару">
+            <button onclick="performSearch()">Пошук</button>
+        </div>
+    </header>
+
+    <div class="products" id="searchResults">
+        <!-- Сюди будуть вставлені результати -->
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <h2>Слідкуй за новинками в</h2>
+            <div class="social-buttons">
+                <a href="https://www.tiktok.com/@reedoffe" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://www.facebook.com" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com/alishop__25" target="_blank" class="instagram"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+        <p>© 2025 Ali.Reed</p>
+    </footer>
+
+    <!-- Firebase SDK (як у electronics_page_1.html) -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
+            authDomain: "alishopping-ced60.firebaseapp.com",
+            projectId: "alishopping-ced60",
+            storageBucket: "alishopping-ced60.firebasestorage.app",
+            messagingSenderId: "869364972631",
+            appId: "1:869364972631:web:f9b736868d9844b3e7f712",
+            measurementId: "G-SF4MY2768F"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const profileLink = document.getElementById('profileLink');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                profileLink.href = 'profile.html';
+                profileLink.textContent = 'Мій профіль';
+            } else {
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
+            }
+        });
+
+        window.addToFavorites = async function(id, title, image, link) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
+                });
+                alert('Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка додавання:', error);
+            }
+        };
+    </script>
+
+    <script>
+        // Завантаження товарів і фільтрація
+        let products = [];
+
+        async function loadProducts() {
+            try {
+                const response = await fetch('products.json');
+                products = await response.json();
+                // Отримуємо запит з URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const query = urlParams.get('q');
+                if (query) {
+                    document.getElementById('searchInput').value = decodeURIComponent(query);
+                    filterAndDisplay(query);
+                } else {
+                    // Якщо запиту немає, можна нічого не показувати або показати всі
+                    displayResults([]);
+                }
+            } catch (error) {
+                console.error('Помилка завантаження товарів:', error);
+            }
+        }
+
+        function filterAndDisplay(query) {
+            if (!query.trim()) {
+                displayResults([]);
+                return;
+            }
+            const lowerQuery = query.toLowerCase().trim();
+            const filtered = products.filter(product => 
+                product.articul.toLowerCase().includes(lowerQuery) || 
+                product.title.toLowerCase().includes(lowerQuery)
+            );
+            displayResults(filtered);
+        }
+
+        function displayResults(filteredProducts) {
+            const container = document.getElementById('searchResults');
+            if (filteredProducts.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:white;">Нічого не знайдено</p>';
+                return;
+            }
+
+            let html = '';
+            filteredProducts.forEach(product => {
+                // Генеруємо HTML картки (аналогічно electronics_page_1.html)
+                html += `
+                    <div class="product-card" data-articul="${product.articul}">
+                        <div class="product-image-carousel">
+                            <div class="carousel-container">
+                                ${product.images.map((img, index) => `<img alt="${product.title}" class="carousel-image ${index === 0 ? 'active' : ''}" src="${img}">`).join('')}
+                                <button class="carousel-prev">←</button>
+                                <button class="carousel-next">→</button>
+                                <div class="carousel-indicators">
+                                    ${product.images.map((_, i) => `<span class="indicator ${i === 0 ? 'active' : ''}"></span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-details">
+                            <h3>${product.title}</h3>
+                            <p>${product.description}</p>
+                            <p class="articul">арт. ${product.articul}</p>
+                            <p class="price">${product.price}</p>
+                            <a href="${product.link}" target="_blank">Купити на AliExpress</a>
+                            <button class="add-to-favorites" onclick="addToFavorites('${product.articul}', '${product.title}', '${product.images[0]}', '${product.link}')">Додати до обраного</button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+
+            // Ініціалізуємо каруселі для нових карток
+            initCarousels();
+        }
+
+        function initCarousels() {
+            document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+                const images = carousel.querySelectorAll('.carousel-image');
+                const indicators = carousel.querySelectorAll('.indicator');
+                const prevButton = carousel.querySelector('.carousel-prev');
+                const nextButton = carousel.querySelector('.carousel-next');
+                let currentIndex = 0;
+
+                function updateCarousel() {
+                    images.forEach((img, index) => {
+                        img.classList.toggle('active', index === currentIndex);
+                    });
+                    indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === currentIndex);
+                    });
+                }
+
+                if (prevButton) {
+                    prevButton.addEventListener('click', () => {
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        updateCarousel();
+                    });
+                }
+
+                if (nextButton) {
+                    nextButton.addEventListener('click', () => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateCarousel();
+                    });
+                }
+
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateCarousel();
+                    });
+                });
+
+                // Свайпи для мобільних
+                let touchStartX = 0;
+                carousel.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                carousel.addEventListener('touchend', (e) => {
+                    const touchEndX = e.changedTouches[0].screenX;
+                    if (touchEndX < touchStartX - 50) {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateCarousel();
+                    } else if (touchEndX > touchStartX + 50) {
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        updateCarousel();
+                    }
+                });
+            });
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                // Оновлюємо URL і фільтруємо без перезавантаження (History API)
+                const newUrl = `${window.location.pathname}?q=${encodeURIComponent(query)}`;
+                window.history.pushState({}, '', newUrl);
+                filterAndDisplay(query);
+            } else {
+                // Якщо поле порожнє, очищаємо результати
+                displayResults([]);
+                window.history.pushState({}, '', window.location.pathname);
+            }
+        }
+
+        // Обробка Enter
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Завантаження при старті
+        window.addEventListener('load', loadProducts);
+    </script>
+</body>
+</html>

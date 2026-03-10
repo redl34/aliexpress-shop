@@ -1,0 +1,32 @@
+name: Generate products.json
+
+on:
+  push:
+    branches: [ main ]  # або master, залежно від назви вашої основної гілки
+    paths:
+      - '*.html'        # запускати тільки якщо змінилися HTML-файли
+      - '**/*.html'     # також у підпапках
+  workflow_dispatch:    # дозволяє запускати вручну з інтерфейсу GitHub
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run generation script
+        run: node generateProducts.js
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add products.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update products.json"
+          git push

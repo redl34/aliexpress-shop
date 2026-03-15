@@ -3,9 +3,6 @@ name: Generate products.json
 on:
   push:
     branches: [ main ]  # або master, залежно від назви вашої основної гілки
-    paths:
-      - '*.html'        # запускати тільки якщо змінилися HTML-файли
-      - '**/*.html'     # також у підпапках
   workflow_dispatch:    # дозволяє запускати вручну з інтерфейсу GitHub
 
 jobs:

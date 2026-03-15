@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// Рекурсивний пошук всіх HTML-файлів (крім search.html)
 function getHtmlFiles(dir) {
     let results = [];
     const list = fs.readdirSync(dir);
@@ -17,49 +16,46 @@ function getHtmlFiles(dir) {
     return results;
 }
 
-// Парсинг товарів з HTML-коду однієї сторінки
 function extractProducts(htmlContent, category) {
     const products = [];
-    
-    // Розділяємо HTML на окремі картки товарів (вони йдуть поспіль)
-    // Шукаємо всі блоки, що починаються з <div class="product-card" і закінчуються на </div></div></div>
-    const productRegex = /<div class="product-card" data-articul="([^"]+)"[^>]*>([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>/g;
+    // Більш гнучкий регулярний вираз
+    const productRegex = /<div class="product-card"[^>]*data-articul="([^"]+)"[^>]*>([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>/g;
     let match;
-    
+    let count = 0;
     while ((match = productRegex.exec(htmlContent)) !== null) {
+        count++;
         const articul = match[1];
         const productHtml = match[2];
 
-        // --- Назва (в <h3>) ---
+        console.log(`  - Знайдено товар #${count}, артикул: ${articul}`);
+
         const titleMatch = /<h3>([^<]+)<\/h3>/.exec(productHtml);
         const title = titleMatch ? titleMatch[1].trim() : '';
+        console.log(`    Назва: "${title}"`);
 
-        // --- Опис (перший <p> без класу) ---
-        // Шукаємо <p>, після якого не йде class="articul" або class="price"
         const descMatch = /<p>([^<]+)<\/p>/.exec(productHtml);
-        let description = descMatch ? descMatch[1].trim() : '';
+        const description = descMatch ? descMatch[1].trim() : '';
+        console.log(`    Опис: "${description.substring(0,50)}..."`);
 
-        // --- Артикул (текст з <p class="articul">) ---
         const articulSpanMatch = /<p class="articul">[^0-9]*([^<]+)<\/p>/.exec(productHtml);
         const articulText = articulSpanMatch ? articulSpanMatch[1].trim() : articul;
 
-        // --- Ціна ---
         const priceMatch = /<p class="price">([^<]+)<\/p>/.exec(productHtml);
         const price = priceMatch ? priceMatch[1].trim() : '';
+        console.log(`    Ціна: "${price}"`);
 
-        // --- Усі зображення ---
         const images = [];
         const imgRegex = /<img[^>]*src="([^"]+)"[^>]*>/g;
         let imgMatch;
         while ((imgMatch = imgRegex.exec(productHtml)) !== null) {
             images.push(imgMatch[1]);
         }
+        console.log(`    Зображень: ${images.length}`);
 
-        // --- Посилання на AliExpress ---
         const linkMatch = /<a href="([^"]+)"[^>]*>Купити на AliExpress<\/a>/.exec(productHtml);
         const link = linkMatch ? linkMatch[1] : '';
+        console.log(`    Посилання: ${link ? 'є' : 'немає'}`);
 
-        // Додаємо товар, тільки якщо є артикул
         if (articul) {
             products.push({
                 articul: articul,
@@ -73,30 +69,32 @@ function extractProducts(htmlContent, category) {
             });
         }
     }
+    console.log(`  Усього в цьому файлі знайдено товарів: ${count}`);
     return products;
 }
 
-// Основна функція
 function main() {
     const allProducts = [];
-    const rootDir = '.';   // поточна папка
+    const rootDir = '.';
     const htmlFiles = getHtmlFiles(rootDir);
+    console.log('Знайдено HTML-файлів (без search.html):', htmlFiles.length);
+    htmlFiles.forEach((f, i) => console.log(`  ${i+1}. ${f}`));
 
     htmlFiles.forEach(filePath => {
+        console.log(`\nОбробка файлу: ${filePath}`);
         const content = fs.readFileSync(filePath, 'utf8');
-        // Визначаємо категорію за шляхом до файлу
         let category = 'other';
         if (filePath.includes('electronics')) category = 'electronics';
         else if (filePath.includes('clothing')) category = 'clothing';
         else if (filePath.includes('garden')) category = 'garden';
+        console.log(`  Категорія: ${category}`);
 
         const products = extractProducts(content, category);
         allProducts.push(...products);
     });
 
-    // Записуємо результат у products.json
     fs.writeFileSync('products.json', JSON.stringify(allProducts, null, 2));
-    console.log(`Згенеровано ${allProducts.length} товарів у products.json`);
+    console.log(`\nЗгенеровано ${allProducts.length} товарів у products.json`);
 }
 
 main();

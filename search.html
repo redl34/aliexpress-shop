@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Пошук - AliShop</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* Стилі для шапки з новим зображенням */
+        /* Загальні стилі (можна винести в окремий styles.css, але тут для повноти) */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3E717A;
+        }
+        /* Шапка з poshuk.jpg */
         .search-header {
             background: url('Oformlennya_imeg/poshuk.jpg') no-repeat center center/cover;
             color: white;
@@ -22,7 +28,9 @@
             background: rgba(0,0,0,0.4);
             z-index: 1;
         }
-        .search-header h1, .search-header .home-link, .search-header .search-container {
+        .search-header h1, 
+        .search-header .home-link, 
+        .search-header .search-container {
             position: relative;
             z-index: 2;
         }
@@ -65,7 +73,7 @@
         .search-container button:hover {
             background-color: #e55a5a;
         }
-        /* Контейнер для результатів */
+        /* Результати пошуку */
         .search-results {
             margin: 20px auto;
             padding: 20px;
@@ -76,7 +84,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
-        /* Стилі картки товару (такі ж, як на сторінках категорій) */
+        /* Картка товару (така ж, як на сторінках категорій) */
         .product-card {
             background-color: white;
             border: 1px solid #ddd;
@@ -206,6 +214,7 @@
             color: #333;
             padding: 40px;
         }
+        /* Футер */
         footer {
             background-color: #000;
             color: white;
@@ -255,25 +264,13 @@
         footer .social-buttons a i {
             font-size: 1.2em;
         }
-        @media (max-width: 1200px) {
-            .results-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                max-width: 900px;
-            }
-        }
+        /* Адаптивність */
         @media (max-width: 900px) {
-            .results-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                max-width: 600px;
-            }
             .carousel-prev, .carousel-next {
                 display: none;
             }
             .product-image-carousel {
                 max-height: 50%;
-            }
-            .carousel-image {
-                max-height: 100%;
             }
             .product-details h3 {
                 font-size: 1.1em;
@@ -284,10 +281,6 @@
             .product-details .price {
                 font-size: 1.3em;
             }
-            .product-details a, .add-to-favorites {
-                font-size: 0.9em;
-                padding: 8px 16px;
-            }
             .search-container {
                 flex-direction: column;
                 align-items: center;
@@ -295,13 +288,6 @@
             .search-container input, .search-container button {
                 width: 100%;
                 max-width: 200px;
-            }
-        }
-        @media (max-width: 600px) {
-            .results-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                max-width: 290px;
-                padding: 20px 10px;
             }
         }
     </style>
@@ -322,7 +308,7 @@
 
     <div class="search-results">
         <div id="resultsContainer" class="results-grid">
-            <!-- Тут будуть результати пошуку -->
+            <!-- Результати пошуку будуть вставлені сюди -->
         </div>
     </div>
 
@@ -339,7 +325,7 @@
     </footer>
 
     <script type="module">
-        // ==================== Firebase ініціалізація ====================
+        // ========== Firebase ініціалізація ==========
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
         import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
         import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
@@ -358,7 +344,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Функція додавання в обране (така ж, як на сторінках категорій)
+        // Функція додавання в обране (доступна глобально)
         window.addToFavorites = async function(id, title, image, link) {
             if (!auth.currentUser) {
                 alert('Будь ласка, увійдіть до облікового запису.');
@@ -379,7 +365,7 @@
             }
         };
 
-        // ==================== Логіка пошуку ====================
+        // ========== Логіка пошуку ==========
         const urlParams = new URLSearchParams(window.location.search);
         const query = urlParams.get('q') || '';
         const searchInput = document.getElementById('searchInput');
@@ -388,12 +374,12 @@
             performSearch();
         }
 
-        // Функція очищення запиту від слів "арт", "артикул" тощо
+        // Функція очищення запиту від слів "арт", "артикул"
         function cleanSearchTerm(term) {
-            // Видаляємо слова "арт", "артикул", "арт.", крапки, зайві пробіли
             return term.replace(/\b(арт\.?|артикул)\b/gi, '').replace(/[^\w\d]/g, '').trim();
         }
 
+        // Основна функція пошуку
         async function performSearch() {
             const rawTerm = searchInput.value.trim().toLowerCase();
             if (!rawTerm) {
@@ -401,17 +387,14 @@
                 return;
             }
 
-            // Очищений термін для пошуку за артикулом (тільки цифри та букви)
-            const cleanTerm = cleanSearchTerm(rawTerm);
-            
+            const cleanTerm = cleanSearchTerm(rawTerm); // для пошуку за артикулом
+
             try {
                 const response = await fetch('products.json');
                 if (!response.ok) throw new Error('Не вдалося завантажити товари');
                 const products = await response.json();
 
-                // Фільтруємо:
-                // - за артикулом (точний збіг після очищення)
-                // - за назвою (частковий збіг, враховуючи оригінальний запит)
+                // Фільтрація: за артикулом (очищений) або за назвою (оригінальний запит)
                 const results = products.filter(product => {
                     const articulMatch = cleanTerm && product.articul.toLowerCase().includes(cleanTerm);
                     const titleMatch = product.title.toLowerCase().includes(rawTerm);
@@ -425,7 +408,7 @@
             }
         }
 
-        // Відображення результатів з каруселлю
+        // Відображення результатів у вигляді карток з каруселлю
         function displayResults(products) {
             const container = document.getElementById('resultsContainer');
             if (products.length === 0) {
@@ -435,29 +418,32 @@
 
             let html = '';
             products.forEach(product => {
+                // Забезпечуємо наявність усіх полів
+                const title = product.title || 'Без назви';
+                const description = product.description || '';
+                const articul = product.articul || '';
+                const price = product.price || 'Ціна не вказана';
+                const link = product.link || '#';
+                // Масив зображень (якщо є product.images, інакше використовуємо product.image)
+                const images = (product.images && product.images.length) ? product.images : (product.image ? [product.image] : ['placeholder.jpg']);
+
                 // Генеруємо HTML для каруселі зображень
                 let imagesHtml = '';
-                if (product.images && product.images.length > 0) {
-                    product.images.forEach((img, index) => {
-                        imagesHtml += `<img alt="${product.title}" class="carousel-image ${index === 0 ? 'active' : ''}" src="${img}" onerror="this.src='placeholder.jpg'">`;
-                    });
-                } else {
-                    // Якщо тільки одне зображення
-                    imagesHtml = `<img alt="${product.title}" class="carousel-image active" src="${product.image || 'placeholder.jpg'}" onerror="this.src='placeholder.jpg'">`;
-                }
+                images.forEach((img, index) => {
+                    imagesHtml += `<img alt="${title}" class="carousel-image ${index === 0 ? 'active' : ''}" src="${img}" onerror="this.src='placeholder.jpg'">`;
+                });
 
-                // Генеруємо індикатори
+                // Індикатори
                 let indicatorsHtml = '';
-                if (product.images && product.images.length > 0) {
-                    product.images.forEach((_, index) => {
-                        indicatorsHtml += `<span class="indicator ${index === 0 ? 'active' : ''}"></span>`;
-                    });
-                } else {
-                    indicatorsHtml = '<span class="indicator active"></span>';
-                }
+                images.forEach((_, index) => {
+                    indicatorsHtml += `<span class="indicator ${index === 0 ? 'active' : ''}"></span>`;
+                });
+
+                // Екрануємо лапки в назві для коректної передачі в onclick
+                const escapedTitle = title.replace(/'/g, "\\'");
 
                 html += `
-                    <div class="product-card" data-articul="${product.articul}">
+                    <div class="product-card" data-articul="${articul}">
                         <div class="product-image-carousel">
                             <div class="carousel-container">
                                 ${imagesHtml}
@@ -469,24 +455,22 @@
                             </div>
                         </div>
                         <div class="product-details">
-                            <h3>${product.title}</h3>
-                            <p>${product.description || ''}</p>
-                            <p class="articul">арт. ${product.articul}</p>
-                            <p class="price">${product.price}</p>
-                            <a href="${product.link}" target="_blank">Купити на AliExpress</a>
-                            <button class="add-to-favorites" onclick="addToFavorites('${product.articul}', '${product.title.replace(/'/g, "\\'")}', '${product.image}', '${product.link}')">Додати до обраного</button>
+                            <h3>${title}</h3>
+                            <p>${description}</p>
+                            <p class="articul">арт. ${articul}</p>
+                            <p class="price">${price}</p>
+                            <a href="${link}" target="_blank">Купити на AliExpress</a>
+                            <button class="add-to-favorites" onclick="addToFavorites('${articul}', '${escapedTitle}', '${images[0]}', '${link}')">Додати до обраного</button>
                         </div>
                     </div>
                 `;
             });
 
             container.innerHTML = html;
-
-            // Ініціалізуємо карусель для кожної нової картки
-            initCarousels();
+            initCarousels(); // активуємо карусель після додавання карток
         }
 
-        // Функція ініціалізації каруселі (копія з electronics_page)
+        // Ініціалізація каруселі (така ж, як на сторінках категорій)
         function initCarousels() {
             document.querySelectorAll('.product-image-carousel').forEach(carousel => {
                 const images = carousel.querySelectorAll('.carousel-image');
@@ -526,13 +510,10 @@
                 });
 
                 // Touch-події для мобільних
-                let touchStartX = 0;
-                let touchEndX = 0;
-
+                let touchStartX = 0, touchEndX = 0;
                 carousel.addEventListener('touchstart', (e) => {
                     touchStartX = e.changedTouches[0].screenX;
                 });
-
                 carousel.addEventListener('touchend', (e) => {
                     touchEndX = e.changedTouches[0].screenX;
                     if (touchEndX < touchStartX - 50) {
@@ -546,14 +527,14 @@
             });
         }
 
-        // Обробка Enter
+        // Обробник Enter
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 performSearch();
             }
         });
 
-        // Додаємо глобальну функцію для виклику з кнопки
+        // Робимо функцію глобальною для виклику з кнопки
         window.performSearch = performSearch;
     </script>
 </body>

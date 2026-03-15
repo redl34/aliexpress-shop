@@ -291,7 +291,7 @@
             }
         }
     </style>
-    <!-- Firebase SDK (для додавання в обране) -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js" type="module"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js" type="module"></script>
@@ -308,7 +308,7 @@
 
     <div class="search-results">
         <div id="resultsContainer" class="results-grid">
-            <!-- Результати пошуку будуть вставлені сюди -->
+            <!-- Результати пошуку -->
         </div>
     </div>
 
@@ -344,7 +344,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Функція додавання в обране (доступна глобально)
+        // Функція додавання в обране
         window.addToFavorites = async function(id, title, image, link) {
             if (!auth.currentUser) {
                 alert('Будь ласка, увійдіть до облікового запису.');
@@ -374,12 +374,11 @@
             performSearch();
         }
 
-        // Функція очищення запиту від слів "арт", "артикул", залишає тільки цифри та букви
+        // Очищення запиту від слів "арт", "артикул"
         function cleanSearchTerm(term) {
             return term.replace(/\b(арт\.?|артикул)\b/gi, '').replace(/[^\w\d]/g, '').trim();
         }
 
-        // Основна функція пошуку
         async function performSearch() {
             const rawTerm = searchInput.value.trim().toLowerCase();
             if (!rawTerm) {
@@ -387,16 +386,13 @@
                 return;
             }
 
-            // Якщо запит коротший за 3 символи (крім випадку, коли це артикул після очищення)
-            // Але ми все одно шукаємо за артикулом, навіть якщо він короткий
-            const cleanTerm = cleanSearchTerm(rawTerm); // для пошуку за артикулом
+            const cleanTerm = cleanSearchTerm(rawTerm);
 
             try {
                 const response = await fetch('products.json');
                 if (!response.ok) throw new Error('Не вдалося завантажити товари');
                 const products = await response.json();
 
-                // Фільтрація: за артикулом (очищений термін) або за назвою (оригінальний запит)
                 const results = products.filter(product => {
                     const articulMatch = cleanTerm && product.articul.toLowerCase().includes(cleanTerm);
                     const titleMatch = product.title.toLowerCase().includes(rawTerm);
@@ -410,7 +406,6 @@
             }
         }
 
-        // Відображення результатів у вигляді карток з каруселлю
         function displayResults(products) {
             const container = document.getElementById('resultsContainer');
             if (products.length === 0) {
@@ -420,28 +415,23 @@
 
             let html = '';
             products.forEach(product => {
-                // Забезпечуємо наявність усіх полів
                 const title = product.title || 'Без назви';
                 const description = product.description || '';
                 const articul = product.articul || '';
                 const price = product.price || 'Ціна не вказана';
                 const link = product.link || '#';
-                // Масив зображень (якщо є product.images, інакше використовуємо product.image)
                 const images = (product.images && product.images.length) ? product.images : (product.image ? [product.image] : ['placeholder.jpg']);
 
-                // Генеруємо HTML для каруселі зображень
                 let imagesHtml = '';
                 images.forEach((img, index) => {
                     imagesHtml += `<img alt="${title}" class="carousel-image ${index === 0 ? 'active' : ''}" src="${img}" onerror="this.src='placeholder.jpg'">`;
                 });
 
-                // Індикатори
                 let indicatorsHtml = '';
                 images.forEach((_, index) => {
                     indicatorsHtml += `<span class="indicator ${index === 0 ? 'active' : ''}"></span>`;
                 });
 
-                // Екрануємо лапки в назві для коректної передачі в onclick
                 const escapedTitle = title.replace(/'/g, "\\'");
 
                 html += `
@@ -469,10 +459,9 @@
             });
 
             container.innerHTML = html;
-            initCarousels(); // активуємо карусель після додавання карток
+            initCarousels();
         }
 
-        // Ініціалізація каруселі (така ж, як на сторінках категорій)
         function initCarousels() {
             document.querySelectorAll('.product-image-carousel').forEach(carousel => {
                 const images = carousel.querySelectorAll('.carousel-image');
@@ -511,7 +500,6 @@
                     });
                 });
 
-                // Touch-події для мобільних
                 let touchStartX = 0, touchEndX = 0;
                 carousel.addEventListener('touchstart', (e) => {
                     touchStartX = e.changedTouches[0].screenX;
@@ -529,14 +517,12 @@
             });
         }
 
-        // Обробник Enter
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 performSearch();
             }
         });
 
-        // Робимо функцію глобальною для виклику з кнопки
         window.performSearch = performSearch;
     </script>
 </body>

@@ -39,6 +39,32 @@
         .search-header .home-link:hover {
             background-color: #e55a5a;
         }
+        .search-container {
+            max-width: 500px;
+            margin: 20px auto;
+            display: flex;
+            gap: 10px;
+        }
+        .search-container input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .search-container button:hover {
+            background-color: #e55a5a;
+        }
         /* Контейнер для результатів */
         .search-results {
             margin: 20px auto;
@@ -50,6 +76,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
+        /* Стилі картки товару (такі ж, як на сторінках категорій) */
         .product-card {
             background-color: white;
             border: 1px solid #ddd;
@@ -59,41 +86,119 @@
             flex-direction: column;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 3 / 4;
         }
-        .product-image {
+        .product-image-carousel {
+            position: relative;
             width: 100%;
-            max-height: 200px;
-            object-fit: contain;
+            max-height: 50%;
+            overflow: hidden;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-image {
+            width: 100%;
+            height: 100%;
             border-radius: 5px;
+            display: none;
+            object-fit: contain;
+        }
+        .carousel-image.active {
+            display: block;
+        }
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-prev {
+            left: 0;
+        }
+        .carousel-next {
+            right: 0;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .indicator.active {
+            background-color: rgba(0, 0, 0, 0.7);
         }
         .product-details {
+            flex-grow: 1;
             text-align: center;
-            margin-top: 10px;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .product-details h3 {
-            font-size: 1.2em;
+            margin: 10px 0;
+            font-size: 1.3em;
             color: #2c3e50;
         }
         .product-details .articul {
+            font-size: 0.9375em;
             font-weight: bold;
-            color: #000;
+            color: #000000;
+            margin: 10px 0;
         }
         .product-details .price {
             font-size: 1.5em;
             font-weight: bold;
-            color: #000;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details p {
+            font-size: 1em;
+            color: #2c3e50;
+            margin: 10px 0;
         }
         .product-details a {
-            display: block;
-            background-color: #132F13;
-            color: white;
+            color: #ffffff;
             text-decoration: none;
-            padding: 10px;
+            background-color: #132F13;
+            padding: 10px 20px;
             border-radius: 5px;
+            display: block;
             margin: 10px 0;
+            font-size: 1em;
         }
         .product-details a:hover {
             background-color: #0e240e;
+        }
+        .add-to-favorites {
+            background-color: #A9A34C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+        .add-to-favorites:hover {
+            background-color: #8e8a3f;
         }
         .no-results {
             text-align: center;
@@ -107,7 +212,103 @@
             text-align: center;
             padding: 20px;
         }
+        footer .social-links {
+            text-align: center;
+        }
+        footer .social-links h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 15px;
+        }
+        footer .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        footer .social-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
+        @media (max-width: 1200px) {
+            .results-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 900px;
+            }
+        }
+        @media (max-width: 900px) {
+            .results-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 600px;
+            }
+            .carousel-prev, .carousel-next {
+                display: none;
+            }
+            .product-image-carousel {
+                max-height: 50%;
+            }
+            .carousel-image {
+                max-height: 100%;
+            }
+            .product-details h3 {
+                font-size: 1.1em;
+            }
+            .product-details .articul {
+                font-size: 0.8125em;
+            }
+            .product-details .price {
+                font-size: 1.3em;
+            }
+            .product-details a, .add-to-favorites {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .results-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 290px;
+                padding: 20px 10px;
+            }
+        }
     </style>
+    <!-- Firebase SDK (для додавання в обране) -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js" type="module"></script>
 </head>
 <body>
     <header class="search-header">
@@ -126,39 +327,96 @@
     </div>
 
     <footer>
+        <div class="social-links">
+            <h2>Слідкуй за новинками в</h2>
+            <div class="social-buttons">
+                <a class="tiktok" href="https://www.tiktok.com/@reedoffe" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a class="facebook" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
         <p>© 2025 Ali.Reed</p>
     </footer>
 
-    <script>
-        // Отримуємо пошуковий запит з URL
+    <script type="module">
+        // ==================== Firebase ініціалізація ====================
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
+            authDomain: "alishopping-ced60.firebaseapp.com",
+            projectId: "alishopping-ced60",
+            storageBucket: "alishopping-ced60.firebasestorage.app",
+            messagingSenderId: "869364972631",
+            appId: "1:869364972631:web:f9b736868d9844b3e7f712",
+            measurementId: "G-SF4MY2768F"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Функція додавання в обране (така ж, як на сторінках категорій)
+        window.addToFavorites = async function(id, title, image, link) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
+                });
+                alert('Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка додавання:', error);
+            }
+        };
+
+        // ==================== Логіка пошуку ====================
         const urlParams = new URLSearchParams(window.location.search);
         const query = urlParams.get('q') || '';
-
-        // Заповнюємо поле пошуку
         const searchInput = document.getElementById('searchInput');
         if (query) {
             searchInput.value = decodeURIComponent(query);
             performSearch();
         }
 
-        // Функція пошуку
+        // Функція очищення запиту від слів "арт", "артикул" тощо
+        function cleanSearchTerm(term) {
+            // Видаляємо слова "арт", "артикул", "арт.", крапки, зайві пробіли
+            return term.replace(/\b(арт\.?|артикул)\b/gi, '').replace(/[^\w\d]/g, '').trim();
+        }
+
         async function performSearch() {
-            const searchTerm = searchInput.value.trim().toLowerCase();
-            if (!searchTerm) {
+            const rawTerm = searchInput.value.trim().toLowerCase();
+            if (!rawTerm) {
                 document.getElementById('resultsContainer').innerHTML = '<p class="no-results">Введіть запит для пошуку</p>';
                 return;
             }
 
+            // Очищений термін для пошуку за артикулом (тільки цифри та букви)
+            const cleanTerm = cleanSearchTerm(rawTerm);
+            
             try {
-                // Завантажуємо products.json
                 const response = await fetch('products.json');
+                if (!response.ok) throw new Error('Не вдалося завантажити товари');
                 const products = await response.json();
 
-                // Фільтруємо за артикулом або назвою
-                const results = products.filter(product => 
-                    product.articul.toLowerCase().includes(searchTerm) ||
-                    product.title.toLowerCase().includes(searchTerm)
-                );
+                // Фільтруємо:
+                // - за артикулом (точний збіг після очищення)
+                // - за назвою (частковий збіг, враховуючи оригінальний запит)
+                const results = products.filter(product => {
+                    const articulMatch = cleanTerm && product.articul.toLowerCase().includes(cleanTerm);
+                    const titleMatch = product.title.toLowerCase().includes(rawTerm);
+                    return articulMatch || titleMatch;
+                });
 
                 displayResults(results);
             } catch (error) {
@@ -167,7 +425,7 @@
             }
         }
 
-        // Відображення результатів
+        // Відображення результатів з каруселлю
         function displayResults(products) {
             const container = document.getElementById('resultsContainer');
             if (products.length === 0) {
@@ -177,19 +435,115 @@
 
             let html = '';
             products.forEach(product => {
+                // Генеруємо HTML для каруселі зображень
+                let imagesHtml = '';
+                if (product.images && product.images.length > 0) {
+                    product.images.forEach((img, index) => {
+                        imagesHtml += `<img alt="${product.title}" class="carousel-image ${index === 0 ? 'active' : ''}" src="${img}" onerror="this.src='placeholder.jpg'">`;
+                    });
+                } else {
+                    // Якщо тільки одне зображення
+                    imagesHtml = `<img alt="${product.title}" class="carousel-image active" src="${product.image || 'placeholder.jpg'}" onerror="this.src='placeholder.jpg'">`;
+                }
+
+                // Генеруємо індикатори
+                let indicatorsHtml = '';
+                if (product.images && product.images.length > 0) {
+                    product.images.forEach((_, index) => {
+                        indicatorsHtml += `<span class="indicator ${index === 0 ? 'active' : ''}"></span>`;
+                    });
+                } else {
+                    indicatorsHtml = '<span class="indicator active"></span>';
+                }
+
                 html += `
-                    <div class="product-card">
-                        <img class="product-image" src="${product.image}" alt="${product.title}" onerror="this.src='placeholder.jpg'">
+                    <div class="product-card" data-articul="${product.articul}">
+                        <div class="product-image-carousel">
+                            <div class="carousel-container">
+                                ${imagesHtml}
+                                <button class="carousel-prev">←</button>
+                                <button class="carousel-next">→</button>
+                                <div class="carousel-indicators">
+                                    ${indicatorsHtml}
+                                </div>
+                            </div>
+                        </div>
                         <div class="product-details">
                             <h3>${product.title}</h3>
+                            <p>${product.description || ''}</p>
                             <p class="articul">арт. ${product.articul}</p>
                             <p class="price">${product.price}</p>
                             <a href="${product.link}" target="_blank">Купити на AliExpress</a>
+                            <button class="add-to-favorites" onclick="addToFavorites('${product.articul}', '${product.title.replace(/'/g, "\\'")}', '${product.image}', '${product.link}')">Додати до обраного</button>
                         </div>
                     </div>
                 `;
             });
+
             container.innerHTML = html;
+
+            // Ініціалізуємо карусель для кожної нової картки
+            initCarousels();
+        }
+
+        // Функція ініціалізації каруселі (копія з electronics_page)
+        function initCarousels() {
+            document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+                const images = carousel.querySelectorAll('.carousel-image');
+                const indicators = carousel.querySelectorAll('.indicator');
+                const prevButton = carousel.querySelector('.carousel-prev');
+                const nextButton = carousel.querySelector('.carousel-next');
+                let currentIndex = 0;
+
+                function updateCarousel() {
+                    images.forEach((img, index) => {
+                        img.classList.toggle('active', index === currentIndex);
+                    });
+                    indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === currentIndex);
+                    });
+                }
+
+                if (prevButton) {
+                    prevButton.addEventListener('click', () => {
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        updateCarousel();
+                    });
+                }
+
+                if (nextButton) {
+                    nextButton.addEventListener('click', () => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateCarousel();
+                    });
+                }
+
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateCarousel();
+                    });
+                });
+
+                // Touch-події для мобільних
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                carousel.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+
+                carousel.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    if (touchEndX < touchStartX - 50) {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateCarousel();
+                    } else if (touchEndX > touchStartX + 50) {
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        updateCarousel();
+                    }
+                });
+            });
         }
 
         // Обробка Enter
@@ -198,6 +552,9 @@
                 performSearch();
             }
         });
+
+        // Додаємо глобальну функцію для виклику з кнопки
+        window.performSearch = performSearch;
     </script>
 </body>
 </html>

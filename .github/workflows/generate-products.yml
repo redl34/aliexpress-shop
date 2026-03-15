@@ -1,48 +1,31 @@
+generate-products.yml
 name: Generate products.json
 
 on:
   push:
-    branches: [ main ]   # якщо ваша основна гілка називається master, замініть main на master
-  workflow_dispatch:      # дозволяє ручний запуск
+    branches: [ main ]  # або master, залежно від назви вашої основної гілки
+    paths:
+  workflow_dispatch:    # дозволяє запускати вручну з інтерфейсу GitHub
 
 jobs:
   generate:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Завантажуємо репозиторій (з повною історією, щоб можна було зробити pull)
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      # 2. Встановлюємо Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # 3. Запускаємо скрипт генерації products.json
       - name: Run generation script
         run: node generateProducts.js
 
-      # 4. Перевіряємо, чи створився файл (для діагностики)
-      - name: List files after generation
-        run: ls -la
-
-      # 5. Отримуємо останні зміни з віддаленої гілки (щоб уникнути конфліктів)
-      - name: Pull latest changes
+      - name: Commit and push if changed
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git pull --rebase origin main   # якщо гілка master, замініть main на master
-
-      # 6. Якщо файл products.json змінився, комітимо і пушимо
-      - name: Commit and push if changed
-        run: |
           git add products.json
-          # Перевіряємо, чи є зміни для коміту (ігноруємо, якщо ні)
-          if ! git diff --quiet && git diff --staged --quiet; then
-            git commit -m "Auto-update products.json"
-            git push
-          fi
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update products.json"
+          git push

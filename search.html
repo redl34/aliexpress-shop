@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пошук товарів - AliShop</title>
-    <!-- Підключаємо Font Awesome для іконок соцмереж -->
+    <title>Пошук - AliShop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- Підключаємо шрифт Roboto, як на інших сторінках -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Глобальні стилі */
+        /* Загальні стилі (копія з electronics_page_1.html) */
         body {
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
@@ -31,16 +28,11 @@
             background: rgba(0,0,0,0.4);
             z-index: 1;
         }
-        .search-header h1,
-        .search-header .home-link,
+        .search-header h1, 
+        .search-header .home-link, 
         .search-header .search-container {
             position: relative;
             z-index: 2;
-        }
-        .search-header h1 {
-            margin: 0 0 20px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         .search-header .home-link {
             color: white;
@@ -55,7 +47,6 @@
         .search-header .home-link:hover {
             background-color: #e55a5a;
         }
-        /* Контейнер пошуку */
         .search-container {
             max-width: 500px;
             margin: 20px auto;
@@ -93,7 +84,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
-        /* Картка товару (повністю як на сторінках категорій) */
+        /* Картка товару (така ж, як на сторінках категорій) */
         .product-card {
             background-color: white;
             border: 1px solid #ddd;
@@ -168,7 +159,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 100%;
         }
         .product-details h3 {
             margin: 10px 0;
@@ -191,10 +181,6 @@
             font-size: 1em;
             color: #2c3e50;
             margin: 10px 0;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
         }
         .product-details a {
             color: #ffffff;
@@ -227,9 +213,6 @@
             font-size: 1.2em;
             color: #333;
             padding: 40px;
-            background: #f0f0f0;
-            border-radius: 10px;
-            grid-column: 1 / -1;
         }
         /* Футер */
         footer {
@@ -307,12 +290,6 @@
                 max-width: 200px;
             }
         }
-        @media (max-width: 600px) {
-            .results-grid {
-                grid-template-columns: 1fr;
-                padding: 20px 10px;
-            }
-        }
     </style>
     <!-- Firebase SDK (для додавання в обране) -->
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
@@ -329,11 +306,11 @@
         </div>
     </header>
 
-    <main class="search-results">
+    <div class="search-results">
         <div id="resultsContainer" class="results-grid">
-            <!-- Тут будуть результати пошуку -->
+            <!-- Результати пошуку будуть вставлені сюди -->
         </div>
-    </main>
+    </div>
 
     <footer>
         <div class="social-links">
@@ -394,11 +371,10 @@
         const searchInput = document.getElementById('searchInput');
         if (query) {
             searchInput.value = decodeURIComponent(query);
-            // Автоматичний пошук при завантаженні сторінки
-            window.addEventListener('load', performSearch);
+            performSearch();
         }
 
-        // Функція очищення запиту від слів "арт", "артикул", крапок, зайвих пробілів
+        // Функція очищення запиту від слів "арт", "артикул", залишає тільки цифри та букви
         function cleanSearchTerm(term) {
             return term.replace(/\b(арт\.?|артикул)\b/gi, '').replace(/[^\w\d]/g, '').trim();
         }
@@ -406,41 +382,31 @@
         // Основна функція пошуку
         async function performSearch() {
             const rawTerm = searchInput.value.trim().toLowerCase();
-            const container = document.getElementById('resultsContainer');
-            
             if (!rawTerm) {
-                container.innerHTML = '<p class="no-results">Введіть запит для пошуку</p>';
+                document.getElementById('resultsContainer').innerHTML = '<p class="no-results">Введіть запит для пошуку</p>';
                 return;
             }
 
-            // Показуємо індикатор завантаження
-            container.innerHTML = '<p class="no-results">Завантаження...</p>';
-
+            // Якщо запит коротший за 3 символи (крім випадку, коли це артикул після очищення)
+            // Але ми все одно шукаємо за артикулом, навіть якщо він короткий
             const cleanTerm = cleanSearchTerm(rawTerm); // для пошуку за артикулом
 
             try {
-                // Визначаємо правильний шлях до products.json (в залежності від того, де лежить search.html)
-                // Якщо search.html у корені, то шлях просто 'products.json'
                 const response = await fetch('products.json');
-                if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-                
+                if (!response.ok) throw new Error('Не вдалося завантажити товари');
                 const products = await response.json();
 
-                // Фільтрація: за артикулом (очищений) або за назвою (оригінальний запит)
+                // Фільтрація: за артикулом (очищений термін) або за назвою (оригінальний запит)
                 const results = products.filter(product => {
-                    // Перевіряємо наявність полів
-                    const productArticul = (product.articul || '').toLowerCase();
-                    const productTitle = (product.title || '').toLowerCase();
-                    
-                    const articulMatch = cleanTerm && productArticul.includes(cleanTerm);
-                    const titleMatch = productTitle.includes(rawTerm);
+                    const articulMatch = cleanTerm && product.articul.toLowerCase().includes(cleanTerm);
+                    const titleMatch = product.title.toLowerCase().includes(rawTerm);
                     return articulMatch || titleMatch;
                 });
 
                 displayResults(results);
             } catch (error) {
                 console.error('Помилка завантаження товарів:', error);
-                container.innerHTML = '<p class="no-results">Помилка завантаження даних. Спробуйте пізніше.</p>';
+                document.getElementById('resultsContainer').innerHTML = '<p class="no-results">Помилка завантаження даних</p>';
             }
         }
 
@@ -454,22 +420,14 @@
 
             let html = '';
             products.forEach(product => {
-                // Забезпечуємо наявність усіх полів з резервними значеннями
+                // Забезпечуємо наявність усіх полів
                 const title = product.title || 'Без назви';
                 const description = product.description || '';
                 const articul = product.articul || '';
                 const price = product.price || 'Ціна не вказана';
                 const link = product.link || '#';
-                
-                // Масив зображень: спочатку беремо product.images, якщо ні, то product.image, інакше заглушка
-                let images = [];
-                if (product.images && Array.isArray(product.images) && product.images.length) {
-                    images = product.images;
-                } else if (product.image) {
-                    images = [product.image];
-                } else {
-                    images = ['placeholder.jpg']; // переконайтеся, що такий файл є, або використайте data:image заглушку
-                }
+                // Масив зображень (якщо є product.images, інакше використовуємо product.image)
+                const images = (product.images && product.images.length) ? product.images : (product.image ? [product.image] : ['placeholder.jpg']);
 
                 // Генеруємо HTML для каруселі зображень
                 let imagesHtml = '';
@@ -523,8 +481,6 @@
                 const nextButton = carousel.querySelector('.carousel-next');
                 let currentIndex = 0;
 
-                if (images.length === 0) return;
-
                 function updateCarousel() {
                     images.forEach((img, index) => {
                         img.classList.toggle('active', index === currentIndex);
@@ -535,24 +491,21 @@
                 }
 
                 if (prevButton) {
-                    prevButton.addEventListener('click', (e) => {
-                        e.stopPropagation();
+                    prevButton.addEventListener('click', () => {
                         currentIndex = (currentIndex - 1 + images.length) % images.length;
                         updateCarousel();
                     });
                 }
 
                 if (nextButton) {
-                    nextButton.addEventListener('click', (e) => {
-                        e.stopPropagation();
+                    nextButton.addEventListener('click', () => {
                         currentIndex = (currentIndex + 1) % images.length;
                         updateCarousel();
                     });
                 }
 
                 indicators.forEach((indicator, index) => {
-                    indicator.addEventListener('click', (e) => {
-                        e.stopPropagation();
+                    indicator.addEventListener('click', () => {
                         currentIndex = index;
                         updateCarousel();
                     });
@@ -576,7 +529,7 @@
             });
         }
 
-        // Обробник Enter у полі пошуку
+        // Обробник Enter
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 performSearch();

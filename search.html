@@ -1,56 +1,590 @@
-function displayResults(products) {
-    const container = document.getElementById('resultsContainer');
-    if (products.length === 0) {
-        container.innerHTML = '<p class="no-results">Нічого не знайдено</p>';
-        return;
-    }
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пошук товарів - AliShop</title>
+    <!-- Підключаємо Font Awesome для іконок соцмереж -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Підключаємо шрифт Roboto, як на інших сторінках -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Глобальні стилі */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3E717A;
+        }
+        /* Шапка з poshuk.jpg */
+        .search-header {
+            background: url('Oformlennya_imeg/poshuk.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+        }
+        .search-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        .search-header h1,
+        .search-header .home-link,
+        .search-header .search-container {
+            position: relative;
+            z-index: 2;
+        }
+        .search-header h1 {
+            margin: 0 0 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .search-header .home-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            background-color: #ff6b6b;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px;
+        }
+        .search-header .home-link:hover {
+            background-color: #e55a5a;
+        }
+        /* Контейнер пошуку */
+        .search-container {
+            max-width: 500px;
+            margin: 20px auto;
+            display: flex;
+            gap: 10px;
+        }
+        .search-container input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .search-container button:hover {
+            background-color: #e55a5a;
+        }
+        /* Результати пошуку */
+        .search-results {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1200px;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        /* Картка товару (повністю як на сторінках категорій) */
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 3 / 4;
+        }
+        .product-image-carousel {
+            position: relative;
+            width: 100%;
+            max-height: 50%;
+            overflow: hidden;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            display: none;
+            object-fit: contain;
+        }
+        .carousel-image.active {
+            display: block;
+        }
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-prev {
+            left: 0;
+        }
+        .carousel-next {
+            right: 0;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .indicator.active {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .product-details {
+            flex-grow: 1;
+            text-align: center;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .product-details h3 {
+            margin: 10px 0;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        .product-details .articul {
+            font-size: 0.9375em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details p {
+            font-size: 1em;
+            color: #2c3e50;
+            margin: 10px 0;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        .product-details a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #132F13;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: block;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        .product-details a:hover {
+            background-color: #0e240e;
+        }
+        .add-to-favorites {
+            background-color: #A9A34C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+        .add-to-favorites:hover {
+            background-color: #8e8a3f;
+        }
+        .no-results {
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+            padding: 40px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            grid-column: 1 / -1;
+        }
+        /* Футер */
+        footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        footer .social-links {
+            text-align: center;
+        }
+        footer .social-links h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 15px;
+        }
+        footer .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        footer .social-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
+        /* Адаптивність */
+        @media (max-width: 900px) {
+            .carousel-prev, .carousel-next {
+                display: none;
+            }
+            .product-image-carousel {
+                max-height: 50%;
+            }
+            .product-details h3 {
+                font-size: 1.1em;
+            }
+            .product-details .articul {
+                font-size: 0.8125em;
+            }
+            .product-details .price {
+                font-size: 1.3em;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+                padding: 20px 10px;
+            }
+        }
+    </style>
+    <!-- Firebase SDK (для додавання в обране) -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js" type="module"></script>
+</head>
+<body>
+    <header class="search-header">
+        <h1>Пошук товарів</h1>
+        <a class="home-link" href="index.html">Повернутися на головну</a>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Введіть артикул або назву товару">
+            <button onclick="performSearch()">Пошук</button>
+        </div>
+    </header>
 
-    let html = '';
-    products.forEach(product => {
-        // Переконуємось, що в product є всі потрібні поля
-        const title = product.title || 'Без назви';
-        const description = product.description || '';
-        const articul = product.articul || '';
-        const price = product.price || 'Ціна не вказана';
-        const link = product.link || '#';
-        const images = product.images && product.images.length ? product.images : (product.image ? [product.image] : ['placeholder.jpg']);
-        
-        // Генеруємо зображення для каруселі
-        let imagesHtml = '';
-        images.forEach((img, index) => {
-            imagesHtml += `<img alt="${title}" class="carousel-image ${index === 0 ? 'active' : ''}" src="${img}" onerror="this.src='placeholder.jpg'">`;
-        });
+    <main class="search-results">
+        <div id="resultsContainer" class="results-grid">
+            <!-- Тут будуть результати пошуку -->
+        </div>
+    </main>
 
-        // Індикатори
-        let indicatorsHtml = '';
-        images.forEach((_, index) => {
-            indicatorsHtml += `<span class="indicator ${index === 0 ? 'active' : ''}"></span>`;
-        });
+    <footer>
+        <div class="social-links">
+            <h2>Слідкуй за новинками в</h2>
+            <div class="social-buttons">
+                <a class="tiktok" href="https://www.tiktok.com/@reedoffe" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a class="facebook" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+        <p>© 2025 Ali.Reed</p>
+    </footer>
 
-        html += `
-            <div class="product-card" data-articul="${articul}">
-                <div class="product-image-carousel">
-                    <div class="carousel-container">
-                        ${imagesHtml}
-                        <button class="carousel-prev">←</button>
-                        <button class="carousel-next">→</button>
-                        <div class="carousel-indicators">
-                            ${indicatorsHtml}
+    <script type="module">
+        // ========== Firebase ініціалізація ==========
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
+            authDomain: "alishopping-ced60.firebaseapp.com",
+            projectId: "alishopping-ced60",
+            storageBucket: "alishopping-ced60.firebasestorage.app",
+            messagingSenderId: "869364972631",
+            appId: "1:869364972631:web:f9b736868d9844b3e7f712",
+            measurementId: "G-SF4MY2768F"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Функція додавання в обране (доступна глобально)
+        window.addToFavorites = async function(id, title, image, link) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
+                });
+                alert('Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка додавання:', error);
+            }
+        };
+
+        // ========== Логіка пошуку ==========
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('q') || '';
+        const searchInput = document.getElementById('searchInput');
+        if (query) {
+            searchInput.value = decodeURIComponent(query);
+            // Автоматичний пошук при завантаженні сторінки
+            window.addEventListener('load', performSearch);
+        }
+
+        // Функція очищення запиту від слів "арт", "артикул", крапок, зайвих пробілів
+        function cleanSearchTerm(term) {
+            return term.replace(/\b(арт\.?|артикул)\b/gi, '').replace(/[^\w\d]/g, '').trim();
+        }
+
+        // Основна функція пошуку
+        async function performSearch() {
+            const rawTerm = searchInput.value.trim().toLowerCase();
+            const container = document.getElementById('resultsContainer');
+            
+            if (!rawTerm) {
+                container.innerHTML = '<p class="no-results">Введіть запит для пошуку</p>';
+                return;
+            }
+
+            // Показуємо індикатор завантаження
+            container.innerHTML = '<p class="no-results">Завантаження...</p>';
+
+            const cleanTerm = cleanSearchTerm(rawTerm); // для пошуку за артикулом
+
+            try {
+                // Визначаємо правильний шлях до products.json (в залежності від того, де лежить search.html)
+                // Якщо search.html у корені, то шлях просто 'products.json'
+                const response = await fetch('products.json');
+                if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+                
+                const products = await response.json();
+
+                // Фільтрація: за артикулом (очищений) або за назвою (оригінальний запит)
+                const results = products.filter(product => {
+                    // Перевіряємо наявність полів
+                    const productArticul = (product.articul || '').toLowerCase();
+                    const productTitle = (product.title || '').toLowerCase();
+                    
+                    const articulMatch = cleanTerm && productArticul.includes(cleanTerm);
+                    const titleMatch = productTitle.includes(rawTerm);
+                    return articulMatch || titleMatch;
+                });
+
+                displayResults(results);
+            } catch (error) {
+                console.error('Помилка завантаження товарів:', error);
+                container.innerHTML = '<p class="no-results">Помилка завантаження даних. Спробуйте пізніше.</p>';
+            }
+        }
+
+        // Відображення результатів у вигляді карток з каруселлю
+        function displayResults(products) {
+            const container = document.getElementById('resultsContainer');
+            if (products.length === 0) {
+                container.innerHTML = '<p class="no-results">Нічого не знайдено</p>';
+                return;
+            }
+
+            let html = '';
+            products.forEach(product => {
+                // Забезпечуємо наявність усіх полів з резервними значеннями
+                const title = product.title || 'Без назви';
+                const description = product.description || '';
+                const articul = product.articul || '';
+                const price = product.price || 'Ціна не вказана';
+                const link = product.link || '#';
+                
+                // Масив зображень: спочатку беремо product.images, якщо ні, то product.image, інакше заглушка
+                let images = [];
+                if (product.images && Array.isArray(product.images) && product.images.length) {
+                    images = product.images;
+                } else if (product.image) {
+                    images = [product.image];
+                } else {
+                    images = ['placeholder.jpg']; // переконайтеся, що такий файл є, або використайте data:image заглушку
+                }
+
+                // Генеруємо HTML для каруселі зображень
+                let imagesHtml = '';
+                images.forEach((img, index) => {
+                    imagesHtml += `<img alt="${title}" class="carousel-image ${index === 0 ? 'active' : ''}" src="${img}" onerror="this.src='placeholder.jpg'">`;
+                });
+
+                // Індикатори
+                let indicatorsHtml = '';
+                images.forEach((_, index) => {
+                    indicatorsHtml += `<span class="indicator ${index === 0 ? 'active' : ''}"></span>`;
+                });
+
+                // Екрануємо лапки в назві для коректної передачі в onclick
+                const escapedTitle = title.replace(/'/g, "\\'");
+
+                html += `
+                    <div class="product-card" data-articul="${articul}">
+                        <div class="product-image-carousel">
+                            <div class="carousel-container">
+                                ${imagesHtml}
+                                <button class="carousel-prev">←</button>
+                                <button class="carousel-next">→</button>
+                                <div class="carousel-indicators">
+                                    ${indicatorsHtml}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-details">
+                            <h3>${title}</h3>
+                            <p>${description}</p>
+                            <p class="articul">арт. ${articul}</p>
+                            <p class="price">${price}</p>
+                            <a href="${link}" target="_blank">Купити на AliExpress</a>
+                            <button class="add-to-favorites" onclick="addToFavorites('${articul}', '${escapedTitle}', '${images[0]}', '${link}')">Додати до обраного</button>
                         </div>
                     </div>
-                </div>
-                <div class="product-details">
-                    <h3>${title}</h3>
-                    <p>${description}</p>
-                    <p class="articul">арт. ${articul}</p>
-                    <p class="price">${price}</p>
-                    <a href="${link}" target="_blank">Купити на AliExpress</a>
-                    <button class="add-to-favorites" onclick="addToFavorites('${articul}', '${title.replace(/'/g, "\\'")}', '${images[0]}', '${link}')">Додати до обраного</button>
-                </div>
-            </div>
-        `;
-    });
+                `;
+            });
 
-    container.innerHTML = html;
-    initCarousels();
-}
+            container.innerHTML = html;
+            initCarousels(); // активуємо карусель після додавання карток
+        }
+
+        // Ініціалізація каруселі (така ж, як на сторінках категорій)
+        function initCarousels() {
+            document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+                const images = carousel.querySelectorAll('.carousel-image');
+                const indicators = carousel.querySelectorAll('.indicator');
+                const prevButton = carousel.querySelector('.carousel-prev');
+                const nextButton = carousel.querySelector('.carousel-next');
+                let currentIndex = 0;
+
+                if (images.length === 0) return;
+
+                function updateCarousel() {
+                    images.forEach((img, index) => {
+                        img.classList.toggle('active', index === currentIndex);
+                    });
+                    indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === currentIndex);
+                    });
+                }
+
+                if (prevButton) {
+                    prevButton.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        updateCarousel();
+                    });
+                }
+
+                if (nextButton) {
+                    nextButton.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateCarousel();
+                    });
+                }
+
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        currentIndex = index;
+                        updateCarousel();
+                    });
+                });
+
+                // Touch-події для мобільних
+                let touchStartX = 0, touchEndX = 0;
+                carousel.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                carousel.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    if (touchEndX < touchStartX - 50) {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateCarousel();
+                    } else if (touchEndX > touchStartX + 50) {
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        updateCarousel();
+                    }
+                });
+            });
+        }
+
+        // Обробник Enter у полі пошуку
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Робимо функцію глобальною для виклику з кнопки
+        window.performSearch = performSearch;
+    </script>
+</body>
+</html>

@@ -1,29 +1,97 @@
-name: Generate products.json
+const fs = require('fs');
+const path = require('path');
 
-on:
-  push:
-    branches: [ main ]  # або master, залежно від назви вашої основної гілки
-  workflow_dispatch:    # дозволяє запускати вручну з інтерфейсу GitHub
+// Рекурсивний пошук всіх HTML-файлів (крім search.html)
+function getHtmlFiles(dir) {
+    let results = [];
+    const list = fs.readdirSync(dir);
+    list.forEach(file => {
+        const filePath = path.join(dir, file);
+        const stat = fs.statSync(filePath);
+        if (stat && stat.isDirectory()) {
+            results = results.concat(getHtmlFiles(filePath));
+        } else if (file.endsWith('.html') && !file.includes('search')) {
+            results.push(filePath);
+        }
+    });
+    return results;
+}
 
-jobs:
-  generate:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+// Парсинг товарів з HTML-коду однієї сторінки
+function extractProducts(htmlContent, category) {
+    const products = [];
+    // Регулярний вираз для пошуку кожного блоку .product-card
+    // (враховуємо можливі перенесення рядків)
+    const productRegex = /<div class="product-card" data-articul="([^"]+)"[^>]*>([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>/g;
+    let match;
+    while ((match = productRegex.exec(htmlContent)) !== null) {
+        const articul = match[1];
+        const productHtml = match[2];
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+        // Назва (в <h3>)
+        const titleMatch = /<h3>([^<]+)<\/h3>/.exec(productHtml);
+        const title = titleMatch ? titleMatch[1].trim() : '';
 
-      - name: Run generation script
-        run: node generateProducts.js
+        // Опис (перший <p> без класу)
+        // Шукаємо <p> без атрибута class або з class, що не містить "articul"/"price"
+        const descMatch = /<p>([^<]+)<\/p>/.exec(productHtml);
+        let description = descMatch ? descMatch[1].trim() : '';
 
-      - name: Commit and push if changed
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add products.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update products.json"
-          git push
+        // Артикул (з елемента з класом articul)
+        const articulSpanMatch = /<p class="articul">[^0-9]*([^<]+)<\/p>/.exec(productHtml);
+        const articulText = articulSpanMatch ? articulSpanMatch[1].trim() : articul;
+
+        // Ціна
+        const priceMatch = /<p class="price">([^<]+)<\/p>/.exec(productHtml);
+        const price = priceMatch ? priceMatch[1].trim() : '';
+
+        // Усі зображення (з каруселі)
+        const images = [];
+        const imgRegex = /<img[^>]*src="([^"]+)"[^>]*>/g;
+        let imgMatch;
+        while ((imgMatch = imgRegex.exec(productHtml)) !== null) {
+            images.push(imgMatch[1]);
+        }
+
+        // Посилання на AliExpress
+        const linkMatch = /<a href="([^"]+)"[^>]*>Купити на AliExpress<\/a>/.exec(productHtml);
+        const link = linkMatch ? linkMatch[1] : '';
+
+        products.push({
+            articul: articul,
+            title: title,
+            description: description,
+            price: price,
+            image: images.length > 0 ? images[0] : '',   // перше зображення
+            images: images,                               // всі зображення
+            link: link,
+            category: category
+        });
+    }
+    return products;
+}
+
+// Основна функція
+function main() {
+    const allProducts = [];
+    const rootDir = '.';   // поточна папка
+    const htmlFiles = getHtmlFiles(rootDir);
+
+    htmlFiles.forEach(filePath => {
+        const content = fs.readFileSync(filePath, 'utf8');
+        // Визначаємо категорію за шляхом до файлу
+        let category = 'other';
+        if (filePath.includes('electronics')) category = 'electronics';
+        else if (filePath.includes('clothing')) category = 'clothing';
+        else if (filePath.includes('garden')) category = 'garden';
+
+        const products = extractProducts(content, category);
+        allProducts.push(...products);
+    });
+
+    // Записуємо результат у products.json
+    fs.writeFileSync('products.json', JSON.stringify(allProducts, null, 2));
+    console.log(`Згенеровано ${allProducts.length} товарів у products.json`);
+}
+
+main();

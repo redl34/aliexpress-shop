@@ -17,20 +17,17 @@ function getHtmlFiles(dir) {
 }
 
 function extractProduct(cardHtml) {
-    // Артикул
     const articulMatch = /data-articul="([^"]+)"/.exec(cardHtml);
-    const articul = articulMatch ? articulMatch[1] : '';
-    if (!articul) return null;
-
-    // Назва: все що між <h3> і </h3>
+    if (!articulMatch) return null;
+    const articul = articulMatch[1];
+    
     const titleMatch = /<h3>([^<]+)<\/h3>/.exec(cardHtml);
     const title = titleMatch ? titleMatch[1].trim() : '';
-
-    // Опис: після </h3> шукаємо <p> і беремо його вміст
+    
+    // Опис: після </h3> шукаємо <p>
     let description = '';
     const h3ClosePos = cardHtml.indexOf('</h3>');
     if (h3ClosePos !== -1) {
-        // Шукаємо перший <p> після h3ClosePos
         const pOpenPos = cardHtml.indexOf('<p>', h3ClosePos);
         if (pOpenPos !== -1) {
             const pClosePos = cardHtml.indexOf('</p>', pOpenPos);
@@ -39,23 +36,20 @@ function extractProduct(cardHtml) {
             }
         }
     }
-
-    // Ціна
+    
     const priceMatch = /<p class="price">([^<]+)<\/p>/.exec(cardHtml);
     const price = priceMatch ? priceMatch[1].trim() : '';
-
-    // Зображення
+    
     const images = [];
     const imgRegex = /<img[^>]*src="([^"]+)"[^>]*>/g;
     let imgMatch;
     while ((imgMatch = imgRegex.exec(cardHtml)) !== null) {
         images.push(imgMatch[1]);
     }
-
-    // Посилання
+    
     const linkMatch = /<a href="([^"]+)"[^>]*>Купити на AliExpress<\/a>/.exec(cardHtml);
     const link = linkMatch ? linkMatch[1] : '';
-
+    
     return { articul, title, description, price, images, link };
 }
 
@@ -63,37 +57,47 @@ function main() {
     const allProducts = [];
     const rootDir = '.';
     const htmlFiles = getHtmlFiles(rootDir);
-
-    console.log('Знайдено HTML-файлів (крім search.html):', htmlFiles.length);
-    htmlFiles.forEach((f, i) => console.log(`${i+1}. ${f}`));
-
+    
     htmlFiles.forEach(filePath => {
         const content = fs.readFileSync(filePath, 'utf8');
-        const parts = content.split('<div class="product-card"');
-        
-        for (let i = 1; i < parts.length; i++) {
-            const part = parts[i];
-            const endIdx = part.indexOf('</div></div></div>');
-            if (endIdx === -1) continue;
+        // Знаходимо всі входження <div class="product-card"
+        let startIdx = 0;
+        while (true) {
+            const cardStart = content.indexOf('<div class="product-card"', startIdx);
+            if (cardStart === -1) break;
             
-            const cardHtml = '<div class="product-card"' + part.substring(0, endIdx + 18);
+            // Шукаємо наступне входження, щоб визначити кінець поточної картки
+            const nextCardStart = content.indexOf('<div class="product-card"', cardStart + 1);
+            let cardEnd;
+            if (nextCardStart === -1) {
+                // Це остання картка, шукаємо кінець блоку products? Але простіше взяти до кінця файлу?
+                // Краще знайти закриття батьківського div, але це складно.
+                // Можна шукати послідовність, яка закриває картку: </div></div></div> або </div></div>
+                // Подивимося на ваш HTML: картка закривається двома div. Спробуємо шукати </div></div>
+                const possibleEnd = content.indexOf('</div></div>', cardStart);
+                if (possibleEnd === -1) break;
+                cardEnd = possibleEnd + 12; // довжина '</div></div>'
+            } else {
+                cardEnd = nextCardStart;
+            }
+            
+            const cardHtml = content.substring(cardStart, cardEnd);
             const product = extractProduct(cardHtml);
-            
             if (product && product.articul) {
-                // Визначаємо категорію
                 let category = 'other';
                 if (filePath.includes('electronics')) category = 'electronics';
                 else if (filePath.includes('clothing')) category = 'clothing';
                 else if (filePath.includes('garden')) category = 'garden';
-                
                 allProducts.push({ ...product, category });
-                console.log(`Знайдено: арт. ${product.articul}, назва: "${product.title}"`);
+                console.log(`Знайдено: ${product.articul} - ${product.title}`);
             }
+            
+            startIdx = cardEnd;
         }
     });
-
+    
     fs.writeFileSync('products.json', JSON.stringify(allProducts, null, 2));
-    console.log(`\nЗгенеровано ${allProducts.length} товарів у products.json`);
+    console.log(`Згенеровано ${allProducts.length} товарів`);
 }
 
 main();

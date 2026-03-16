@@ -17,22 +17,23 @@ function getHtmlFiles(dir) {
     return results;
 }
 
-// Витягування назви з HTML картки
+// Витягування назви (вміст <h3>)
 function extractTitle(cardHtml) {
-    // Шукаємо <h3> в межах блоку product-details
-    const detailsStart = cardHtml.indexOf('<div class="product-details">');
-    if (detailsStart === -1) return '';
-    const detailsEnd = cardHtml.indexOf('</div>', detailsStart);
-    const detailsBlock = cardHtml.substring(detailsStart, detailsEnd);
-    
-    const titleMatch = /<h3>([^<]+)<\/h3>/.exec(detailsBlock);
+    const titleMatch = /<h3>([^<]+)<\/h3>/.exec(cardHtml);
     return titleMatch ? titleMatch[1].trim() : '';
 }
 
-// Витягування опису (перший <p> без класу)
+// Витягування опису (перший <p> без класу, що йде після </h3>)
 function extractDescription(cardHtml) {
-    const descMatch = /<p>([^<]+)<\/p>/.exec(cardHtml);
-    return descMatch ? descMatch[1].trim() : '';
+    // Шукаємо позицію закриття h3
+    const h3ClosePos = cardHtml.indexOf('</h3>');
+    if (h3ClosePos === -1) return '';
+    // Шукаємо наступний <p> після цієї позиції
+    const nextPOpening = cardHtml.indexOf('<p>', h3ClosePos);
+    if (nextPOpening === -1) return '';
+    const nextPClosing = cardHtml.indexOf('</p>', nextPOpening);
+    if (nextPClosing === -1) return '';
+    return cardHtml.substring(nextPOpening + 3, nextPClosing).trim();
 }
 
 // Витягування ціни
@@ -82,7 +83,6 @@ function main() {
             // Артикул
             const articulMatch = /data-articul="([^"]+)"/.exec(cardHtml);
             const articul = articulMatch ? articulMatch[1] : '';
-            
             if (!articul) continue;
             
             const title = extractTitle(cardHtml);

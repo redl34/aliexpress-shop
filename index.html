@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
+        /* Your existing styles remain unchanged */
         .search-container {
             margin: 20px auto;
             max-width: 500px;
@@ -39,7 +40,6 @@
             background-color: #e55a5a;
         }
         
-        /* Стилі для кнопок соціальних мереж як на сторінці "Одяг" */
         .social-links {
             text-align: center;
         }
@@ -98,16 +98,12 @@
                 width: 100%;
                 max-width: 200px;
             }
-            
             .buttons {
                 flex-wrap: wrap;
             }
-            
-            /* Адаптивність для соціальних кнопок */
             .social-buttons {
                 gap: 10px;
             }
-            
             .social-buttons a {
                 min-width: 120px;
                 padding: 8px 15px;
@@ -120,7 +116,6 @@
                 align-items: center;
                 gap: 10px;
             }
-            
             .social-buttons a {
                 width: 180px;
             }
@@ -227,12 +222,13 @@
                 garden: 'garden_preview.jpg'
             };
             
-            // Визначаємо базовий шлях для зображень
+            // Визначаємо базовий шлях для зображень (виправлений GitHub шлях)
             const localBasePath = 'Oformlennya_imeg/';
-            const githubBasePath = 'https://raw.githubusercontent.com/redl34/aliexpress-shop/Oformlennya_imeg/';
+            // Виправлений GitHub шлях: гілка main, папка Oformlennya_imeg
+            const githubBasePath = 'https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/';
             
-            // Перевіряємо, чи працюємо локально (з file:// протоколом)
-            const isLocal = window.location.protocol === 'file:';
+            // Перевіряємо, чи працюємо локально (file:// або localhost)
+            const isLocal = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
             
             if (isLocal) {
                 // Локальний режим - використовуємо локальні шляхи
@@ -242,7 +238,6 @@
                 images.forEach(img => {
                     const imageName = img.getAttribute('data-image');
                     if (imageName) {
-                        // Повний шлях: папка + назва файлу
                         img.src = localBasePath + imageName;
                         console.log('Завантажую локальне зображення:', img.src);
                     }
@@ -262,7 +257,6 @@
                 images.forEach(img => {
                     const imageName = img.getAttribute('data-image');
                     if (imageName) {
-                        // Повний шлях: папка на GitHub + назва файлу
                         img.src = githubBasePath + imageName;
                         console.log('Завантажую онлайн зображення:', img.src);
                     }
@@ -289,10 +283,10 @@
                 };
             });
             
-            // Також додаємо обробник помилок для фонового зображення
+            // Обробник помилок для фонового зображення
             if (header) {
                 const bgImage = new Image();
-                const bgUrl = header.style.backgroundImage.replace('url("', '').replace('")', '');
+                const bgUrl = header.style.backgroundImage.replace(/url\(["']?/, '').replace(/["']?\)/, '');
                 if (bgUrl) {
                     bgImage.src = bgUrl;
                     bgImage.onerror = function() {

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Різне - Ali.Reed</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="Kartinki/favicon.png" rel="icon" type="image/png"/>
+<style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3E717A;
+        }
+        header {
+            background: url('Kartinki/clothing.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        header h1 {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        header .home-link, header .profile-link {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            border-radius: 5px;
+        }
+        header .home-link:hover, header .profile-link:hover {
+            background-color: #e55a5a;
+            text-decoration: none;
+        }
+        .search-container {
+            position: relative;
+            z-index: 2;
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            gap: 10px;
+        }
+        .search-container input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .search-container button:hover {
+            background-color: #e55a5a;
+        }
+        .products {
+            margin: 20px auto;
+            padding: 20px 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+        }
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 3 / 4;
+        }
+        .product-image-carousel {
+            position: relative;
+            width: 100%;
+            max-height: 50%;
+            overflow: hidden;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            display: none;
+            object-fit: contain;
+        }
+        .carousel-image.active {
+            display: block;
+        }
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-prev {
+            left: 0;
+        }
+        .carousel-next {
+            right: 0;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .indicator.active {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .product-details {
+            flex-grow: 1;
+            text-align: center;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-details h3 {
+            margin: 10px 0;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        .product-details .articul {
+            font-size: 0.9375em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details p {
+            font-size: 1em;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        .product-details a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #132F13;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: block;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        .product-details a:hover {
+            background-color: #0e240e;
+        }
+        .add-to-favorites {
+            background-color: #A9A34C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+        .add-to-favorites:hover {
+            background-color: #8e8a3f;
+        }
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer .social-links {
+            text-align: center;
+        }
+        footer .social-links h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 15px;
+        }
+        footer .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        footer .social-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 900px;
+            }
+        }
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 600px;
+            }
+            .carousel-prev, .carousel-next {
+                display: none;
+            }
+            .product-image-carousel {
+                max-height: 50%;
+            }
+            .carousel-image {
+                max-height: 100%;
+            }
+            .product-details h3 {
+                font-size: 1.1em;
+            }
+            .product-details .articul {
+                font-size: 0.8125em;
+            }
+            .product-details .price {
+                font-size: 1.3em;
+            }
+            .product-details a, .add-to-favorites {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 290px;
+                padding: 20px 10px;
+            }
+        }
+    </style>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js" type="module"></script>
+</head>
+<body>
+<header>
+<h1>Різне</h1>
+<a class="home-link" href="index.html">Повернутися на головну</a>
+<a class="profile-link" href="#" id="profileLink">Мій профіль</a>
+<div class="search-container">
+<input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
+<button onclick="searchProducts()">Пошук</button>
+</div>
+</header>
+<div class="products">
+<div class="product-card" data-articul="0044D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Босоніжки на шпильці" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0044D1.jpg"/><img alt="Босоніжки на шпильці" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0044D2.jpg"/><img alt="Босоніжки на шпильці" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0044D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Босоніжки на шпильці</h3><p>Елегантні зелені босоніжки з ефектними рожевими квітами та витонченими зав’язками навколо щиколотки. Ідеальний акцент для вашого літнього образу!</p><p class="articul">арт. 0044D</p><p class="price">2967.24 грн</p><a href="https://s.click.aliexpress.com/e/_c3c3QMT7" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0044D', 'Босоніжки на шпильці', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0044D1.jpg', 'https://s.click.aliexpress.com/e/_c3c3QMT7')">Додати до обраного</button></div></div><div class="product-card" data-articul="0045D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Елегантні босоніжки" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0045D1.jpg"/><img alt="Елегантні босоніжки" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0045D2.jpg"/><img alt="Елегантні босоніжки" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0045D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Елегантні босоніжки</h3><p>Вишукані сріблясті босоніжки на підборах з тонкими переплетеними ремінцями, що додають легкості та витонченості. Регульований ремінець на щиколотці забезпечує надійну фіксацію та комфорт під час ходьби.</p><p class="articul">арт. 0045D</p><p class="price">2661.04 грн</p><a href="https://s.click.aliexpress.com/e/_c2R50LLf" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0045D', 'Елегантні босоніжки', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0045D1.jpg', 'https://s.click.aliexpress.com/e/_c2R50LLf')">Додати до обраного</button></div></div><div class="product-card" data-articul="0046D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Босоніжки з перлинами" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0046D1.jpg"/><img alt="Босоніжки з перлинами" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0046D2.jpg"/><img alt="Босоніжки з перлинами" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0046D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Босоніжки з перлинами</h3><p>Розкішні босоніжки на високих підборах, декоровані сяючими перлинами. Вишуканий дизайн для весілля або особливого вечора. Справжнє втілення ніжності!</p><p class="articul">арт. 0046D</p><p class="price">1354.26 грн</p><a href="https://s.click.aliexpress.com/e/_c3yZd9v7" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0046D', 'Босоніжки з перлинами', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0046D1.jpg', 'https://s.click.aliexpress.com/e/_c3yZd9v7')">Додати до обраного</button></div></div><div class="product-card" data-articul="0047D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Мюлі з відкритим носком" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0047D1.jpg"/><img alt="Мюлі з відкритим носком" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0047D2.jpg"/><img alt="Мюлі з відкритим носком" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0047D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Мюлі з відкритим носком</h3><p>Мінімалістичні білі мюлі на фігурних підборах. Лаконічний дизайн з відкритим носком додасть витонченості як діловому, так і вечірньому образу.</p><p class="articul">арт. 0047D</p><p class="price">1301.21 грн</p><a href="https://s.click.aliexpress.com/e/_c4sggE09" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0047D', 'Мюлі з відкритим носком', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0047D1.jpg', 'https://s.click.aliexpress.com/e/_c4sggE09')">Додати до обраного</button></div></div><div class="product-card" data-articul="0048D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Босоніжки зі стразами" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0048D1.jpg"/><img alt="Босоніжки зі стразами" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0048D2.jpg"/><img alt="Босоніжки зі стразами" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0048D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Босоніжки зі стразами</h3><p>Ефектні босоніжки на високій шпильці з сяючим ремінцем. Витончений дизайн та дзеркальне покриття створять незабутній образ для особливого вечора.</p><p class="articul">арт. 0048D</p><p class="price">3819.78 грн</p><a href="https://s.click.aliexpress.com/e/_c4eT5nop" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0048D', 'Босоніжки зі стразами', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0048D1.jpg', 'https://s.click.aliexpress.com/e/_c4eT5nop')">Додати до обраного</button></div></div><div class="product-card" data-articul="0049D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Кросівки жіночі " class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0049D1.jpg"/><img alt="Кросівки жіночі " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0049D2.jpg"/><img alt="Кросівки жіночі " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0049D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки жіночі </h3><p>Легкі повсякденні кросівки з ефектним металевим блиском. Поєднання стилю та комфорту — ідеальний вибір для яскравих прогулянок та активних днів.</p><p class="articul">арт. 0049D</p><p class="price">549.22 грн</p><a href="https://s.click.aliexpress.com/e/_c3BkAn4h" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0049D', 'Кросівки жіночі ', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0049D1.jpg', 'https://s.click.aliexpress.com/e/_c3BkAn4h')">Додати до обраного</button></div></div><div class="product-card" data-articul="0050D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ботильйони" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0050D1.jpg"/><img alt="Ботильйони" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0050D2.jpg"/><img alt="Ботильйони" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0050D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ботильйони</h3><p>Стильні ботильйони на шпильці з витонченою шнурівкою та відкритим носком. Елегантний дизайн для впевненого та сексуального вечірнього образу.</p><p class="articul">арт. 0050D</p><p class="price">1767.48 грн</p><a href="https://s.click.aliexpress.com/e/_c420H7O" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0050D', 'Ботильйони', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0050D1.jpg', 'https://s.click.aliexpress.com/e/_c420H7O')">Додати до обраного</button></div></div><div class="product-card" data-articul="0051D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ботильйони на масивному підборі" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0051D1.jpg"/><img alt="Ботильйони на масивному підборі" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0051D2.jpg"/><img alt="Ботильйони на масивному підборі" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0051D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ботильйони на масивному підборі</h3><p>Трендові ботильйони на платформі та стійкому підборі. Блискавка ззаду додає зручності, а лаконічний дизайн робить їх ідеальними для осінніх образів.</p><p class="articul">арт. 0051D</p><p class="price">773.64 грн</p><a href="https://s.click.aliexpress.com/e/_c2Q2DW9P" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0051D', 'Ботильйони на масивному підборі', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0051D1.jpg', 'https://s.click.aliexpress.com/e/_c2Q2DW9P')">Додати до обраного</button></div></div><div class="product-card" data-articul="0052D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Туфлі-човники" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0052D1.jpg"/><img alt="Туфлі-човники" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0052D2.jpg"/><img alt="Туфлі-човники" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0052D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Туфлі-човники</h3><p>Ефектні лаковані туфлі з плавним переходом кольорів від рожевого до блакитного. Яскравий акцент для вашого образу, що привертає погляди.</p><p class="articul">арт. 0052D</p><p class="price">2273.27 грн</p><a href="https://s.click.aliexpress.com/e/_c3KoLndx" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0052D', 'Туфлі-човники', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0052D1.jpg', 'https://s.click.aliexpress.com/e/_c3KoLndx')">Додати до обраного</button></div></div><div class="product-card" data-articul="0053D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Кросівки "Neon Strike"' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0053D1.jpg"/><img alt='Кросівки "Neon Strike"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0053D2.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки "Neon Strike"</h3><p>Стильні чорні кросівки з яскравими помаранчевими акцентами та агресивним протектором. Легкий текстильний верх забезпечує комфорт під час руху.</p><p class="articul">арт. 0053D</p><p class="price">1169.83 грн</p><a href="https://s.click.aliexpress.com/e/_c3HKHkCH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0053D', 'Кросівки &quot;Neon Strike&quot;', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0053D1.jpg', 'https://s.click.aliexpress.com/e/_c3HKHkCH')">Додати до обраного</button></div></div><div class="product-card" data-articul="0054D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Кросівки чоловічі "Urban Wave"' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0054D1.jpg"/><img alt='Кросівки чоловічі "Urban Wave"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0054D2.jpg"/><img alt='Кросівки чоловічі "Urban Wave"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0054D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки чоловічі "Urban Wave"</h3><p>Стильні кросівки на масивній підошві з блакитними акцентами. Поєднання контрастних вставок та надійної амортизації для максимального комфорту щодня.</p><p class="articul">арт. 0054D</p><p class="price">926.07 грн</p><a href="https://s.click.aliexpress.com/e/_c4T9pCFx" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0054D', 'Кросівки чоловічі &quot;Urban Wave&quot;', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0054D1.jpg', 'https://s.click.aliexpress.com/e/_c4T9pCFx')">Додати до обраного</button></div></div><div class="product-card" data-articul="0055D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловічі легкі кросівки " class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0055D1.jpg"/><img alt="Чоловічі легкі кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0055D2.jpg"/><img alt="Чоловічі легкі кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0055D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловічі легкі кросівки </h3><p>Ультралегкі сірі кросівки з дихаючої сітки. Гнучка підошва та лаконічний дизайн роблять їх ідеальними для щоденних прогулянок та занять спортом.</p><p class="articul">арт. 0055D</p><p class="price">685.68 грн</p><a href="https://s.click.aliexpress.com/e/_c4DqysBx" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0055D', 'Чоловічі легкі кросівки ', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0055D1.jpg', 'https://s.click.aliexpress.com/e/_c4DqysBx')">Додати до обраного</button></div></div><div class="product-card" data-articul="0056D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Білі жіночі кросівки " class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0056D1.jpg"/><img alt="Білі жіночі кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0056D2.jpg"/><img alt="Білі жіночі кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0056D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Білі жіночі кросівки </h3><p>Стильні базові кросівки на масивній підошві. Лаконічний дизайн та універсальний колір роблять їх незамінними для будь-якого гардероба.</p><p class="articul">арт. 0056D</p><p class="price">656.03 грн</p><a href="https://s.click.aliexpress.com/e/_c2uySc33" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0056D', 'Білі жіночі кросівки ', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0056D1.jpg', 'https://s.click.aliexpress.com/e/_c2uySc33')">Додати до обраного</button></div></div><div class="product-card" data-articul="0057D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Кросівки Fashon Sport " class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0057D1.jpg"/><img alt="Кросівки Fashon Sport " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0057D2.jpg"/><img alt="Кросівки Fashon Sport " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0057D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки Fashon Sport </h3><p>Стильні хайтопи в біло-синьому дизайні на масивній підошві, жіночі кросівки . Трендовий силует та надійна фіксація стопи для вашого яскравого вуличного стилю.</p><p class="articul">арт. 0057D</p><p class="price">824.88 грн</p><a href="https://s.click.aliexpress.com/e/_c3aZBQlr" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0057D', 'Кросівки Fashon Sport ', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0057D1.jpg', 'https://s.click.aliexpress.com/e/_c3aZBQlr')">Додати до обраного</button></div></div><div class="product-card" data-articul="0058D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Жіночі кросівки " class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0058D1.jpg"/><img alt="Жіночі кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0058D2.jpg"/><img alt="Жіночі кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0058D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Жіночі кросівки </h3><p>Легкі повсякденні кросівки у світло-сірому кольорі. Ергономічний дизайн та м'яка підошва забезпечать комфорт і стильний вигляд на кожен день.</p><p class="articul">арт. 0058D</p><p class="price">3954.21 грн</p><a href="https://s.click.aliexpress.com/e/_c3w10lh7" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0058D', 'Жіночі кросівки ', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0058D1.jpg', 'https://s.click.aliexpress.com/e/_c3w10lh7')">Додати до обраного</button></div></div><div class="product-card" data-articul="0059D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловічі високі кросівки" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0059D1.jpg"/><img alt="Чоловічі високі кросівки" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0059D2.jpg"/><img alt="Чоловічі високі кросівки" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0059D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловічі високі кросівки</h3><p>Стильні хайтопи з контрастними сірими вставками та масивною підошвою. Сучасний дизайн та комфортна посадка для вашого ідеального street-style образу.</p><p class="articul">арт. 0059D</p><p class="price">1172.59 грн</p><a href="https://s.click.aliexpress.com/e/_c35pCMrL" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0059D', 'Чоловічі високі кросівки', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0059D1.jpg', 'https://s.click.aliexpress.com/e/_c35pCMrL')">Додати до обраного</button></div></div><div class="product-card" data-articul="0060D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловічі шкіряні сандалі" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0060D1.jpg"/><img alt="Чоловічі шкіряні сандалі" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0060D2.jpg"/><img alt="Чоловічі шкіряні сандалі" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0060D3.jpg"/><img alt="Чоловічі шкіряні сандалі" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0060D4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловічі шкіряні сандалі</h3><p>Стильні та зручні сандалі темно-синього кольору. Анатомічна підошва та широкі ремінці забезпечують ідеальну посадку та комфорт протягом усього дня.</p><p class="articul">арт. 0060D</p><p class="price">1339.06 грн</p><a href="https://s.click.aliexpress.com/e/_c3SSkyDf" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0060D', 'Чоловічі шкіряні сандалі', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0060D1.jpg', 'https://s.click.aliexpress.com/e/_c3SSkyDf')">Додати до обраного</button></div></div><div class="product-card" data-articul="0061D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Кросівки "Urban Classic"' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0061D1.jpg"/><img alt='Кросівки "Urban Classic"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0061D2.jpg"/><img alt='Кросівки "Urban Classic"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0061D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки "Urban Classic"</h3><p>Універсальні білі кросівки з лаконічним дизайном. Якісні матеріали та м'яка підошва забезпечують комфорт, що робить їх базою для будь-якого гардероба.</p><p class="articul">арт. 0061D</p><p class="price">739.99 грн</p><a href="https://s.click.aliexpress.com/e/_c3xHIXdx" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0061D', 'Кросівки &quot;Urban Classic&quot;', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0061D1.jpg', 'https://s.click.aliexpress.com/e/_c3xHIXdx')">Додати до обраного</button></div></div><div class="product-card" data-articul="0062D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Кросівки "White Energy"' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0062D1.jpg"/><img alt='Кросівки "White Energy"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0062D2.jpg"/><img alt='Кросівки "White Energy"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0062D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки "White Energy"</h3><p>Стильні  кросівки зі стильними вставками. Легка перфорація та амортизуюча підошва дарують комфорт і свіжість вашому образу щодня.</p><p class="articul">арт. 0062D</p><p class="price">918.04 грн</p><a href="https://s.click.aliexpress.com/e/_c4nGToWp" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0062D', 'Кросівки &quot;White Energy&quot;', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0062D1.jpg', 'https://s.click.aliexpress.com/e/_c4nGToWp')">Додати до обраного</button></div></div><div class="product-card" data-articul="0063D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Сучасні чоловічі кросівки " class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0063D1.jpg"/><img alt="Сучасні чоловічі кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0063D2.jpg"/><img alt="Сучасні чоловічі кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0063D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Сучасні чоловічі кросівки </h3><p>Стильні кросівки у сірих відтінках з яскравими вставками. Сучасний дизайн, надійна шнурівка та амортизуюча підошва для комфорту протягом усього дня.</p><p class="articul">арт. 0063D</p><p class="price">823.54 грн</p><a href="https://s.click.aliexpress.com/e/_c3WxxGbL" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0063D', 'Сучасні чоловічі кросівки ', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0063D1.jpg', 'https://s.click.aliexpress.com/e/_c3WxxGbL')">Додати до обраного</button></div></div><div class="product-card" data-articul="0064D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Класичні кросівки " class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0064D1.jpg"/><img alt="Класичні кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0064D2.jpg"/><img alt="Класичні кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0064D3.jpg"/><img alt="Класичні кросівки " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0064D4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Класичні кросівки </h3><p>Сучасна класика яка ніколи не змінюється, вона просто є жавди, для тихто притримується класичного стилю. Чорні кросівки справжній стиль такий який не потрібно змінювати це вже вершина стилю.</p><p class="articul">арт. 0064D</p><p class="price">519.83 грн</p><a href="https://s.click.aliexpress.com/e/_c2ujq3BR" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0064D', 'Класичні кросівки ', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0064D1.jpg', 'https://s.click.aliexpress.com/e/_c2ujq3BR')">Додати до обраного</button></div></div><div class="product-card" data-articul="0065D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Кросівки 55" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0065D1.jpg"/><img alt="Кросівки 55" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0065D2.jpg"/><img alt="Кросівки 55" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0065D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки 55</h3><p>Модний сучасний стиль який говорить зам за себе.</p><p class="articul">арт. 0065D</p><p class="price">613.49 грн</p><a href="https://s.click.aliexpress.com/e/_c3fnl0ud" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0065D', 'Кросівки 55', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0065D1.jpg', 'https://s.click.aliexpress.com/e/_c3fnl0ud')">Додати до обраного</button></div></div><div class="product-card" data-articul="0066D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Кросівки 5.0 PRO sport " class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0066D1.jpg"/><img alt="Кросівки 5.0 PRO sport " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0066D2.jpg"/><img alt="Кросівки 5.0 PRO sport " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0066D3.jpg"/><img alt="Кросівки 5.0 PRO sport " class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0066D4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки 5.0 PRO sport </h3><p>Кросівки які підкреслять ваш незвичайний стиль, розфарбують сірі щодені тренування в сучасний яскравий спосіб життя.</p><p class="articul">арт. 0066D</p><p class="price">590.20 грн</p><a href="https://s.click.aliexpress.com/e/_c30J5Z4v" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0066D', 'Кросівки 5.0 PRO sport ', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0066D1.jpg', 'https://s.click.aliexpress.com/e/_c30J5Z4v')">Додати до обраного</button></div></div><div class="product-card" data-articul="0067D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Кросівки AIR"' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0067D1.jpg"/><img alt='Кросівки AIR"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0067D2.jpg"/><img alt='Кросівки AIR"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0067D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки AIR"</h3><p>Кросівки AIR'' GAECRLOF яскраві ситьні кросівки для зручних тренувань у літку на свіжому повітрі.</p><p class="articul">арт. 0067D</p><p class="price">595.47 грн</p><a href="https://s.click.aliexpress.com/e/_c32zDv5x" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0067D', 'Кросівки AIR&quot;', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0067D1.jpg', 'https://s.click.aliexpress.com/e/_c32zDv5x')">Додати до обраного</button></div></div><div class="product-card" data-articul="0068D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Кросівки "Matrix Runner"' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0068D1.jpg"/><img alt='Кросівки "Matrix Runner"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0068D2.jpg"/><img alt='Кросівки "Matrix Runner"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0068D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки "Matrix Runner"</h3><p>Ультрасучасні кросівки з дихаючого текстилю. Унікальна гнучка підошва забезпечує відмінну амортизацію та неповторний стиль для активного життя.</p><p class="articul">арт. 0068D</p><p class="price">561.40 грн</p><a href="https://s.click.aliexpress.com/e/_c2ucH9aH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0068D', 'Кросівки &quot;Matrix Runner&quot;', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0068D1.jpg', 'https://s.click.aliexpress.com/e/_c2ucH9aH')">Додати до обраного</button></div></div><div class="product-card" data-articul="0069D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Кросівки "Retro Stripe"' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0069D1.jpg"/><img alt='Кросівки "Retro Stripe"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0069D2.jpg"/><img alt='Кросівки "Retro Stripe"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0069D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки "Retro Stripe"</h3><p>Стильні повсякденні кросівки з контрастними смужками. Класичний силует, надійна підошва та лаконічний дизайн для комфортних прогулянок містом.</p><p class="articul">арт. 0069D</p><p class="price">1327.90 грн</p><a href="https://s.click.aliexpress.com/e/_c3w9y9lj" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0069D', 'Кросівки &quot;Retro Stripe&quot;', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0069D1.jpg', 'https://s.click.aliexpress.com/e/_c3w9y9lj')">Додати до обраного</button></div></div><div class="product-card" data-articul="0070D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Кросівки "Neon Speed"' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0070D1.jpg"/><img alt='Кросівки "Neon Speed"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0070D2.jpg"/><img alt='Кросівки "Neon Speed"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0070D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки "Neon Speed"</h3><p>Динамічні кросівки з яскравими неоновими акцентами. Поєднання дихаючих матеріалів та амортизуючої підошви для енергійних тренувань та стильних прогулянок.</p><p class="articul">арт. 0070D</p><p class="price">1027.96 грн</p><a href="https://s.click.aliexpress.com/e/_c3XRtovX" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0070D', 'Кросівки &quot;Neon Speed&quot;', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0070D1.jpg', 'https://s.click.aliexpress.com/e/_c3XRtovX')">Додати до обраного</button></div></div><div class="product-card" data-articul="0071D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Кросівки "Flame Shadow"' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0071D1.jpg"/><img alt='Кросівки "Flame Shadow"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0071D2.jpg"/><img alt='Кросівки "Flame Shadow"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0071D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки "Flame Shadow"</h3><p>Стильні кросівки з ефектним переходом кольору та вогняним візерунком. Поєднання сучасного дизайну та масивної підошви для вашого драйвового стилю.</p><p class="articul">арт. 0071D</p><p class="price">1127.96 грн</p><a href="https://s.click.aliexpress.com/e/_c4mIDXEN" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0071D', 'Кросівки &quot;Flame Shadow&quot;', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0071D1.jpg', 'https://s.click.aliexpress.com/e/_c4mIDXEN')">Додати до обраного</button></div></div><div class="product-card" data-articul="0072D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Високі кросівки "Street Alpha"' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0072D1.jpg"/><img alt='Високі кросівки "Street Alpha"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0072D2.jpg"/><img alt='Високі кросівки "Street Alpha"' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0072D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Високі кросівки "Street Alpha"</h3><p>Стильні хайтопи на масивній підошві з контрастними деталями. Міцні матеріали та класичний дизайн для комфортного повсякденного носіння.</p><p class="articul">арт. 0072D</p><p class="price">1269.25 грн</p><a href="https://s.click.aliexpress.com/e/_c4dd8V93" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0072D', 'Високі кросівки &quot;Street Alpha&quot;', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0072D1.jpg', 'https://s.click.aliexpress.com/e/_c4dd8V93')">Додати до обраного</button></div></div><div class="product-card" data-articul="0073D"><div class="product-image-carousel"><div class="carousel-container"><img alt='Кросівки "Urban Forest' class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0073D1.jpg"/><img alt='Кросівки "Urban Forest' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0073D2.jpg"/><img alt='Кросівки "Urban Forest' class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0073D3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки "Urban Forest</h3><p>Стильні повсякденні кросівки з комбінованих матеріалів. Зручна анатомічна підошва та стриманий дизайн ідеально підійдуть для активного життя в місті.</p><p class="articul">арт. 0073D</p><p class="price">961.84 грн</p><a href="https://s.click.aliexpress.com/e/_c4VwDrKz" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0073D', 'Кросівки &quot;Urban Forest', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0073D1.jpg', 'https://s.click.aliexpress.com/e/_c4VwDrKz')">Додати до обраного</button></div></div><div class="product-card" data-articul="0074D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Кросівки «Azure Sport»" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0074D1.jpg"/><img alt="Кросівки «Azure Sport»" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0074D2.jpg"/><img alt="Кросівки «Azure Sport»" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0074D3.jpg"/><img alt="Кросівки «Azure Sport»" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0074D4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Кросівки «Azure Sport»</h3><p>Стильні демісезонні кросівки на масивній підошві. Поєднання комфорту та яскравого дизайну для щоденних прогулянок. Підкреслять ваш індивідуальний стиль!</p><p class="articul">арт. 0074D</p><p class="price">1246.30 грн</p><a href="https://s.click.aliexpress.com/e/_c4OSZeWv" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0074D', 'Кросівки «Azure Sport»', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0074D1.jpg', 'https://s.click.aliexpress.com/e/_c4OSZeWv')">Додати до обраного</button></div></div><div class="product-card" data-articul="0075D"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловічі шльопанці через палець «Beige Comfort»" class="carousel-image active" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0075D1.jpg"/><img alt="Чоловічі шльопанці через палець «Beige Comfort»" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0075D2.jpg"/><img alt="Чоловічі шльопанці через палець «Beige Comfort»" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0075D3.jpg"/><img alt="Чоловічі шльопанці через палець «Beige Comfort»" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0075D4.jpg"/><img alt="Чоловічі шльопанці через палець «Beige Comfort»" class="carousel-image" src="D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0075D5.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловічі шльопанці через палець «Beige Comfort»</h3><p>Легкі та еластичні пантолети з фіксацією великого пальця. Ергономічний дизайн та м'яка підошва для максимального комфорту на відпочинку та вдома.</p><p class="articul">арт. 0075D</p><p class="price">1604.90 грн</p><a href="https://s.click.aliexpress.com/e/_c3QDpUdn" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0075D', 'Чоловічі шльопанці через палець «Beige Comfort»', 'D:\Директорія сайту\aliexpress-shop повна деректорія для завантаження на Git hab\Footwear_imeg\Різне/Різне/0075D1.jpg', 'https://s.click.aliexpress.com/e/_c3QDpUdn')">Додати до обраного</button></div></div></div>
+<div class_="pagination" style="display: flex; justify-content: center; gap: 10px; background-color: #e0e0e0; padding: 10px; border-radius: 10px; margin: 20px auto; max-width: 33%;"><a href="footwear_page_1.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">1</a><a class="active" href="footwear_page_2.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: white; color: black; border: 5px solid #e0930d; text-decoration: none; border-radius: 9px;">2</a><a href="footwear_page_3.html" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; background-color: #d3d3d3; color: black; border: 1px solid #a9a9a9; text-decoration: none; border-radius: 9px;">3</a></div><footer>
+<div class="social-links">
+<h2>Слідкуй за новинками в</h2>
+<div class="social-buttons">
+<a class="tiktok" href="https://www.tiktok.com/@reedoffe" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+<a class="facebook" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+<a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</div>
+</div>
+<p>© 2025 Ali.Reed</p>
+</footer>
+<script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+        const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const profileLink = document.getElementById('profileLink');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                profileLink.href = 'profile.html';
+                profileLink.textContent = 'Мій профіль';
+            } else {
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
+            }
+        });
+
+        window.addToFavorites = async function(id, title, image, link) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
+                });
+                alert('Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка додавання:', error);
+            }
+        };
+
+        document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('.carousel-image');
+            const indicators = carousel.querySelectorAll('.indicator');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.toggle('active', index === currentIndex);
+                });
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                } else if (touchEndX > touchStartX + 50) {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                }
+            });
+        });
+
+        window.searchProducts = function() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+            const products = document.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                const articul = product.getAttribute('data-articul').toLowerCase();
+                const title = product.querySelector('.product-details h3').textContent.toLowerCase();
+                
+                if (articul.includes(searchInput) || title.includes(searchInput)) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            if (!searchInput) {
+                products.forEach(product => {
+                    product.style.display = 'flex';
+                });
+            }
+        };
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
+                searchProducts();
+            }
+        };
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+    </script>
+</body>
+</html>

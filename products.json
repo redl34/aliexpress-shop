@@ -423,27 +423,424 @@
     "category": "electronics"
   },
   {
-    "articul": "0097A",
-    "title": "Ноутбук Laptop",
-    "description": "Новий 14,1-дюймовий ноутбук Intel Core i9-9900 32 ГБ 2 ТБ Ігровий ПК Ультратонкий офісний навчальний комп'ютер Windows 11 Pro 1920*1080 HD",
-    "price": "12192.01 грн",
+    "articul": "0247B",
+    "title": "Міні зволожувач повітря",
+    "description": "250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою",
+    "price": "76.54 грн",
     "images": [
-      "Electronics_imeg/0097A1.jpg",
-      "Electronics_imeg/0097A2.jpg",
-      "Electronics_imeg/0097A3.jpg"
+      "Electronics_imeg/0247B1.jpg",
+      "Electronics_imeg/0247B2.jpg",
+      "Electronics_imeg/0247B3.jpg"
     ],
-    "link": "https://s.click.aliexpress.com/e/_c3mcu8ud",
+    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
     "category": "electronics"
   },
   {
-    "articul": "0098A",
+    "articul": "0001A",
+    "title": "Міні-зволожувач повітря",
+    "description": "250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою",
+    "price": "286.93 грн",
+    "images": [
+      "Electronics_imeg/0001A1.jpg",
+      "Electronics_imeg/0001A2.jpg",
+      "Electronics_imeg/0001A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4bAx3hF",
+    "category": "electronics"
+  },
+  {
+    "articul": "0002A",
+    "title": "Зволожувач повітря",
+    "description": "Зволожувач повітря з ефірними оліями, зволожувачі повітря для дому, ароматичний зволожувач, полум'я, автоматичний ароматичний дифузор зі світлодіодним пультом дистанційного керування",
+    "price": "939.04 грн",
+    "images": [
+      "Electronics_imeg/0002A1.jpg",
+      "Electronics_imeg/0002A2.jpg",
+      "Electronics_imeg/0002A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3ZFuXml",
+    "category": "electronics"
+  },
+  {
+    "articul": "0003A",
+    "title": "Зволожувач повітря",
+    "description": "Полум'я Ароматний зволожувач повітря Міні USB Ефірна олія Дифузор з пультом дистанційного керування та легким вогнем Ароматерапія Аромат Дифузор",
+    "price": "1002.93 грн",
+    "images": [
+      "Electronics_imeg/0003A1.jpg",
+      "Electronics_imeg/0003A2.jpg",
+      "Electronics_imeg/0003A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3X6hOg9",
+    "category": "electronics"
+  },
+  {
+    "articul": "0004A",
+    "title": "Зволожувач повітря медуза",
+    "description": "Динамічний зволожувач повітря з медузою 250 мл дифузор ефірних олій з дистанційним керуванням для спальні з 7 барвистими нічними вогнями",
+    "price": "1047.87 грн",
+    "images": [
+      "Electronics_imeg/0004A1.jpg",
+      "Electronics_imeg/0004A2.jpg",
+      "Electronics_imeg/0004A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3nmnWkH",
+    "category": "electronics"
+  },
+  {
+    "articul": "0005A",
+    "title": "Зволожувач повітря ,,Полум'я,,",
+    "description": "Імітація полум'я Ароматизатор Дифузор Багаття Зволожувач повітря Ультразвуковий Прохолодний Туман Maker Fogger Світлодіодна лампа Ефірна олія Дифузор",
+    "price": "662.34 грн",
+    "images": [
+      "Electronics_imeg/0005A1.jpg",
+      "Electronics_imeg/0005A2.jpg",
+      "Electronics_imeg/0005A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3CZaJXf",
+    "category": "electronics"
+  },
+  {
+    "articul": "0006A",
+    "title": "Зволожувач повітря ,,Багаття,,",
+    "description": "Зволожувач повітря багаття, дифузор з кристалічною сіллю, ароматерапія, ультразвуковий дифузор з ефірними оліями, зволожувач повітря з прохолодним туманом для спальні",
+    "price": "773.46 грн",
+    "images": [
+      "Electronics_imeg/0006A1.jpg",
+      "Electronics_imeg/0006A2.jpg",
+      "Electronics_imeg/0006A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4LWjHLr",
+    "category": "electronics"
+  },
+  {
+    "articul": "0007A",
+    "title": "Зволожувач повітря ,,Дощ,,",
+    "description": "Арома-зволожувач повітря зволожувач дощу барвисте світло білий шум ефірні олії дифузор домашній ультразвуковий аромат дифузор",
+    "price": "1158.87 грн",
+    "images": [
+      "Electronics_imeg/0007A1.jpg",
+      "Electronics_imeg/0007A2.jpg",
+      "Electronics_imeg/0007A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4dJIJw5",
+    "category": "electronics"
+  },
+  {
+    "articul": "0008A",
+    "title": "Ароматичний дифузор ,,Медуза,,",
+    "description": "Новий обертовий ароматичний дифузор медузи для дому на робочому столі зволожувач свіжого повітря з барвистим дифузором навколишнього світла",
+    "price": "1041.56 грн",
+    "images": [
+      "Electronics_imeg/0008A1.jpg",
+      "Electronics_imeg/0008A2.jpg",
+      "Electronics_imeg/0008A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3iSB4kN",
+    "category": "electronics"
+  },
+  {
+    "articul": "0009A",
+    "title": "Безпровідні наушники XIAOMI",
+    "description": "XIAOMI Air 7 Bluetooth 5.3 TWS Гарнітура HiFi Бездротові навушники з мікрофоном та шумозаглушенням Навушники Водонепроникні",
+    "price": "307.37 грн",
+    "images": [
+      "Electronics_imeg/0009A1.jpg",
+      "Electronics_imeg/0009A2.jpg",
+      "Electronics_imeg/0009A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3ZYlgEt",
+    "category": "electronics"
+  },
+  {
+    "articul": "0010A",
+    "title": "Вентилятор",
+    "description": "Модернізований турбопотужний вентилятор  високошвидкісний повітряний вентилятор універсальний безщітковий пилозбірник з комплектом для пилососа міні-турбоструминний вентилятор",
+    "price": "846.92 грн",
+    "images": [
+      "Electronics_imeg/0010A1.jpg",
+      "Electronics_imeg/0010A2.jpg",
+      "Electronics_imeg/0010A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c2zSg4yV",
+    "category": "electronics"
+  },
+  {
+    "articul": "0011A",
+    "title": "Прилад для видалення ворсу",
+    "description": "Видалення ворсу для одягу USB електричний акумуляторний тример для волосся м'яч ворсу одяг светр бритва котушки для видалення пристрою",
+    "price": "132.79 грн",
+    "images": [
+      "Electronics_imeg/0011A1.jpg",
+      "Electronics_imeg/0011A2.jpg",
+      "Electronics_imeg/0011A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4kWa3fP",
+    "category": "electronics"
+  },
+  {
+    "articul": "0012A",
+    "title": "Видалення ворсу з одягу",
+    "description": "Видалення ворсу для одягу USB електричний акумуляторний тример для волосся м'яч ворсу одяг светр бритва котушки для видалення пристрою",
+    "price": "219.75 грн",
+    "images": [
+      "Electronics_imeg/0012A1.jpg",
+      "Electronics_imeg/0012A2.jpg",
+      "Electronics_imeg/0012A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4qlHKqt",
+    "category": "electronics"
+  },
+  {
+    "articul": "0013A",
+    "title": "GPS рекер",
+    "description": "Гарячі 1/2/4 шт. смарт-трекери для Android IOS Bluetooth-трекер працює з Google Find Hub, пристроєм пошуку предметів для багажу",
+    "price": "313.87 грн",
+    "images": [
+      "Electronics_imeg/0013A1.jpg",
+      "Electronics_imeg/0013A2.jpg",
+      "Electronics_imeg/0013A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4ShJ5Ol",
+    "category": "electronics"
+  },
+  {
+    "articul": "0014A",
+    "title": "GPS трекер",
+    "description": "Локатор відстеження діапазону Bluetooth, далекобійний пошук для Apple, знайти мій додаток, голосовий пошук ключів, сумка для іграшок, смарт-тег для IOS",
+    "price": "280.01 грн",
+    "images": [
+      "Electronics_imeg/0014A1.jpg",
+      "Electronics_imeg/0014A2.jpg",
+      "Electronics_imeg/0014A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3ML2N3f",
+    "category": "electronics"
+  },
+  {
+    "articul": "0015A",
+    "title": "Портативний пилесос",
+    "description": "Портативний автомобільний пилосос Xiaomi Pile Collector Потужний всмоктувальний електричний бездротовий розумний домашній пилосос для прибирання",
+    "price": "374.88 грн",
+    "images": [
+      "Electronics_imeg/0015A1.jpg",
+      "Electronics_imeg/0015A2.jpg",
+      "Electronics_imeg/0015A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c39zh2MV",
+    "category": "electronics"
+  },
+  {
+    "articul": "0016A",
+    "title": "Домашня аудіосистема",
+    "description": "Xiaomi Sound Party Global Version Бездротова Bluetooth-колонка Портативна розумна домашня аудіосистема Потужні баси з великим радіусом дії",
+    "price": "5030.97 грн",
+    "images": [
+      "Electronics_imeg/0016A1.jpg",
+      "Electronics_imeg/0016A2.jpg",
+      "Electronics_imeg/0016A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3gu6y9n",
+    "category": "electronics"
+  },
+  {
+    "articul": "0017A",
+    "title": "GPS-трекер для тварин",
+    "description": "Міні GPS-трекер Bluetooth 5.0 Anti-Lost пристрій для домашніх тварин дітей сумка-гаманець відстеження для IOS/Android Smart Finder локатор аксесуари",
+    "price": "100.19 грн",
+    "images": [
+      "Electronics_imeg/0017A1.jpg",
+      "Electronics_imeg/0017A2.jpg",
+      "Electronics_imeg/0017A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c37O5g7j",
+    "category": "electronics"
+  },
+  {
+    "articul": "0018A",
+    "title": "GPS трекер для тварин від Xiaomi",
+    "description": "Xiaomi Mini GPS Tracker Smart Bluetooth Locator System FindMy App Air Tag Child Finder Bag Anti-Loss Pet Cat Нашийник з Tracker NE",
+    "price": "135.64 грн",
+    "images": [
+      "Electronics_imeg/0018A1.jpg",
+      "Electronics_imeg/0018A2.jpg",
+      "Electronics_imeg/0018A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c44A0oUz",
+    "category": "electronics"
+  },
+  {
+    "articul": "0019A",
+    "title": "Бездротова миш",
+    "description": "Бездротова миша акумуляторна безшумна миша зі світлодіодним підсвічуванням для ПК, ноутбука, комп'ютерної миші 2,4 ГГц приймач Bluetooth дворежимна оптична миша",
+    "price": "195.77 грн",
+    "images": [
+      "Electronics_imeg/0019A1.jpg",
+      "Electronics_imeg/0019A2.jpg",
+      "Electronics_imeg/0019A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3kj5G1P",
+    "category": "electronics"
+  },
+  {
+    "articul": "0020A",
+    "title": "Комп'ютерна миш",
+    "description": "Компютерна миш з RGB підсвічуванням ігрова миша чорного кольору ергономічна дротова комп'ютерна миша зі стільниковим охолодженням, ідеально підходить для офісу",
+    "price": "189.70 грн",
+    "images": [
+      "Electronics_imeg/0020A1.jpg",
+      "Electronics_imeg/0020A2.jpg",
+      "Electronics_imeg/0020A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4mvRSTx",
+    "category": "electronics"
+  },
+  {
+    "articul": "0021A",
+    "title": "Бездротова ігрова миш",
+    "description": "Нова бездротова миша Rem Emilia Co Branded Anime 2.4G, безшумна, акумуляторна, ергономічна миша в стилі аніме, ігрова комп'ютерна миша з гладкою поверхнею",
+    "price": "800.22 грн",
+    "images": [
+      "Electronics_imeg/0021A1.jpg",
+      "Electronics_imeg/0021A2.jpg",
+      "Electronics_imeg/0021A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3OxF5Ad",
+    "category": "electronics"
+  },
+  {
+    "articul": "0022A",
+    "title": "Миш компютерна",
+    "description": "USB для бездротової Bluetooth-миші з двома режимами високої вартості Bluetooth-миша з підсвіткою для офісного використання зі світлодіодним підсвічуванням універсального дизайну для комп'ютера, планшета",
+    "price": "328.23 грн",
+    "images": [
+      "Electronics_imeg/0022A1.jpg",
+      "Electronics_imeg/0022A2.jpg",
+      "Electronics_imeg/0022A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c389Uyzn",
+    "category": "electronics"
+  },
+  {
+    "articul": "0023A",
+    "title": "Коврик для пк",
+    "description": "Килимок для миші Рататуй аніме ігровий великий XXL аксесуари килимок для миші геймер ПК повний комп'ютер клавіатура настільний килимок Varmilo настільний килимок розміри 600x300x2 мм",
+    "price": "339.89 грн",
+    "images": [
+      "Electronics_imeg/0023A1.jpg",
+      "Electronics_imeg/0023A2.jpg",
+      "Electronics_imeg/0023A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4qB5tFR",
+    "category": "electronics"
+  },
+  {
+    "articul": "0024A",
+    "title": "Коврик для пк аніме",
+    "description": "Килимок для миші Dragon DBZ Computer Speed ​​типу килим для гравців у кіберспортивний спорт, клавіатура, килимок для миші для ноутбука, офісний килимок",
+    "price": "333.11 грн",
+    "images": [
+      "Electronics_imeg/0024A1.jpg",
+      "Electronics_imeg/0024A2.jpg",
+      "Electronics_imeg/0024A3.jpg",
+      "Electronics_imeg/0024A4.jpg",
+      "Electronics_imeg/0024A5.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3G0wPM1",
+    "category": "electronics"
+  },
+  {
+    "articul": "0025A",
+    "title": "Аніме килимок",
+    "description": "Аніме килимок для миші P-покемонів Bulbasaur HD друк комп'ютерний геймер блокувальний край килимок для миші XXL клавіатура ПК килимок для миші",
+    "price": "214.01 грн",
+    "images": [
+      "Electronics_imeg/0025A1.jpg",
+      "Electronics_imeg/0025A2.jpg",
+      "Electronics_imeg/0025A3.jpg",
+      "Electronics_imeg/0025A4.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3z6INRn",
+    "category": "electronics"
+  },
+  {
+    "articul": "0026A",
+    "title": "Килимок для миші",
+    "description": "Маусепад, невеликий килимок для столу, протиковзкий килимок для миші, настільні предмети, розкішний килимок для комп'ютерної миші, простий килимок для миші, аксесуари для робочого столу",
+    "price": "62.68 грн",
+    "images": [
+      "Electronics_imeg/0026A1.jpg",
+      "Electronics_imeg/0026A2.jpg",
+      "Electronics_imeg/0026A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3lymXBJ",
+    "category": "electronics"
+  },
+  {
+    "articul": "0027A",
+    "title": "Килимок для миші RAZER",
+    "description": "Килимок для миші RAZER, комп'ютер, ноутбук, аніме, шестикутник, клавіатура, килимок для миші, великий килимок для миші Razer, клавіатури, геймери, декор, новий килимок для столу",
+    "price": "284.57 грн",
+    "images": [
+      "Electronics_imeg/0027A1.jpg",
+      "Electronics_imeg/0027A2.jpg",
+      "Electronics_imeg/0027A3.jpg",
+      "Electronics_imeg/0027A4.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4D6H0WZ",
+    "category": "electronics"
+  },
+  {
+    "articul": "0028A",
+    "title": "Килимок для комп'ютера RIAS",
+    "description": "XXL килимок для миші комп'ютер RIAS аніме сексуальні дівчата клавіатура килимок для миші геймер м'який офісний килимок настільний килимок 900X400 килимок для миші",
+    "price": "239.93 грн",
+    "images": [
+      "Electronics_imeg/0028A1.jpg",
+      "Electronics_imeg/0028A2.jpg",
+      "Electronics_imeg/0028A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3UpwrA5",
+    "category": "electronics"
+  },
+  {
+    "articul": "0029A",
+    "title": "Килимок для пк пікачу",
+    "description": "XXL килимок для миші аніме P-Pokemons Eevee Gamer комп'ютерний килимок для миші ігрові аксесуари планшет Varmilo клавіатура килимок для миші офісний подарунок",
+    "price": "289.03 грн",
+    "images": [
+      "Electronics_imeg/0029A1.jpg",
+      "Electronics_imeg/0029A2.jpg",
+      "Electronics_imeg/0029A3.jpg",
+      "Electronics_imeg/0029A4.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3fuDCdX",
+    "category": "electronics"
+  },
+  {
+    "articul": "0030A",
+    "title": "Килимки для пк аніме",
+    "description": "Килимки для миші аніме килимок для миші геймер клавіатура килимок для миші ПК комп'ютер м'який гумовий килимок для столу ігровий килимок нековзний килимок для миші S-Сейлор Мун",
+    "price": "216.25 грн",
+    "images": [
+      "Electronics_imeg/0030A1.jpg",
+      "Electronics_imeg/0030A2.jpg",
+      "Electronics_imeg/0030A3.jpg",
+      "Electronics_imeg/0030A4.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3gmB5db",
+    "category": "electronics"
+  },
+  {
+    "articul": "0031A",
     "title": "",
     "description": "",
     "price": "",
     "images": [
-      "Electronics_imeg/0098A1.jpg",
-      "Electronics_imeg/0098A2.jpg",
-      "Electronics_imeg/0098A3.jpg"
+      "Electronics_imeg/0031A1.jpg",
+      "Electronics_imeg/0031A2.jpg",
+      "Electronics_imeg/0031A3.jpg",
+      "Electronics_imeg/0031A4.jpg"
     ],
     "link": "",
     "category": "electronics"

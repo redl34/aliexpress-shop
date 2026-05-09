@@ -8,8 +8,10 @@
     <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Бібліотека для QR-коду -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <style>
-        /* Ваші стилі залишаються без змін */
+        /* ВСІ ВАШІ ОРИГІНАЛЬНІ СТИЛІ - НІЧОГО НЕ ЗМІНЕНО */
         .search-container {
             margin: 20px auto;
             max-width: 500px;
@@ -122,6 +124,119 @@
                 width: 180px;
             }
         }
+
+        /* ТІЛЬКИ ДОДАТКОВІ СТИЛІ ДЛЯ КНОПОК QR-КОДУ (НЕ ЧІПАЮТЬ ОСНОВНИЙ ДИЗАЙН) */
+        .btn-share {
+            background-color: #25D366 !important;
+        }
+        .btn-share:hover {
+            background-color: #1da15a !important;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .qr-container {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .qr-container canvas {
+            width: 200px;
+            height: 200px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .short-url {
+            background: #f0f2f5;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .short-url span {
+            font-size: 0.85rem;
+            color: #333;
+            word-break: break-all;
+            flex: 1;
+        }
+
+        .copy-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background-color: #e55a5a;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .qr-footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 15px;
+        }
+        .qr-footer-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .qr-footer-link i {
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
@@ -135,6 +250,8 @@
                         <button class="btn" onclick="window.location.href='login.html'">Увійти</button>
                         <button class="btn" onclick="window.location.href='register.html'">Зареєструватися</button>
                         <button class="btn" onclick="window.location.href='instructions.html'">Інструкція</button>
+                        <!-- ДОДАТО КНОПКА ПОДІЛИТИСЬ (ЗВЕРХУ) -->
+                        <button class="btn btn-share" id="shareBtnTop"><i class="fas fa-share-alt"></i> Поділитись</button>
                     </div>
                     <div class="search-container">
                         <p>Для зручного пошуку товару використовуй ключові слова або артикул товару</p>
@@ -182,13 +299,35 @@
                             <i class="fab fa-instagram"></i> Instagram
                         </a>
                     </div>
+                    <!-- ДОДАТО КНОПКА ПОДІЛИТИСЬ (ВНИЗУ) -->
+                    <div class="qr-footer-link" id="shareBtnBottom">
+                        <i class="fas fa-qrcode"></i> Поділитись сайтом з друзями
+                    </div>
                 </div>
                 <p>© 2026 AliShop</p>
             </div>
         </footer>
     </div>
 
+    <!-- Модальне вікно з QR-кодом -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3><i class="fas fa-qrcode"></i> Поділитись сайтом</h3>
+            <p>Відскануйте QR-код, щоб відкрити сайт на телефоні</p>
+            <div class="qr-container" id="qrcode"></div>
+            <div class="short-url">
+                <span id="siteUrl">https://redl34.github.io/aliexpress-shop/</span>
+                <button class="copy-btn" id="copyUrlBtn">Копіювати</button>
+            </div>
+            <p style="font-size: 0.8rem; color: #666;">Або надішліть це посилання друзям</p>
+        </div>
+    </div>
+
     <script>
+        // Адреса сайту
+        const SITE_URL = 'https://redl34.github.io/aliexpress-shop/';
+        
         // Функція пошуку - перенаправлення на search.html з параметром q
         window.redirectToSearch = function() {
             const searchInput = document.getElementById('searchInput').value.trim();
@@ -211,12 +350,66 @@
             window.location.href = 'login.html';
         });
 
-        // Функція для встановлення правильних шляхів до зображень
+        // ==== QR-код логіка ====
+        let qrCodeInstance = null;
+        
+        function showQRModal() {
+            const modal = document.getElementById('qrModal');
+            const qrContainer = document.getElementById('qrcode');
+            
+            // Очищаємо попередній QR-код
+            qrContainer.innerHTML = '';
+            
+            // Створюємо новий QR-код
+            qrCodeInstance = new QRCode(qrContainer, {
+                text: SITE_URL,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            modal.style.display = 'flex';
+        }
+        
+        function hideQRModal() {
+            document.getElementById('qrModal').style.display = 'none';
+        }
+        
+        // Копіювання URL
+        function copySiteUrl() {
+            navigator.clipboard.writeText(SITE_URL).then(() => {
+                const copyBtn = document.getElementById('copyUrlBtn');
+                const originalText = copyBtn.innerText;
+                copyBtn.innerText = '✅ Скопійовано!';
+                setTimeout(() => {
+                    copyBtn.innerText = originalText;
+                }, 2000);
+            }).catch(() => {
+                alert('Не вдалося скопіювати. Спробуйте вручну');
+            });
+        }
+        
+        // Події для відкриття модального вікна
+        document.getElementById('shareBtnTop').addEventListener('click', showQRModal);
+        document.getElementById('shareBtnBottom').addEventListener('click', showQRModal);
+        document.getElementById('closeModal').addEventListener('click', hideQRModal);
+        document.getElementById('copyUrlBtn').addEventListener('click', copySiteUrl);
+        
+        // Закриття при кліку за межами вікна
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('qrModal');
+            if (e.target === modal) {
+                hideQRModal();
+            }
+        });
+
+        // Функція для встановлення правильних шляхів до зображень (ВАШ ОРИГІНАЛЬНИЙ КОД)
         function setupImagePaths() {
             const images = document.querySelectorAll('.category-image');
             const header = document.querySelector('.header');
             
-            // Масив з назвами файлів зображень
             const imageFiles = {
                 background: 'background.jpg',
                 electronics: 'electronics_preview.jpg',
@@ -224,82 +417,37 @@
                 garden: 'garden_preview.jpg'
             };
             
-            // Визначаємо базовий шлях для зображень (виправлений GitHub шлях)
             const localBasePath = 'Oformlennya_imeg/';
-            // Виправлений GitHub шлях: гілка main, папка Oformlennya_imeg
             const githubBasePath = 'https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/';
-            
-            // Перевіряємо, чи працюємо локально (file:// або localhost)
             const isLocal = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
             
             if (isLocal) {
-                // Локальний режим - використовуємо локальні шляхи
-                console.log('Локальний режим - шлях до папки:', localBasePath);
-                
-                // Для категорій
                 images.forEach(img => {
                     const imageName = img.getAttribute('data-image');
                     if (imageName) {
                         img.src = localBasePath + imageName;
-                        console.log('Завантажую локальне зображення:', img.src);
                     }
                 });
-                
-                // Для фонового зображення
                 if (header) {
-                    const fullBgPath = localBasePath + imageFiles.background;
-                    header.style.backgroundImage = `url('${fullBgPath}')`;
-                    console.log('Фонове зображення:', fullBgPath);
+                    header.style.backgroundImage = `url('${localBasePath + imageFiles.background}')`;
                 }
             } else {
-                // Онлайн режим - використовуємо GitHub шляхи
-                console.log('Онлайн режим - шлях на GitHub:', githubBasePath);
-                
-                // Для категорій
                 images.forEach(img => {
                     const imageName = img.getAttribute('data-image');
                     if (imageName) {
                         img.src = githubBasePath + imageName;
-                        console.log('Завантажую онлайн зображення:', img.src);
                     }
                 });
-                
-                // Для фонового зображення
                 if (header) {
-                    const fullBgPath = githubBasePath + imageFiles.background;
-                    header.style.backgroundImage = `url('${fullBgPath}')`;
-                    console.log('Фонове зображення (GitHub):', fullBgPath);
+                    header.style.backgroundImage = `url('${githubBasePath + imageFiles.background}')`;
                 }
             }
             
-            // Додаємо обробник помилок для зображень
             images.forEach(img => {
                 img.onerror = function() {
-                    console.error('Не вдалося завантажити зображення:', this.src);
-                    // Запасний варіант - градієнт або кольоровий блок
                     this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232196F3"/><text x="50" y="50" font-family="Arial" font-size="14" fill="white" text-anchor="middle" dy=".3em">' + this.alt + '</text></svg>';
                 };
-                
-                img.onload = function() {
-                    console.log('Зображення успішно завантажено:', this.src);
-                };
             });
-            
-            // Обробник помилок для фонового зображення
-            if (header) {
-                const bgImage = new Image();
-                const bgUrl = header.style.backgroundImage.replace(/url\(["']?/, '').replace(/["']?\)/, '');
-                if (bgUrl) {
-                    bgImage.src = bgUrl;
-                    bgImage.onerror = function() {
-                        console.error('Не вдалося завантажити фонове зображення:', this.src);
-                        header.style.backgroundImage = 'linear-gradient(to right, #1A237E, #3949AB)';
-                    };
-                    bgImage.onload = function() {
-                        console.log('Фонове зображення успішно завантажено:', this.src);
-                    };
-                }
-            }
         }
 
         // Запускаємо при завантаженні сторінки

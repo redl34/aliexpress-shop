@@ -328,7 +328,7 @@
 <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
 <div class="search-container">
 <input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
-<button onclick="searchProducts()">Пошук</button>
+<button onclick="redirectToSearch()">Пошук</button>
 </div>
 </header>
 <div class="products">
@@ -443,8 +443,8 @@
             });
         });
 
-        // Змінена функція пошуку - перенаправлення на search.html
-        window.searchProducts = function() {
+        // ========== НОВА ФУНКЦІЯ ПОШУКУ (перенаправлення на search.html) ==========
+        window.redirectToSearch = function() {
             const searchInput = document.getElementById('searchInput').value.trim();
             if (searchInput) {
                 window.location.href = `search.html?q=${encodeURIComponent(searchInput)}`;
@@ -453,22 +453,19 @@
             }
         };
 
-        // Обробник натискання Enter в полі пошуку
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                searchProducts();
+                redirectToSearch();
             }
         });
 
-        // Видаляємо або коментуємо код для фільтрації товарів на сторінці
-        // Якщо потрібно залишити можливість пошуку за параметром з URL, то:
+        // Якщо перейшли з параметром search (наприклад, з іншої сторінки)
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const searchQuery = urlParams.get('q');
+            const searchQuery = urlParams.get('search');
             if (searchQuery) {
                 document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
-                // Не викликаємо searchProducts(), оскільки він тепер перенаправляє
-                // Просто показуємо повідомлення або нічого не робимо
+                redirectToSearch();
             }
         };
     </script>

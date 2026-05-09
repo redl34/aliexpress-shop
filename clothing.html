@@ -194,7 +194,7 @@
         <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
         <div class="search-container">
             <input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
-            <button onclick="searchProducts()">Пошук</button>
+            <button onclick="redirectToSearch()">Пошук</button>
         </div>
     </header>
     <div class="category-buttons">
@@ -235,29 +235,30 @@
         const profileLink = document.getElementById('profileLink');
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                profileLink.href = 'login.html';
+                profileLink.href = 'profile.html';
                 profileLink.textContent = 'Мій профіль';
             } else {
-                profileLink.href = 'register.html';
-                profileLink.textContent = 'Зареєструватися';
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
             }
         });
 
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                window.location.href = `mens-clothing.html?search=${encodeURIComponent(e.target.value)}`;
-            }
-        });
-
-        window.searchProducts = function() {
-            const searchInput = document.getElementById('searchInput').value;
+        // ========== НОВА ФУНКЦІЯ ПОШУКУ (перенаправлення на search.html) ==========
+        window.redirectToSearch = function() {
+            const searchInput = document.getElementById('searchInput').value.trim();
             if (searchInput) {
-                window.location.href = `mens-clothing.html?search=${encodeURIComponent(searchInput)}`;
+                window.location.href = `search.html?q=${encodeURIComponent(searchInput)}`;
+            } else {
+                alert('Введіть запит для пошуку');
             }
         };
+
+        // Обробка натискання Enter в пошуку
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                redirectToSearch();
+            }
+        });
     </script>
 </body>
-
 </html>
-
-

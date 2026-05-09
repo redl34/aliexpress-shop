@@ -3,134 +3,510 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Інструкції - Ali.Reed</title>
+    <title>Інструкції - AliShop</title>
     <link href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png" rel="icon" type="image/png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f0f2f5;
+            box-sizing: border-box;
         }
-        header {
-            background: url('Kartinki/background.png') no-repeat center center/cover;
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #3E717A;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            background: url('Oformlennya_imeg/clothing.jpg') no-repeat center center/cover;
             color: white;
             text-align: center;
             padding: 60px 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             position: relative;
         }
-        header::before {
+
+        .page-header::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.5);
             z-index: 1;
         }
-        header h1, header p {
+
+        .page-header h1,
+        .page-header p,
+        .home-button {
             position: relative;
             z-index: 2;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        .content {
-            max-width: 800px;
-            margin: 20px auto;
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .home-button {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .home-button i {
+            margin-right: 8px;
+        }
+
+        .home-button:hover {
+            background-color: #e55a5a;
+        }
+
+        .instructions-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .instruction-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .instruction-card h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 5px solid #ff6b6b;
+            padding-left: 15px;
+        }
+
+        .steps-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: #f8fafc;
+            padding: 15px 20px;
+            border-radius: 16px;
+            transition: transform 0.2s;
+        }
+
+        .step-item:hover {
+            transform: translateX(5px);
+            background: #f1f5f9;
+        }
+
+        .step-number {
+            background-color: #ff6b6b;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            flex: 1;
+        }
+
+        .step-text strong {
+            font-size: 1.2rem;
+            color: #1e293b;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .step-text p {
+            color: #475569;
+            line-height: 1.4;
+        }
+
+        /* ТОЧНІ СТИЛІ КНОПОК ЯК НА САЙТІ */
+        .btn-aliexpress-demo {
+            background-color: #132F13;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: default;
+            font-weight: normal;
+            margin: 10px 0;
+        }
+
+        .btn-aliexpress-demo i {
+            font-size: 1em;
+        }
+
+        .btn-favorite-demo {
+            background-color: #A9A34C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: default;
+            font-weight: normal;
+            margin: 10px 0;
+        }
+
+        .btn-favorite-demo i {
+            font-size: 1em;
+        }
+
+        .buttons-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0 10px;
+            align-items: center;
+        }
+
+        .tip-block {
+            background: #eef2ff;
+            border-left: 4px solid #1e90ff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tip-block i {
+            font-size: 1.8rem;
+            color: #1e90ff;
+        }
+
+        .tip-block span {
+            font-size: 1rem;
+            color: #0f172a;
+        }
+
+        /* Блок для емейлу */
+        .contact-block {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            border-radius: 16px;
             padding: 20px;
-            background-color: white;
-            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid #bae6fd;
+        }
+
+        .contact-block p {
+            margin-bottom: 12px;
+            color: #0c4a6e;
+            font-weight: 500;
+        }
+
+        .email-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid #ff6b6b;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .content h2 {
-            color: #2c3e50;
-            font-size: 1.8em;
-            margin-top: 0;
-        }
-        .content p {
-            line-height: 1.6;
-            color: #333;
-        }
-        .content img {
-            max-width: 100%;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        .content video {
-            max-width: 100%;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        .back-button {
-            display: inline-block;
-            background-color: #1e90ff;
+
+        .email-copy:hover {
+            background: #ff6b6b;
             color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            text-decoration: none;
-            margin: 20px 0;
-            transition: background-color 0.3s;
+            transform: scale(1.02);
         }
-        .back-button:hover {
-            background-color: #4682b4;
+
+        .email-copy:hover i {
+            color: white;
         }
+
+        .email-copy span {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        #copyMessage {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #16a34a;
+            font-weight: bold;
+            min-height: 24px;
+        }
+
         footer {
-            background-color: #2c3e50;
+            background-color: #000000;
             color: white;
             text-align: center;
-            padding: 15px;
-            position: relative;
-            bottom: 0;
+            padding: 20px;
             width: 100%;
+            margin-top: 40px;
         }
-        footer a {
-            color: #ff6b6b;
+
+        footer .social-links h2 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin-bottom: 15px;
+        }
+
+        footer .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        footer .social-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
             text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        footer a:hover {
-            text-decoration: underline;
+
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .step-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .step-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            .instruction-card {
+                padding: 20px;
+            }
+            footer .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            footer .social-buttons a {
+                width: 100%;
+                max-width: 220px;
+                justify-content: center;
+            }
+            .buttons-demo {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Інструкції щодо використання сайту Ali.Reed</h1>
-        <p>Дізнайтесь, як легко знаходити та купувати товари!</p>
-    </header>
 
-    <div class="content">
-        <h2>Як користуватися сайтом</h2>
-        <p>Ласкаво просимо на Ali.Reed! Наш сайт допомагає вам знаходити найкращі товари з AliExpress. Ось покрокова інструкція:</p>
-        <ol>
-            <li><strong>Виберіть категорію</strong>: На головній сторінці виберіть категорію товарів (Електроніка, Одяг, Сад і город або Аксесуари для авто).</li>
-            <li><strong>Перегляньте товари</strong>: Ознайомтеся з товарами у вибраній категорії.</li>
-            <li><strong>Перейдіть на AliExpress</strong>: Натисніть на товар, щоб перейти на сторінку покупки на AliExpress.</li>
-            <li><strong>Оформіть замовлення</strong>: Дотримуйтесь інструкцій AliExpress для покупки.</li>
-            <li><strong>Слідкуйте за новинками</strong>: Підпишіться на наш TikTok для оновлень!</li>
-        </ol>
+<header class="page-header">
+    <h1><i class="fas fa-graduation-cap"></i> Як користуватися AliShop</h1>
+    <p>Інструкція за 30 секунд — обирай, переходь, купуй на AliExpress</p>
+    <a href="https://redl34.github.io/aliexpress-shop/index.html" class="home-button"><i class="fas fa-arrow-left"></i> На головну</a>
+</header>
 
-        <h2>Приклад товару</h2>
-        <img src="Kartinki/sample-product.jpg" alt="Приклад товару">
-        <p>На зображенні вище показано приклад товару з категорії "Електроніка".</p>
+<div class="instructions-container">
+    <div class="instruction-card">
+        <h2><i class="fas fa-list-ol"></i> Покроковий гайд</h2>
+        <div class="steps-grid">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    <strong>🔍 Обери категорію або товар</strong>
+                    <p>На головній сторінці або через меню виберіть потрібний розділ: Електроніка, Одяг, Сад і Город. Можна скористатись пошуком за назвою.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    <strong>👆 Натисни на товар</strong>
+                    <p>Перегляньте картку товару, фото, опис. Коли будете готові — просто натисніть кнопку <strong style="color:#132F13;">«Купити на AliExpress»</strong> або зображення товару.</p>
+                    
+                    <div class="buttons-demo">
+                        <div class="btn-aliexpress-demo">
+                            <i class="fas fa-external-link-alt"></i> Купити на AliExpress
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 12px;"><strong>❤️ Зручна функція «Додати до обраного»</strong><br>
+                    Якщо ви хочете придбати товар пізніше — натисніть кнопку <strong style="color:#000000;">«Додати до обраного»</strong> на сторінці товару. Він збережеться у вашому особистому кабінеті, і ви зможете швидко повернутися до нього будь-коли.</p>
+                    
+                    <div class="buttons-demo">
+                        <div class="btn-favorite-demo">
+                            <i class="far fa-heart"></i> Додати до обраного
+                        </div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #475569;">🔹 Таким чином ви не втратите цікавий товар і зможете порівняти кілька варіантів перед покупкою.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                    <strong>🛒 Купуй на AliExpress</strong>
+                    <p>Ви одразу перейдете на сторінку цього товару на офіційному сайті AliExpress. Далі дійте як звичайно — обирайте колір/розмір і натискайте <strong>«Купити зараз»</strong> або <strong>«До кошика»</strong>.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-text">
+                    <strong>📦 Оформлення та доставка</strong>
+                    <p>Введіть адресу, оберіть спосіб оплати (картка, Google Pay тощо). Весь процес захищений AliExpress.</p>
+                </div>
+            </div>
+        </div>
 
-        <h2>Відео-інструкція</h2>
-        <video controls>
-            <source src="Kartinki/instruction-video.mp4" type="video/mp4">
-            Ваш браузер не підтримує відтворення відео.
-        </video>
-        <p>Перегляньте відео, щоб дізнатися, як легко користуватися сайтом.</p>
-
-        <a href="index.html" class="back-button">Повернутися на головну</a>
+        <div class="tip-block">
+            <i class="fas fa-lightbulb"></i>
+            <span><strong>Корисна порада:</strong> Якщо виникають питання з оплатою чи доставкою — звертайтесь у службу підтримки AliExpress. Наш сайт допомагає лише знаходити вигідні пропозиції товару на сайті AliExpress.</span>
+        </div>
     </div>
 
-    <footer>
-        <p>Слідкуйте за новинками в <a href="https://www.tiktok.com/@reedoffe" target="_blank">TikTok</a></p>
-    </footer>
+    <div class="instruction-card">
+        <h2><i class="fas fa-mobile-alt"></i> Часті питання</h2>
+        <div class="steps-grid">
+            <div class="step-item" style="background:#ffffff; border:1px solid #e2e8f0;">
+                <div class="step-number"><i class="fas fa-question"></i></div>
+                <div class="step-text">
+                    <strong>Чи безпечно купувати через ваш сайт?</strong>
+                    <p>Так. Ви завжди потрапляєте на офіційний AliExpress, тому всі платежі й гарантії забезпечує платформа AliExpress.</p>
+                </div>
+            </div>
+            <div class="step-item" style="background:#ffffff; border:1px solid #e2e8f0;">
+                <div class="step-number"><i class="fas fa-dollar-sign"></i></div>
+                <div class="step-text">
+                    <strong>Чи дорожчі товари через перехід з вашого сайту?</strong>
+                    <p>Ні, ціна для вас залишається такою ж, як при прямому заході на AliExpress. А іноді за нашими посиланнями діють додаткові знижки від продавців.</p>
+                </div>
+            </div>
+            <div class="step-item" style="background:#ffffff; border:1px solid #e2e8f0;">
+                <div class="step-number"><i class="fas fa-chalkboard-user"></i></div>
+                <div class="step-text">
+                    <strong>Де дізнаватись про нові товари?</strong>
+                    <p>Підписуйтесь на наші соцмережі — TikTok, Instagram, Facebook. Там ми публікуємо найсвіжіші підбірки та акції.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-card">
+        <h2><i class="fas fa-envelope"></i> Зв'язок з розробником</h2>
+        <div class="contact-block">
+            <p><i class="fas fa-comment-dots"></i> Маєте пропозицію, знайшли помилку пишіть на почту.</p>
+            <div class="email-copy" onclick="copyEmail()">
+                <i class="fas fa-copy"></i>
+                <span>lignumzrubok@gmail.com</span>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div id="copyMessage"></div>
+            <p style="font-size: 0.8rem; margin-top: 10px;">🔹 Натисніть на адресу, щоб скопіювати 🔹</p>
+        </div>
+        <div style="text-align: center; margin: 15px 0 5px;">
+            <a href="https://redl34.github.io/aliexpress-shop/index.html" class="home-button" style="background-color: #3E717A; margin: 0 5px;"><i class="fas fa-store"></i> До магазину</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="social-links">
+        <h2>Слідкуй за новинками в</h2>
+        <div class="social-buttons">
+            <a href="https://www.tiktok.com/@reedoffe" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="https://www.facebook.com" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank" class="instagram"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+    </div>
+    <p style="margin-top: 15px;">© 2026 AliShop — партнерський каталог AliExpress</p>
+</footer>
+
+<script>
+    function copyEmail() {
+        const email = "lignumzrubok@gmail.com";
+        navigator.clipboard.writeText(email).then(() => {
+            const msgDiv = document.getElementById("copyMessage");
+            msgDiv.innerHTML = "✅ Пошту скопійовано! Відкрийте ваш поштовий клієнт і вставте адресу (Ctrl+V)";
+            msgDiv.style.color = "#16a34a";
+            setTimeout(() => {
+                msgDiv.innerHTML = "";
+            }, 2500);
+        }).catch(() => {
+            const msgDiv = document.getElementById("copyMessage");
+            msgDiv.innerHTML = "❌ Не вдалося скопіювати, спробуйте вручну";
+            msgDiv.style.color = "#dc2626";
+            setTimeout(() => {
+                msgDiv.innerHTML = "";
+            }, 2000);
+        });
+    }
+</script>
 </body>
 </html>

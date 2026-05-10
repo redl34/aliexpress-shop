@@ -87,23 +87,20 @@
             margin: 20px auto;
             padding: 20px 10px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             max-width: 1200px;
-            justify-items: center;
         }
         .product-card {
             background-color: white;
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            height: 580px;
-            width: 100%;
-            max-width: 280px;
+            aspect-ratio: 3 / 4;
             position: relative;
         }
         .product-image {
@@ -116,22 +113,16 @@
         .product-details {
             flex-grow: 1;
             text-align: center;
-            margin: 5px 0;
+            margin: 10px 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 100%;
         }
         .product-details h3 {
-            margin: 8px 0;
-            font-size: 1em;
+            margin: 10px 0;
+            font-size: 1.1em;
             color: #2c3e50;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            min-height: 40px;
         }
         .product-details .articul {
             font-size: 0.85em;
@@ -145,6 +136,7 @@
             color: #e63946;
             margin: 5px 0;
         }
+        /* Блок опису з прокруткою */
         .product-details .description {
             font-size: 0.85em;
             color: #333333;
@@ -153,15 +145,16 @@
             background-color: #f9f9f9;
             padding: 8px;
             border-radius: 5px;
-            height: 100px;
+            height: 80px;
             overflow-y: auto;
             text-align: left;
         }
+        /* Стилі для скролбара */
         .product-details .description::-webkit-scrollbar {
             width: 5px;
         }
         .product-details .description::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #e0e0e0;
             border-radius: 5px;
         }
         .product-details .description::-webkit-scrollbar-thumb {
@@ -272,8 +265,11 @@
                 max-width: 200px;
             }
             .products {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 padding: 20px 10px;
+            }
+            .product-details .description {
+                height: 70px;
             }
         }
     </style>
@@ -331,7 +327,7 @@
                 const response = await fetch('products.json');
                 const data = await response.json();
                 productsDatabase = data;
-                console.log('✅ Завантажено товарів:', productsDatabase.length);
+                console.log('✅ Завантажено товарів з products.json:', productsDatabase.length);
                 return productsDatabase;
             } catch (error) {
                 console.error('❌ Помилка завантаження products.json:', error);
@@ -341,6 +337,11 @@
 
         function getProductByArticul(articul) {
             const product = productsDatabase.find(p => p.articul === articul);
+            if (product) {
+                console.log(`✅ Знайдено товар ${articul}:`, product.title);
+            } else {
+                console.warn(`⚠️ Товар з артикулом ${articul} не знайдено`);
+            }
             return product;
         }
 
@@ -349,6 +350,7 @@
                 window.location.href = 'login.html';
                 return;
             }
+            console.log('✅ Користувач увійшов:', user.uid);
             await loadProductsDatabase();
             loadFavorites(user.uid);
         });
@@ -372,6 +374,8 @@
                 const q = query(collection(db, 'favorites'), where('userId', '==', userId));
                 const querySnapshot = await getDocs(q);
                 
+                console.log('📋 Знайдено обраних товарів у Firestore:', querySnapshot.size);
+                
                 if (querySnapshot.empty) {
                     favoritesList.innerHTML = '<div class="no-favorites">😔 У вас немає обраних товарів.<br>Додайте товари, натиснувши "Додати до обраного" на сторінках категорій.</div>';
                     return;
@@ -386,6 +390,7 @@
                     if (productId) {
                         favoriteArticuls.push(productId);
                         favoriteDocs[productId] = docSnapshot.id;
+                        console.log(`📄 Документ: ${docSnapshot.id} -> productId: ${productId}`);
                     }
                 });
 
@@ -397,11 +402,16 @@
                             ...product,
                             favoriteDocId: favoriteDocs[articul]
                         });
+                        console.log(`✅ Товар знайдено: ${articul} -> ${product.title}`);
+                    } else {
+                        console.error(`❌ Товар з артикулом ${articul} не знайдено в products.json`);
                     }
                 }
 
+                console.log('✅ Всього товарів для відображення:', favoriteProducts.length);
+
                 if (favoriteProducts.length === 0) {
-                    favoritesList.innerHTML = '<div class="no-favorites">😔 Не вдалося завантажити інформацію про товари.</div>';
+                    favoritesList.innerHTML = '<div class="no-favorites">😔 Не вдалося завантажити інформацію про товари.<br>Перевірте файл products.json</div>';
                     return;
                 }
 
@@ -438,7 +448,7 @@
                 });
                 
             } catch (error) {
-                console.error('❌ Помилка:', error);
+                console.error('❌ Помилка завантаження обраних товарів:', error);
                 favoritesList.innerHTML = '<div class="no-favorites">❌ Помилка завантаження. Спробуйте пізніше.</div>';
             }
         }

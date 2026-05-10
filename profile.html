@@ -137,16 +137,19 @@
             margin: 5px 0;
         }
         .product-details .description {
-            font-size: 0.8em;
-            color: #555;
+            font-size: 0.85em;
+            color: #333333;
             margin: 8px 0;
-            line-height: 1.3;
+            line-height: 1.4;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
-            min-height: 50px;
+            min-height: 55px;
+            background-color: #f9f9f9;
+            padding: 8px;
+            border-radius: 5px;
         }
         .product-details a {
             color: #ffffff;
@@ -254,7 +257,7 @@
             }
             .product-details .description {
                 -webkit-line-clamp: 2;
-                min-height: 40px;
+                min-height: 45px;
             }
         }
     </style>
@@ -305,59 +308,52 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Глобальна змінна для зберігання даних товарів
         let productsDatabase = [];
 
-        // Завантаження products.json
         async function loadProductsDatabase() {
             try {
                 const response = await fetch('products.json');
                 const data = await response.json();
                 productsDatabase = data;
-                console.log('✅ Завантажено товарів з products.json:', productsDatabase.length);
+                console.log('✅ Завантажено товарів:', productsDatabase.length);
                 return productsDatabase;
             } catch (error) {
-                console.error('❌ Помилка завантаження products.json:', error);
+                console.error('❌ Помилка:', error);
                 return [];
             }
         }
 
-        // Отримання повної інформації про товар за артикулом
         function getProductByArticul(articul) {
             const product = productsDatabase.find(p => p.articul === articul);
             if (product) {
-                console.log(`✅ Знайдено товар ${articul}:`, product.title);
+                console.log(`✅ Знайдено: ${articul}`);
             } else {
-                console.warn(`⚠️ Товар з артикулом ${articul} не знайдено`);
+                console.warn(`⚠️ Не знайдено: ${articul}`);
             }
             return product;
         }
 
-        // Перевірка автентифікації
         onAuthStateChanged(auth, async (user) => {
             if (!user) {
                 window.location.href = 'login.html';
                 return;
             }
-            console.log('✅ Користувач увійшов:', user.uid);
-            
+            console.log('✅ Користувач:', user.uid);
             await loadProductsDatabase();
             loadFavorites(user.uid);
         });
 
-        // Функція виходу
         document.getElementById('logoutLink').addEventListener('click', async (e) => {
             e.preventDefault();
             try {
                 await signOut(auth);
                 window.location.href = 'login.html';
             } catch (error) {
-                console.error('Помилка виходу:', error);
+                console.error('Помилка:', error);
                 alert('Помилка виходу: ' + error.message);
             }
         });
 
-        // Завантаження обраних товарів
         async function loadFavorites(userId) {
             const favoritesList = document.getElementById('favoritesList');
             favoritesList.innerHTML = '<div class="loading">⏳ Завантаження...</div>';
@@ -366,7 +362,7 @@
                 const q = query(collection(db, 'favorites'), where('userId', '==', userId));
                 const querySnapshot = await getDocs(q);
                 
-                console.log('📋 Знайдено обраних товарів у Firestore:', querySnapshot.size);
+                console.log('📋 Знайдено документів:', querySnapshot.size);
                 
                 if (querySnapshot.empty) {
                     favoritesList.innerHTML = '<div class="no-favorites">😔 У вас немає обраних товарів.<br>Додайте товари, натиснувши "Додати до обраного" на сторінках категорій.</div>';
@@ -382,11 +378,9 @@
                     if (productId) {
                         favoriteArticuls.push(productId);
                         favoriteDocs[productId] = docSnapshot.id;
-                        console.log(`📄 Документ: ${docSnapshot.id} -> productId: ${productId}`);
                     }
                 });
 
-                // Отримуємо повну інформацію про товари
                 const favoriteProducts = [];
                 for (const articul of favoriteArticuls) {
                     const product = getProductByArticul(articul);
@@ -395,20 +389,16 @@
                             ...product,
                             favoriteDocId: favoriteDocs[articul]
                         });
-                        console.log(`✅ Товар знайдено: ${articul} -> ${product.title}`);
                     } else {
-                        console.error(`❌ Товар з артикулом ${articul} не знайдено в products.json`);
+                        console.error(`❌ Товар ${articul} не знайдено`);
                     }
                 }
 
-                console.log('✅ Всього товарів для відображення:', favoriteProducts.length);
-
                 if (favoriteProducts.length === 0) {
-                    favoritesList.innerHTML = '<div class="no-favorites">😔 Не вдалося завантажити інформацію про товари.<br>Перевірте файл products.json</div>';
+                    favoritesList.innerHTML = '<div class="no-favorites">😔 Не вдалося завантажити інформацію про товари.</div>';
                     return;
                 }
 
-                // Відображаємо товари з ОПИСОМ
                 favoritesList.innerHTML = '';
                 favoriteProducts.forEach(product => {
                     const firstImage = product.images && product.images.length > 0 ? product.images[0] : null;
@@ -423,18 +413,17 @@
                         </div>
                         <div class="product-details">
                             <h3>${escapeHtml(product.title || 'Без назви')}</h3>
-                            <p class="articul">📌 арт. ${escapeHtml(product.articul)}</p>
-                            <p class="price">💰 ${product.price || 'Ціна не вказана'}</p>
-                            <p class="description">📝 ${escapeHtml(product.description || 'Опис відсутній')}</p>
-                            <a href="${product.link || '#'}" target="_blank">🛒 Купити на AliExpress</a>
-                            <button class="remove-from-favorites" data-docid="${product.favoriteDocId}">🗑️ Видалити з обраного</button>
+                            <p class="articul">арт. ${escapeHtml(product.articul)}</p>
+                            <p class="price">${product.price || 'Ціна не вказана'}</p>
+                            <p class="description">${escapeHtml(product.description || 'Опис відсутній')}</p>
+                            <a href="${product.link || '#'}" target="_blank">Купити на AliExpress</a>
+                            <button class="remove-from-favorites" data-docid="${product.favoriteDocId}">Видалити з обраного</button>
                         </div>
                     `;
                     
                     favoritesList.appendChild(productCard);
                 });
                 
-                // Обробники для кнопок видалення
                 document.querySelectorAll('.remove-from-favorites').forEach(btn => {
                     btn.addEventListener('click', async (e) => {
                         const docId = btn.getAttribute('data-docid');
@@ -448,7 +437,6 @@
             }
         }
 
-        // Видалення товару
         async function removeFromFavorites(docId) {
             if (!confirm('Видалити цей товар з обраного?')) return;
             
@@ -460,12 +448,11 @@
                     loadFavorites(user.uid);
                 }
             } catch (error) {
-                console.error('❌ Помилка видалення:', error);
+                console.error('❌ Помилка:', error);
                 alert('❌ Помилка: ' + error.message);
             }
         }
 
-        // Захист від XSS
         function escapeHtml(str) {
             if (!str) return '';
             return str
@@ -476,7 +463,6 @@
                 .replace(/'/g, '&#39;');
         }
 
-        // Пошук
         window.searchProducts = function() {
             const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
             const products = document.querySelectorAll('.product-card');

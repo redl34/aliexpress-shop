@@ -87,20 +87,23 @@
             margin: 20px auto;
             padding: 20px 10px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
             max-width: 1200px;
+            justify-items: center;
         }
         .product-card {
             background-color: white;
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            aspect-ratio: 3 / 4;
+            height: 580px;
+            width: 100%;
+            max-width: 280px;
             position: relative;
         }
         .product-image {
@@ -113,16 +116,22 @@
         .product-details {
             flex-grow: 1;
             text-align: center;
-            margin: 10px 0;
+            margin: 5px 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 100%;
         }
         .product-details h3 {
-            margin: 10px 0;
-            font-size: 1.1em;
+            margin: 8px 0;
+            font-size: 1em;
             color: #2c3e50;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            min-height: 40px;
         }
         .product-details .articul {
             font-size: 0.85em;
@@ -141,15 +150,26 @@
             color: #333333;
             margin: 8px 0;
             line-height: 1.4;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            min-height: 55px;
             background-color: #f9f9f9;
             padding: 8px;
             border-radius: 5px;
+            height: 100px;
+            overflow-y: auto;
+            text-align: left;
+        }
+        .product-details .description::-webkit-scrollbar {
+            width: 5px;
+        }
+        .product-details .description::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        .product-details .description::-webkit-scrollbar-thumb {
+            background: #A9A34C;
+            border-radius: 5px;
+        }
+        .product-details .description::-webkit-scrollbar-thumb:hover {
+            background: #8e8a3f;
         }
         .product-details a {
             color: #ffffff;
@@ -252,12 +272,8 @@
                 max-width: 200px;
             }
             .products {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 padding: 20px 10px;
-            }
-            .product-details .description {
-                -webkit-line-clamp: 2;
-                min-height: 45px;
             }
         }
     </style>
@@ -318,18 +334,13 @@
                 console.log('✅ Завантажено товарів:', productsDatabase.length);
                 return productsDatabase;
             } catch (error) {
-                console.error('❌ Помилка:', error);
+                console.error('❌ Помилка завантаження products.json:', error);
                 return [];
             }
         }
 
         function getProductByArticul(articul) {
             const product = productsDatabase.find(p => p.articul === articul);
-            if (product) {
-                console.log(`✅ Знайдено: ${articul}`);
-            } else {
-                console.warn(`⚠️ Не знайдено: ${articul}`);
-            }
             return product;
         }
 
@@ -338,7 +349,6 @@
                 window.location.href = 'login.html';
                 return;
             }
-            console.log('✅ Користувач:', user.uid);
             await loadProductsDatabase();
             loadFavorites(user.uid);
         });
@@ -349,7 +359,7 @@
                 await signOut(auth);
                 window.location.href = 'login.html';
             } catch (error) {
-                console.error('Помилка:', error);
+                console.error('Помилка виходу:', error);
                 alert('Помилка виходу: ' + error.message);
             }
         });
@@ -361,8 +371,6 @@
             try {
                 const q = query(collection(db, 'favorites'), where('userId', '==', userId));
                 const querySnapshot = await getDocs(q);
-                
-                console.log('📋 Знайдено документів:', querySnapshot.size);
                 
                 if (querySnapshot.empty) {
                     favoritesList.innerHTML = '<div class="no-favorites">😔 У вас немає обраних товарів.<br>Додайте товари, натиснувши "Додати до обраного" на сторінках категорій.</div>';
@@ -389,8 +397,6 @@
                             ...product,
                             favoriteDocId: favoriteDocs[articul]
                         });
-                    } else {
-                        console.error(`❌ Товар ${articul} не знайдено`);
                     }
                 }
 
@@ -415,7 +421,7 @@
                             <h3>${escapeHtml(product.title || 'Без назви')}</h3>
                             <p class="articul">арт. ${escapeHtml(product.articul)}</p>
                             <p class="price">${product.price || 'Ціна не вказана'}</p>
-                            <p class="description">${escapeHtml(product.description || 'Опис відсутній')}</p>
+                            <div class="description">${escapeHtml(product.description || 'Опис відсутній')}</div>
                             <a href="${product.link || '#'}" target="_blank">Купити на AliExpress</a>
                             <button class="remove-from-favorites" data-docid="${product.favoriteDocId}">Видалити з обраного</button>
                         </div>
@@ -448,7 +454,7 @@
                     loadFavorites(user.uid);
                 }
             } catch (error) {
-                console.error('❌ Помилка:', error);
+                console.error('❌ Помилка видалення:', error);
                 alert('❌ Помилка: ' + error.message);
             }
         }

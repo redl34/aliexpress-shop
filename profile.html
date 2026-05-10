@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Мій профіль - Ali.Reed</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
     <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
     <link href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png" rel="icon" type="image/png"/>
     <style>
@@ -15,7 +15,7 @@
             background-color: #3E717A;
         }
         header {
-            background: url('images/clothing.jpg') no-repeat center center/cover;
+            background: url('Oformlennya_imeg/electronics.jpg') no-repeat center center/cover;
             color: white;
             text-align: center;
             padding: 120px 20px;
@@ -102,61 +102,12 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             aspect-ratio: 3 / 4;
         }
-        .product-image-carousel {
-            position: relative;
+        .product-image {
             width: 100%;
-            max-height: 50%;
-            overflow: hidden;
-        }
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        .carousel-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 5px;
-            display: none;
+            height: 150px;
             object-fit: contain;
-        }
-        .carousel-image.active {
-            display: block;
-        }
-        .carousel-prev, .carousel-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .carousel-prev {
-            left: 0;
-        }
-        .carousel-next {
-            right: 0;
-        }
-        .carousel-indicators {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 5px;
-        }
-        .indicator {
-            width: 10px;
-            height: 10px;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .indicator.active {
-            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
         .product-details {
             flex-grow: 1;
@@ -165,28 +116,18 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            width: 100%;
         }
         .product-details h3 {
             margin: 10px 0;
-            font-size: 1.3em;
+            font-size: 1.1em;
             color: #2c3e50;
         }
         .product-details .articul {
-            font-size: 0.9375em;
+            font-size: 0.9em;
             font-weight: bold;
             color: #000000;
-            margin: 10px 0;
-        }
-        .product-details .price {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #000000;
-            margin: 10px 0;
-        }
-        .product-details p {
-            font-size: 1em;
-            color: #2c3e50;
-            margin: 10px 0;
+            margin: 5px 0;
         }
         .product-details a {
             color: #ffffff;
@@ -196,7 +137,7 @@
             border-radius: 5px;
             display: block;
             margin: 10px 0;
-            font-size: 1em;
+            font-size: 0.9em;
         }
         .product-details a:hover {
             background-color: #0e240e;
@@ -208,7 +149,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.9em;
             width: 100%;
         }
         .remove-from-favorites:hover {
@@ -235,6 +176,7 @@
             justify-content: center;
             gap: 15px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
         footer .social-buttons a {
             display: flex;
@@ -266,39 +208,13 @@
         footer .social-buttons a i {
             font-size: 1.2em;
         }
-        @media (max-width: 1200px) {
-            .products {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                max-width: 900px;
-            }
+        .no-favorites {
+            color: white;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
         }
-        @media (max-width: 900px) {
-            .products {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                max-width: 600px;
-            }
-            .carousel-prev, .carousel-next {
-                display: none;
-            }
-            .product-image-carousel {
-                max-height: 50%;
-            }
-            .carousel-image {
-                max-height: 100%;
-            }
-            .product-details h3 {
-                font-size: 1.1em;
-            }
-            .product-details .articul {
-                font-size: 0.8125em;
-            }
-            .product-details .price {
-                font-size: 1.3em;
-            }
-            .product-details a, .remove-from-favorites {
-                font-size: 0.9em;
-                padding: 8px 16px;
-            }
+        @media (max-width: 768px) {
             .search-container {
                 flex-direction: column;
                 align-items: center;
@@ -307,11 +223,8 @@
                 width: 100%;
                 max-width: 200px;
             }
-        }
-        @media (max-width: 600px) {
             .products {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                max-width: 290px;
                 padding: 20px 10px;
             }
         }
@@ -369,6 +282,7 @@
                 window.location.href = 'login.html';
                 return;
             }
+            console.log('Користувач увійшов:', user.uid);
             loadFavorites(user.uid);
         });
 
@@ -384,6 +298,25 @@
             }
         });
 
+        // Функція для отримання правильного шляху до зображення
+        function getImageUrl(imagePath) {
+            if (!imagePath) return null;
+            
+            // Якщо шлях вже починається з http або https
+            if (imagePath.startsWith('http')) {
+                return imagePath;
+            }
+            
+            // Якщо це локальний шлях Windows
+            if (imagePath.includes('D:\\') || imagePath.includes(':')) {
+                const fileName = imagePath.split('\\').pop();
+                return `Electronics_imeg/${fileName}`;
+            }
+            
+            // Якщо це відносний шлях
+            return imagePath;
+        }
+
         // Завантаження обраних товарів
         async function loadFavorites(userId) {
             const favoritesList = document.getElementById('favoritesList');
@@ -392,132 +325,108 @@
             try {
                 const q = query(collection(db, 'favorites'), where('userId', '==', userId));
                 const querySnapshot = await getDocs(q);
+                
+                console.log('Знайдено товарів:', querySnapshot.size);
+                
                 if (querySnapshot.empty) {
-                    favoritesList.innerHTML = '<p style="color: white; text-align: center;">У вас немає обраних товарів.</p>';
+                    favoritesList.innerHTML = '<div class="no-favorites">😔 У вас немає обраних товарів.<br>Додайте товари, натиснувши "Додати до обраного" на сторінках категорій.</div>';
                     return;
                 }
 
-                querySnapshot.forEach(doc => {
-                    const favorite = doc.data();
+                querySnapshot.forEach((docSnapshot) => {
+                    const favorite = docSnapshot.data();
+                    const docId = docSnapshot.id;
+                    
+                    console.log('Товар:', favorite);
+                    
+                    // Отримуємо правильний шлях до зображення
+                    const imageUrl = getImageUrl(favorite.image);
+                    
                     const productCard = document.createElement('div');
                     productCard.className = 'product-card';
                     productCard.setAttribute('data-articul', favorite.id);
+                    productCard.setAttribute('data-title', favorite.title);
+                    
                     productCard.innerHTML = `
-                        <div class="product-image-carousel">
-                            <div class="carousel-container">
-                                <img class="carousel-image active" src="${favorite.image}" alt="${favorite.title}"/>
-                                <button class="carousel-prev">←</button>
-                                <button class="carousel-next">→</button>
-                                <div class="carousel-indicators">
-                                    <span class="indicator active"></span>
-                                </div>
-                            </div>
+                        <div class="product-image-container">
+                            ${imageUrl ? `<img class="product-image" src="${imageUrl}" alt="${favorite.title}" onerror="this.src='https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/no-image.png'; this.onerror=null;">` : '<div style="width:100%; height:150px; background:#f0f0f0; display:flex; align-items:center; justify-content:center;">Немає фото</div>'}
                         </div>
                         <div class="product-details">
-                            <h3>${favorite.title}</h3>
-                            <p class="articul">арт. ${favorite.id}</p>
-                            <p class="price">Ціна не вказана</p>
+                            <h3>${escapeHtml(favorite.title)}</h3>
+                            <p class="articul">арт. ${escapeHtml(favorite.id)}</p>
                             <a href="${favorite.link}" target="_blank">Купити на AliExpress</a>
-                            <button class="remove-from-favorites" onclick="removeFromFavorites('${doc.id}')">Видалити з обраного</button>
+                            <button class="remove-from-favorites" data-docid="${docId}">🗑️ Видалити з обраного</button>
                         </div>
                     `;
+                    
                     favoritesList.appendChild(productCard);
-
-                    // Ініціалізація каруселі
-                    const carousel = productCard.querySelector('.product-image-carousel');
-                    const images = carousel.querySelectorAll('.carousel-image');
-                    const indicators = carousel.querySelectorAll('.indicator');
-                    const prevButton = carousel.querySelector('.carousel-prev');
-                    const nextButton = carousel.querySelector('.carousel-next');
-                    let currentIndex = 0;
-
-                    function updateCarousel() {
-                        images.forEach((img, index) => {
-                            img.classList.toggle('active', index === currentIndex);
-                        });
-                        indicators.forEach((indicator, index) => {
-                            indicator.classList.toggle('active', index === currentIndex);
-                        });
-                    }
-
-                    if (prevButton) {
-                        prevButton.addEventListener('click', () => {
-                            currentIndex = (currentIndex - 1 + images.length) % images.length;
-                            updateCarousel();
-                        });
-                    }
-
-                    if (nextButton) {
-                        nextButton.addEventListener('click', () => {
-                            currentIndex = (currentIndex + 1) % images.length;
-                            updateCarousel();
-                        });
-                    }
-
-                    indicators.forEach((indicator, index) => {
-                        indicator.addEventListener('click', () => {
-                            currentIndex = index;
-                            updateCarousel();
-                        });
-                    });
-
-                    let touchStartX = 0;
-                    let touchEndX = 0;
-
-                    carousel.addEventListener('touchstart', (e) => {
-                        touchStartX = e.changedTouches[0].screenX;
-                    });
-
-                    carousel.addEventListener('touchend', (e) => {
-                        touchEndX = e.changedTouches[0].screenX;
-                        if (touchEndX < touchStartX - 50) {
-                            currentIndex = (currentIndex + 1) % images.length;
-                            updateCarousel();
-                        } else if (touchEndX > touchStartX + 50) {
-                            currentIndex = (currentIndex - 1 + images.length) % images.length;
-                            updateCarousel();
-                        }
+                });
+                
+                // Додаємо обробники подій для кнопок видалення
+                document.querySelectorAll('.remove-from-favorites').forEach(btn => {
+                    btn.addEventListener('click', async (e) => {
+                        const docId = btn.getAttribute('data-docid');
+                        await removeFromFavorites(docId);
                     });
                 });
+                
             } catch (error) {
                 console.error('Помилка завантаження обраних товарів:', error);
-                favoritesList.innerHTML = '<p style="color: white; text-align: center;">Помилка завантаження обраних товарів.</p>';
+                favoritesList.innerHTML = '<div class="no-favorites">❌ Помилка завантаження обраних товарів. Спробуйте пізніше.</div>';
             }
         }
 
         // Видалення товару з обраного
-        window.removeFromFavorites = async function(docId) {
+        async function removeFromFavorites(docId) {
+            if (!confirm('Видалити цей товар з обраного?')) return;
+            
             try {
                 await deleteDoc(doc(db, 'favorites', docId));
-                alert('Товар видалено з обраного!');
-                loadFavorites(auth.currentUser.uid);
+                alert('✅ Товар видалено з обраного!');
+                // Перезавантажуємо список
+                const user = auth.currentUser;
+                if (user) {
+                    loadFavorites(user.uid);
+                }
             } catch (error) {
                 console.error('Помилка видалення:', error);
-                alert('Помилка видалення: ' + error.message);
+                alert('❌ Помилка видалення: ' + error.message);
             }
-        };
+        }
+
+        // Функція для захисту від XSS
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
 
         // Пошук серед обраних товарів
         window.searchProducts = function() {
             const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
             const products = document.querySelectorAll('.product-card');
 
-            products.forEach(product => {
-                const articul = product.getAttribute('data-articul').toLowerCase();
-                const title = product.querySelector('.product-details h3').textContent.toLowerCase();
+            if (!searchInput) {
+                products.forEach(product => {
+                    product.style.display = 'flex';
+                });
+                return;
+            }
 
+            products.forEach(product => {
+                const articul = product.getAttribute('data-articul')?.toLowerCase() || '';
+                const title = product.getAttribute('data-title')?.toLowerCase() || '';
+                
                 if (articul.includes(searchInput) || title.includes(searchInput)) {
                     product.style.display = 'flex';
                 } else {
                     product.style.display = 'none';
                 }
             });
-
-            if (!searchInput) {
-                products.forEach(product => {
-                    product.style.display = 'flex';
-                });
-            }
         };
 
         document.getElementById('searchInput').addEventListener('keypress', function(e) {

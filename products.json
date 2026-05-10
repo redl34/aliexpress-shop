@@ -423,146 +423,328 @@
     "category": "electronics"
   },
   {
-    "articul": "0248B",
-    "title": "Бездротові Bluetooth навушники",
-    "description": "Стерео-гарнітура з потужним акумулятором, підтримка всіх сучасних пристроїв. Чіткий звук, вбудований мікрофон для дзвінків",
-    "price": "245.30 грн",
-    "images": [
-      "Electronics_imeg/0248B1.jpg",
-      "Electronics_imeg/0248B2.jpg",
-      "Electronics_imeg/0248B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics"
-  },
-  {
-    "articul": "0249B",
-    "title": "Портативна Bluetooth колонка",
-    "description": "Потужна бездротова колонка з захистом від вологи, до 10 годин автономної роботи. Якісний звук для телефону, планшета або ноутбука",
-    "price": "189.99 грн",
-    "images": [
-      "Electronics_imeg/0249B1.jpg",
-      "Electronics_imeg/0249B2.jpg",
-      "Electronics_imeg/0249B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics"
-  },
-  {
-    "articul": "0250B",
-    "title": "Smart Watch Фітнес-трекер",
-    "description": "Розумний годинник з моніторингом серцевого ритму, крокоміром, лічильником калорій. Відображення повідомлень з телефону",
-    "price": "345.00 грн",
-    "images": [
-      "Electronics_imeg/0250B1.jpg",
-      "Electronics_imeg/0250B2.jpg",
-      "Electronics_imeg/0250B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics"
-  },
-  {
-    "articul": "0251B",
-    "title": "USB 3.0 Hub 4 порти",
-    "description": "Високошвидкісний USB розгалужувач для підключення кількох пристроїв одночасно. Компактний дизайн, підтримка гарячого підключення",
-    "price": "156.20 грн",
-    "images": [
-      "Electronics_imeg/0251B1.jpg",
-      "Electronics_imeg/0251B2.jpg",
-      "Electronics_imeg/0251B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics"
-  },
-  {
-    "articul": "0252B",
-    "title": "RGB LED стрічка 5м з пультом",
-    "description": "Багатоколірна світлодіодна стрічка з пультом дистанційного керування. 16 кольорів, 4 режими світіння, самоклеюча основа",
-    "price": "210.85 грн",
-    "images": [
-      "Electronics_imeg/0252B1.jpg",
-      "Electronics_imeg/0252B2.jpg",
-      "Electronics_imeg/0252B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics"
-  },
-  {
-    "articul": "0253B",
-    "title": "Алюмінієва підставка для телефону",
-    "description": "Універсальна металева підставка для смартфона або планшета. Регульований кут нахилу, компактна складна конструкція",
-    "price": "98.40 грн",
-    "images": [
-      "Electronics_imeg/0253B1.jpg",
-      "Electronics_imeg/0253B2.jpg",
-      "Electronics_imeg/0253B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics"
-  },
-  {
-    "articul": "0254B",
-    "title": "LED лампа для монітора",
-    "description": "Освітлення для роботи за комп'ютером в темряві. Живлення від USB, регулювання яскравості, захист очей від синього світла",
-    "price": "321.55 грн",
-    "images": [
-      "Electronics_imeg/0254B1.jpg",
-      "Electronics_imeg/0254B2.jpg",
-      "Electronics_imeg/0254B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics"
-  },
-  {
-    "articul": "0255B",
-    "title": "MicroSD карта 128GB",
-    "description": "Високошвидкісна карта пам'яті Class 10 для смартфонів, планшетів, екшн-камер. Швидкість читання до 80MB/s",
-    "price": "399.00 грн",
-    "images": [
-      "Electronics_imeg/0255B1.jpg",
-      "Electronics_imeg/0255B2.jpg",
-      "Electronics_imeg/0255B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics"
-  },
-  {
-    "articul": "0256B",
-    "title": "Швидкий зарядний пристрій GaN",
-    "description": "Потужний GaN зарядний пристрій 65W з 3 портами (2xUSB-C + 1xUSB-A). Швидке заряджання для телефонів, ноутбуків, планшетів",
-    "price": "456.70 грн",
-    "images": [
-      "Electronics_imeg/0256B1.jpg",
-      "Electronics_imeg/0256B2.jpg",
-      "Electronics_imeg/0256B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics"
-  },
-  {
-    "articul": "0257B",
-    "title": "Bluetooth селфі палиця з штативом",
-    "description": "Універсальний монопод з пультом дистанційного керування. Складається до 18 см, розкладається до 80 см",
-    "price": "189.30 грн",
-    "images": [
-      "Electronics_imeg/0257B1.jpg",
-      "Electronics_imeg/0257B2.jpg",
-      "Electronics_imeg/0257B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics"
-  },
-  {
-    "articul": "0258B",
-    "title": "",
+    "articul": "0032A",
+    "title": "Набір для чистки клавіатури",
     "description": "",
-    "price": "",
+    "price": "46.13 грн",
     "images": [
-      "Electronics_imeg/0258B1.jpg",
-      "Electronics_imeg/0258B2.jpg",
-      "Electronics_imeg/0258B3.jpg"
+      "Electronics_imeg/0032A1.jpg",
+      "Electronics_imeg/0032A2.jpg",
+      "Electronics_imeg/0032A3.jpg"
     ],
-    "link": "",
+    "link": "https://s.click.aliexpress.com/e/_c2v9ZnQz",
+    "category": "electronics"
+  },
+  {
+    "articul": "0033A",
+    "title": "Набір для чищення комп'ютерної клавіатури",
+    "description": "",
+    "price": "299.61 грн",
+    "images": [
+      "Electronics_imeg/0033A1.jpg",
+      "Electronics_imeg/0033A2.jpg",
+      "Electronics_imeg/0033A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3cxYz3X",
+    "category": "electronics"
+  },
+  {
+    "articul": "0034A",
+    "title": "Клавіатура YINDIAO K500",
+    "description": "",
+    "price": "601.87 грн",
+    "images": [
+      "Electronics_imeg/0034A1.jpg",
+      "Electronics_imeg/0034A2.jpg",
+      "Electronics_imeg/0034A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c2xDUz2V",
+    "category": "electronics"
+  },
+  {
+    "articul": "0035A",
+    "title": "Клавіатура Thundeal",
+    "description": "",
+    "price": "300.05 грн",
+    "images": [
+      "Electronics_imeg/0035A1.jpg",
+      "Electronics_imeg/0035A2.jpg",
+      "Electronics_imeg/0035A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3wZjbxr",
+    "category": "electronics"
+  },
+  {
+    "articul": "0036A",
+    "title": "Ігрова клавіатура EWEADN",
+    "description": "",
+    "price": "1280.29 грн",
+    "images": [
+      "Electronics_imeg/0036A1.jpg",
+      "Electronics_imeg/0036A2.jpg",
+      "Electronics_imeg/0036A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3qUoP29",
+    "category": "electronics"
+  },
+  {
+    "articul": "0037A",
+    "title": "Портативний вентилятор кондиціонера",
+    "description": "",
+    "price": "1197.84 грн",
+    "images": [
+      "Electronics_imeg/0037A1.jpg",
+      "Electronics_imeg/0037A2.jpg",
+      "Electronics_imeg/0037A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3GF1QQp",
+    "category": "electronics"
+  },
+  {
+    "articul": "0038A",
+    "title": "Портативний вентилятор кондиціонера",
+    "description": "",
+    "price": "1347.24 грн",
+    "images": [
+      "Electronics_imeg/0038A1.jpg",
+      "Electronics_imeg/0038A2.jpg",
+      "Electronics_imeg/0038A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3EjUl8D",
+    "category": "electronics"
+  },
+  {
+    "articul": "0039A",
+    "title": "Зволожувач повітря",
+    "description": "",
+    "price": "453.59 грн",
+    "images": [
+      "Electronics_imeg/0039A1.jpg",
+      "Electronics_imeg/0039A2.jpg",
+      "Electronics_imeg/0039A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c2J8mqQD",
+    "category": "electronics"
+  },
+  {
+    "articul": "0040A",
+    "title": "Лампа кімнатна з гри Minecraft",
+    "description": "",
+    "price": "366.98 грн",
+    "images": [
+      "Electronics_imeg/0040A1.jpg",
+      "Electronics_imeg/0040A2.jpg",
+      "Electronics_imeg/0040A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3U9pqkl",
+    "category": "electronics"
+  },
+  {
+    "articul": "0041A",
+    "title": "Нічник Minecraft",
+    "description": "",
+    "price": "469.54 грн",
+    "images": [
+      "Electronics_imeg/0041A1.jpg",
+      "Electronics_imeg/0041A2.jpg",
+      "Electronics_imeg/0041A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4PrYJd3",
+    "category": "electronics"
+  },
+  {
+    "articul": "0042A",
+    "title": "Світильник",
+    "description": "",
+    "price": "94.21 грн",
+    "images": [
+      "Electronics_imeg/0042A1.jpg",
+      "Electronics_imeg/0042A2.jpg",
+      "Electronics_imeg/0042A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4rkfRwV",
+    "category": "electronics"
+  },
+  {
+    "articul": "0043A",
+    "title": "Світлодіодний проектор",
+    "description": "",
+    "price": "128.01 грн",
+    "images": [
+      "Electronics_imeg/0043A1.jpg",
+      "Electronics_imeg/0043A2.jpg",
+      "Electronics_imeg/0043A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4qoG5mz",
+    "category": "electronics"
+  },
+  {
+    "articul": "0044A",
+    "title": "Світлодіодний проектор галактики",
+    "description": "",
+    "price": "783.06 грн",
+    "images": [
+      "Electronics_imeg/0044A1.jpg",
+      "Electronics_imeg/0044A2.jpg",
+      "Electronics_imeg/0044A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4aYEOFb",
+    "category": "electronics"
+  },
+  {
+    "articul": "0045A",
+    "title": "Гірлянда",
+    "description": "",
+    "price": "46.13 грн",
+    "images": [
+      "Electronics_imeg/0045A1.jpg",
+      "Electronics_imeg/0045A2.jpg",
+      "Electronics_imeg/0045A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4Kg6GnT",
+    "category": "electronics"
+  },
+  {
+    "articul": "0046A",
+    "title": "Гірлянда у вигляді вітки",
+    "description": "",
+    "price": "631.25 грн",
+    "images": [
+      "Electronics_imeg/0046A1.jpg",
+      "Electronics_imeg/0046A2.jpg",
+      "Electronics_imeg/0046A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4FdaM4N",
+    "category": "electronics"
+  },
+  {
+    "articul": "0047A",
+    "title": "Розкішний креативний світильник",
+    "description": "",
+    "price": "773.49 грн",
+    "images": [
+      "Electronics_imeg/0047A1.jpg",
+      "Electronics_imeg/0047A2.jpg",
+      "Electronics_imeg/0047A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4BTk7tL",
+    "category": "electronics"
+  },
+  {
+    "articul": "0048A",
+    "title": "Нічник",
+    "description": "",
+    "price": "109.74 грн",
+    "images": [
+      "Electronics_imeg/0048A1.jpg",
+      "Electronics_imeg/0048A2.jpg",
+      "Electronics_imeg/0048A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3BVIUKD",
+    "category": "electronics"
+  },
+  {
+    "articul": "0049A",
+    "title": "Світлодіодний нічник",
+    "description": "",
+    "price": "293.14 грн",
+    "images": [
+      "Electronics_imeg/0049A1.jpg",
+      "Electronics_imeg/0049A2.jpg",
+      "Electronics_imeg/0049A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4UZbKLx",
+    "category": "electronics"
+  },
+  {
+    "articul": "0050A",
+    "title": "Нічник Лисиця",
+    "description": "",
+    "price": "426.84 грн",
+    "images": [
+      "Electronics_imeg/0050A1.jpg",
+      "Electronics_imeg/0050A2.jpg",
+      "Electronics_imeg/0050A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c2Qajm8N",
+    "category": "electronics"
+  },
+  {
+    "articul": "0051A",
+    "title": "Гірлянда",
+    "description": "",
+    "price": "67.58 грн",
+    "images": [
+      "Electronics_imeg/0051A1.jpg",
+      "Electronics_imeg/0051A2.jpg",
+      "Electronics_imeg/0051A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4PincuN",
+    "category": "electronics"
+  },
+  {
+    "articul": "0052A",
+    "title": "Світлодіодний нічник",
+    "description": "",
+    "price": "294.13 грн",
+    "images": [
+      "Electronics_imeg/0052A1.jpg",
+      "Electronics_imeg/0052A2.jpg",
+      "Electronics_imeg/0052A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3r52OCz",
+    "category": "electronics"
+  },
+  {
+    "articul": "0053A",
+    "title": "Нічник BANDIAN",
+    "description": "",
+    "price": "319.75 грн",
+    "images": [
+      "Electronics_imeg/0053A1.jpg",
+      "Electronics_imeg/0053A2.jpg",
+      "Electronics_imeg/0053A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4KOsoHn",
+    "category": "electronics"
+  },
+  {
+    "articul": "0054A",
+    "title": "Настільна лампа Гриб",
+    "description": "",
+    "price": "580.80 грн",
+    "images": [
+      "Electronics_imeg/0054A1.jpg",
+      "Electronics_imeg/0054A2.jpg",
+      "Electronics_imeg/0054A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3gAUjFf",
+    "category": "electronics"
+  },
+  {
+    "articul": "0055A",
+    "title": "Нічник Ловець снів",
+    "description": "",
+    "price": "163.03 грн",
+    "images": [
+      "Electronics_imeg/0055A1.jpg",
+      "Electronics_imeg/0055A2.jpg",
+      "Electronics_imeg/0055A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4Le7T4t",
+    "category": "electronics"
+  },
+  {
+    "articul": "0056A",
+    "title": "Нічник Багаття",
+    "description": "",
+    "price": "306.31 грн",
+    "images": [
+      "Electronics_imeg/0056A1.jpg",
+      "Electronics_imeg/0056A2.jpg",
+      "Electronics_imeg/0056A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4bM2G7L",
     "category": "electronics"
   },
   {

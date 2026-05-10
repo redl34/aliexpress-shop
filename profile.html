@@ -129,6 +129,12 @@
             color: #000000;
             margin: 5px 0;
         }
+        .product-details .price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e63946;
+            margin: 5px 0;
+        }
         .product-details a {
             color: #ffffff;
             text-decoration: none;
@@ -214,6 +220,12 @@
             padding: 40px;
             font-size: 1.2em;
         }
+        .loading {
+            color: white;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+        }
         @media (max-width: 768px) {
             .search-container {
                 flex-direction: column;
@@ -244,7 +256,7 @@
         </div>
     </header>
     <div class="products" id="favoritesList">
-        <!-- Обрані товари будуть додаватися динамічно -->
+        <div class="loading">⏳ Завантаження обраних товарів...</div>
     </div>
     <footer>
         <div class="social-links">
@@ -276,6 +288,28 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        // Глобальна змінна для зберігання даних товарів
+        let productsDatabase = [];
+
+        // Завантаження products.json
+        async function loadProductsDatabase() {
+            try {
+                const response = await fetch('products.json');
+                const data = await response.json();
+                productsDatabase = data.products || data;
+                console.log('✅ Завантажено товарів:', productsDatabase.length);
+                return productsDatabase;
+            } catch (error) {
+                console.error('❌ Помилка завантаження products.json:', error);
+                return [];
+            }
+        }
+
+        // Отримання повної інформації про товар за ID
+        function getProductById(productId) {
+            return productsDatabase.find(p => p.id === productId);
+        }
+
         // Перевірка автентифікації
         onAuthStateChanged(auth, async (user) => {
             if (!user) {
@@ -283,6 +317,10 @@
                 return;
             }
             console.log('Користувач увійшов:', user.uid);
+            
+            // Спочатку завантажуємо базу товарів
+            await loadProductsDatabase();
+            // Потім завантажуємо обрані товари
             loadFavorites(user.uid);
         });
 
@@ -298,64 +336,77 @@
             }
         });
 
-        // Функція для отримання правильного шляху до зображення
-        function getImageUrl(imagePath) {
-            if (!imagePath) return null;
-            
-            // Якщо шлях вже починається з http або https
-            if (imagePath.startsWith('http')) {
-                return imagePath;
-            }
-            
-            // Якщо це локальний шлях Windows
-            if (imagePath.includes('D:\\') || imagePath.includes(':')) {
-                const fileName = imagePath.split('\\').pop();
-                return `Electronics_imeg/${fileName}`;
-            }
-            
-            // Якщо це відносний шлях
-            return imagePath;
-        }
-
-        // Завантаження обраних товарів
+        // Завантаження обраних товарів з Firestore
         async function loadFavorites(userId) {
             const favoritesList = document.getElementById('favoritesList');
-            favoritesList.innerHTML = '';
+            favoritesList.innerHTML = '<div class="loading">⏳ Завантаження...</div>';
 
             try {
                 const q = query(collection(db, 'favorites'), where('userId', '==', userId));
                 const querySnapshot = await getDocs(q);
                 
-                console.log('Знайдено товарів:', querySnapshot.size);
+                console.log('Знайдено обраних товарів у Firestore:', querySnapshot.size);
                 
                 if (querySnapshot.empty) {
                     favoritesList.innerHTML = '<div class="no-favorites">😔 У вас немає обраних товарів.<br>Додайте товари, натиснувши "Додати до обраного" на сторінках категорій.</div>';
                     return;
                 }
 
+                // Збираємо ID товарів з Firestore
+                const favoriteProductIds = [];
+                const favoriteDocs = {};
+                
                 querySnapshot.forEach((docSnapshot) => {
-                    const favorite = docSnapshot.data();
-                    const docId = docSnapshot.id;
-                    
-                    console.log('Товар:', favorite);
-                    
-                    // Отримуємо правильний шлях до зображення
-                    const imageUrl = getImageUrl(favorite.image);
-                    
+                    const data = docSnapshot.data();
+                    const productId = data.productId || data.id; // підтримка обох форматів
+                    if (productId) {
+                        favoriteProductIds.push(productId);
+                        favoriteDocs[productId] = docSnapshot.id; // зберігаємо ID документа Firestore
+                    }
+                });
+
+                // Отримуємо повну інформацію про товари з products.json
+                const favoriteProducts = [];
+                for (const productId of favoriteProductIds) {
+                    const product = getProductById(productId);
+                    if (product) {
+                        favoriteProducts.push({
+                            ...product,
+                            favoriteDocId: favoriteDocs[productId]
+                        });
+                    } else {
+                        console.warn(`Товар з ID ${productId} не знайдено в products.json`);
+                    }
+                }
+
+                console.log('Знайдено товарів у базі:', favoriteProducts.length);
+
+                if (favoriteProducts.length === 0) {
+                    favoritesList.innerHTML = '<div class="no-favorites">😔 Не вдалося завантажити інформацію про товари.<br>Можливо, файл products.json пошкоджено.</div>';
+                    return;
+                }
+
+                // Відображаємо товари
+                favoritesList.innerHTML = '';
+                favoriteProducts.forEach(product => {
                     const productCard = document.createElement('div');
                     productCard.className = 'product-card';
-                    productCard.setAttribute('data-articul', favorite.id);
-                    productCard.setAttribute('data-title', favorite.title);
+                    productCard.setAttribute('data-articul', product.id);
+                    productCard.setAttribute('data-title', product.title);
                     
                     productCard.innerHTML = `
                         <div class="product-image-container">
-                            ${imageUrl ? `<img class="product-image" src="${imageUrl}" alt="${favorite.title}" onerror="this.src='https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/no-image.png'; this.onerror=null;">` : '<div style="width:100%; height:150px; background:#f0f0f0; display:flex; align-items:center; justify-content:center;">Немає фото</div>'}
+                            <img class="product-image" 
+                                 src="${product.image}" 
+                                 alt="${product.title}"
+                                 onerror="this.src='https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/no-image.png'; this.onerror=null;">
                         </div>
                         <div class="product-details">
-                            <h3>${escapeHtml(favorite.title)}</h3>
-                            <p class="articul">арт. ${escapeHtml(favorite.id)}</p>
-                            <a href="${favorite.link}" target="_blank">Купити на AliExpress</a>
-                            <button class="remove-from-favorites" data-docid="${docId}">🗑️ Видалити з обраного</button>
+                            <h3>${escapeHtml(product.title)}</h3>
+                            <p class="articul">арт. ${escapeHtml(product.id)}</p>
+                            <p class="price">${product.price || 'Ціна не вказана'}</p>
+                            <a href="${product.link}" target="_blank">🛒 Купити на AliExpress</a>
+                            <button class="remove-from-favorites" data-docid="${product.favoriteDocId}">🗑️ Видалити з обраного</button>
                         </div>
                     `;
                     

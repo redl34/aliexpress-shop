@@ -24,15 +24,21 @@ function extractProduct(cardHtml) {
     const titleMatch = /<h3>([^<]+)<\/h3>/.exec(cardHtml);
     const title = titleMatch ? titleMatch[1].trim() : '';
     
-    // Опис: після </h3> шукаємо <p>
+    // ВИПРАВЛЕНИЙ ПОШУК ОПИСУ - шукаємо перший <p після </h3> (з будь-якими атрибутами)
     let description = '';
     const h3ClosePos = cardHtml.indexOf('</h3>');
     if (h3ClosePos !== -1) {
-        const pOpenPos = cardHtml.indexOf('<p>', h3ClosePos);
+        // Шукаємо будь-який відкриваючий тег <p після </h3>
+        const pOpenPos = cardHtml.indexOf('<p', h3ClosePos);
         if (pOpenPos !== -1) {
-            const pClosePos = cardHtml.indexOf('</p>', pOpenPos);
-            if (pClosePos !== -1) {
-                description = cardHtml.substring(pOpenPos + 3, pClosePos).trim();
+            // Знаходимо символ > після відкриття тегу
+            const tagEndPos = cardHtml.indexOf('>', pOpenPos);
+            if (tagEndPos !== -1) {
+                // Знаходимо закриття </p>
+                const pClosePos = cardHtml.indexOf('</p>', tagEndPos);
+                if (pClosePos !== -1) {
+                    description = cardHtml.substring(tagEndPos + 1, pClosePos).trim();
+                }
             }
         }
     }
@@ -60,23 +66,17 @@ function main() {
     
     htmlFiles.forEach(filePath => {
         const content = fs.readFileSync(filePath, 'utf8');
-        // Знаходимо всі входження <div class="product-card"
         let startIdx = 0;
         while (true) {
             const cardStart = content.indexOf('<div class="product-card"', startIdx);
             if (cardStart === -1) break;
             
-            // Шукаємо наступне входження, щоб визначити кінець поточної картки
             const nextCardStart = content.indexOf('<div class="product-card"', cardStart + 1);
             let cardEnd;
             if (nextCardStart === -1) {
-                // Це остання картка, шукаємо кінець блоку products? Але простіше взяти до кінця файлу?
-                // Краще знайти закриття батьківського div, але це складно.
-                // Можна шукати послідовність, яка закриває картку: </div></div></div> або </div></div>
-                // Подивимося на ваш HTML: картка закривається двома div. Спробуємо шукати </div></div>
                 const possibleEnd = content.indexOf('</div></div>', cardStart);
                 if (possibleEnd === -1) break;
-                cardEnd = possibleEnd + 12; // довжина '</div></div>'
+                cardEnd = possibleEnd + 12;
             } else {
                 cardEnd = nextCardStart;
             }
@@ -89,7 +89,7 @@ function main() {
                 else if (filePath.includes('clothing')) category = 'clothing';
                 else if (filePath.includes('garden')) category = 'garden';
                 allProducts.push({ ...product, category });
-                console.log(`Знайдено: ${product.articul} - ${product.title}`);
+                console.log(`Знайдено: ${product.articul} - ${product.title} | опис: ${product.description.substring(0, 50)}...`);
             }
             
             startIdx = cardEnd;
@@ -97,7 +97,7 @@ function main() {
     });
     
     fs.writeFileSync('products.json', JSON.stringify(allProducts, null, 2));
-    console.log(`Згенеровано ${allProducts.length} товарів`);
+    console.log(`\n✅ Згенеровано ${allProducts.length} товарів у файл products.json`);
 }
 
 main();

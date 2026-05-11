@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Електроніка - AliShop</title>
+<title>Електроніка - Сторінка 2 - AliShop</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
 <link href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png" rel="icon" type="image/png"/>
@@ -65,14 +65,14 @@
         }
         .search-container input {
             flex-grow: 1;
-            padding: 10px;
+            padding: 12px;
             font-size: 1em;
             border: 1px solid #ddd;
             border-radius: 5px;
             outline: none;
         }
         .search-container button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: #ff6b6b;
             color: white;
             border: none;
@@ -143,16 +143,11 @@
             align-items: center;
             justify-content: center;
             transition: background-color 0.2s;
-            line-height: 1;
         }
+        .carousel-prev { left: 5px; }
+        .carousel-next { right: 5px; }
         .carousel-prev:hover, .carousel-next:hover {
             background-color: rgba(0, 0, 0, 0.8);
-        }
-        .carousel-prev {
-            left: 5px;
-        }
-        .carousel-next {
-            right: 5px;
         }
         .carousel-indicators {
             position: absolute;
@@ -216,7 +211,7 @@
             height: 80px;
             overflow-y: auto;
             text-align: left;
-            font-weight: bold;
+            font-weight: normal;
         }
         .description-container::-webkit-scrollbar {
             width: 11px;
@@ -265,13 +260,9 @@
             color: white;
             text-align: center;
             padding: 20px;
-            position: relative;
-            bottom: 0;
             width: 100%;
         }
-        footer .social-links {
-            text-align: center;
-        }
+        footer .social-links { text-align: center; }
         footer .social-links h2 {
             font-size: clamp(1.2rem, 3vw, 1.4rem);
             margin-bottom: 15px;
@@ -294,54 +285,48 @@
             border-radius: 25px;
             font-size: clamp(0.9rem, 2.5vw, 1rem);
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        footer .social-buttons a.tiktok {
-            background-color: #000000;
-            border: 1px solid #fff;
+        footer .social-buttons a.tiktok { background-color: #000000; border: 1px solid #fff; }
+        footer .social-buttons a.facebook { background-color: #1877f2; }
+        footer .social-buttons a.instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
+        footer .social-buttons a:hover { transform: scale(1.05); }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 250px;
         }
-        footer .social-buttons a.facebook {
-            background-color: #1877f2;
+        .pagination a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 9px;
         }
-        footer .social-buttons a.instagram {
-            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        .pagination a.active {
+            background-color: white;
+            color: black;
+            border: 5px solid #e0930d;
         }
-        footer .social-buttons a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-        footer .social-buttons a i {
-            font-size: 1.2em;
+        .pagination a:not(.active) {
+            background-color: #d3d3d3;
+            color: black;
+            border: 1px solid #a9a9a9;
         }
         @media (max-width: 768px) {
-            .search-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .search-container input, .search-container button {
-                width: 100%;
-                max-width: 200px;
-            }
-            .products {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                padding: 20px 10px;
-            }
-            .carousel-prev, .carousel-next {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
-            }
-            .description-container {
-                height: 70px;
-                font-size: 0.8em;
-            }
-            .description-container::-webkit-scrollbar {
-                width: 8px;
-            }
-            .product-details h3 {
-                font-size: 1em;
-                min-height: 40px;
-            }
+            .search-container { flex-direction: column; align-items: center; }
+            .search-container input, .search-container button { width: 100%; max-width: 200px; }
+            .products { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+            .carousel-prev, .carousel-next { width: 28px; height: 28px; font-size: 14px; }
+            .description-container { height: 70px; font-size: 0.8em; }
+            .description-container::-webkit-scrollbar { width: 8px; }
+            .product-details h3 { font-size: 1em; min-height: 40px; }
         }
     </style>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
@@ -350,7 +335,7 @@
 </head>
 <body>
 <header>
-<h1>Електроніка</h1>
+<h1>Електроніка - Сторінка 2</h1>
 <a class="home-link" href="index.html">Повернутися на головну</a>
 <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
 <div class="search-container">
@@ -360,7 +345,7 @@
 </header>
 
 <div class="products">
-<!-- Товар 0032A -->
+<!-- Товар 1: Набір для чистки клавіатури 7-в-1 -->
 <div class="product-card" data-articul="0032A">
     <div class="product-image-carousel">
         <div class="carousel-container">
@@ -369,50 +354,42 @@
             <img class="carousel-image" src="Electronics_imeg/0032A3.jpg" alt="Набір для чистки клавіатури"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Набір для чистки клавіатури</h3>
+        <h3>Набір для чистки клавіатури 7-в-1</h3>
         <p class="articul">арт. 0032A</p>
         <p class="price">46.13 грн</p>
-        <div class="description-container">7-в-1 Cleaner Kit комп'ютерна клавіатура щітка для чищення Bluetooth навушників ручка для чищення кейкапів знімач екрану телефону інструменти для чищення ноутбука</div>
+        <div class="description-container">7-в-1 Cleaner Kit комп'ютерна клавіатура щітка для чищення Bluetooth навушників ручка для чищення кейкапів знімач екрану телефону інструменти для чищення ноутбука. Універсальний набір для догляду за технікою. Включає м'яку щітку, гелеву серветку, знімач клавіш, пилосос для клавіатури та інші аксесуари. Компактний кейс для зберігання. Ідеально для догляду за комп'ютером, ноутбуком, телефоном.</div>
         <a href="https://s.click.aliexpress.com/e/_c2v9ZnQz" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0032A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0033A -->
+<!-- Товар 2: Набір для чищення 8-в-1 -->
 <div class="product-card" data-articul="0033A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0033A1.jpg" alt="Набір для чищення комп'ютерної клавіатури"/>
-            <img class="carousel-image" src="Electronics_imeg/0033A2.jpg" alt="Набір для чищення комп'ютерної клавіатури"/>
-            <img class="carousel-image" src="Electronics_imeg/0033A3.jpg" alt="Набір для чищення комп'ютерної клавіатури"/>
+            <img class="carousel-image active" src="Electronics_imeg/0033A1.jpg" alt="Набір для чищення 8-в-1"/>
+            <img class="carousel-image" src="Electronics_imeg/0033A2.jpg" alt="Набір для чищення 8-в-1"/>
+            <img class="carousel-image" src="Electronics_imeg/0033A3.jpg" alt="Набір для чищення 8-в-1"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Набір для чищення комп'ютерної клавіатури</h3>
+        <h3>Набір для чищення 8-в-1</h3>
         <p class="articul">арт. 0033A</p>
         <p class="price">299.61 грн</p>
-        <div class="description-container">8-в-1 Набір для чищення комп'ютерної клавіатури, щітка для чищення навушників, ручка для чищення планшета, мобільний телефон, інструмент для чищення ковпачків клавіш, набір для вилучення клавіш</div>
+        <div class="description-container">8-в-1 Набір для чищення комп'ютерної клавіатури, щітка для чищення навушників, ручка для чищення планшета, мобільний телефон, інструмент для чищення ковпачків клавіш, набір для вилучення клавіш. Розширений професійний набір для глибокого чищення всіх гаджетів. Пневматичний пилосос для видалення пилу з важкодоступних місць. Мікрофіброві серветки для безпечного протирання екранів.</div>
         <a href="https://s.click.aliexpress.com/e/_c3cxYz3X" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0033A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0034A -->
+<!-- Товар 3: Клавіатура YINDIAO K500 -->
 <div class="product-card" data-articul="0034A">
     <div class="product-image-carousel">
         <div class="carousel-container">
@@ -421,24 +398,20 @@
             <img class="carousel-image" src="Electronics_imeg/0034A3.jpg" alt="Клавіатура YINDIAO K500"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
         <h3>Клавіатура YINDIAO K500</h3>
         <p class="articul">арт. 0034A</p>
         <p class="price">601.87 грн</p>
-        <div class="description-container">YINDIAO K500 Дротова клавіатура Ігрова клавіатура для ноутбуків, настільних комп'ютерів, офісних аксесуарів, низькопрофільна ігрова клавіатура з цифровою клавіатурою</div>
+        <div class="description-container">YINDIAO K500 Дротова клавіатура Ігрова клавіатура для ноутбуків, настільних комп'ютерів, офісних аксесуарів, низькопрофільна ігрова клавіатура з цифровою клавіатурою. Механічні перемикачі, RGB підсвітка з 16 мільйонами кольорів. Анти-примарна технологія, 104 клавіші. Ергономічний дизайн з підставкою для зап'ястя. Підходить для ігор та роботи в офісі.</div>
         <a href="https://s.click.aliexpress.com/e/_c2xDUz2V" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0034A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0035A -->
+<!-- Товар 4: Клавіатура Thundeal -->
 <div class="product-card" data-articul="0035A">
     <div class="product-image-carousel">
         <div class="carousel-container">
@@ -447,24 +420,20 @@
             <img class="carousel-image" src="Electronics_imeg/0035A3.jpg" alt="Клавіатура Thundeal"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
         <h3>Клавіатура Thundeal</h3>
         <p class="articul">арт. 0035A</p>
         <p class="price">300.05 грн</p>
-        <div class="description-container">Thundeal водонепроникний 85 клавіш кремнієвий англійська російська клавіатура планшет робочого столу планшет USB дротовий геймер офіс російська</div>
+        <div class="description-container">Thundeal водонепроникний 85 клавіш кремнієвий англійська російська клавіатура планшет робочого столу планшет USB дротовий геймер офіс російська. Силіконова клавіатура, повністю герметична, можна мити під водою. Безшумне натискання, компактний розмір. Підтримує розкладки EN/RU. Легко згортається для транспортування. Ідеально для подорожей та роботи в польових умовах.</div>
         <a href="https://s.click.aliexpress.com/e/_c3wZjbxr" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0035A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0036A -->
+<!-- Товар 5: Ігрова клавіатура EWEADN -->
 <div class="product-card" data-articul="0036A">
     <div class="product-image-carousel">
         <div class="carousel-container">
@@ -473,24 +442,20 @@
             <img class="carousel-image" src="Electronics_imeg/0036A3.jpg" alt="Ігрова клавіатура EWEADN"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
         <h3>Ігрова клавіатура EWEADN</h3>
         <p class="articul">арт. 0036A</p>
         <p class="price">1280.29 грн</p>
-        <div class="description-container">Ігрова клавіатура EWEADN Silent, 104 клавіші зі світлодіодним підсвічуванням, повністю металева панель, USB-дротова, мультимедійна ручка, офіс, дім, ноутбук/настільний комп'ютер</div>
+        <div class="description-container">Ігрова клавіатура EWEADN Silent, 104 клавіші зі світлодіодним підсвічуванням, повністю металева панель, USB-дротова, мультимедійна ручка, офіс, дім, ноутбук/настільний комп'ютер. Механічні перемикачі з тихим натисканням. Алюмінієва панель, RGB підсвітка з ефектами. 12 додаткових мультимедійних клавіш. Програмовані макроси. Підходить для професійних геймерів.</div>
         <a href="https://s.click.aliexpress.com/e/_c3qUoP29" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0036A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0037A -->
+<!-- Товар 6: Портативний вентилятор кондиціонера -->
 <div class="product-card" data-articul="0037A">
     <div class="product-image-carousel">
         <div class="carousel-container">
@@ -499,50 +464,42 @@
             <img class="carousel-image" src="Electronics_imeg/0037A3.jpg" alt="Портативний вентилятор кондиціонера"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
         <h3>Портативний вентилятор кондиціонера</h3>
         <p class="articul">арт. 0037A</p>
         <p class="price">1197.84 грн</p>
-        <div class="description-container">Портативний вентилятор кондиціонера робочого столу подвійний спрей ультразвуковий розпилювач 3-швидкісний безшумний повітряний охолоджувач нічник електричний вентилятор для дому</div>
+        <div class="description-container">Портативний вентилятор кондиціонера робочого столу подвійний спрей ультразвуковий розпилювач 3-швидкісний безшумний повітряний охолоджувач нічник електричний вентилятор для дому. 3 швидкості, функція зволоження повітря (ультразвуковий розпилювач). Резервуар для води 500 мл, час роботи до 8 годин. Вбудований нічник з RGB підсвіткою. USB живлення, компактний розмір.</div>
         <a href="https://s.click.aliexpress.com/e/_c3GF1QQp" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0037A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0038A -->
+<!-- Товар 7: Портативний вентилятор з ультразвуковим розпиленням -->
 <div class="product-card" data-articul="0038A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0038A1.jpg" alt="Портативний вентилятор кондиціонера"/>
-            <img class="carousel-image" src="Electronics_imeg/0038A2.jpg" alt="Портативний вентилятор кондиціонера"/>
-            <img class="carousel-image" src="Electronics_imeg/0038A3.jpg" alt="Портативний вентилятор кондиціонера"/>
+            <img class="carousel-image active" src="Electronics_imeg/0038A1.jpg" alt="Портативний вентилятор з розпиленням"/>
+            <img class="carousel-image" src="Electronics_imeg/0038A2.jpg" alt="Портативний вентилятор з розпиленням"/>
+            <img class="carousel-image" src="Electronics_imeg/0038A3.jpg" alt="Портативний вентилятор з розпиленням"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Портативний вентилятор кондиціонера</h3>
+        <h3>Вентилятор з ультразвуковим розпиленням</h3>
         <p class="articul">арт. 0038A</p>
         <p class="price">1347.24 грн</p>
-        <div class="description-container">Портативний вентилятор кондиціонера робочого столу подвійний спрей ультразвукове розпилення 3/4-швидкісний безшумний повітряний охолоджувач нічник електричний домашній вентилятор</div>
+        <div class="description-container">Портативний вентилятор кондиціонера робочого столу подвійний спрей ультразвукове розпилення 3/4-швидкісний безшумний повітряний охолоджувач нічник електричний домашній вентилятор. 4 швидкості, подвійний розпилювач для максимального охолодження. Великий резервуар для води 1 л. Дистанційне керування, таймер вимкнення. Потужний потік повітря, ідеально для спекотного літа.</div>
         <a href="https://s.click.aliexpress.com/e/_c3EjUl8D" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0038A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0039A -->
+<!-- Товар 8: Зволожувач повітря -->
 <div class="product-card" data-articul="0039A">
     <div class="product-image-carousel">
         <div class="carousel-container">
@@ -551,180 +508,152 @@
             <img class="carousel-image" src="Electronics_imeg/0039A3.jpg" alt="Зволожувач повітря"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Зволожувач повітря</h3>
+        <h3>Зволожувач повітря професійний</h3>
         <p class="articul">арт. 0039A</p>
         <p class="price">453.59 грн</p>
-        <div class="description-container">Зволожувач повітря професійний великої ємності подвійний розпилювач прохолодний туман Maker для дому кімнати офісу без звуку робочого столу зволожувач повітря</div>
+        <div class="description-container">Зволожувач повітря професійний великої ємності подвійний розпилювач прохолодний туман Maker для дому кімнати офісу без звуку робочого столу зволожувач повітря. Об'єм баку 4 л, безшумна робота (<30 дБ). Ультразвукова технологія, регулювання інтенсивності пари. Автоматичне вимкнення при відсутності води. Іонізатор повітря в комплекті. Підходить для кімнат до 30 м².</div>
         <a href="https://s.click.aliexpress.com/e/_c2J8mqQD" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0039A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0040A -->
+<!-- Товар 9: Лампа Minecraft Факел -->
 <div class="product-card" data-articul="0040A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0040A1.jpg" alt="Лампа кімнатна з гри Minecraft"/>
-            <img class="carousel-image" src="Electronics_imeg/0040A2.jpg" alt="Лампа кімнатна з гри Minecraft"/>
-            <img class="carousel-image" src="Electronics_imeg/0040A3.jpg" alt="Лампа кімнатна з гри Minecraft"/>
+            <img class="carousel-image active" src="Electronics_imeg/0040A1.jpg" alt="Лампа Minecraft Факел"/>
+            <img class="carousel-image" src="Electronics_imeg/0040A2.jpg" alt="Лампа Minecraft Факел"/>
+            <img class="carousel-image" src="Electronics_imeg/0040A3.jpg" alt="Лампа Minecraft Факел"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Лампа кімнатна з гри Minecraft</h3>
+        <h3>Лампа Minecraft Факел</h3>
         <p class="articul">арт. 0040A</p>
         <p class="price">366.98 грн</p>
-        <div class="description-container">MC гра Brownstone факел лампа фігурка 4 кольори світлодіодний нічник спальня декоративна настільна лампа USB зарядка з пряжкою дитяча іграшка Gif</div>
+        <div class="description-container">MC гра Brownstone факел лампа фігурка 4 кольори світлодіодний нічник спальня декоративна настільна лампа USB зарядка з пряжкою дитяча іграшка Gif. Точна копія факела з гри Minecraft. 4 режими світіння, ефект мерехтіння полум'я. Живлення від USB, вбудований акумулятор. Можна повісити на стіну або поставити на стіл. Ідеальний подарунок для шанувальників гри.</div>
         <a href="https://s.click.aliexpress.com/e/_c3U9pqkl" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0040A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0041A -->
+<!-- Товар 10: Нічник Minecraft пляшечка зілля -->
 <div class="product-card" data-articul="0041A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0041A1.jpg" alt="Нічник Minecraft"/>
-            <img class="carousel-image" src="Electronics_imeg/0041A2.jpg" alt="Нічник Minecraft"/>
-            <img class="carousel-image" src="Electronics_imeg/0041A3.jpg" alt="Нічник Minecraft"/>
+            <img class="carousel-image active" src="Electronics_imeg/0041A1.jpg" alt="Нічник Minecraft пляшечка зілля"/>
+            <img class="carousel-image" src="Electronics_imeg/0041A2.jpg" alt="Нічник Minecraft пляшечка зілля"/>
+            <img class="carousel-image" src="Electronics_imeg/0041A3.jpg" alt="Нічник Minecraft пляшечка зілля"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Нічник Minecraft</h3>
+        <h3>Нічник Minecraft пляшечка зілля</h3>
         <p class="articul">арт. 0041A</p>
         <p class="price">469.54 грн</p>
-        <div class="description-container">Нічник Minecraft у формі пляшечки зілля, що змінює колір - набір з 8 моделей, підсвічування настрою з живленням від USB та декоративна лампа з навколишнім світінням, піксельна гра</div>
+        <div class="description-container">Нічник Minecraft у формі пляшечки зілля, що змінює колір - набір з 8 моделей, підсвічування настрою з живленням від USB та декоративна лампа з навколишнім світінням, піксельна гра. Набір з 8 різних пляшечок зілля. Кожна світиться своїм кольором. Живлення від USB, автоматична зміна кольорів. Чудова прикраса для кімнати геймера або дитини.</div>
         <a href="https://s.click.aliexpress.com/e/_c4PrYJd3" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0041A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0042A -->
+<!-- Товар 11: Світлодіодний проектор галактики -->
 <div class="product-card" data-articul="0042A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0042A1.jpg" alt="Світильник"/>
-            <img class="carousel-image" src="Electronics_imeg/0042A2.jpg" alt="Світильник"/>
-            <img class="carousel-image" src="Electronics_imeg/0042A3.jpg" alt="Світильник"/>
+            <img class="carousel-image active" src="Electronics_imeg/0042A1.jpg" alt="Світлодіодний проектор галактики"/>
+            <img class="carousel-image" src="Electronics_imeg/0042A2.jpg" alt="Світлодіодний проектор галактики"/>
+            <img class="carousel-image" src="Electronics_imeg/0042A3.jpg" alt="Світлодіодний проектор галактики"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Світильник</h3>
+        <h3>Світлодіодний проектор галактики</h3>
         <p class="articul">арт. 0042A</p>
         <p class="price">94.21 грн</p>
-        <div class="description-container">Світлодіодний проектор галактики світло барвистий проектор галактики небо спальня нічник дитяча кімната прикраса різдвяна вечірка прикраса</div>
+        <div class="description-container">Світлодіодний проектор галактики світло барвистий проектор галактики небо спальня нічник дитяча кімната прикраса різдвяна вечірка прикраса. Компактний проектор для створення ефекту зоряного неба. 3 кольорові режими, обертання. Живлення від USB, автоматичне вимкнення через 2 години. Створює чарівну атмосферу в кімнаті. Ідеально для релаксації, медитації або вечірки.</div>
         <a href="https://s.click.aliexpress.com/e/_c4rkfRwV" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0042A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0043A -->
+<!-- Товар 12: LED проектор Galaxy Sky Light -->
 <div class="product-card" data-articul="0043A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0043A1.jpg" alt="Світлодіодний проектор"/>
-            <img class="carousel-image" src="Electronics_imeg/0043A2.jpg" alt="Світлодіодний проектор"/>
-            <img class="carousel-image" src="Electronics_imeg/0043A3.jpg" alt="Світлодіодний проектор"/>
+            <img class="carousel-image active" src="Electronics_imeg/0043A1.jpg" alt="LED проектор Galaxy Sky Light"/>
+            <img class="carousel-image" src="Electronics_imeg/0043A2.jpg" alt="LED проектор Galaxy Sky Light"/>
+            <img class="carousel-image" src="Electronics_imeg/0043A3.jpg" alt="LED проектор Galaxy Sky Light"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Світлодіодний проектор</h3>
+        <h3>LED проектор Galaxy Sky Light</h3>
         <p class="articul">арт. 0043A</p>
         <p class="price">128.01 грн</p>
-        <div class="description-container">Світлодіодний проектор Galaxy Sky Light барвистий проектор Galaxy проектор спальня нічник дитяча кімната прикраса різдвяна вечірка прикраса USB</div>
+        <div class="description-container">Світлодіодний проектор Galaxy Sky Light барвистий проектор Galaxy проектор спальня нічник дитяча кімната прикраса різдвяна вечірка прикраса USB. Потужніший проектор з кращим покриттям (до 30 м²). 6 кольорових режимів, 3 швидкості обертання. Дистанційне керування, таймер на 1/2/4 години. Створює ефект туманності та зірок. Чудовий подарунок для дітей та дорослих.</div>
         <a href="https://s.click.aliexpress.com/e/_c4qoG5mz" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0043A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0044A -->
+<!-- Товар 13: Світлодіодний проектор галактики музичний -->
 <div class="product-card" data-articul="0044A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0044A1.jpg" alt="Світлодіодний проектор галактики"/>
-            <img class="carousel-image" src="Electronics_imeg/0044A2.jpg" alt="Світлодіодний проектор галактики"/>
-            <img class="carousel-image" src="Electronics_imeg/0044A3.jpg" alt="Світлодіодний проектор галактики"/>
+            <img class="carousel-image active" src="Electronics_imeg/0044A1.jpg" alt="Світлодіодний проектор галактики музичний"/>
+            <img class="carousel-image" src="Electronics_imeg/0044A2.jpg" alt="Світлодіодний проектор галактики музичний"/>
+            <img class="carousel-image" src="Electronics_imeg/0044A3.jpg" alt="Світлодіодний проектор галактики музичний"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Світлодіодний проектор галактики</h3>
+        <h3>Музичний проектор галактики</h3>
         <p class="articul">арт. 0044A</p>
         <p class="price">783.06 грн</p>
-        <div class="description-container">Світлодіодний проектор галактики світло барвистий проектор галактики небо спальня музичний нічник дитяча кімната різдвяна вечірка прикраса</div>
+        <div class="description-container">Світлодіодний проектор галактики світло барвистий проектор галактики небо спальня музичний нічник дитяча кімната різдвяна вечірка прикраса. Вбудований Bluetooth-динамік. Світло синхронізується з музикою. 16 кольорів RGB, 6 режимів світіння. Дистанційне керування, таймер. Обертовий механізм, проекція туманності та зірок. Створює повний ефект занурення в космос.</div>
         <a href="https://s.click.aliexpress.com/e/_c4aYEOFb" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0044A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0045A -->
+<!-- Товар 14: Гірлянда світлодіодні кульки -->
 <div class="product-card" data-articul="0045A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0045A1.jpg" alt="Гірлянда"/>
-            <img class="carousel-image" src="Electronics_imeg/0045A2.jpg" alt="Гірлянда"/>
-            <img class="carousel-image" src="Electronics_imeg/0045A3.jpg" alt="Гірлянда"/>
+            <img class="carousel-image active" src="Electronics_imeg/0045A1.jpg" alt="Гірлянда світлодіодні кульки"/>
+            <img class="carousel-image" src="Electronics_imeg/0045A2.jpg" alt="Гірлянда світлодіодні кульки"/>
+            <img class="carousel-image" src="Electronics_imeg/0045A3.jpg" alt="Гірлянда світлодіодні кульки"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Гірлянда</h3>
+        <h3>Гірлянда світлодіодні кульки</h3>
         <p class="articul">арт. 0045A</p>
         <p class="price">46.13 грн</p>
-        <div class="description-container">Світлодіодні кульки гірлянди світлодіоди глобус водонепроникний фея гірлянди прикраси для критої вечірки весілля різдвяна ялинка патіо декор</div>
+        <div class="description-container">Світлодіодні кульки гірлянди світлодіоди глобус водонепроникний фея гірлянди прикраси для критої вечірки весілля різдвяна ялинка патіо декор. 20 світлодіодних кульок на дроті довжиною 2м. Живлення від батарейок (3xAA). 8 режимів світіння. Водонепроникна, можна використовувати на вулиці. Чудово підходить для прикраси ялинки, вікон, кімнати, вечірки.</div>
         <a href="https://s.click.aliexpress.com/e/_c4Kg6GnT" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0045A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0046A -->
+<!-- Товар 15: Гірлянда у вигляді вітки -->
 <div class="product-card" data-articul="0046A">
     <div class="product-image-carousel">
         <div class="carousel-container">
@@ -733,24 +662,20 @@
             <img class="carousel-image" src="Electronics_imeg/0046A3.jpg" alt="Гірлянда у вигляді вітки"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Гірлянда у вигляді вітки</h3>
+        <h3>Гірлянда у вигляді вітки верби</h3>
         <p class="articul">арт. 0046A</p>
         <p class="price">631.25 грн</p>
-        <div class="description-container">144 світлодіодні USB настінні прикраси вогнів вербової лози гілки вогнів тепле біле світло для кімнати кухні весілля Різдво Хелловін декор</div>
+        <div class="description-container">144 світлодіодні USB настінні прикраси вогнів вербової лози гілки вогнів тепле біле світло для кімнати кухні весілля Різдво Хелловін декор. Гнучка гірлянда у формі гілки з 144 світлодіодами. Живлення від USB, тепле біле світло. Можна надавати будь-якої форми, кріпити на стіну, вікно, стелю. Створює затишну атмосферу в кімнаті.</div>
         <a href="https://s.click.aliexpress.com/e/_c4FdaM4N" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0046A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0047A -->
+<!-- Товар 16: Розкішний креативний світильник -->
 <div class="product-card" data-articul="0047A">
     <div class="product-image-carousel">
         <div class="carousel-container">
@@ -759,76 +684,64 @@
             <img class="carousel-image" src="Electronics_imeg/0047A3.jpg" alt="Розкішний креативний світильник"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
         <h3>Розкішний креативний світильник</h3>
         <p class="articul">арт. 0047A</p>
         <p class="price">773.49 грн</p>
-        <div class="description-container">Розкішний креативний супер яскравий вітальня спальня готель стіна лампа прозора лінія керована світлодіодна прикраса домашнього освітлення</div>
+        <div class="description-container">Розкішний креативний супер яскравий вітальня спальня готель стіна лампа прозора лінія керована світлодіодна прикраса домашнього освітлення. Сучасний світильник у вигляді вигнутої лінії з прозорого акрилу. Потужні світлодіоди, регулювання яскравості, кілька кольорових режимів. Кріплення на стіну, живлення від мережі. Елегантний дизайн для сучасного інтер'єру.</div>
         <a href="https://s.click.aliexpress.com/e/_c4BTk7tL" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0047A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0048A -->
+<!-- Товар 17: 3D нічник сніжинка -->
 <div class="product-card" data-articul="0048A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0048A1.jpg" alt="Нічник"/>
-            <img class="carousel-image" src="Electronics_imeg/0048A2.jpg" alt="Нічник"/>
-            <img class="carousel-image" src="Electronics_imeg/0048A3.jpg" alt="Нічник"/>
+            <img class="carousel-image active" src="Electronics_imeg/0048A1.jpg" alt="3D нічник сніжинка"/>
+            <img class="carousel-image" src="Electronics_imeg/0048A2.jpg" alt="3D нічник сніжинка"/>
+            <img class="carousel-image" src="Electronics_imeg/0048A3.jpg" alt="3D нічник сніжинка"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Нічник</h3>
+        <h3>3D нічник сніжинка</h3>
         <p class="articul">арт. 0048A</p>
         <p class="price">109.74 грн</p>
-        <div class="description-container">3D DIY сніжинка Маленький нічник Різдвяний сніговий пейзаж Вуличний ліхтар Різдвяний сніговий настільний світильник SnowyNight Light</div>
+        <div class="description-container">3D DIY сніжинка Маленький нічник Різдвяний сніговий пейзаж Вуличний ліхтар Різдвяний сніговий настільний світильник SnowyNight Light. 3D-ефект із лазерною гравіюванням. Світлодіодна підсвітка 7 кольорів. Живлення від USB, сенсорне керування. Створює ілюзію глибини та об'єму. Чудовий подарунок на Різдво або Новий рік.</div>
         <a href="https://s.click.aliexpress.com/e/_c3BVIUKD" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0048A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0049A -->
+<!-- Товар 18: RGB нічник з пультом -->
 <div class="product-card" data-articul="0049A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0049A1.jpg" alt="Світлодіодний нічник"/>
-            <img class="carousel-image" src="Electronics_imeg/0049A2.jpg" alt="Світлодіодний нічник"/>
-            <img class="carousel-image" src="Electronics_imeg/0049A3.jpg" alt="Світлодіодний нічник"/>
+            <img class="carousel-image active" src="Electronics_imeg/0049A1.jpg" alt="RGB нічник з пультом"/>
+            <img class="carousel-image" src="Electronics_imeg/0049A2.jpg" alt="RGB нічник з пультом"/>
+            <img class="carousel-image" src="Electronics_imeg/0049A3.jpg" alt="RGB нічник з пультом"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Світлодіодний нічник</h3>
+        <h3>RGB нічник з пультом</h3>
         <p class="articul">арт. 0049A</p>
         <p class="price">293.14 грн</p>
-        <div class="description-container">Світлодіодний нічник 13 кольорів змінює RGB настільну лампу з дистанційним керуванням сенсорний перезаряджається RGB нічник затемнюється приліжковий світильник</div>
+        <div class="description-container">Світлодіодний нічник 13 кольорів змінює RGB настільну лампу з дистанційним керуванням сенсорний перезаряджається RGB нічник затемнюється приліжковий світильник. 13 режимів кольорів, регулювання яскравості. Дистанційне керування, сенсорна панель. Вбудований акумулятор 1200 мАг, USB зарядка. Функція пам'яті останнього кольору. Компактний у формі сфери.</div>
         <a href="https://s.click.aliexpress.com/e/_c4UZbKLx" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0049A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0050A -->
+<!-- Товар 19: Нічник Лисиця -->
 <div class="product-card" data-articul="0050A">
     <div class="product-image-carousel">
         <div class="carousel-container">
@@ -837,204 +750,47 @@
             <img class="carousel-image" src="Electronics_imeg/0050A3.jpg" alt="Нічник Лисиця"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
         <h3>Нічник Лисиця</h3>
         <p class="articul">арт. 0050A</p>
         <p class="price">426.84 грн</p>
-        <div class="description-container">Нічник у формі лисиці моделі My World, освітлення для приміщень.</div>
+        <div class="description-container">Нічник у формі лисиці моделі My World, освітлення для приміщень. Силіконова фігурка лисиці з м'яким світінням. 7 кольорів RGB, автоматична зміна кольорів. Живлення від USB, сенсорне керування. Можна використовувати як нічник для дитячої кімнати або декоративний світильник. Милий дизайн, безпечний матеріал.</div>
         <a href="https://s.click.aliexpress.com/e/_c2Qajm8N" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0050A')">Додати до обраного</button>
     </div>
 </div>
 
-<!-- Товар 0051A -->
+<!-- Товар 20: Гірлянда фея з 8 режимами -->
 <div class="product-card" data-articul="0051A">
     <div class="product-image-carousel">
         <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0051A1.jpg" alt="Гірлянда"/>
-            <img class="carousel-image" src="Electronics_imeg/0051A2.jpg" alt="Гірлянда"/>
-            <img class="carousel-image" src="Electronics_imeg/0051A3.jpg" alt="Гірлянда"/>
+            <img class="carousel-image active" src="Electronics_imeg/0051A1.jpg" alt="Гірлянда фея"/>
+            <img class="carousel-image" src="Electronics_imeg/0051A2.jpg" alt="Гірлянда фея"/>
+            <img class="carousel-image" src="Electronics_imeg/0051A3.jpg" alt="Гірлянда фея"/>
             <button class="carousel-prev">←</button>
             <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
+            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
         </div>
     </div>
     <div class="product-details">
-        <h3>Гірлянда</h3>
+        <h3>Гірлянда фея 8 режимів</h3>
         <p class="articul">арт. 0051A</p>
         <p class="price">67.58 грн</p>
-        <div class="description-container">Різдвяна фея світлодіодна вечірка 8 режимів світлодіодні святкові USB завіса гірлянди день народження прикраса гірлянда весілля домашній декор 3 м 6 м</div>
+        <div class="description-container">Різдвяна фея світлодіодна вечірка 8 режимів світлодіодні святкові USB завіса гірлянди день народження прикраса гірлянда весілля домашній декор 3 м 6 м. Гнучка гірлянда (3 м) з 50 світлодіодами. 8 режимів світіння (статичне, миготіння, хвилі тощо). Живлення від USB, водонепроникна. Чудово підходить для декорування кімнати, ялинки, вечірки.</div>
         <a href="https://s.click.aliexpress.com/e/_c4PincuN" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0051A')">Додати до обраного</button>
     </div>
 </div>
-
-<!-- Товар 0052A -->
-<div class="product-card" data-articul="0052A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0052A1.jpg" alt="Світлодіодний нічник"/>
-            <img class="carousel-image" src="Electronics_imeg/0052A2.jpg" alt="Світлодіодний нічник"/>
-            <img class="carousel-image" src="Electronics_imeg/0052A3.jpg" alt="Світлодіодний нічник"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Світлодіодний нічник</h3>
-        <p class="articul">арт. 0052A</p>
-        <p class="price">294.13 грн</p>
-        <div class="description-container">Світлодіодний безполуменевий нічник для свічок кімнати прикраса вогні USB настільна лампа затемнювані приліжкові лампи кемпінг світло Хелловін різдвяні подарунки</div>
-        <a href="https://s.click.aliexpress.com/e/_c3r52OCz" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0052A')">Додати до обраного</button>
-    </div>
 </div>
 
-<!-- Товар 0053A -->
-<div class="product-card" data-articul="0053A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0053A1.jpg" alt="Нічник BANDIAN"/>
-            <img class="carousel-image" src="Electronics_imeg/0053A2.jpg" alt="Нічник BANDIAN"/>
-            <img class="carousel-image" src="Electronics_imeg/0053A3.jpg" alt="Нічник BANDIAN"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Нічник BANDIAN</h3>
-        <p class="articul">арт. 0053A</p>
-        <p class="price">319.75 грн</p>
-        <div class="description-container">BANDIAN хліб тост мультфільм світлодіодний нічник милий домашній декор Каваї хліб настільні лампи нічник портативний світло з таймером крихітна лампа</div>
-        <a href="https://s.click.aliexpress.com/e/_c4KOsoHn" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0053A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0054A -->
-<div class="product-card" data-articul="0054A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0054A1.jpg" alt="Настільна лампа Гриб"/>
-            <img class="carousel-image" src="Electronics_imeg/0054A2.jpg" alt="Настільна лампа Гриб"/>
-            <img class="carousel-image" src="Electronics_imeg/0054A3.jpg" alt="Настільна лампа Гриб"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Настільна лампа Гриб</h3>
-        <p class="articul">арт. 0054A</p>
-        <p class="price">580.80 грн</p>
-        <div class="description-container">Ретро барна настільна лампа грибна настільна лампа світлодіодний сенсорний датчик трикольорове затемнення робочого нічника перезаряджається лампа для читання</div>
-        <a href="https://s.click.aliexpress.com/e/_c3gAUjFf" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0054A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0055A -->
-<div class="product-card" data-articul="0055A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0055A1.jpg" alt="Нічник Ловець снів"/>
-            <img class="carousel-image" src="Electronics_imeg/0055A2.jpg" alt="Нічник Ловець снів"/>
-            <img class="carousel-image" src="Electronics_imeg/0055A3.jpg" alt="Нічник Ловець снів"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Нічник Ловець снів</h3>
-        <p class="articul">арт. 0055A</p>
-        <p class="price">163.03 грн</p>
-        <div class="description-container">3D-нічник «Ловець снів», 3D-лампа з оптичною ілюзією та сенсорним керуванням, 7-кольорове змінне навколишнє освітлення для спальні</div>
-        <a href="https://s.click.aliexpress.com/e/_c4Le7T4t" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0055A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0056A -->
-<div class="product-card" data-articul="0056A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0056A1.jpg" alt="Нічник Багаття"/>
-            <img class="carousel-image" src="Electronics_imeg/0056A2.jpg" alt="Нічник Багаття"/>
-            <img class="carousel-image" src="Electronics_imeg/0056A3.jpg" alt="Нічник Багаття"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Нічник Багаття</h3>
-        <p class="articul">арт. 0056A</p>
-        <p class="price">306.31 грн</p>
-        <div class="description-container">Нічні вогні для багаття з білим шумом, креативна прикраса кімнати, атмосфера світлодіодної настільної лампи для дітей, різдвяні подарунки на день народження</div>
-        <a href="https://s.click.aliexpress.com/e/_c4bM2G7L" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0056A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0057A -->
-<div class="product-card" data-articul="0057A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0057A1.jpg" alt="Настільна лампа Macaron"/>
-            <img class="carousel-image" src="Electronics_imeg/0057A2.jpg" alt="Настільна лампа Macaron"/>
-            <img class="carousel-image" src="Electronics_imeg/0057A3.jpg" alt="Настільна лампа Macaron"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Настільна лампа Macaron</h3>
-        <p class="articul">арт. 0057A</p>
-        <p class="price">1219.80 грн</p>
-        <div class="description-container">Настільна лампа Macaron Trichromatic Dimming Вітальня Атмосферні лампи Захист очей Нічник Дівчина Спальня Приліжковий Декор</div>
-        <a href="https://s.click.aliexpress.com/e/_c3V7YSfF" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0057A')">Додати до обраного</button>
-    </div>
-</div>
+<div class="pagination">
+<a href="electronics_page_1.html">1</a>
+<a class="active" href="electronics_page_2.html">2</a>
+<a href="electronics_page_3.html">3</a>
+<a href="electronics_page_4.html">4</a>
 </div>
 
 <footer>
@@ -1046,136 +802,132 @@
 <a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
 </div>
 </div>
-<p>© 2025 Ali.Reed</p>
+<p>© 2026 AliShop</p>
 </footer>
 
 <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
-        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-        import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+    import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
-            authDomain: "alishopping-ced60.firebaseapp.com",
-            projectId: "alishopping-ced60",
-            storageBucket: "alishopping-ced60.firebasestorage.app",
-            messagingSenderId: "869364972631",
-            appId: "1:869364972631:web:f9b736868d9844b3e7f712",
-            measurementId: "G-SF4MY2768F"
-        };
+    const firebaseConfig = {
+        apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
+        authDomain: "alishopping-ced60.firebaseapp.com",
+        projectId: "alishopping-ced60",
+        storageBucket: "alishopping-ced60.firebasestorage.app",
+        messagingSenderId: "869364972631",
+        appId: "1:869364972631:web:f9b736868d9844b3e7f712",
+        measurementId: "G-SF4MY2768F"
+    };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-        const profileLink = document.getElementById('profileLink');
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                profileLink.href = 'profile.html';
-                profileLink.textContent = 'Мій профіль';
-            } else {
-                profileLink.href = 'login.html';
-                profileLink.textContent = 'Увійти';
-            }
-        });
+    const profileLink = document.getElementById('profileLink');
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            profileLink.href = 'profile.html';
+            profileLink.textContent = 'Мій профіль';
+        } else {
+            profileLink.href = 'login.html';
+            profileLink.textContent = 'Увійти';
+        }
+    });
 
-        window.addToFavorites = async function(productId) {
-            if (!auth.currentUser) {
-                alert('Будь ласка, увійдіть до облікового запису.');
-                window.location.href = 'login.html';
+    window.addToFavorites = async function(productId) {
+        if (!auth.currentUser) {
+            alert('Будь ласка, увійдіть до облікового запису.');
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        try {
+            const q = query(collection(db, 'favorites'), 
+                where('userId', '==', auth.currentUser.uid),
+                where('productId', '==', productId));
+            const existing = await getDocs(q);
+            
+            if (!existing.empty) {
+                alert('⚠️ Цей товар вже є у ваших обраних!');
                 return;
             }
             
-            try {
-                const q = query(collection(db, 'favorites'), 
-                    where('userId', '==', auth.currentUser.uid),
-                    where('productId', '==', productId));
-                const existing = await getDocs(q);
-                
-                if (!existing.empty) {
-                    alert('⚠️ Цей товар вже є у ваших обраних!');
-                    return;
-                }
-                
-                await addDoc(collection(db, 'favorites'), {
-                    userId: auth.currentUser.uid,
-                    productId: productId,
-                    addedAt: new Date().toISOString()
-                });
-                alert('✅ Товар додано до обраного!');
-            } catch (error) {
-                console.error('Помилка:', error);
-                alert('❌ Помилка: ' + error.message);
-            }
-        };
+            await addDoc(collection(db, 'favorites'), {
+                userId: auth.currentUser.uid,
+                productId: productId,
+                addedAt: new Date().toISOString()
+            });
+            alert('✅ Товар додано до обраного!');
+        } catch (error) {
+            console.error('Помилка:', error);
+            alert('❌ Помилка: ' + error.message);
+        }
+    };
 
-        // Карусель зображень
-        document.querySelectorAll('.product-image-carousel').forEach(carousel => {
-            const images = carousel.querySelectorAll('.carousel-image');
-            const indicators = carousel.querySelectorAll('.indicator');
-            const prevButton = carousel.querySelector('.carousel-prev');
-            const nextButton = carousel.querySelector('.carousel-next');
-            let currentIndex = 0;
+    // Карусель зображень
+    document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+        const images = carousel.querySelectorAll('.carousel-image');
+        const indicators = carousel.querySelectorAll('.indicator');
+        const prevButton = carousel.querySelector('.carousel-prev');
+        const nextButton = carousel.querySelector('.carousel-next');
+        let currentIndex = 0;
 
-            function updateCarousel() {
-                images.forEach((img, index) => {
-                    img.classList.toggle('active', index === currentIndex);
-                });
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === currentIndex);
-                });
-            }
-
-            if (prevButton) {
-                prevButton.addEventListener('click', () => {
-                    currentIndex = (currentIndex - 1 + images.length) % images.length;
-                    updateCarousel();
-                });
-            }
-
-            if (nextButton) {
-                nextButton.addEventListener('click', () => {
-                    currentIndex = (currentIndex + 1) % images.length;
-                    updateCarousel();
-                });
-            }
-
+        function updateCarousel() {
+            images.forEach((img, index) => {
+                img.classList.toggle('active', index === currentIndex);
+            });
             indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateCarousel();
-                });
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateCarousel();
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateCarousel();
+            });
+        }
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
             });
         });
+    });
 
-        window.searchProducts = function() {
-            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
-            const products = document.querySelectorAll('.product-card');
+    window.searchProducts = function() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+        const products = document.querySelectorAll('.product-card');
 
-            if (!searchInput) {
-                products.forEach(product => {
-                    product.style.display = 'flex';
-                });
-                return;
-            }
+        if (!searchInput) {
+            products.forEach(product => product.style.display = 'flex');
+            return;
+        }
 
-            products.forEach(product => {
-                const articul = product.getAttribute('data-articul').toLowerCase();
-                const title = product.querySelector('.product-details h3').textContent.toLowerCase();
-                
-                if (articul.includes(searchInput) || title.includes(searchInput)) {
-                    product.style.display = 'flex';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        };
-
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchProducts();
+        products.forEach(product => {
+            const articul = product.getAttribute('data-articul').toLowerCase();
+            const title = product.querySelector('.product-details h3').textContent.toLowerCase();
+            
+            if (articul.includes(searchInput) || title.includes(searchInput)) {
+                product.style.display = 'flex';
+            } else {
+                product.style.display = 'none';
             }
         });
-    </script>
+    };
+
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') searchProducts();
+    });
+</script>
 </body>
 </html>

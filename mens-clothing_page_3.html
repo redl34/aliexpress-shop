@@ -171,13 +171,13 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
 
-        /* ОНОВЛЕНО: Ще на 3px ближче (разом на 8px від оригіналу) */
+        /* ОНОВЛЕНО: Ще на 2px ближче. Тепер -2px від краю */
         .carousel-prev {
-            left: -4px;
+            left: -2px;
         }
 
         .carousel-next {
-            right: -4px;
+            right: -2px;
         }
 
         .carousel-indicators {
@@ -238,10 +238,6 @@
             margin: 5px 0;
         }
 
-        .hidden-script-description {
-            display: none;
-        }
-
         .description-container {
             font-size: 0.8em;
             color: #2c3e50;
@@ -253,25 +249,15 @@
             height: 100px;
             overflow-y: auto;
             text-align: left;
-            font-weight: normal;
         }
 
         .description-container::-webkit-scrollbar {
             width: 11px;
         }
 
-        .description-container::-webkit-scrollbar-track {
-            background: #e0e0e0;
-            border-radius: 5px;
-        }
-
         .description-container::-webkit-scrollbar-thumb {
             background: #A9A34C;
             border-radius: 5px;
-        }
-
-        .description-container::-webkit-scrollbar-thumb:hover {
-            background: #8e8a3f;
         }
 
         .product-details a {
@@ -286,10 +272,6 @@
             font-weight: bold;
         }
 
-        .product-details a:hover {
-            background-color: #0e240e;
-        }
-
         .add-to-favorites {
             background-color: #A9A34C;
             color: white;
@@ -302,65 +284,12 @@
             font-weight: bold;
         }
 
-        .add-to-favorites:hover {
-            background-color: #8e8a3f;
-        }
-
         footer {
             background-color: #000000;
             color: white;
             text-align: center;
             padding: 20px;
             width: 100%;
-        }
-
-        footer .social-links {
-            text-align: center;
-        }
-
-        footer .social-links h2 {
-            font-size: clamp(1.2rem, 3vw, 1.4rem);
-            margin-bottom: 15px;
-        }
-
-        footer .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-
-        footer .social-buttons a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        footer .social-buttons a.tiktok {
-            background-color: #000000;
-            border: 1px solid #fff;
-        }
-
-        footer .social-buttons a.facebook {
-            background-color: #1877f2;
-        }
-
-        footer .social-buttons a.instagram {
-            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
-        }
-
-        footer .social-buttons a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .pagination {
@@ -382,61 +311,35 @@
             text-align: center;
             text-decoration: none;
             border-radius: 9px;
-            font-size: 1em;
             font-weight: bold;
+            background-color: #d3d3d3;
+            color: black;
         }
 
         .pagination a.active {
             background-color: white;
-            color: black;
             border: 5px solid #e0930d;
             line-height: 35px;
         }
 
-        .pagination a:not(.active) {
-            background-color: #d3d3d3;
-            color: black;
-            border: 1px solid #a9a9a9;
-        }
-
-        /* АДАПТАЦІЯ ТА ЗМІЩЕННЯ КНОПОК */
+        /* АДАПТАЦІЯ: ТЕПЕР КНОПКИ ЗАВЖДИ ВПРИТУЛ АБО ВСЕРЕДИНІ */
         @media (max-width: 1250px) {
-            .products {
-                grid-template-columns: repeat(3, minmax(0, 284px));
-            }
-            .carousel-prev {
-                left: 0px; /* Було -3px */
-            }
-            .carousel-next {
-                right: 0px; /* Було -3px */
-            }
+            .products { grid-template-columns: repeat(3, minmax(0, 284px)); }
+            .carousel-prev { left: 2px; }
+            .carousel-next { right: 2px; }
         }
 
         @media (max-width: 950px) {
-            .products {
-                grid-template-columns: repeat(2, minmax(0, 284px));
-            }
-            .carousel-prev {
-                left: 3px; /* Було 0px - тепер трохи всередині */
-            }
-            .carousel-next {
-                right: 3px; /* Було 0px - тепер трохи всередині */
-            }
+            .products { grid-template-columns: repeat(2, minmax(0, 284px)); }
+            .carousel-prev { left: 5px; }
+            .carousel-next { right: 5px; }
         }
 
         @media (max-width: 650px) {
-            .products {
-                grid-template-columns: repeat(1, minmax(0, 284px));
-            }
-            .carousel-prev {
-                left: 5px; /* Було 2px - зміщено всередину для зручності */
-            }
-            .carousel-next {
-                right: 5px; /* Було 2px - зміщено всередину для зручності */
-            }
-            .pagination {
-                max-width: 250px;
-            }
+            .products { grid-template-columns: repeat(1, minmax(0, 284px)); }
+            .carousel-prev { left: 7px; }
+            .carousel-next { right: 7px; }
+            .carousel-prev, .carousel-next { width: 28px; height: 28px; }
         }
     </style>
 </head>
@@ -452,7 +355,7 @@
 </header>
 
 <div class="products">
-    <!-- Приклад товару з оновленими кнопками -->
+    <!-- Товар 0211B -->
     <div class="product-card" data-articul="0211B">
         <div class="product-image-carousel">
             <div class="carousel-container">
@@ -477,22 +380,11 @@
             <button class="add-to-favorites">Додати до обраного</button>
         </div>
     </div>
-    <!-- Додайте інші товари тут -->
+    <!-- Сюди можна додати інші товари -->
 </div>
 
-<footer>
-    <div class="social-links">
-        <h2>Ми в соцмережах</h2>
-        <div class="social-buttons">
-            <a class="tiktok" href="#"><i class="fab fa-tiktok"></i> TikTok</a>
-            <a class="facebook" href="#"><i class="fab fa-facebook"></i> Facebook</a>
-            <a class="instagram" href="#"><i class="fab fa-instagram"></i> Instagram</a>
-        </div>
-    </div>
-</footer>
-
 <script>
-    // Проста логіка каруселі для перевірки
+    // Логіка каруселі
     document.querySelectorAll('.carousel-container').forEach(carousel => {
         const images = carousel.querySelectorAll('.carousel-image');
         const prev = carousel.querySelector('.carousel-prev');
@@ -500,7 +392,7 @@
         const indicators = carousel.querySelectorAll('.indicator');
         let index = 0;
 
-        function updateCarousel(newIndex) {
+        function update(newIndex) {
             images[index].classList.remove('active');
             indicators[index].classList.remove('active');
             index = newIndex;
@@ -508,15 +400,8 @@
             indicators[index].classList.add('active');
         }
 
-        next.addEventListener('click', () => {
-            let newIndex = (index + 1) % images.length;
-            updateCarousel(newIndex);
-        });
-
-        prev.addEventListener('click', () => {
-            let newIndex = (index - 1 + images.length) % images.length;
-            updateCarousel(newIndex);
-        });
+        next.addEventListener('click', () => update((index + 1) % images.length));
+        prev.addEventListener('click', () => update((index - 1 + images.length) % images.length));
     });
 </script>
 </body>

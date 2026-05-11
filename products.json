@@ -248,7 +248,7 @@
   },
   {
     "articul": "0032A",
-    "title": "Набір для чистки клавіатури",
+    "title": "Набір для чистки клавіатури 7-в-1",
     "description": "",
     "price": "46.13 грн",
     "images": [
@@ -261,7 +261,7 @@
   },
   {
     "articul": "0033A",
-    "title": "Набір для чищення комп'ютерної клавіатури",
+    "title": "Набір для чищення 8-в-1",
     "description": "",
     "price": "299.61 грн",
     "images": [
@@ -326,7 +326,7 @@
   },
   {
     "articul": "0038A",
-    "title": "Портативний вентилятор кондиціонера",
+    "title": "Вентилятор з ультразвуковим розпиленням",
     "description": "",
     "price": "1347.24 грн",
     "images": [
@@ -339,7 +339,7 @@
   },
   {
     "articul": "0039A",
-    "title": "Зволожувач повітря",
+    "title": "Зволожувач повітря професійний",
     "description": "",
     "price": "453.59 грн",
     "images": [
@@ -352,7 +352,7 @@
   },
   {
     "articul": "0040A",
-    "title": "Лампа кімнатна з гри Minecraft",
+    "title": "Лампа Minecraft Факел",
     "description": "",
     "price": "366.98 грн",
     "images": [
@@ -365,7 +365,7 @@
   },
   {
     "articul": "0041A",
-    "title": "Нічник Minecraft",
+    "title": "Нічник Minecraft пляшечка зілля",
     "description": "",
     "price": "469.54 грн",
     "images": [
@@ -378,7 +378,7 @@
   },
   {
     "articul": "0042A",
-    "title": "Світильник",
+    "title": "Світлодіодний проектор галактики",
     "description": "",
     "price": "94.21 грн",
     "images": [
@@ -391,7 +391,7 @@
   },
   {
     "articul": "0043A",
-    "title": "Світлодіодний проектор",
+    "title": "LED проектор Galaxy Sky Light",
     "description": "",
     "price": "128.01 грн",
     "images": [
@@ -404,7 +404,7 @@
   },
   {
     "articul": "0044A",
-    "title": "Світлодіодний проектор галактики",
+    "title": "Музичний проектор галактики",
     "description": "",
     "price": "783.06 грн",
     "images": [
@@ -417,7 +417,7 @@
   },
   {
     "articul": "0045A",
-    "title": "Гірлянда",
+    "title": "Гірлянда світлодіодні кульки",
     "description": "",
     "price": "46.13 грн",
     "images": [
@@ -430,7 +430,7 @@
   },
   {
     "articul": "0046A",
-    "title": "Гірлянда у вигляді вітки",
+    "title": "Гірлянда у вигляді вітки верби",
     "description": "",
     "price": "631.25 грн",
     "images": [
@@ -456,7 +456,7 @@
   },
   {
     "articul": "0048A",
-    "title": "Нічник",
+    "title": "3D нічник сніжинка",
     "description": "",
     "price": "109.74 грн",
     "images": [
@@ -469,7 +469,7 @@
   },
   {
     "articul": "0049A",
-    "title": "Світлодіодний нічник",
+    "title": "RGB нічник з пультом",
     "description": "",
     "price": "293.14 грн",
     "images": [
@@ -491,84 +491,6 @@
       "Electronics_imeg/0050A3.jpg"
     ],
     "link": "https://s.click.aliexpress.com/e/_c2Qajm8N",
-    "category": "electronics"
-  },
-  {
-    "articul": "0051A",
-    "title": "Гірлянда",
-    "description": "",
-    "price": "67.58 грн",
-    "images": [
-      "Electronics_imeg/0051A1.jpg",
-      "Electronics_imeg/0051A2.jpg",
-      "Electronics_imeg/0051A3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c4PincuN",
-    "category": "electronics"
-  },
-  {
-    "articul": "0052A",
-    "title": "Світлодіодний нічник",
-    "description": "",
-    "price": "294.13 грн",
-    "images": [
-      "Electronics_imeg/0052A1.jpg",
-      "Electronics_imeg/0052A2.jpg",
-      "Electronics_imeg/0052A3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3r52OCz",
-    "category": "electronics"
-  },
-  {
-    "articul": "0053A",
-    "title": "Нічник BANDIAN",
-    "description": "",
-    "price": "319.75 грн",
-    "images": [
-      "Electronics_imeg/0053A1.jpg",
-      "Electronics_imeg/0053A2.jpg",
-      "Electronics_imeg/0053A3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c4KOsoHn",
-    "category": "electronics"
-  },
-  {
-    "articul": "0054A",
-    "title": "Настільна лампа Гриб",
-    "description": "",
-    "price": "580.80 грн",
-    "images": [
-      "Electronics_imeg/0054A1.jpg",
-      "Electronics_imeg/0054A2.jpg",
-      "Electronics_imeg/0054A3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3gAUjFf",
-    "category": "electronics"
-  },
-  {
-    "articul": "0055A",
-    "title": "Нічник Ловець снів",
-    "description": "",
-    "price": "163.03 грн",
-    "images": [
-      "Electronics_imeg/0055A1.jpg",
-      "Electronics_imeg/0055A2.jpg",
-      "Electronics_imeg/0055A3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c4Le7T4t",
-    "category": "electronics"
-  },
-  {
-    "articul": "0056A",
-    "title": "Нічник Багаття",
-    "description": "",
-    "price": "306.31 грн",
-    "images": [
-      "Electronics_imeg/0056A1.jpg",
-      "Electronics_imeg/0056A2.jpg",
-      "Electronics_imeg/0056A3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c4bM2G7L",
     "category": "electronics"
   },
   {

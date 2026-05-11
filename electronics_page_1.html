@@ -204,7 +204,7 @@
             color: #000000;
             margin: 5px 0;
         }
-        /* ПРИХОВАНИЙ ОПИС ДЛЯ СКРИПТА - ЗВИЧАЙНИЙ p ТЕГ (без класу) */
+        /* ПРИХОВАНИЙ ОПИС ДЛЯ СКРИПТА */
         .hidden-script-description {
             display: none;
         }
@@ -263,6 +263,41 @@
         }
         .add-to-favorites:hover {
             background-color: #8e8a3f;
+        }
+        /* СТИЛІ ДЛЯ ПАГІНАЦІЇ */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 300px;
+        }
+        .pagination a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 9px;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .pagination a.active {
+            background-color: white;
+            color: black;
+            border: 5px solid #e0930d;
+        }
+        .pagination a:not(.active) {
+            background-color: #d3d3d3;
+            color: black;
+            border: 1px solid #a9a9a9;
+        }
+        .pagination a:hover:not(.active) {
+            background-color: #bdbdbd;
         }
         footer {
             background-color: #000000;
@@ -344,6 +379,15 @@
                 font-size: 1em;
                 min-height: 40px;
             }
+            .pagination {
+                max-width: 260px;
+                gap: 8px;
+            }
+            .pagination a {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+            }
         }
     </style>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
@@ -380,11 +424,9 @@
     </div>
     <div class="product-details">
         <h3>Міні зволожувач повітря</h3>
-        <!-- ЗВИЧАЙНИЙ p ТЕГ ДЛЯ СКРИПТА (без класу) - НЕВИДИМИЙ -->
         <p class="hidden-script-description">250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою</p>
         <p class="articul">арт. 0247B</p>
         <p class="price">76.54 грн</p>
-        <!-- ВИДИМИЙ ОПИС З ПРОКРУТКОЮ -->
         <div class="description-container">250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою</div>
         <a href="https://s.click.aliexpress.com/e/_c3h88xTr" target="_blank">Купити на AliExpress</a>
         <button class="add-to-favorites" onclick="addToFavorites('0247B')">Додати до обраного</button>
@@ -660,6 +702,14 @@
         <button class="add-to-favorites" onclick="addToFavorites('0010A')">Додати до обраного</button>
     </div>
 </div>
+</div>
+
+<!-- ПАГІНАЦІЯ -->
+<div class="pagination">
+    <a href="women's-clothing_page_1.html" class="active">1</a>
+    <a href="women's-clothing_page_2.html">2</a>
+    <a href="women's-clothing_page_3.html">3</a>
+    <a href="women's-clothing_page_4.html">4</a>
 </div>
 
 <footer>

@@ -149,7 +149,7 @@
             display: block;
         }
 
-        /* КВАДРАТНІ КНОПКИ КАРУСЕЛІ З ЗАОКРУГЛЕНИМИ КУТАМИ (RADIUS 2px) - ЗСУНУТІ НА 5px ДО ФОТО */
+        /* КВАДРАТНІ КНОПКИ КАРУСЕЛІ З ЗАОКРУГЛЕНИМИ КУТАМИ (RADIUS 2px) */
         .carousel-prev, .carousel-next {
             position: absolute;
             top: 50%;
@@ -175,11 +175,11 @@
         }
 
         .carousel-prev {
-            left: 5px;
+            left: 2px;
         }
 
         .carousel-next {
-            right: 5px;
+            right: 2px;
         }
 
         .carousel-indicators {
@@ -373,7 +373,7 @@
             font-size: 1.2em;
         }
 
-        /* ПАГІНАЦІЯ - ОРИГІНАЛЬНИЙ СТИЛЬ (цифри не жирні, жовта рамка поверх сірої) */
+        /* ПАГІНАЦІЯ - ОРИГІНАЛЬНИЙ СТИЛЬ */
         .pagination {
             display: flex;
             justify-content: center;
@@ -415,23 +415,11 @@
             .products {
                 grid-template-columns: repeat(3, minmax(0, 284px));
             }
-            .carousel-prev {
-                left: 3px;
-            }
-            .carousel-next {
-                right: 3px;
-            }
         }
 
         @media (max-width: 950px) {
             .products {
                 grid-template-columns: repeat(2, minmax(0, 284px));
-            }
-            .carousel-prev {
-                left: 2px;
-            }
-            .carousel-next {
-                right: 2px;
             }
         }
 
@@ -462,7 +450,7 @@
                 min-height: 38px;
             }
             .pagination {
-                max-width: 250px;
+                max-width: 280px;
             }
             .pagination a {
                 width: 35px;

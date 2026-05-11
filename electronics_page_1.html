@@ -65,14 +65,14 @@
         }
         .search-container input {
             flex-grow: 1;
-            padding: 12px;
+            padding: 10px;
             font-size: 1em;
             border: 1px solid #ddd;
             border-radius: 5px;
             outline: none;
         }
         .search-container button {
-            padding: 12px 24px;
+            padding: 10px 20px;
             background-color: #ff6b6b;
             color: white;
             border: none;
@@ -144,10 +144,14 @@
             justify-content: center;
             transition: background-color 0.2s;
         }
-        .carousel-prev { left: 5px; }
-        .carousel-next { right: 5px; }
         .carousel-prev:hover, .carousel-next:hover {
             background-color: rgba(0, 0, 0, 0.8);
+        }
+        .carousel-prev {
+            left: 5px;
+        }
+        .carousel-next {
+            right: 5px;
         }
         .carousel-indicators {
             position: absolute;
@@ -200,9 +204,10 @@
             color: #000000;
             margin: 5px 0;
         }
+        /* КОНТЕЙНЕР ДЛЯ ОПИСУ - ТАКИЙ Ж ЯК В СТАРІЙ ВЕРСІЇ */
         .description-container {
             font-size: 0.85em;
-            color: #000000;
+            color: #2c3e50;
             margin: 8px 0;
             line-height: 1.4;
             background-color: #f9f9f9;
@@ -262,7 +267,9 @@
             padding: 20px;
             width: 100%;
         }
-        footer .social-links { text-align: center; }
+        footer .social-links {
+            text-align: center;
+        }
         footer .social-links h2 {
             font-size: clamp(1.2rem, 3vw, 1.4rem);
             margin-bottom: 15px;
@@ -285,11 +292,25 @@
             border-radius: 25px;
             font-size: clamp(0.9rem, 2.5vw, 1rem);
             transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        footer .social-buttons a.tiktok { background-color: #000000; border: 1px solid #fff; }
-        footer .social-buttons a.facebook { background-color: #1877f2; }
-        footer .social-buttons a.instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
-        footer .social-buttons a:hover { transform: scale(1.05); }
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
         .pagination {
             display: flex;
             justify-content: center;
@@ -320,13 +341,34 @@
             border: 1px solid #a9a9a9;
         }
         @media (max-width: 768px) {
-            .search-container { flex-direction: column; align-items: center; }
-            .search-container input, .search-container button { width: 100%; max-width: 200px; }
-            .products { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-            .carousel-prev, .carousel-next { width: 28px; height: 28px; font-size: 14px; }
-            .description-container { height: 70px; font-size: 0.8em; }
-            .description-container::-webkit-scrollbar { width: 8px; }
-            .product-details h3 { font-size: 1em; min-height: 40px; }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                padding: 20px 10px;
+            }
+            .carousel-prev, .carousel-next {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+            .description-container {
+                height: 70px;
+                font-size: 0.8em;
+            }
+            .description-container::-webkit-scrollbar {
+                width: 8px;
+            }
+            .product-details h3 {
+                font-size: 1em;
+                min-height: 40px;
+            }
         }
     </style>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
@@ -340,37 +382,73 @@
 <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
 <div class="search-container">
 <input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
-<button onclick="searchProducts()">Пошук</button>
+<button onclick="redirectToSearch()">Пошук</button>
 </div>
 </header>
 
 <div class="products">
-<div class="product-card" data-articul="0247B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Міні зволожувач повітря" class="carousel-image active" src="Electronics_imeg/0247B1.jpg"/><img alt="Міні зволожувач повітря" class="carousel-image" src="Electronics_imeg/0247B2.jpg"/><img alt="Міні зволожувач повітря" class="carousel-image" src="Electronics_imeg/0247B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Міні зволожувач повітря</h3><p class="articul">арт. 0247B</p><p class="price">76.54 грн</p><div class="description-container">250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля. Компактний розмір, безшумна робота, автоматичне відключення при відсутності води. Ідеальний для використання вдома, в офісі або в автомобілі. Створює приємну атмосферу та зволожує повітря.</div><a href="https://s.click.aliexpress.com/e/_c3h88xTr" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0247B')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0001A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Міні-зволожувач повітря" class="carousel-image active" src="Electronics_imeg/0001A1.jpg"/><img alt="Міні-зволожувач повітря" class="carousel-image" src="Electronics_imeg/0001A2.jpg"/><img alt="Міні-зволожувач повітря" class="carousel-image" src="Electronics_imeg/0001A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Міні-зволожувач повітря</h3><p class="articul">арт. 0001A</p><p class="price">286.93 грн</p><div class="description-container">250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля. Сучасний дизайн, підсвітка змінює кольори, створює затишну атмосферу. Працює тихо, автоматично вимикається при відсутності води. Чудовий подарунок для себе та близьких.</div><a href="https://s.click.aliexpress.com/e/_c4bAx3hF" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0001A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0002A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря" class="carousel-image active" src="Electronics_imeg/0002A1.jpg"/><img alt="Зволожувач повітря" class="carousel-image" src="Electronics_imeg/0002A2.jpg"/><img alt="Зволожувач повітря" class="carousel-image" src="Electronics_imeg/0002A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря</h3><p class="articul">арт. 0002A</p><p class="price">939.04 грн</p><div class="description-container">Зволожувач повітря з ефірними оліями для дому, ароматичний, автоматичний. Великий об'єм баку для води, регулювання інтенсивності пари, нічне підсвічування. Підходить для великих приміщень. Допомагає підтримувати оптимальний рівень вологості, особливо в опалювальний сезон.</div><a href="https://s.click.aliexpress.com/e/_c3ZFuXml" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0002A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0003A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря Полум'я" class="carousel-image active" src="Electronics_imeg/0003A1.jpg"/><img alt="Зволожувач повітря Полум'я" class="carousel-image" src="Electronics_imeg/0003A2.jpg"/><img alt="Зволожувач повітря Полум'я" class="carousel-image" src="Electronics_imeg/0003A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Полум'я</h3><p class="articul">арт. 0003A</p><p class="price">1002.93 грн</p><div class="description-container">Ароматний зволожувач з ефектом полум'я, USB, дифузор з пультом керування. Реалістична імітація живого вогню, 7 кольорів підсвітки, вбудований пульт ДК. Об'єм 300 мл, працює до 8 годин. Ідеально підходить для створення романтичної або розслаблюючої атмосфери вдома.</div><a href="https://s.click.aliexpress.com/e/_c3X6hOg9" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0003A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0004A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря Медуза" class="carousel-image active" src="Electronics_imeg/0004A1.jpg"/><img alt="Зволожувач повітря Медуза" class="carousel-image" src="Electronics_imeg/0004A2.jpg"/><img alt="Зволожувач повітря Медуза" class="carousel-image" src="Electronics_imeg/0004A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Медуза</h3><p class="articul">арт. 0004A</p><p class="price">1047.87 грн</p><div class="description-container">Динамічний зволожувач з медузою, 250 мл, дифузор з дистанційним керуванням. Плаваюча медуза створює заспокійливий ефект, пульт ДК вибирає режими. Безшумний мотор, RGB підсвітка. Об'єм баку 250 мл забезпечує до 6 годин безперервної роботи. Чудовий нічник для дитячої кімнати.</div><a href="https://s.click.aliexpress.com/e/_c3nmnWkH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0004A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0005A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря Полум'я" class="carousel-image active" src="Electronics_imeg/0005A1.jpg"/><img alt="Зволожувач повітря Полум'я" class="carousel-image" src="Electronics_imeg/0005A2.jpg"/><img alt="Зволожувач повітря Полум'я" class="carousel-image" src="Electronics_imeg/0005A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Полум'я</h3><p class="articul">арт. 0005A</p><p class="price">662.34 грн</p><div class="description-container">Імітація полум'я, ароматизатор, дифузор, зволожувач з ефірними оліями. Стильний дизайн із ефектом палаючого вогню. Підтримує функцію ароматерапії (додайте улюблені олії). USB живлення. Працює тихо, підходить для спальні, вітальні чи йога-студії.</div><a href="https://s.click.aliexpress.com/e/_c3CZaJXf" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0005A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0006A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря Багаття" class="carousel-image active" src="Electronics_imeg/0006A1.jpg"/><img alt="Зволожувач повітря Багаття" class="carousel-image" src="Electronics_imeg/0006A2.jpg"/><img alt="Зволожувач повітря Багаття" class="carousel-image" src="Electronics_imeg/0006A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Багаття</h3><p class="articul">арт. 0006A</p><p class="price">773.46 грн</p><div class="description-container">Зволожувач з ефектом багаття, дифузор, ароматерапія, ультразвуковий. Унікальний дизайн із коливанням води, що нагадує полум'я багаття. Підсвітка 7 кольорів, автоматичне вимкнення. Працює від USB, створює затишок та зволожує повітря. Ідеально для холодних вечорів.</div><a href="https://s.click.aliexpress.com/e/_c4LWjHLr" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0006A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0007A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря Дощ" class="carousel-image active" src="Electronics_imeg/0007A1.jpg"/><img alt="Зволожувач повітря Дощ" class="carousel-image" src="Electronics_imeg/0007A2.jpg"/><img alt="Зволожувач повітря Дощ" class="carousel-image" src="Electronics_imeg/0007A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Дощ</h3><p class="articul">арт. 0007A</p><p class="price">1158.87 грн</p><div class="description-container">Арома-зволожувач з ефектом дощу, барвисте світло, білий шум. Інноваційна технологія створює звук падаючих крапель та візуальний ефект дощу. RGB підсвітка 16 кольорів. Заспокійливий ефект сприяє релаксації та глибокому сну. Великий об'єм 500 мл.</div><a href="https://s.click.aliexpress.com/e/_c4dJIJw5" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0007A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0008A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ароматичний дифузор Медуза" class="carousel-image active" src="Electronics_imeg/0008A1.jpg"/><img alt="Ароматичний дифузор Медуза" class="carousel-image" src="Electronics_imeg/0008A2.jpg"/><img alt="Ароматичний дифузор Медуза" class="carousel-image" src="Electronics_imeg/0008A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ароматичний дифузор Медуза</h3><p class="articul">арт. 0008A</p><p class="price">1041.56 грн</p><div class="description-container">Обертовий ароматичний дифузор у формі медузи, зволожувач з барвистим світлом. Плавно обертається фігурка медузи, створюючи гіпнотичний ефект. RGB підсвітка змінює кольори. Працює безшумно, ідеально для спальні або зони відпочинку. USB живлення.</div><a href="https://s.click.aliexpress.com/e/_c3iSB4kN" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0008A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0009A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Безпровідні навушники XIAOMI" class="carousel-image active" src="Electronics_imeg/0009A1.jpg"/><img alt="Безпровідні навушники XIAOMI" class="carousel-image" src="Electronics_imeg/0009A2.jpg"/><img alt="Безпровідні навушники XIAOMI" class="carousel-image" src="Electronics_imeg/0009A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Безпровідні навушники XIAOMI</h3><p class="articul">арт. 0009A</p><p class="price">307.37 грн</p><div class="description-container">XIAOMI Air 7 Bluetooth 5.3 TWS гарнітура з мікрофоном та шумозаглушенням. Чіткий звук, зручна посадка, до 24 годин роботи з кейсом. Сенсорне керування, підтримка голосових асистентів. Компактний зарядний кейс. Ідеально для спорту та повсякденного використання.</div><a href="https://s.click.aliexpress.com/e/_c3ZYlgEt" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0009A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0010A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Вентилятор" class="carousel-image active" src="Electronics_imeg/0010A1.jpg"/><img alt="Вентилятор" class="carousel-image" src="Electronics_imeg/0010A2.jpg"/><img alt="Вентилятор" class="carousel-image" src="Electronics_imeg/0010A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Турбовентилятор</h3><p class="articul">арт. 0010A</p><p class="price">846.92 грн</p><div class="description-container">Модернізований турбовентилятор, високошвидкісний, безщітковий. Потужний мотор 130 000 об/хв, 3 швидкості, компактний розмір. Використовується для обдування, чищення техніки, надування виробів. Живлення від USB-C. Швидко створює потужний потік повітря.</div><a href="https://s.click.aliexpress.com/e/_c2zSg4yV" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0010A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0011A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Прилад для видалення ворсу" class="carousel-image active" src="Electronics_imeg/0011A1.jpg"/><img alt="Прилад для видалення ворсу" class="carousel-image" src="Electronics_imeg/0011A2.jpg"/><img alt="Прилад для видалення ворсу" class="carousel-image" src="Electronics_imeg/0011A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Прилад для видалення ворсу</h3><p class="articul">арт. 0011A</p><p class="price">132.79 грн</p><div class="description-container">USB електричний тример для видалення ворсу з одягу, портативний. Швидко та ефективно видаляє катишки з будь-якого одягу. Легкий та зручний в використанні. Живлення від USB або батарейок. Продовжує життя вашим речам, роблячи їх вигляд охайним та новим.</div><a href="https://s.click.aliexpress.com/e/_c4kWa3fP" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0011A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0012A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Видалення ворсу з одягу" class="carousel-image active" src="Electronics_imeg/0012A1.jpg"/><img alt="Видалення ворсу з одягу" class="carousel-image" src="Electronics_imeg/0012A2.jpg"/><img alt="Видалення ворсу з одягу" class="carousel-image" src="Electronics_imeg/0012A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Електричний тример для ворсу</h3><p class="articul">арт. 0012A</p><p class="price">219.75 грн</p><div class="description-container">USB електричний тример для видалення ворсу з одягу. Потужний двигун, гострі леза з нержавійки, великий контейнер для збору ворсу. Автоматичне вимкнення при знятті кришки. Підходить для светрів, курток, штанів, диванів, ковдр та інших тканин.</div><a href="https://s.click.aliexpress.com/e/_c4qlHKqt" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0012A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0013A"><div class="product-image-carousel"><div class="carousel-container"><img alt="GPS трекер" class="carousel-image active" src="Electronics_imeg/0013A1.jpg"/><img alt="GPS трекер" class="carousel-image" src="Electronics_imeg/0013A2.jpg"/><img alt="GPS трекер" class="carousel-image" src="Electronics_imeg/0013A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>GPS трекер Bluetooth</h3><p class="articul">арт. 0013A</p><p class="price">313.87 грн</p><div class="description-container">Смарт-трекер для Android/IOS, пошук речей, багажу, ключів. Підтримує Apple "Знайти" та Android додатки. Відстеження в реальному часі, звуковий сигнал. Компактний, працює до 1 року від батарейки. Захистіть свої цінні речі від втрати. Легко кріпиться до зв'язки ключів.</div><a href="https://s.click.aliexpress.com/e/_c4ShJ5Ol" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0013A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0014A"><div class="product-image-carousel"><div class="carousel-container"><img alt="GPS локатор" class="carousel-image active" src="Electronics_imeg/0014A1.jpg"/><img alt="GPS локатор" class="carousel-image" src="Electronics_imeg/0014A2.jpg"/><img alt="GPS локатор" class="carousel-image" src="Electronics_imeg/0014A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>GPS локатор Bluetooth</h3><p class="articul">арт. 0014A</p><p class="price">280.01 грн</p><div class="description-container">Локатор для Apple, знайти мій додаток, голосовий пошук ключів. Повна сумісність з екосистемою Apple. Точне відстеження положення через додаток "Локатор". Водонепроникний корпус. Звуковий сигнал допомагає швидко знайти річ, навіть якщо вона загубилась під диваном.</div><a href="https://s.click.aliexpress.com/e/_c3ML2N3f" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0014A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0015A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Портативний пилосос" class="carousel-image active" src="Electronics_imeg/0015A1.jpg"/><img alt="Портативний пилосос" class="carousel-image" src="Electronics_imeg/0015A2.jpg"/><img alt="Портативний пилосос" class="carousel-image" src="Electronics_imeg/0015A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Портативний пилосос Xiaomi</h3><p class="articul">арт. 0015A</p><p class="price">374.88 грн</p><div class="description-container">Портативний автомобільний пилосос Xiaomi, потужний всмоктувальний. Компактний дизайн, працює від USB-C. Всмоктувальна сила до 4500 Па. Комплект насадок для важкодоступних місць. Легко очистити салон авто, клавіатуру, шви меблів. Фільтр HEPA затримує дрібний пил.</div><a href="https://s.click.aliexpress.com/e/_c39zh2MV" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0015A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0016A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Аудіосистема Xiaomi" class="carousel-image active" src="Electronics_imeg/0016A1.jpg"/><img alt="Аудіосистема Xiaomi" class="carousel-image" src="Electronics_imeg/0016A2.jpg"/><img alt="Аудіосистема Xiaomi" class="carousel-image" src="Electronics_imeg/0016A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Колонка Xiaomi Sound Party</h3><p class="articul">арт. 0016A</p><p class="price">5030.97 грн</p><div class="description-container">Xiaomi Sound Party, бездротова Bluetooth-колонка, потужні баси. Потужність 100W, RGB підсвічування, синхронізація з музикою. Волого захист IPX6, працює до 12 годин. Керування через додаток, підключення двох колонок для стерео ефекту. Ідеально для вечірок на природі.</div><a href="https://s.click.aliexpress.com/e/_c3gu6y9n" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0016A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0017A"><div class="product-image-carousel"><div class="carousel-container"><img alt="GPS трекер для тварин" class="carousel-image active" src="Electronics_imeg/0017A1.jpg"/><img alt="GPS трекер для тварин" class="carousel-image" src="Electronics_imeg/0017A2.jpg"/><img alt="GPS трекер для тварин" class="carousel-image" src="Electronics_imeg/0017A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>GPS трекер для тварин</h3><p class="articul">арт. 0017A</p><p class="price">100.19 грн</p><div class="description-container">Міні GPS-трекер Bluetooth для домашніх тварин, дітей, сумки. Компактний та легкий, легко кріпиться до нашийника. Відстеження через смартфон. Сповіщення при виході за межі зони. Допоможе не загубити улюбленця на прогулянці. Час роботи до 6 місяців від батарейки.</div><a href="https://s.click.aliexpress.com/e/_c37O5g7j" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0017A')">Додати до обраного</button></div></div>
-<div class="product-card" data-articul="0018A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Xiaomi GPS трекер" class="carousel-image active" src="Electronics_imeg/0018A1.jpg"/><img alt="Xiaomi GPS трекер" class="carousel-image" src="Electronics_imeg/0018A2.jpg"/><img alt="Xiaomi GPS трекер" class="carousel-image" src="Electronics_imeg/0018A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Xiaomi Mini GPS трекер</h3><p class="articul">арт. 0018A</p><p class="price">135.64 грн</p><div class="description-container">Xiaomi Mini GPS Tracker, Smart Bluetooth Locator. Оригінальний трекер для ключів, гаманця, рюкзака. Сумісність з додатком Mijia. Звуковий пошук, карта місцезнаходження, роздільний звук. Тонкий корпус, непомітно кріпиться до будь-якої речі. Захист від вологи.</div><a href="https://s.click.aliexpress.com/e/_c44A0oUz" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0018A')">Додати до обраного</button></div></div>
+<!-- Товар 0097A -->
+<div class="product-card" data-articul="0097A">
+    <div class="product-image-carousel">
+        <div class="carousel-container">
+            <img class="carousel-image active" src="Electronics_imeg/0097A1.jpg" alt="Ноутбук Laptop"/>
+            <img class="carousel-image" src="Electronics_imeg/0097A2.jpg" alt="Ноутбук Laptop"/>
+            <img class="carousel-image" src="Electronics_imeg/0097A3.jpg" alt="Ноутбук Laptop"/>
+            <button class="carousel-prev">←</button>
+            <button class="carousel-next">→</button>
+            <div class="carousel-indicators">
+                <span class="indicator active"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
+        </div>
+    </div>
+    <div class="product-details">
+        <h3>Ноутбук Laptop</h3>
+        <p class="articul">арт. 0097A</p>
+        <p class="price">12192.01 грн</p>
+        <div class="description-container">
+            Новий 14,1-дюймовий ноутбук Intel Core i9-9900 32 ГБ 2 ТБ Ігровий ПК Ультратонкий офісний навчальний комп'ютер Windows 11 Pro 1920*1080 HD
+        </div>
+        <a href="https://s.click.aliexpress.com/e/_c3mcu8ud" target="_blank">Купити на AliExpress</a>
+        <button class="add-to-favorites" onclick="addToFavorites('0097A')">Додати до обраного</button>
+    </div>
+</div>
+
+<!-- Товар 0098A -->
+<div class="product-card" data-articul="0098A">
+    <div class="product-image-carousel">
+        <div class="carousel-container">
+            <img class="carousel-image active" src="Electronics_imeg/0098A1.jpg" alt="Ігрова миша"/>
+            <img class="carousel-image" src="Electronics_imeg/0098A2.jpg" alt="Ігрова миша"/>
+            <img class="carousel-image" src="Electronics_imeg/0098A3.jpg" alt="Ігрова миша"/>
+            <button class="carousel-prev">←</button>
+            <button class="carousel-next">→</button>
+            <div class="carousel-indicators">
+                <span class="indicator active"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
+        </div>
+    </div>
+    <div class="product-details">
+        <h3>Ігрова миша</h3>
+        <p class="articul">арт. 0098A</p>
+        <p class="price">1079.38 грн</p>
+        <div class="description-container">
+            Бездротова вертикальна ігрова миша Jomaa з RGB-підсвічуванням та вертикальним керуванням для геймерів, 24000DPI, регульовані програмовані кнопки, дротова
+        </div>
+        <a href="https://s.click.aliexpress.com/e/_c30ZaeQD" target="_blank">Купити на AliExpress</a>
+        <button class="add-to-favorites" onclick="addToFavorites('0098A')">Додати до обраного</button>
+    </div>
+</div>
 </div>
 
 <div class="pagination">
-<a class="active" href="electronics_page_1.html">1</a>
-<a href="electronics_page_2.html">2</a>
-<a href="electronics_page_3.html">3</a>
-<a href="electronics_page_4.html">4</a>
+    <a href="electronics_page_1.html">1</a>
+    <a href="electronics_page_2.html">2</a>
+    <a href="electronics_page_3.html">3</a>
+    <a class="active" href="electronics_page_4.html">4</a>
 </div>
 
 <footer>
@@ -386,127 +464,136 @@
 </footer>
 
 <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
-    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-    import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
-        authDomain: "alishopping-ced60.firebaseapp.com",
-        projectId: "alishopping-ced60",
-        storageBucket: "alishopping-ced60.firebasestorage.app",
-        messagingSenderId: "869364972631",
-        appId: "1:869364972631:web:f9b736868d9844b3e7f712",
-        measurementId: "G-SF4MY2768F"
-    };
+        const firebaseConfig = {
+            apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
+            authDomain: "alishopping-ced60.firebaseapp.com",
+            projectId: "alishopping-ced60",
+            storageBucket: "alishopping-ced60.firebasestorage.app",
+            messagingSenderId: "869364972631",
+            appId: "1:869364972631:web:f9b736868d9844b3e7f712",
+            measurementId: "G-SF4MY2768F"
+        };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-    const profileLink = document.getElementById('profileLink');
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            profileLink.href = 'profile.html';
-            profileLink.textContent = 'Мій профіль';
-        } else {
-            profileLink.href = 'login.html';
-            profileLink.textContent = 'Увійти';
-        }
-    });
+        const profileLink = document.getElementById('profileLink');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                profileLink.href = 'profile.html';
+                profileLink.textContent = 'Мій профіль';
+            } else {
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
+            }
+        });
 
-    window.addToFavorites = async function(productId) {
-        if (!auth.currentUser) {
-            alert('Будь ласка, увійдіть до облікового запису.');
-            window.location.href = 'login.html';
-            return;
-        }
-        
-        try {
-            const q = query(collection(db, 'favorites'), 
-                where('userId', '==', auth.currentUser.uid),
-                where('productId', '==', productId));
-            const existing = await getDocs(q);
-            
-            if (!existing.empty) {
-                alert('⚠️ Цей товар вже є у ваших обраних!');
+        window.addToFavorites = async function(productId) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
                 return;
             }
             
-            await addDoc(collection(db, 'favorites'), {
-                userId: auth.currentUser.uid,
-                productId: productId,
-                addedAt: new Date().toISOString()
-            });
-            alert('✅ Товар додано до обраного!');
-        } catch (error) {
-            console.error('Помилка:', error);
-            alert('❌ Помилка: ' + error.message);
-        }
-    };
+            try {
+                const q = query(collection(db, 'favorites'), 
+                    where('userId', '==', auth.currentUser.uid),
+                    where('productId', '==', productId));
+                const existing = await getDocs(q);
+                
+                if (!existing.empty) {
+                    alert('⚠️ Цей товар вже є у ваших обраних!');
+                    return;
+                }
+                
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    productId: productId,
+                    addedAt: new Date().toISOString()
+                });
+                alert('✅ Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка:', error);
+                alert('❌ Помилка: ' + error.message);
+            }
+        };
 
-    document.querySelectorAll('.product-image-carousel').forEach(carousel => {
-        const images = carousel.querySelectorAll('.carousel-image');
-        const indicators = carousel.querySelectorAll('.indicator');
-        const prevButton = carousel.querySelector('.carousel-prev');
-        const nextButton = carousel.querySelector('.carousel-next');
-        let currentIndex = 0;
+        // Карусель зображень
+        document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('.carousel-image');
+            const indicators = carousel.querySelectorAll('.indicator');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
 
-        function updateCarousel() {
-            images.forEach((img, index) => {
-                img.classList.toggle('active', index === currentIndex);
-            });
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.toggle('active', index === currentIndex);
+                });
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                });
+            }
+
             indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
             });
-        }
 
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                updateCarousel();
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
             });
-        }
 
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % images.length;
-                updateCarousel();
-            });
-        }
-
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                currentIndex = index;
-                updateCarousel();
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                } else if (touchEndX > touchStartX + 50) {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                }
             });
         });
-    });
 
-    window.searchProducts = function() {
-        const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
-        const products = document.querySelectorAll('.product-card');
-
-        if (!searchInput) {
-            products.forEach(product => product.style.display = 'flex');
-            return;
-        }
-
-        products.forEach(product => {
-            const articul = product.getAttribute('data-articul').toLowerCase();
-            const title = product.querySelector('.product-details h3').textContent.toLowerCase();
-            
-            if (articul.includes(searchInput) || title.includes(searchInput)) {
-                product.style.display = 'flex';
+        window.redirectToSearch = function() {
+            const searchInput = document.getElementById('searchInput').value.trim();
+            if (searchInput) {
+                window.location.href = `search.html?q=${encodeURIComponent(searchInput)}`;
             } else {
-                product.style.display = 'none';
+                alert('Введіть запит для пошуку');
+            }
+        };
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                redirectToSearch();
             }
         });
-    };
-
-    document.getElementById('searchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') searchProducts();
-    });
-</script>
+    </script>
 </body>
 </html>

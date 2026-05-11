@@ -233,7 +233,7 @@
             font-weight: bold;
         }
         
-        /* Стилі для скролбара - широкий */
+        /* Стилі для скролбара */
         .description-container::-webkit-scrollbar {
             width: 11px;
         }
@@ -279,7 +279,7 @@
             background-color: #8e8a3f;
         }
         
-        /* Крок 3.10: Стилі для футера та медіа-запити */
+        /* Стилі для футера та медіа-запити */
         footer {
             background-color: #000000;
             color: white;
@@ -299,7 +299,6 @@
             margin-top: 10px;
             flex-wrap: wrap;
         }
-        /* Стилі для кнопок соцмереж */
         footer .social-buttons a {
             display: flex;
             align-items: center;
@@ -374,149 +373,39 @@
 </div>
 </header>
 
-<!-- Крок 4: Структура HTML для товару -->
 <div class="products">
-    <!-- Товар 1 -->
-    <div class="product-card" data-articul="0247B">
-        <div class="product-image-carousel">
-            <div class="carousel-container">
-                <img class="carousel-image active" src="Electronics_imeg/0247B1.jpg" alt="Міні зволожувач повітря"/>
-                <img class="carousel-image" src="Electronics_imeg/0247B2.jpg" alt="Міні зволожувач повітря"/>
-                <img class="carousel-image" src="Electronics_imeg/0247B3.jpg" alt="Міні зволожувач повітря"/>
-                <button class="carousel-prev">←</button>
-                <button class="carousel-next">→</button>
-                <div class="carousel-indicators">
-                    <span class="indicator active"></span>
-                    <span class="indicator"></span>
-                    <span class="indicator"></span>
-                </div>
-            </div>
-        </div>
-        <div class="product-details">
-            <h3>Міні зволожувач повітря</h3>
-            <p class="articul">арт. 0247B</p>
-            <p class="price">76.54 грн</p>
-            <div class="description-container">
-                250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля
-            </div>
-            <a href="https://s.click.aliexpress.com/e/_c3h88xTr" target="_blank">Купити на AliExpress</a>
-            <button class="add-to-favorites" onclick="addToFavorites('0247B')">Додати до обраного</button>
-        </div>
-    </div>
-    
-    <!-- Товар 2 -->
-    <div class="product-card" data-articul="0001A">
-        <div class="product-image-carousel">
-            <div class="carousel-container">
-                <img class="carousel-image active" src="Electronics_imeg/0001A1.jpg" alt="Міні-зволожувач повітря"/>
-                <img class="carousel-image" src="Electronics_imeg/0001A2.jpg" alt="Міні-зволожувач повітря"/>
-                <img class="carousel-image" src="Electronics_imeg/0001A3.jpg" alt="Міні-зволожувач повітря"/>
-                <button class="carousel-prev">←</button>
-                <button class="carousel-next">→</button>
-                <div class="carousel-indicators">
-                    <span class="indicator active"></span>
-                    <span class="indicator"></span>
-                    <span class="indicator"></span>
-                </div>
-            </div>
-        </div>
-        <div class="product-details">
-            <h3>Міні-зволожувач повітря</h3>
-            <p class="articul">арт. 0001A</p>
-            <p class="price">286.93 грн</p>
-            <div class="description-container">
-                250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля
-            </div>
-            <a href="https://s.click.aliexpress.com/e/_c4bAx3hF" target="_blank">Купити на AliExpress</a>
-            <button class="add-to-favorites" onclick="addToFavorites('0001A')">Додати до обраного</button>
-        </div>
-    </div>
-    
-    <!-- Товар 3 -->
-    <div class="product-card" data-articul="0002A">
-        <div class="product-image-carousel">
-            <div class="carousel-container">
-                <img class="carousel-image active" src="Electronics_imeg/0002A1.jpg" alt="Зволожувач повітря"/>
-                <img class="carousel-image" src="Electronics_imeg/0002A2.jpg" alt="Зволожувач повітря"/>
-                <img class="carousel-image" src="Electronics_imeg/0002A3.jpg" alt="Зволожувач повітря"/>
-                <button class="carousel-prev">←</button>
-                <button class="carousel-next">→</button>
-                <div class="carousel-indicators">
-                    <span class="indicator active"></span>
-                    <span class="indicator"></span>
-                    <span class="indicator"></span>
-                </div>
-            </div>
-        </div>
-        <div class="product-details">
-            <h3>Зволожувач повітря</h3>
-            <p class="articul">арт. 0002A</p>
-            <p class="price">939.04 грн</p>
-            <div class="description-container">
-                Зволожувач повітря з ефірними оліями для дому, ароматичний, автоматичний
-            </div>
-            <a href="https://s.click.aliexpress.com/e/_c3ZFuXml" target="_blank">Купити на AliExpress</a>
-            <button class="add-to-favorites" onclick="addToFavorites('0002A')">Додати до обраного</button>
-        </div>
-    </div>
-    
-    <!-- Товар 4 -->
-    <div class="product-card" data-articul="0003A">
-        <div class="product-image-carousel">
-            <div class="carousel-container">
-                <img class="carousel-image active" src="Electronics_imeg/0003A1.jpg" alt="Зволожувач повітря Полум'я"/>
-                <img class="carousel-image" src="Electronics_imeg/0003A2.jpg" alt="Зволожувач повітря Полум'я"/>
-                <img class="carousel-image" src="Electronics_imeg/0003A3.jpg" alt="Зволожувач повітря Полум'я"/>
-                <button class="carousel-prev">←</button>
-                <button class="carousel-next">→</button>
-                <div class="carousel-indicators">
-                    <span class="indicator active"></span>
-                    <span class="indicator"></span>
-                    <span class="indicator"></span>
-                </div>
-            </div>
-        </div>
-        <div class="product-details">
-            <h3>Зволожувач повітря Полум'я</h3>
-            <p class="articul">арт. 0003A</p>
-            <p class="price">1002.93 грн</p>
-            <div class="description-container">
-                Ароматний зволожувач з ефектом полум'я, USB, дифузор з пультом керування
-            </div>
-            <a href="https://s.click.aliexpress.com/e/_c3X6hOg9" target="_blank">Купити на AliExpress</a>
-            <button class="add-to-favorites" onclick="addToFavorites('0003A')">Додати до обраного</button>
-        </div>
-    </div>
-    
-    <!-- Товар 5 -->
-    <div class="product-card" data-articul="0004A">
-        <div class="product-image-carousel">
-            <div class="carousel-container">
-                <img class="carousel-image active" src="Electronics_imeg/0004A1.jpg" alt="Зволожувач повітря Медуза"/>
-                <img class="carousel-image" src="Electronics_imeg/0004A2.jpg" alt="Зволожувач повітря Медуза"/>
-                <img class="carousel-image" src="Electronics_imeg/0004A3.jpg" alt="Зволожувач повітря Медуза"/>
-                <button class="carousel-prev">←</button>
-                <button class="carousel-next">→</button>
-                <div class="carousel-indicators">
-                    <span class="indicator active"></span>
-                    <span class="indicator"></span>
-                    <span class="indicator"></span>
-                </div>
-            </div>
-        </div>
-        <div class="product-details">
-            <h3>Зволожувач повітря Медуза</h3>
-            <p class="articul">арт. 0004A</p>
-            <p class="price">1047.87 грн</p>
-            <div class="description-container">
-                Динамічний зволожувач з медузою, 250 мл, дифузор з дистанційним керуванням
-            </div>
-            <a href="https://s.click.aliexpress.com/e/_c3nmnWkH" target="_blank">Купити на AliExpress</a>
-            <button class="add-to-favorites" onclick="addToFavorites('0004A')">Додати до обраного</button>
-        </div>
-    </div>
-    
-    <!-- Додано більше товарів з правильною структурою (для економії місця показано 5, але в фінальному коді їх більше) -->
+<div class="product-card" data-articul="0247B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Міні зволожувач повітря" class="carousel-image active" src="Electronics_imeg/0247B1.jpg"/><img alt="Міні зволожувач повітря" class="carousel-image" src="Electronics_imeg/0247B2.jpg"/><img alt="Міні зволожувач повітря" class="carousel-image" src="Electronics_imeg/0247B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Міні зволожувач повітря</h3><p class="articul">арт. 0247B</p><p class="price">76.54 грн</p><div class="description-container">250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля</div><a href="https://s.click.aliexpress.com/e/_c3h88xTr" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0247B')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0001A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Міні-зволожувач повітря" class="carousel-image active" src="Electronics_imeg/0001A1.jpg"/><img alt="Міні-зволожувач повітря" class="carousel-image" src="Electronics_imeg/0001A2.jpg"/><img alt="Міні-зволожувач повітря" class="carousel-image" src="Electronics_imeg/0001A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Міні-зволожувач повітря</h3><p class="articul">арт. 0001A</p><p class="price">286.93 грн</p><div class="description-container">250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля</div><a href="https://s.click.aliexpress.com/e/_c4bAx3hF" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0001A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0002A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря" class="carousel-image active" src="Electronics_imeg/0002A1.jpg"/><img alt="Зволожувач повітря" class="carousel-image" src="Electronics_imeg/0002A2.jpg"/><img alt="Зволожувач повітря" class="carousel-image" src="Electronics_imeg/0002A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря</h3><p class="articul">арт. 0002A</p><p class="price">939.04 грн</p><div class="description-container">Зволожувач повітря з ефірними оліями для дому, ароматичний, автоматичний</div><a href="https://s.click.aliexpress.com/e/_c3ZFuXml" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0002A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0003A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря Полум'я" class="carousel-image active" src="Electronics_imeg/0003A1.jpg"/><img alt="Зволожувач повітря Полум'я" class="carousel-image" src="Electronics_imeg/0003A2.jpg"/><img alt="Зволожувач повітря Полум'я" class="carousel-image" src="Electronics_imeg/0003A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Полум'я</h3><p class="articul">арт. 0003A</p><p class="price">1002.93 грн</p><div class="description-container">Ароматний зволожувач з ефектом полум'я, USB, дифузор з пультом керування</div><a href="https://s.click.aliexpress.com/e/_c3X6hOg9" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0003A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0004A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря Медуза" class="carousel-image active" src="Electronics_imeg/0004A1.jpg"/><img alt="Зволожувач повітря Медуза" class="carousel-image" src="Electronics_imeg/0004A2.jpg"/><img alt="Зволожувач повітря Медуза" class="carousel-image" src="Electronics_imeg/0004A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Медуза</h3><p class="articul">арт. 0004A</p><p class="price">1047.87 грн</p><div class="description-container">Динамічний зволожувач з медузою, 250 мл, дифузор з дистанційним керуванням</div><a href="https://s.click.aliexpress.com/e/_c3nmnWkH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0004A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0005A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря Полум'я" class="carousel-image active" src="Electronics_imeg/0005A1.jpg"/><img alt="Зволожувач повітря Полум'я" class="carousel-image" src="Electronics_imeg/0005A2.jpg"/><img alt="Зволожувач повітря Полум'я" class="carousel-image" src="Electronics_imeg/0005A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Полум'я</h3><p class="articul">арт. 0005A</p><p class="price">662.34 грн</p><div class="description-container">Імітація полум'я, ароматизатор, дифузор, зволожувач з ефірними оліями</div><a href="https://s.click.aliexpress.com/e/_c3CZaJXf" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0005A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0006A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря Багаття" class="carousel-image active" src="Electronics_imeg/0006A1.jpg"/><img alt="Зволожувач повітря Багаття" class="carousel-image" src="Electronics_imeg/0006A2.jpg"/><img alt="Зволожувач повітря Багаття" class="carousel-image" src="Electronics_imeg/0006A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Багаття</h3><p class="articul">арт. 0006A</p><p class="price">773.46 грн</p><div class="description-container">Зволожувач з ефектом багаття, дифузор, ароматерапія, ультразвуковий</div><a href="https://s.click.aliexpress.com/e/_c4LWjHLr" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0006A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0007A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Зволожувач повітря Дощ" class="carousel-image active" src="Electronics_imeg/0007A1.jpg"/><img alt="Зволожувач повітря Дощ" class="carousel-image" src="Electronics_imeg/0007A2.jpg"/><img alt="Зволожувач повітря Дощ" class="carousel-image" src="Electronics_imeg/0007A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Дощ</h3><p class="articul">арт. 0007A</p><p class="price">1158.87 грн</p><div class="description-container">Арома-зволожувач з ефектом дощу, барвисте світло, білий шум</div><a href="https://s.click.aliexpress.com/e/_c4dJIJw5" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0007A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0008A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ароматичний дифузор Медуза" class="carousel-image active" src="Electronics_imeg/0008A1.jpg"/><img alt="Ароматичний дифузор Медуза" class="carousel-image" src="Electronics_imeg/0008A2.jpg"/><img alt="Ароматичний дифузор Медуза" class="carousel-image" src="Electronics_imeg/0008A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ароматичний дифузор Медуза</h3><p class="articul">арт. 0008A</p><p class="price">1041.56 грн</p><div class="description-container">Обертовий ароматичний дифузор у формі медузи, зволожувач з барвистим світлом</div><a href="https://s.click.aliexpress.com/e/_c3iSB4kN" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0008A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0009A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Безпровідні навушники XIAOMI" class="carousel-image active" src="Electronics_imeg/0009A1.jpg"/><img alt="Безпровідні навушники XIAOMI" class="carousel-image" src="Electronics_imeg/0009A2.jpg"/><img alt="Безпровідні навушники XIAOMI" class="carousel-image" src="Electronics_imeg/0009A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Безпровідні навушники XIAOMI</h3><p class="articul">арт. 0009A</p><p class="price">307.37 грн</p><div class="description-container">XIAOMI Air 7 Bluetooth 5.3 TWS гарнітура з мікрофоном та шумозаглушенням</div><a href="https://s.click.aliexpress.com/e/_c3ZYlgEt" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0009A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0010A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Вентилятор" class="carousel-image active" src="Electronics_imeg/0010A1.jpg"/><img alt="Вентилятор" class="carousel-image" src="Electronics_imeg/0010A2.jpg"/><img alt="Вентилятор" class="carousel-image" src="Electronics_imeg/0010A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Турбовентилятор</h3><p class="articul">арт. 0010A</p><p class="price">846.92 грн</p><div class="description-container">Модернізований турбовентилятор, високошвидкісний, безщітковий</div><a href="https://s.click.aliexpress.com/e/_c2zSg4yV" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0010A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0011A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Прилад для видалення ворсу" class="carousel-image active" src="Electronics_imeg/0011A1.jpg"/><img alt="Прилад для видалення ворсу" class="carousel-image" src="Electronics_imeg/0011A2.jpg"/><img alt="Прилад для видалення ворсу" class="carousel-image" src="Electronics_imeg/0011A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Прилад для видалення ворсу</h3><p class="articul">арт. 0011A</p><p class="price">132.79 грн</p><div class="description-container">USB електричний тример для видалення ворсу з одягу, портативний</div><a href="https://s.click.aliexpress.com/e/_c4kWa3fP" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0011A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0012A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Видалення ворсу з одягу" class="carousel-image active" src="Electronics_imeg/0012A1.jpg"/><img alt="Видалення ворсу з одягу" class="carousel-image" src="Electronics_imeg/0012A2.jpg"/><img alt="Видалення ворсу з одягу" class="carousel-image" src="Electronics_imeg/0012A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Електричний тример для ворсу</h3><p class="articul">арт. 0012A</p><p class="price">219.75 грн</p><div class="description-container">USB електричний тример для видалення ворсу з одягу</div><a href="https://s.click.aliexpress.com/e/_c4qlHKqt" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0012A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0013A"><div class="product-image-carousel"><div class="carousel-container"><img alt="GPS трекер" class="carousel-image active" src="Electronics_imeg/0013A1.jpg"/><img alt="GPS трекер" class="carousel-image" src="Electronics_imeg/0013A2.jpg"/><img alt="GPS трекер" class="carousel-image" src="Electronics_imeg/0013A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>GPS трекер Bluetooth</h3><p class="articul">арт. 0013A</p><p class="price">313.87 грн</p><div class="description-container">Смарт-трекер для Android/IOS, пошук речей, багажу, ключів</div><a href="https://s.click.aliexpress.com/e/_c4ShJ5Ol" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0013A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0014A"><div class="product-image-carousel"><div class="carousel-container"><img alt="GPS локатор" class="carousel-image active" src="Electronics_imeg/0014A1.jpg"/><img alt="GPS локатор" class="carousel-image" src="Electronics_imeg/0014A2.jpg"/><img alt="GPS локатор" class="carousel-image" src="Electronics_imeg/0014A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>GPS локатор Bluetooth</h3><p class="articul">арт. 0014A</p><p class="price">280.01 грн</p><div class="description-container">Локатор для Apple, знайти мій додаток, голосовий пошук ключів</div><a href="https://s.click.aliexpress.com/e/_c3ML2N3f" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0014A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0015A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Портативний пилосос" class="carousel-image active" src="Electronics_imeg/0015A1.jpg"/><img alt="Портативний пилосос" class="carousel-image" src="Electronics_imeg/0015A2.jpg"/><img alt="Портативний пилосос" class="carousel-image" src="Electronics_imeg/0015A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Портативний пилосос Xiaomi</h3><p class="articul">арт. 0015A</p><p class="price">374.88 грн</p><div class="description-container">Портативний автомобільний пилосос Xiaomi, потужний всмоктувальний</div><a href="https://s.click.aliexpress.com/e/_c39zh2MV" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0015A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0016A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Аудіосистема Xiaomi" class="carousel-image active" src="Electronics_imeg/0016A1.jpg"/><img alt="Аудіосистема Xiaomi" class="carousel-image" src="Electronics_imeg/0016A2.jpg"/><img alt="Аудіосистема Xiaomi" class="carousel-image" src="Electronics_imeg/0016A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Колонка Xiaomi Sound Party</h3><p class="articul">арт. 0016A</p><p class="price">5030.97 грн</p><div class="description-container">Xiaomi Sound Party, бездротова Bluetooth-колонка, потужні баси</div><a href="https://s.click.aliexpress.com/e/_c3gu6y9n" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0016A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0017A"><div class="product-image-carousel"><div class="carousel-container"><img alt="GPS трекер для тварин" class="carousel-image active" src="Electronics_imeg/0017A1.jpg"/><img alt="GPS трекер для тварин" class="carousel-image" src="Electronics_imeg/0017A2.jpg"/><img alt="GPS трекер для тварин" class="carousel-image" src="Electronics_imeg/0017A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>GPS трекер для тварин</h3><p class="articul">арт. 0017A</p><p class="price">100.19 грн</p><div class="description-container">Міні GPS-трекер Bluetooth для домашніх тварин, дітей, сумки</div><a href="https://s.click.aliexpress.com/e/_c37O5g7j" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0017A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0018A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Xiaomi GPS трекер" class="carousel-image active" src="Electronics_imeg/0018A1.jpg"/><img alt="Xiaomi GPS трекер" class="carousel-image" src="Electronics_imeg/0018A2.jpg"/><img alt="Xiaomi GPS трекер" class="carousel-image" src="Electronics_imeg/0018A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Xiaomi Mini GPS трекер</h3><p class="articul">арт. 0018A</p><p class="price">135.64 грн</p><div class="description-container">Xiaomi Mini GPS Tracker, Smart Bluetooth Locator</div><a href="https://s.click.aliexpress.com/e/_c44A0oUz" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0018A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0019A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Бездротова миша" class="carousel-image active" src="Electronics_imeg/0019A1.jpg"/><img alt="Бездротова миша" class="carousel-image" src="Electronics_imeg/0019A2.jpg"/><img alt="Бездротова миша" class="carousel-image" src="Electronics_imeg/0019A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Бездротова миша</h3><p class="articul">арт. 0019A</p><p class="price">195.77 грн</p><div class="description-container">Бездротова миша, акумуляторна, безшумна, зі світлодіодним підсвічуванням</div><a href="https://s.click.aliexpress.com/e/_c3kj5G1P" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0019A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0020A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Ігрова миша" class="carousel-image active" src="Electronics_imeg/0020A1.jpg"/><img alt="Ігрова миша" class="carousel-image" src="Electronics_imeg/0020A2.jpg"/><img alt="Ігрова миша" class="carousel-image" src="Electronics_imeg/0020A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ігрова миша RGB</h3><p class="articul">арт. 0020A</p><p class="price">189.70 грн</p><div class="description-container">Комп'ютерна миша з RGB підсвічуванням, ергономічна, дротова</div><a href="https://s.click.aliexpress.com/e/_c4mvRSTx" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0020A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0021A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Аніме миша" class="carousel-image active" src="Electronics_imeg/0021A1.jpg"/><img alt="Аніме миша" class="carousel-image" src="Electronics_imeg/0021A2.jpg"/><img alt="Аніме миша" class="carousel-image" src="Electronics_imeg/0021A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ігрова миша аніме</h3><p class="articul">арт. 0021A</p><p class="price">800.22 грн</p><div class="description-container">Бездротова миша в стилі аніме, 2.4G, безшумна, акумуляторна</div><a href="https://s.click.aliexpress.com/e/_c3OxF5Ad" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0021A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0022A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Bluetooth миша" class="carousel-image active" src="Electronics_imeg/0022A1.jpg"/><img alt="Bluetooth миша" class="carousel-image" src="Electronics_imeg/0022A2.jpg"/><img alt="Bluetooth миша" class="carousel-image" src="Electronics_imeg/0022A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Bluetooth миша</h3><p class="articul">арт. 0022A</p><p class="price">328.23 грн</p><div class="description-container">USB/Bluetooth миша з двома режимами, з підсвіткою</div><a href="https://s.click.aliexpress.com/e/_c389Uyzn" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0022A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0023A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Килимок для миші" class="carousel-image active" src="Electronics_imeg/0023A1.jpg"/><img alt="Килимок для миші" class="carousel-image" src="Electronics_imeg/0023A2.jpg"/><img alt="Килимок для миші" class="carousel-image" src="Electronics_imeg/0023A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Килимок для миші Рататуй</h3><p class="articul">арт. 0023A</p><p class="price">339.89 грн</p><div class="description-container">Аніме ігровий килимок XXL, 600x300 мм</div><a href="https://s.click.aliexpress.com/e/_c4qB5tFR" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0023A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0024A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Аніме килимок" class="carousel-image active" src="Electronics_imeg/0024A1.jpg"/><img alt="Аніме килимок" class="carousel-image" src="Electronics_imeg/0024A2.jpg"/><img alt="Аніме килимок" class="carousel-image" src="Electronics_imeg/0024A3.jpg"/><img alt="Аніме килимок" class="carousel-image" src="Electronics_imeg/0024A4.jpg"/><img alt="Аніме килимок" class="carousel-image" src="Electronics_imeg/0024A5.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Килимок для ПК аніме</h3><p class="articul">арт. 0024A</p><p class="price">333.11 грн</p><div class="description-container">Килимок для миші Dragon DBZ Computer Speed</div><a href="https://s.click.aliexpress.com/e/_c3G0wPM1" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0024A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0025A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Аніме килимок" class="carousel-image active" src="Electronics_imeg/0025A1.jpg"/><img alt="Аніме килимок" class="carousel-image" src="Electronics_imeg/0025A2.jpg"/><img alt="Аніме килимок" class="carousel-image" src="Electronics_imeg/0025A3.jpg"/><img alt="Аніме килимок" class="carousel-image" src="Electronics_imeg/0025A4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Аніме килимок</h3><p class="articul">арт. 0025A</p><p class="price">214.01 грн</p><div class="description-container">Аніме килимок для миші P-покемонів Bulbasaur</div><a href="https://s.click.aliexpress.com/e/_c3z6INRn" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0025A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0026A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Килимок для миші" class="carousel-image active" src="Electronics_imeg/0026A1.jpg"/><img alt="Килимок для миші" class="carousel-image" src="Electronics_imeg/0026A2.jpg"/><img alt="Килимок для миші" class="carousel-image" src="Electronics_imeg/0026A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Килимок для миші</h3><p class="articul">арт. 0026A</p><p class="price">62.68 грн</p><div class="description-container">Маусепад, невеликий килимок для столу, протиковзкий</div><a href="https://s.click.aliexpress.com/e/_c3lymXBJ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0026A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0027A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Килимок RAZER" class="carousel-image active" src="Electronics_imeg/0027A1.jpg"/><img alt="Килимок RAZER" class="carousel-image" src="Electronics_imeg/0027A2.jpg"/><img alt="Килимок RAZER" class="carousel-image" src="Electronics_imeg/0027A3.jpg"/><img alt="Килимок RAZER" class="carousel-image" src="Electronics_imeg/0027A4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Килимок для миші RAZER</h3><p class="articul">арт. 0027A</p><p class="price">284.57 грн</p><div class="description-container">Килимок для миші RAZER, комп'ютер, аніме, великий килимок</div><a href="https://s.click.aliexpress.com/e/_c4D6H0WZ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0027A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0028A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Килимок RIAS" class="carousel-image active" src="Electronics_imeg/0028A1.jpg"/><img alt="Килимок RIAS" class="carousel-image" src="Electronics_imeg/0028A2.jpg"/><img alt="Килимок RIAS" class="carousel-image" src="Electronics_imeg/0028A3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Килимок для комп'ютера RIAS</h3><p class="articul">арт. 0028A</p><p class="price">239.93 грн</p><div class="description-container">XXL килимок для миші, аніме, геймерський</div><a href="https://s.click.aliexpress.com/e/_c3UpwrA5" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0028A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0029A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Килимок Пікачу" class="carousel-image active" src="Electronics_imeg/0029A1.jpg"/><img alt="Килимок Пікачу" class="carousel-image" src="Electronics_imeg/0029A2.jpg"/><img alt="Килимок Пікачу" class="carousel-image" src="Electronics_imeg/0029A3.jpg"/><img alt="Килимок Пікачу" class="carousel-image" src="Electronics_imeg/0029A4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Килимок для ПК Пікачу</h3><p class="articul">арт. 0029A</p><p class="price">289.03 грн</p><div class="description-container">Аніме килимок для миші P-Pokemons Eevee</div><a href="https://s.click.aliexpress.com/e/_c3fuDCdX" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0029A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0030A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Аніме килимок" class="carousel-image active" src="Electronics_imeg/0030A1.jpg"/><img alt="Аніме килимок" class="carousel-image" src="Electronics_imeg/0030A2.jpg"/><img alt="Аніме килимок" class="carousel-image" src="Electronics_imeg/0030A3.jpg"/><img alt="Аніме килимок" class="carousel-image" src="Electronics_imeg/0030A4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Килимки для ПК аніме</h3><p class="articul">арт. 0030A</p><p class="price">216.25 грн</p><div class="description-container">Килимок для миші Сейлор Мун, геймерський</div><a href="https://s.click.aliexpress.com/e/_c3gmB5db" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0030A')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0031A"><div class="product-image-carousel"><div class="carousel-container"><img alt="Килимок Gundam" class="carousel-image active" src="Electronics_imeg/0031A1.jpg"/><img alt="Килимок Gundam" class="carousel-image" src="Electronics_imeg/0031A2.jpg"/><img alt="Килимок Gundam" class="carousel-image" src="Electronics_imeg/0031A3.jpg"/><img alt="Килимок Gundam" class="carousel-image" src="Electronics_imeg/0031A4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Килимок Gundam Zaku II</h3><p class="articul">арт. 0031A</p><p class="price">289.03 грн</p><div class="description-container">Килимок для миші Gundam Zaku II Speed для кіберспорту</div><a href="https://s.click.aliexpress.com/e/_c4spOvyZ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0031A')">Додати до обраного</button></div></div>
 </div>
 
 <div class="pagination">
@@ -538,7 +427,6 @@
 <p>© 2026 AliShop</p>
 </footer>
 
-<!-- Крок 5: Скрипт Firebase -->
 <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
     import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';

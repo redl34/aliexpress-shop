@@ -24,32 +24,17 @@ function extractProduct(cardHtml) {
     const titleMatch = /<h3>([^<]+)<\/h3>/.exec(cardHtml);
     const title = titleMatch ? titleMatch[1].trim() : '';
     
-    // ВИПРАВЛЕНИЙ ПОШУК ОПИСУ - шукаємо в description-container
+    // Опис: після </h3> шукаємо <p>
     let description = '';
-    
-    // Спосіб 1: Шукаємо в <div class="description-container">
-    const descContainerMatch = /<div class="description-container">([\s\S]*?)<\/div>/.exec(cardHtml);
-    if (descContainerMatch) {
-        description = descContainerMatch[1].trim();
-    }
-    
-    // Спосіб 2: Якщо не знайшли, шукаємо звичайний <p> (для старих сторінок)
-    if (!description) {
-        const h3ClosePos = cardHtml.indexOf('</h3>');
-        if (h3ClosePos !== -1) {
-            const pOpenPos = cardHtml.indexOf('<p>', h3ClosePos);
-            if (pOpenPos !== -1) {
-                const pClosePos = cardHtml.indexOf('</p>', pOpenPos);
-                if (pClosePos !== -1) {
-                    description = cardHtml.substring(pOpenPos + 3, pClosePos).trim();
-                }
+    const h3ClosePos = cardHtml.indexOf('</h3>');
+    if (h3ClosePos !== -1) {
+        const pOpenPos = cardHtml.indexOf('<p>', h3ClosePos);
+        if (pOpenPos !== -1) {
+            const pClosePos = cardHtml.indexOf('</p>', pOpenPos);
+            if (pClosePos !== -1) {
+                description = cardHtml.substring(pOpenPos + 3, pClosePos).trim();
             }
         }
-    }
-    
-    // Спосіб 3: Якщо опис містить HTML теги, очищаємо їх
-    if (description) {
-        description = description.replace(/<[^>]*>/g, '').trim();
     }
     
     const priceMatch = /<p class="price">([^<]+)<\/p>/.exec(cardHtml);
@@ -75,17 +60,23 @@ function main() {
     
     htmlFiles.forEach(filePath => {
         const content = fs.readFileSync(filePath, 'utf8');
+        // Знаходимо всі входження <div class="product-card"
         let startIdx = 0;
         while (true) {
             const cardStart = content.indexOf('<div class="product-card"', startIdx);
             if (cardStart === -1) break;
             
+            // Шукаємо наступне входження, щоб визначити кінець поточної картки
             const nextCardStart = content.indexOf('<div class="product-card"', cardStart + 1);
             let cardEnd;
             if (nextCardStart === -1) {
+                // Це остання картка, шукаємо кінець блоку products? Але простіше взяти до кінця файлу?
+                // Краще знайти закриття батьківського div, але це складно.
+                // Можна шукати послідовність, яка закриває картку: </div></div></div> або </div></div>
+                // Подивимося на ваш HTML: картка закривається двома div. Спробуємо шукати </div></div>
                 const possibleEnd = content.indexOf('</div></div>', cardStart);
                 if (possibleEnd === -1) break;
-                cardEnd = possibleEnd + 12;
+                cardEnd = possibleEnd + 12; // довжина '</div></div>'
             } else {
                 cardEnd = nextCardStart;
             }
@@ -97,9 +88,8 @@ function main() {
                 if (filePath.includes('electronics')) category = 'electronics';
                 else if (filePath.includes('clothing')) category = 'clothing';
                 else if (filePath.includes('garden')) category = 'garden';
-                else if (filePath.includes('auto')) category = 'auto';
                 allProducts.push({ ...product, category });
-                console.log(`✅ Знайдено: ${product.articul} - ${product.title} | опис: ${product.description.substring(0, 50)}...`);
+                console.log(`Знайдено: ${product.articul} - ${product.title}`);
             }
             
             startIdx = cardEnd;
@@ -107,7 +97,7 @@ function main() {
     });
     
     fs.writeFileSync('products.json', JSON.stringify(allProducts, null, 2));
-    console.log(`\n📦 Згенеровано ${allProducts.length} товарів у файл products.json`);
+    console.log(`Згенеровано ${allProducts.length} товарів`);
 }
 
-main();
+main(); 

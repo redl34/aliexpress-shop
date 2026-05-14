@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Одяг - AliShop</title>
+<title>Електроніка - AliShop (Сторінка 1)</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
 <link href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png" rel="icon" type="image/png"/>
@@ -15,7 +15,7 @@
             background-color: #3E717A;
         }
         header {
-            background: url('Oformlennya_imeg/clothing.jpg') no-repeat center center/cover;
+            background: url('Oformlennya_imeg/electronics.jpg') no-repeat center center/cover;
             color: white;
             text-align: center;
             padding: 120px 20px;
@@ -204,12 +204,7 @@
             color: #000000;
             margin: 5px 0;
         }
-        /* ПРИХОВАНИЙ ОПИС ДЛЯ СКРИПТА */
-        .hidden-script-description {
-            display: none;
-        }
-        /* ВИДИМИЙ ОПИС З ПРОКРУТКОЮ */
-        .description-container {
+        .product-details p {
             font-size: 0.85em;
             color: #2c3e50;
             margin: 8px 0;
@@ -220,20 +215,19 @@
             height: 80px;
             overflow-y: auto;
             text-align: left;
-            font-weight: normal;
         }
-        .description-container::-webkit-scrollbar {
+        .product-details p::-webkit-scrollbar {
             width: 11px;
         }
-        .description-container::-webkit-scrollbar-track {
+        .product-details p::-webkit-scrollbar-track {
             background: #e0e0e0;
             border-radius: 5px;
         }
-        .description-container::-webkit-scrollbar-thumb {
+        .product-details p::-webkit-scrollbar-thumb {
             background: #A9A34C;
             border-radius: 5px;
         }
-        .description-container::-webkit-scrollbar-thumb:hover {
+        .product-details p::-webkit-scrollbar-thumb:hover {
             background: #8e8a3f;
         }
         .product-details a {
@@ -264,7 +258,6 @@
         .add-to-favorites:hover {
             background-color: #8e8a3f;
         }
-        /* СТИЛІ ДЛЯ ПАГІНАЦІЇ */
         .pagination {
             display: flex;
             justify-content: center;
@@ -273,7 +266,7 @@
             padding: 10px;
             border-radius: 10px;
             margin: 20px auto;
-            max-width: 300px;
+            max-width: 33%;
         }
         .pagination a {
             display: inline-block;
@@ -284,20 +277,18 @@
             text-decoration: none;
             border-radius: 9px;
             font-size: 1em;
-            font-weight: bold;
+            font-weight: normal;
         }
         .pagination a.active {
             background-color: white;
             color: black;
             border: 5px solid #e0930d;
+            line-height: 35px;
         }
         .pagination a:not(.active) {
             background-color: #d3d3d3;
             color: black;
             border: 1px solid #a9a9a9;
-        }
-        .pagination a:hover:not(.active) {
-            background-color: #bdbdbd;
         }
         footer {
             background-color: #000000;
@@ -368,11 +359,11 @@
                 height: 28px;
                 font-size: 14px;
             }
-            .description-container {
+            .product-details p {
                 height: 70px;
                 font-size: 0.8em;
             }
-            .description-container::-webkit-scrollbar {
+            .product-details p::-webkit-scrollbar {
                 width: 8px;
             }
             .product-details h3 {
@@ -380,13 +371,15 @@
                 min-height: 40px;
             }
             .pagination {
-                max-width: 260px;
-                gap: 8px;
+                max-width: 280px;
             }
             .pagination a {
                 width: 35px;
                 height: 35px;
                 line-height: 35px;
+            }
+            .pagination a.active {
+                line-height: 30px;
             }
         }
     </style>
@@ -396,322 +389,33 @@
 </head>
 <body>
 <header>
-<h1>Одяг</h1>
+<h1>Електроніка</h1>
 <a class="home-link" href="index.html">Повернутися на головну</a>
 <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
 <div class="search-container">
 <input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
-<button onclick="searchProducts()">Пошук</button>
+<button onclick="redirectToSearch()">Пошук</button>
 </div>
 </header>
-
 <div class="products">
-<!-- Товар 0247B -->
-<div class="product-card" data-articul="0247B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0247B1.jpg" alt="Міні зволожувач повітря"/>
-            <img class="carousel-image" src="Electronics_imeg/0247B2.jpg" alt="Міні зволожувач повітря"/>
-            <img class="carousel-image" src="Electronics_imeg/0247B3.jpg" alt="Міні зволожувач повітря"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Міні зволожувач повітря</h3>
-        <p class="hidden-script-description">250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою</p>
-        <p class="articul">арт. 0247B</p>
-        <p class="price">76.54 грн</p>
-        <div class="description-container">250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою</div>
-        <a href="https://s.click.aliexpress.com/e/_c3h88xTr" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0247B')">Додати до обраного</button>
-    </div>
+<div class="product-card" data-articul="0247B"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0247B1.jpg" alt="Міні зволожувач повітря"/><img class="carousel-image" src="Electronics_imeg/0247B2.jpg" alt="Міні зволожувач повітря"/><img class="carousel-image" src="Electronics_imeg/0247B3.jpg" alt="Міні зволожувач повітря"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Міні зволожувач повітря</h3><p>250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою</p><p class="articul">арт. 0247B</p><p class="price">76.54 грн</p><a href="https://s.click.aliexpress.com/e/_c3h88xTr" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0247B', 'Міні зволожувач повітря', 'Electronics_imeg/0247B1.jpg', 'https://s.click.aliexpress.com/e/_c3h88xTr')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0001A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0001A1.jpg" alt="Міні-зволожувач повітря"/><img class="carousel-image" src="Electronics_imeg/0001A2.jpg" alt="Міні-зволожувач повітря"/><img class="carousel-image" src="Electronics_imeg/0001A3.jpg" alt="Міні-зволожувач повітря"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Міні-зволожувач повітря</h3><p>250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою</p><p class="articul">арт. 0001A</p><p class="price">286.93 грн</p><a href="https://s.click.aliexpress.com/e/_c4bAx3hF" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0001A', 'Міні-зволожувач повітря', 'Electronics_imeg/0001A1.jpg', 'https://s.click.aliexpress.com/e/_c4bAx3hF')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0002A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0002A1.jpg" alt="Зволожувач повітря"/><img class="carousel-image" src="Electronics_imeg/0002A2.jpg" alt="Зволожувач повітря"/><img class="carousel-image" src="Electronics_imeg/0002A3.jpg" alt="Зволожувач повітря"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря</h3><p>Зволожувач повітря з ефірними оліями, зволожувачі повітря для дому, ароматичний зволожувач, полум'я, автоматичний ароматичний дифузор зі світлодіодним пультом дистанційного керування</p><p class="articul">арт. 0002A</p><p class="price">939.04 грн</p><a href="https://s.click.aliexpress.com/e/_c3ZFuXml" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0002A', 'Зволожувач повітря', 'Electronics_imeg/0002A1.jpg', 'https://s.click.aliexpress.com/e/_c3ZFuXml')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0003A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0003A1.jpg" alt="Зволожувач повітря Полум'я"/><img class="carousel-image" src="Electronics_imeg/0003A2.jpg" alt="Зволожувач повітря Полум'я"/><img class="carousel-image" src="Electronics_imeg/0003A3.jpg" alt="Зволожувач повітря Полум'я"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Полум'я</h3><p>Полум'я Ароматний зволожувач повітря Міні USB Ефірна олія Дифузор з пультом дистанційного керування та легким вогнем Ароматерапія Аромат Дифузор</p><p class="articul">арт. 0003A</p><p class="price">1002.93 грн</p><a href="https://s.click.aliexpress.com/e/_c3X6hOg9" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0003A', 'Зволожувач повітря Полум\'я', 'Electronics_imeg/0003A1.jpg', 'https://s.click.aliexpress.com/e/_c3X6hOg9')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0004A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0004A1.jpg" alt="Зволожувач повітря Медуза"/><img class="carousel-image" src="Electronics_imeg/0004A2.jpg" alt="Зволожувач повітря Медуза"/><img class="carousel-image" src="Electronics_imeg/0004A3.jpg" alt="Зволожувач повітря Медуза"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Медуза</h3><p>Динамічний зволожувач повітря з медузою 250 мл дифузор ефірних олій з дистанційним керуванням для спальні з 7 барвистими нічними вогнями</p><p class="articul">арт. 0004A</p><p class="price">1047.87 грн</p><a href="https://s.click.aliexpress.com/e/_c3nmnWkH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0004A', 'Зволожувач повітря Медуза', 'Electronics_imeg/0004A1.jpg', 'https://s.click.aliexpress.com/e/_c3nmnWkH')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0005A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0005A1.jpg" alt="Зволожувач повітря Полум'я"/><img class="carousel-image" src="Electronics_imeg/0005A2.jpg" alt="Зволожувач повітря Полум'я"/><img class="carousel-image" src="Electronics_imeg/0005A3.jpg" alt="Зволожувач повітря Полум'я"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Полум'я</h3><p>Імітація полум'я Ароматизатор Дифузор Багаття Зволожувач повітря Ультразвуковий Прохолодний Туман Maker Fogger Світлодіодна лампа Ефірна олія Дифузор</p><p class="articul">арт. 0005A</p><p class="price">662.34 грн</p><a href="https://s.click.aliexpress.com/e/_c3CZaJXf" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0005A', 'Зволожувач повітря Полум\'я', 'Electronics_imeg/0005A1.jpg', 'https://s.click.aliexpress.com/e/_c3CZaJXf')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0006A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0006A1.jpg" alt="Зволожувач повітря Багаття"/><img class="carousel-image" src="Electronics_imeg/0006A2.jpg" alt="Зволожувач повітря Багаття"/><img class="carousel-image" src="Electronics_imeg/0006A3.jpg" alt="Зволожувач повітря Багаття"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Багаття</h3><p>Зволожувач повітря багаття, дифузор з кристалічною сіллю, ароматерапія, ультразвуковий дифузор з ефірними оліями, зволожувач повітря з прохолодним туманом для спальні</p><p class="articul">арт. 0006A</p><p class="price">773.46 грн</p><a href="https://s.click.aliexpress.com/e/_c4LWjHLr" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0006A', 'Зволожувач повітря Багаття', 'Electronics_imeg/0006A1.jpg', 'https://s.click.aliexpress.com/e/_c4LWjHLr')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0007A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0007A1.jpg" alt="Зволожувач повітря Дощ"/><img class="carousel-image" src="Electronics_imeg/0007A2.jpg" alt="Зволожувач повітря Дощ"/><img class="carousel-image" src="Electronics_imeg/0007A3.jpg" alt="Зволожувач повітря Дощ"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Зволожувач повітря Дощ</h3><p>Арома-зволожувач повітря зволожувач дощу барвисте світло білий шум ефірні олії дифузор домашній ультразвуковий аромат дифузор</p><p class="articul">арт. 0007A</p><p class="price">1158.87 грн</p><a href="https://s.click.aliexpress.com/e/_c4dJIJw5" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0007A', 'Зволожувач повітря Дощ', 'Electronics_imeg/0007A1.jpg', 'https://s.click.aliexpress.com/e/_c4dJIJw5')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0008A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0008A1.jpg" alt="Ароматичний дифузор Медуза"/><img class="carousel-image" src="Electronics_imeg/0008A2.jpg" alt="Ароматичний дифузор Медуза"/><img class="carousel-image" src="Electronics_imeg/0008A3.jpg" alt="Ароматичний дифузор Медуза"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ароматичний дифузор Медуза</h3><p>Новий обертовий ароматичний дифузор медузи для дому на робочому столі зволожувач свіжого повітря з барвистим дифузором навколишнього світла</p><p class="articul">арт. 0008A</p><p class="price">1041.56 грн</p><a href="https://s.click.aliexpress.com/e/_c3iSB4kN" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0008A', 'Ароматичний дифузор Медуза', 'Electronics_imeg/0008A1.jpg', 'https://s.click.aliexpress.com/e/_c3iSB4kN')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0009A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0009A1.jpg" alt="Безпровідні навушники XIAOMI"/><img class="carousel-image" src="Electronics_imeg/0009A2.jpg" alt="Безпровідні навушники XIAOMI"/><img class="carousel-image" src="Electronics_imeg/0009A3.jpg" alt="Безпровідні навушники XIAOMI"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Безпровідні навушники XIAOMI</h3><p>XIAOMI Air 7 Bluetooth 5.3 TWS Гарнітура HiFi Бездротові навушники з мікрофоном та шумозаглушенням Навушники Водонепроникні</p><p class="articul">арт. 0009A</p><p class="price">307.37 грн</p><a href="https://s.click.aliexpress.com/e/_c3ZYlgEt" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0009A', 'Безпровідні навушники XIAOMI', 'Electronics_imeg/0009A1.jpg', 'https://s.click.aliexpress.com/e/_c3ZYlgEt')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0010A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0010A1.jpg" alt="Вентилятор"/><img class="carousel-image" src="Electronics_imeg/0010A2.jpg" alt="Вентилятор"/><img class="carousel-image" src="Electronics_imeg/0010A3.jpg" alt="Вентилятор"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Вентилятор</h3><p>Модернізований турбопотужний вентилятор високошвидкісний повітряний вентилятор універсальний безщітковий пилозбірник з комплектом для пилососа міні-турбоструминний вентилятор</p><p class="articul">арт. 0010A</p><p class="price">846.92 грн</p><a href="https://s.click.aliexpress.com/e/_c2zSg4yV" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0010A', 'Вентилятор', 'Electronics_imeg/0010A1.jpg', 'https://s.click.aliexpress.com/e/_c2zSg4yV')">Додати до обраного</button></div></div>
 </div>
-
-<!-- Товар 0001A -->
-<div class="product-card" data-articul="0001A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0001A1.jpg" alt="Міні-зволожувач повітря"/>
-            <img class="carousel-image" src="Electronics_imeg/0001A2.jpg" alt="Міні-зволожувач повітря"/>
-            <img class="carousel-image" src="Electronics_imeg/0001A3.jpg" alt="Міні-зволожувач повітря"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Міні-зволожувач повітря</h3>
-        <p class="hidden-script-description">250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою</p>
-        <p class="articul">арт. 0001A</p>
-        <p class="price">286.93 грн</p>
-        <div class="description-container">250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою</div>
-        <a href="https://s.click.aliexpress.com/e/_c4bAx3hF" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0001A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0002A -->
-<div class="product-card" data-articul="0002A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0002A1.jpg" alt="Зволожувач повітря"/>
-            <img class="carousel-image" src="Electronics_imeg/0002A2.jpg" alt="Зволожувач повітря"/>
-            <img class="carousel-image" src="Electronics_imeg/0002A3.jpg" alt="Зволожувач повітря"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Зволожувач повітря</h3>
-        <p class="hidden-script-description">Зволожувач повітря з ефірними оліями, зволожувачі повітря для дому, ароматичний зволожувач, полум'я, автоматичний ароматичний дифузор зі світлодіодним пультом дистанційного керування</p>
-        <p class="articul">арт. 0002A</p>
-        <p class="price">939.04 грн</p>
-        <div class="description-container">Зволожувач повітря з ефірними оліями, зволожувачі повітря для дому, ароматичний зволожувач, полум'я, автоматичний ароматичний дифузор зі світлодіодним пультом дистанційного керування</div>
-        <a href="https://s.click.aliexpress.com/e/_c3ZFuXml" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0002A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0003A -->
-<div class="product-card" data-articul="0003A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0003A1.jpg" alt="Зволожувач повітря Полум'я"/>
-            <img class="carousel-image" src="Electronics_imeg/0003A2.jpg" alt="Зволожувач повітря Полум'я"/>
-            <img class="carousel-image" src="Electronics_imeg/0003A3.jpg" alt="Зволожувач повітря Полум'я"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Зволожувач повітря Полум'я</h3>
-        <p class="hidden-script-description">Полум'я Ароматний зволожувач повітря Міні USB Ефірна олія Дифузор з пультом дистанційного керування та легким вогнем Ароматерапія Аромат Дифузор</p>
-        <p class="articul">арт. 0003A</p>
-        <p class="price">1002.93 грн</p>
-        <div class="description-container">Полум'я Ароматний зволожувач повітря Міні USB Ефірна олія Дифузор з пультом дистанційного керування та легким вогнем Ароматерапія Аромат Дифузор</div>
-        <a href="https://s.click.aliexpress.com/e/_c3X6hOg9" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0003A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0004A -->
-<div class="product-card" data-articul="0004A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0004A1.jpg" alt="Зволожувач повітря Медуза"/>
-            <img class="carousel-image" src="Electronics_imeg/0004A2.jpg" alt="Зволожувач повітря Медуза"/>
-            <img class="carousel-image" src="Electronics_imeg/0004A3.jpg" alt="Зволожувач повітря Медуза"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Зволожувач повітря Медуза</h3>
-        <p class="hidden-script-description">Динамічний зволожувач повітря з медузою 250 мл дифузор ефірних олій з дистанційним керуванням для спальні з 7 барвистими нічними вогнями</p>
-        <p class="articul">арт. 0004A</p>
-        <p class="price">1047.87 грн</p>
-        <div class="description-container">Динамічний зволожувач повітря з медузою 250 мл дифузор ефірних олій з дистанційним керуванням для спальні з 7 барвистими нічними вогнями</div>
-        <a href="https://s.click.aliexpress.com/e/_c3nmnWkH" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0004A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0005A -->
-<div class="product-card" data-articul="0005A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0005A1.jpg" alt="Зволожувач повітря Полум'я"/>
-            <img class="carousel-image" src="Electronics_imeg/0005A2.jpg" alt="Зволожувач повітря Полум'я"/>
-            <img class="carousel-image" src="Electronics_imeg/0005A3.jpg" alt="Зволожувач повітря Полум'я"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Зволожувач повітря Полум'я</h3>
-        <p class="hidden-script-description">Імітація полум'я Ароматизатор Дифузор Багаття Зволожувач повітря Ультразвуковий Прохолодний Туман Maker Fogger Світлодіодна лампа Ефірна олія Дифузор</p>
-        <p class="articul">арт. 0005A</p>
-        <p class="price">662.34 грн</p>
-        <div class="description-container">Імітація полум'я Ароматизатор Дифузор Багаття Зволожувач повітря Ультразвуковий Прохолодний Туман Maker Fogger Світлодіодна лампа Ефірна олія Дифузор</div>
-        <a href="https://s.click.aliexpress.com/e/_c3CZaJXf" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0005A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0006A -->
-<div class="product-card" data-articul="0006A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0006A1.jpg" alt="Зволожувач повітря Багаття"/>
-            <img class="carousel-image" src="Electronics_imeg/0006A2.jpg" alt="Зволожувач повітря Багаття"/>
-            <img class="carousel-image" src="Electronics_imeg/0006A3.jpg" alt="Зволожувач повітря Багаття"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Зволожувач повітря Багаття</h3>
-        <p class="hidden-script-description">Зволожувач повітря багаття, дифузор з кристалічною сіллю, ароматерапія, ультразвуковий дифузор з ефірними оліями, зволожувач повітря з прохолодним туманом для спальні</p>
-        <p class="articul">арт. 0006A</p>
-        <p class="price">773.46 грн</p>
-        <div class="description-container">Зволожувач повітря багаття, дифузор з кристалічною сіллю, ароматерапія, ультразвуковий дифузор з ефірними оліями, зволожувач повітря з прохолодним туманом для спальні</div>
-        <a href="https://s.click.aliexpress.com/e/_c4LWjHLr" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0006A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0007A -->
-<div class="product-card" data-articul="0007A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0007A1.jpg" alt="Зволожувач повітря Дощ"/>
-            <img class="carousel-image" src="Electronics_imeg/0007A2.jpg" alt="Зволожувач повітря Дощ"/>
-            <img class="carousel-image" src="Electronics_imeg/0007A3.jpg" alt="Зволожувач повітря Дощ"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Зволожувач повітря Дощ</h3>
-        <p class="hidden-script-description">Арома-зволожувач повітря зволожувач дощу барвисте світло білий шум ефірні олії дифузор домашній ультразвуковий аромат дифузор</p>
-        <p class="articul">арт. 0007A</p>
-        <p class="price">1158.87 грн</p>
-        <div class="description-container">Арома-зволожувач повітря зволожувач дощу барвисте світло білий шум ефірні олії дифузор домашній ультразвуковий аромат дифузор</div>
-        <a href="https://s.click.aliexpress.com/e/_c4dJIJw5" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0007A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0008A -->
-<div class="product-card" data-articul="0008A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0008A1.jpg" alt="Ароматичний дифузор Медуза"/>
-            <img class="carousel-image" src="Electronics_imeg/0008A2.jpg" alt="Ароматичний дифузор Медуза"/>
-            <img class="carousel-image" src="Electronics_imeg/0008A3.jpg" alt="Ароматичний дифузор Медуза"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Ароматичний дифузор Медуза</h3>
-        <p class="hidden-script-description">Новий обертовий ароматичний дифузор медузи для дому на робочому столі зволожувач свіжого повітря з барвистим дифузором навколишнього світла</p>
-        <p class="articul">арт. 0008A</p>
-        <p class="price">1041.56 грн</p>
-        <div class="description-container">Новий обертовий ароматичний дифузор медузи для дому на робочому столі зволожувач свіжого повітря з барвистим дифузором навколишнього світла</div>
-        <a href="https://s.click.aliexpress.com/e/_c3iSB4kN" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0008A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0009A -->
-<div class="product-card" data-articul="0009A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0009A1.jpg" alt="Безпровідні навушники XIAOMI"/>
-            <img class="carousel-image" src="Electronics_imeg/0009A2.jpg" alt="Безпровідні навушники XIAOMI"/>
-            <img class="carousel-image" src="Electronics_imeg/0009A3.jpg" alt="Безпровідні навушники XIAOMI"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Безпровідні навушники XIAOMI</h3>
-        <p class="hidden-script-description">XIAOMI Air 7 Bluetooth 5.3 TWS Гарнітура HiFi Бездротові навушники з мікрофоном та шумозаглушенням Навушники Водонепроникні</p>
-        <p class="articul">арт. 0009A</p>
-        <p class="price">307.37 грн</p>
-        <div class="description-container">XIAOMI Air 7 Bluetooth 5.3 TWS Гарнітура HiFi Бездротові навушники з мікрофоном та шумозаглушенням Навушники Водонепроникні</div>
-        <a href="https://s.click.aliexpress.com/e/_c3ZYlgEt" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0009A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0010A -->
-<div class="product-card" data-articul="0010A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0010A1.jpg" alt="Вентилятор"/>
-            <img class="carousel-image" src="Electronics_imeg/0010A2.jpg" alt="Вентилятор"/>
-            <img class="carousel-image" src="Electronics_imeg/0010A3.jpg" alt="Вентилятор"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Вентилятор</h3>
-        <p class="hidden-script-description">Модернізований турбопотужний вентилятор високошвидкісний повітряний вентилятор універсальний безщітковий пилозбірник з комплектом для пилососа міні-турбоструминний вентилятор</p>
-        <p class="articul">арт. 0010A</p>
-        <p class="price">846.92 грн</p>
-        <div class="description-container">Модернізований турбопотужний вентилятор високошвидкісний повітряний вентилятор універсальний безщітковий пилозбірник з комплектом для пилососа міні-турбоструминний вентилятор</div>
-        <a href="https://s.click.aliexpress.com/e/_c2zSg4yV" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0010A')">Додати до обраного</button>
-    </div>
-</div>
-</div>
-
-<!-- ПАГІНАЦІЯ -->
 <div class="pagination">
-    <a href="women's-clothing_page_1.html" class="active">1</a>
-    <a href="women's-clothing_page_2.html">2</a>
-    <a href="women's-clothing_page_3.html">3</a>
-    <a href="women's-clothing_page_4.html">4</a>
+    <a class="active" href="electronics_page_1.html">1</a>
+    <a href="electronics_page_2.html">2</a>
+    <a href="electronics_page_3.html">3</a>
+    <a href="electronics_page_4.html">4</a>
 </div>
-
 <footer>
 <div class="social-links">
 <h2>Слідкуй за новинками в</h2>
@@ -723,21 +427,12 @@
 </div>
 <p>© 2026 AliShop</p>
 </footer>
-
 <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
         import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-        import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
-            authDomain: "alishopping-ced60.firebaseapp.com",
-            projectId: "alishopping-ced60",
-            storageBucket: "alishopping-ced60.firebasestorage.app",
-            messagingSenderId: "869364972631",
-            appId: "1:869364972631:web:f9b736868d9844b3e7f712",
-            measurementId: "G-SF4MY2768F"
-        };
+        const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -754,37 +449,27 @@
             }
         });
 
-        window.addToFavorites = async function(productId) {
+        window.addToFavorites = async function(id, title, image, link) {
             if (!auth.currentUser) {
                 alert('Будь ласка, увійдіть до облікового запису.');
                 window.location.href = 'login.html';
                 return;
             }
-            
             try {
-                const q = query(collection(db, 'favorites'), 
-                    where('userId', '==', auth.currentUser.uid),
-                    where('productId', '==', productId));
-                const existing = await getDocs(q);
-                
-                if (!existing.empty) {
-                    alert('⚠️ Цей товар вже є у ваших обраних!');
-                    return;
-                }
-                
                 await addDoc(collection(db, 'favorites'), {
                     userId: auth.currentUser.uid,
-                    productId: productId,
-                    addedAt: new Date().toISOString()
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
                 });
-                alert('✅ Товар додано до обраного!');
+                alert('Товар додано до обраного!');
             } catch (error) {
-                console.error('Помилка:', error);
-                alert('❌ Помилка: ' + error.message);
+                console.error('Помилка додавання:', error);
+                alert('Помилка: ' + error.message);
             }
         };
 
-        // Карусель
         document.querySelectorAll('.product-image-carousel').forEach(carousel => {
             const images = carousel.querySelectorAll('.carousel-image');
             const indicators = carousel.querySelectorAll('.indicator');
@@ -841,34 +526,29 @@
             });
         });
 
-        window.searchProducts = function() {
-            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
-            const products = document.querySelectorAll('.product-card');
-
-            if (!searchInput) {
-                products.forEach(product => {
-                    product.style.display = 'flex';
-                });
-                return;
+        window.redirectToSearch = function() {
+            const searchInput = document.getElementById('searchInput').value.trim();
+            if (searchInput) {
+                window.location.href = `search.html?q=${encodeURIComponent(searchInput)}`;
+            } else {
+                alert('Введіть запит для пошуку');
             }
-
-            products.forEach(product => {
-                const articul = product.getAttribute('data-articul').toLowerCase();
-                const title = product.querySelector('.product-details h3').textContent.toLowerCase();
-                
-                if (articul.includes(searchInput) || title.includes(searchInput)) {
-                    product.style.display = 'flex';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
         };
 
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                searchProducts();
+                redirectToSearch();
             }
         });
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
+                redirectToSearch();
+            }
+        };
     </script>
 </body>
 </html>

@@ -204,7 +204,7 @@
         }
         
         /* ОПИС - у звичайному p тегу */
-        .product-details p:first-of-type {
+        .product-details .description {
             font-size: 0.9em;
             color: #2c3e50;
             margin: 8px 0;
@@ -218,18 +218,18 @@
         }
         
         /* СТИЛІ ДЛЯ СКРОЛБАРА */
-        .product-details p:first-of-type::-webkit-scrollbar {
+        .product-details .description::-webkit-scrollbar {
             width: 6px;
         }
-        .product-details p:first-of-type::-webkit-scrollbar-track {
+        .product-details .description::-webkit-scrollbar-track {
             background: #e0e0e0;
             border-radius: 5px;
         }
-        .product-details p:first-of-type::-webkit-scrollbar-thumb {
+        .product-details .description::-webkit-scrollbar-thumb {
             background: #A9A34C;
             border-radius: 5px;
         }
-        .product-details p:first-of-type::-webkit-scrollbar-thumb:hover {
+        .product-details .description::-webkit-scrollbar-thumb:hover {
             background: #8e8a3f;
         }
         
@@ -367,7 +367,7 @@
             .carousel-prev, .carousel-next {
                 display: none;
             }
-            .product-details p:first-of-type {
+            .product-details .description {
                 height: 75px;
             }
             .pagination {
@@ -438,7 +438,7 @@
 <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
         import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+        import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
         const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
 
@@ -463,17 +463,30 @@
                 window.location.href = 'login.html';
                 return;
             }
+            
             try {
+                const q = query(collection(db, 'favorites'), 
+                    where('userId', '==', auth.currentUser.uid),
+                    where('id', '==', id));
+                const existing = await getDocs(q);
+                
+                if (!existing.empty) {
+                    alert('Цей товар вже є у ваших обраних!');
+                    return;
+                }
+                
                 await addDoc(collection(db, 'favorites'), {
                     userId: auth.currentUser.uid,
                     id: id,
                     title: title,
                     image: image,
-                    link: link
+                    link: link,
+                    addedAt: new Date().toISOString()
                 });
                 alert('Товар додано до обраного!');
             } catch (error) {
-                console.error('Помилка додавання:', error);
+                console.error('Помилка:', error);
+                alert('Помилка: ' + error.message);
             }
         };
 

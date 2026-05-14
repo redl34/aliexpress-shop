@@ -471,7 +471,7 @@
                 const existing = await getDocs(q);
                 
                 if (!existing.empty) {
-                    alert('Цей товар вже є у ваших обраних!');
+                    alert('⚠️ Цей товар вже є у ваших обраних!');
                     return;
                 }
                 
@@ -483,10 +483,10 @@
                     link: link,
                     addedAt: new Date().toISOString()
                 });
-                alert('Товар додано до обраного!');
+                alert('✅ Товар додано до обраного!');
             } catch (error) {
                 console.error('Помилка:', error);
-                alert('Помилка: ' + error.message);
+                alert('❌ Помилка: ' + error.message);
             }
         };
 

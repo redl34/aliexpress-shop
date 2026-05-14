@@ -3077,6 +3077,20 @@
     "sourceFile": "footwear_page_3.html"
   },
   {
+    "articul": "0099A",
+    "title": "Чоловічі кросівки",
+    "description": "Стильні чоловічі кросівки для повсякденного носіння, дихаючі та зручні, підходять для спорту та активного відпочинку",
+    "price": "899.00 грн",
+    "images": [
+      "Footwear_imeg/0099A1.jpg",
+      "Footwear_imeg/0099A2.jpg",
+      "Footwear_imeg/0099A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_example0099A",
+    "category": "other",
+    "sourceFile": "footwear_page_1.html"
+  },
+  {
     "articul": "0099B",
     "title": "Стильні джинси",
     "description": "Зимові жіночі плюшеві теплі джинси з високою талією, тонкі флісові джинси для дівчаток, теплі джинсові штани для жінок, зручні прямі штани",
@@ -3103,6 +3117,20 @@
     "link": "https://s.click.aliexpress.com/e/_c3uBWeeh",
     "category": "other",
     "sourceFile": "footwear_page_3.html"
+  },
+  {
+    "articul": "0100A",
+    "title": "Жіночі кеди",
+    "description": "Модні жіночі кеди на платформі, легкі та комфортні, ідеальні для прогулянок та повсякденного стилю",
+    "price": "649.00 грн",
+    "images": [
+      "Footwear_imeg/0100A1.jpg",
+      "Footwear_imeg/0100A2.jpg",
+      "Footwear_imeg/0100A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_example0100A",
+    "category": "other",
+    "sourceFile": "footwear_page_1.html"
   },
   {
     "articul": "0100B",
@@ -3133,6 +3161,20 @@
     "sourceFile": "footwear_page_3.html"
   },
   {
+    "articul": "0101A",
+    "title": "Чоловічі кросівки спортивні",
+    "description": "Професійні чоловічі кросівки для бігу, амортизуюча підошва, дихаючий матеріал, захист від травм",
+    "price": "1299.00 грн",
+    "images": [
+      "Footwear_imeg/0101A1.jpg",
+      "Footwear_imeg/0101A2.jpg",
+      "Footwear_imeg/0101A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_example0101A",
+    "category": "other",
+    "sourceFile": "footwear_page_1.html"
+  },
+  {
     "articul": "0101B",
     "title": "Джампер",
     "description": "Жіночий бежевий вузький светр ZIQIAO з рюшами, дизайном печворк, в'язаний чорний, універсальний светр з довгими рукавами",
@@ -3161,6 +3203,20 @@
     "sourceFile": "footwear_page_3.html"
   },
   {
+    "articul": "0102A",
+    "title": "Жіночі босоніжки",
+    "description": "Елегантні жіночі босоніжки на підборах, стильний дизайн, ідеальні для вечірки або романтичної зустрічі",
+    "price": "749.00 грн",
+    "images": [
+      "Footwear_imeg/0102A1.jpg",
+      "Footwear_imeg/0102A2.jpg",
+      "Footwear_imeg/0102A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_example0102A",
+    "category": "other",
+    "sourceFile": "footwear_page_1.html"
+  },
+  {
     "articul": "0102B",
     "title": "Розкішний светр",
     "description": "Зимовий кавовий ребристий в'язаний светр з рюшами та косими плечима, жіночий светр з повним рукавом, вільний товстий трикотаж, оверсайз-джемпер бежевого кольору",
@@ -3187,6 +3243,20 @@
     "link": "https://s.click.aliexpress.com/e/_c4Xl0x3r",
     "category": "other",
     "sourceFile": "footwear_page_3.html"
+  },
+  {
+    "articul": "0103A",
+    "title": "Чоловічі черевики",
+    "description": "Класичні чоловічі черевики із натуральної шкіри, водовідштовхувальне покриття, тепла підкладка",
+    "price": "1599.00 грн",
+    "images": [
+      "Footwear_imeg/0103A1.jpg",
+      "Footwear_imeg/0103A2.jpg",
+      "Footwear_imeg/0103A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_example0103A",
+    "category": "other",
+    "sourceFile": "footwear_page_1.html"
   },
   {
     "articul": "0103B",
@@ -3218,6 +3288,20 @@
     "sourceFile": "footwear_page_3.html"
   },
   {
+    "articul": "0104A",
+    "title": "Жіночі кросівки",
+    "description": "Жіночі кросівки у стилі casual, легкі та зручні, підходять для щоденного носіння",
+    "price": "549.00 грн",
+    "images": [
+      "Footwear_imeg/0104A1.jpg",
+      "Footwear_imeg/0104A2.jpg",
+      "Footwear_imeg/0104A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_example0104A",
+    "category": "other",
+    "sourceFile": "footwear_page_1.html"
+  },
+  {
     "articul": "0104B",
     "title": "Класичні штани",
     "description": "Класичні стильні штани для жінок. Легкі з високою талією, гарні, вільні, елегантні, зручні.",
@@ -3243,6 +3327,20 @@
     "link": "https://s.click.aliexpress.com/e/_c3dCYmpJ",
     "category": "other",
     "sourceFile": "footwear_page_3.html"
+  },
+  {
+    "articul": "0105A",
+    "title": "Чоловічі сандалі",
+    "description": "Чоловічі сандалі для активного відпочинку, регульовані ремінці, зручна устілка",
+    "price": "399.00 грн",
+    "images": [
+      "Footwear_imeg/0105A1.jpg",
+      "Footwear_imeg/0105A2.jpg",
+      "Footwear_imeg/0105A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_example0105A",
+    "category": "other",
+    "sourceFile": "footwear_page_1.html"
   },
   {
     "articul": "0105B",
@@ -3274,6 +3372,20 @@
     "sourceFile": "footwear_page_3.html"
   },
   {
+    "articul": "0106A",
+    "title": "Жіночі туфлі",
+    "description": "Класичні жіночі туфлі на низькому ходу, ідеальні для офісу та ділових зустрічей",
+    "price": "699.00 грн",
+    "images": [
+      "Footwear_imeg/0106A1.jpg",
+      "Footwear_imeg/0106A2.jpg",
+      "Footwear_imeg/0106A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_example0106A",
+    "category": "other",
+    "sourceFile": "footwear_page_1.html"
+  },
+  {
     "articul": "0106B",
     "title": "Легка сукня",
     "description": "Не звичайно гарна легка жіноча сукня з принтом красивих квітів.",
@@ -3302,6 +3414,20 @@
     "sourceFile": "footwear_page_3.html"
   },
   {
+    "articul": "0107A",
+    "title": "Чоловічі кросівки трекінгові",
+    "description": "Чоловічі трекінгові кросівки з водовідштовхувальним покриттям, міцна підошва для гірської місцевості",
+    "price": "1899.00 грн",
+    "images": [
+      "Footwear_imeg/0107A1.jpg",
+      "Footwear_imeg/0107A2.jpg",
+      "Footwear_imeg/0107A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_example0107A",
+    "category": "other",
+    "sourceFile": "footwear_page_1.html"
+  },
+  {
     "articul": "0107B",
     "title": "Спідниця Falda Largas",
     "description": "Мода корейський стиль риб'ячий хвіст довга спідниця жінка весна вінтажна висока талія облягаюча жіноча спідниця бежевий чорний сірий Falda Largas",
@@ -3328,6 +3454,20 @@
     "link": "https://s.click.aliexpress.com/e/_c32tcaY",
     "category": "other",
     "sourceFile": "footwear_page_3.html"
+  },
+  {
+    "articul": "0108A",
+    "title": "Жіночі черевики",
+    "description": "Жіночі черевики на шнурівці, тепла флісова підкладка, ідеальні для холодної пори року",
+    "price": "1199.00 грн",
+    "images": [
+      "Footwear_imeg/0108A1.jpg",
+      "Footwear_imeg/0108A2.jpg",
+      "Footwear_imeg/0108A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_example0108A",
+    "category": "other",
+    "sourceFile": "footwear_page_1.html"
   },
   {
     "articul": "0108B",

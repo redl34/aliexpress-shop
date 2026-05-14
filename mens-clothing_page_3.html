@@ -3,22 +3,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Чоловічий одяг - AliShop</title>
+<title>Чоловічий одяг - AliShop (Сторінка 3)</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
 <link href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png" rel="icon" type="image/png"/>
 <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: #3E717A;
         }
-
         header {
             background: url('Oformlennya_imeg/clothing.jpg') no-repeat center center/cover;
             color: white;
@@ -27,7 +22,6 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             position: relative;
         }
-
         header::before {
             content: '';
             position: absolute;
@@ -38,7 +32,6 @@
             background: rgba(0,0,0,0.4);
             z-index: 1;
         }
-
         header h1 {
             position: relative;
             z-index: 2;
@@ -46,7 +39,6 @@
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-
         header .home-link, header .profile-link {
             position: relative;
             z-index: 2;
@@ -59,12 +51,10 @@
             background-color: #ff6b6b;
             border-radius: 5px;
         }
-
         header .home-link:hover, header .profile-link:hover {
             background-color: #e55a5a;
             text-decoration: none;
         }
-
         .search-container {
             position: relative;
             z-index: 2;
@@ -73,18 +63,16 @@
             display: flex;
             gap: 10px;
         }
-
         .search-container input {
             flex-grow: 1;
-            padding: 12px;
+            padding: 10px;
             font-size: 1em;
             border: 1px solid #ddd;
             border-radius: 5px;
             outline: none;
         }
-
         .search-container button {
-            padding: 12px 24px;
+            padding: 10px 20px;
             background-color: #ff6b6b;
             color: white;
             border: none;
@@ -92,23 +80,17 @@
             cursor: pointer;
             font-size: 1em;
         }
-
         .search-container button:hover {
             background-color: #e55a5a;
         }
-
-        /* СІТКА ТОВАРІВ - ФІКСОВАНА ШИРИНА КАРТОК 284px */
         .products {
             margin: 20px auto;
             padding: 20px 10px;
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 284px));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            justify-content: center;
-            max-width: 1250px;
+            max-width: 1200px;
         }
-
-        /* ФІКСОВАНИЙ РОЗМІР КАРТКИ 284px × 572px */
         .product-card {
             background-color: white;
             border: 1px solid #ddd;
@@ -118,25 +100,19 @@
             flex-direction: column;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            width: 284px;
-            height: 572px;
-            position: relative;
+            aspect-ratio: 3 / 4;
         }
-
         .product-image-carousel {
             position: relative;
             width: 100%;
-            height: 180px;
+            max-height: 50%;
             overflow: hidden;
-            margin-bottom: 10px;
         }
-
         .carousel-container {
             position: relative;
             width: 100%;
             height: 100%;
         }
-
         .carousel-image {
             width: 100%;
             height: 100%;
@@ -144,199 +120,122 @@
             display: none;
             object-fit: contain;
         }
-
         .carousel-image.active {
             display: block;
         }
-
-        /* КВАДРАТНІ КНОПКИ КАРУСЕЛІ З ЗАОКРУГЛЕНИМИ КУТАМИ (RADIUS 2px) */
         .carousel-prev, .carousel-next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            width: 32px;
-            height: 32px;
+            padding: 10px;
             cursor: pointer;
             z-index: 10;
-            border-radius: 2px;
-            font-size: 18px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s;
         }
-
-        .carousel-prev:hover, .carousel-next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
         .carousel-prev {
-            left: 2px;
+            left: 0;
         }
-
         .carousel-next {
-            right: 2px;
+            right: 0;
         }
-
         .carousel-indicators {
             position: absolute;
-            bottom: 5px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 5px;
         }
-
         .indicator {
-            width: 8px;
-            height: 8px;
-            background-color: rgba(0, 0, 0, 0.5);
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
             border-radius: 50%;
             cursor: pointer;
         }
-
         .indicator.active {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(0, 0, 0, 0.7);
         }
-
         .product-details {
             flex-grow: 1;
             text-align: center;
-            margin: 5px 0;
+            margin: 10px 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 100%;
         }
-
         .product-details h3 {
-            margin: 8px 0;
+            margin: 10px 0;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        .product-details .articul {
+            font-size: 0.9375em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #000000;
+            margin: 10px 0;
+        }
+        .product-details p {
             font-size: 1em;
             color: #2c3e50;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            min-height: 40px;
-            font-weight: bold;
+            margin: 10px 0;
         }
-
-        /* АРТИКУЛЬ - після опису */
-        .product-details .articul {
-            font-size: 0.85em;
-            font-weight: bold;
-            color: #000000;
-            margin: 5px 0;
-        }
-
-        /* ЦІНА - після артикулю */
-        .product-details .price {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #000000;
-            margin: 5px 0;
-        }
-
-        /* ПРИХОВАНИЙ ОПИС ДЛЯ СКРИПТА (generateProducts.js) */
-        .hidden-script-description {
-            display: none;
-        }
-
-        /* ВИДИМИЙ ОПИС З ПРОКРУТКОЮ */
-        .description-container {
-            font-size: 0.8em;
-            color: #2c3e50;
-            margin: 8px 0;
-            line-height: 1.4;
-            background-color: #f9f9f9;
-            padding: 8px;
-            border-radius: 5px;
-            height: 100px;
-            overflow-y: auto;
-            text-align: left;
-            font-weight: normal;
-        }
-
-        .description-container::-webkit-scrollbar {
-            width: 11px;
-        }
-
-        .description-container::-webkit-scrollbar-track {
-            background: #e0e0e0;
-            border-radius: 5px;
-        }
-
-        .description-container::-webkit-scrollbar-thumb {
-            background: #A9A34C;
-            border-radius: 5px;
-        }
-
-        .description-container::-webkit-scrollbar-thumb:hover {
-            background: #8e8a3f;
-        }
-
         .product-details a {
             color: #ffffff;
             text-decoration: none;
             background-color: #132F13;
-            padding: 8px 12px;
+            padding: 10px 20px;
             border-radius: 5px;
             display: block;
-            margin: 6px 0;
-            font-size: 0.8em;
-            font-weight: bold;
+            margin: 10px 0;
+            font-size: 1em;
         }
-
         .product-details a:hover {
             background-color: #0e240e;
         }
-
         .add-to-favorites {
             background-color: #A9A34C;
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.8em;
+            font-size: 1em;
             width: 100%;
-            font-weight: bold;
         }
-
         .add-to-favorites:hover {
             background-color: #8e8a3f;
         }
-
         footer {
             background-color: #000000;
             color: white;
             text-align: center;
             padding: 20px;
+            position: relative;
+            bottom: 0;
             width: 100%;
         }
-
         footer .social-links {
             text-align: center;
         }
-
         footer .social-links h2 {
             font-size: clamp(1.2rem, 3vw, 1.4rem);
             margin-bottom: 15px;
         }
-
         footer .social-buttons {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-top: 10px;
-            flex-wrap: wrap;
         }
-
         footer .social-buttons a {
             display: flex;
             align-items: center;
@@ -350,30 +249,23 @@
             transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-
         footer .social-buttons a.tiktok {
             background-color: #000000;
             border: 1px solid #fff;
         }
-
         footer .social-buttons a.facebook {
             background-color: #1877f2;
         }
-
         footer .social-buttons a.instagram {
             background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
         }
-
         footer .social-buttons a:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-
         footer .social-buttons a i {
             font-size: 1.2em;
         }
-
-        /* ПАГІНАЦІЯ - ОРИГІНАЛЬНИЙ СТИЛЬ */
         .pagination {
             display: flex;
             justify-content: center;
@@ -384,7 +276,6 @@
             margin: 20px auto;
             max-width: 33%;
         }
-
         .pagination a {
             display: inline-block;
             width: 40px;
@@ -396,69 +287,64 @@
             font-size: 1em;
             font-weight: normal;
         }
-
         .pagination a.active {
             background-color: white;
             color: black;
             border: 5px solid #e0930d;
             line-height: 35px;
         }
-
         .pagination a:not(.active) {
             background-color: #d3d3d3;
             color: black;
             border: 1px solid #a9a9a9;
         }
-
-        /* АДАПТАЦІЯ ДЛЯ РІЗНИХ РОЗМІРІВ ЕКРАНУ */
-        @media (max-width: 1250px) {
+        @media (max-width: 1200px) {
             .products {
-                grid-template-columns: repeat(3, minmax(0, 284px));
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 900px;
             }
         }
-
-        @media (max-width: 950px) {
+        @media (max-width: 900px) {
             .products {
-                grid-template-columns: repeat(2, minmax(0, 284px));
-            }
-        }
-
-        @media (max-width: 650px) {
-            .products {
-                grid-template-columns: repeat(1, minmax(0, 284px));
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 600px;
             }
             .carousel-prev, .carousel-next {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
+                display: none;
             }
-            .carousel-prev {
-                left: 2px;
+            .product-image-carousel {
+                max-height: 50%;
             }
-            .carousel-next {
-                right: 2px;
-            }
-            .description-container {
-                height: 80px;
-                font-size: 0.75em;
-            }
-            .description-container::-webkit-scrollbar {
-                width: 8px;
+            .carousel-image {
+                max-height: 100%;
             }
             .product-details h3 {
-                font-size: 0.95em;
-                min-height: 38px;
+                font-size: 1.1em;
             }
-            .pagination {
-                max-width: 280px;
+            .product-details .articul {
+                font-size: 0.8125em;
             }
-            .pagination a {
-                width: 35px;
-                height: 35px;
-                line-height: 35px;
+            .product-details .price {
+                font-size: 1.3em;
             }
-            .pagination a.active {
-                line-height: 30px;
+            .product-details a, .add-to-favorites {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                max-width: 290px;
+                padding: 20px 10px;
             }
         }
     </style>
@@ -468,7 +354,7 @@
 </head>
 <body>
 <header>
-<h1>Чоловічий одяг</h1>
+<h1>Чоловічий одяг - Сторінка 3</h1>
 <a class="home-link" href="index.html">Повернутися на головну</a>
 <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
 <div class="search-container">
@@ -476,891 +362,46 @@
 <button onclick="redirectToSearch()">Пошук</button>
 </div>
 </header>
-
 <div class="products">
-<!-- Товар 0211B -->
-<div class="product-card" data-articul="0211B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0211B1.jpg" alt="Чоловічий светр"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0211B2.jpg" alt="Чоловічий светр"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0211B3.jpg" alt="Чоловічий светр"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Чоловічий светр</h3>
-        <p class="hidden-script-description">Чоловічий светр осінь-зима новий в'язаний светр з високою горловиною, теплий, модний суцільний колір, вузький Fit, чоловічий нижній топ, жакардові пуловери</p>
-        <div class="description-container">Чоловічий светр осінь-зима новий в'язаний светр з високою горловиною, теплий, модний суцільний колір, вузький Fit, чоловічий нижній топ, жакардові пуловери</div>
-        <p class="articul">арт. 0211B</p>
-        <p class="price">458.77 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c4rl2Ie1" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0211B')">Додати до обраного</button>
-    </div>
+<div class="product-card" data-articul="0211B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловічий светр" class="carousel-image active" src="Men's_clothing_imeg/0211B1.jpg"/><img alt="Чоловічий светр" class="carousel-image" src="Men's_clothing_imeg/0211B2.jpg"/><img alt="Чоловічий светр" class="carousel-image" src="Men's_clothing_imeg/0211B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловічий светр</h3><p>Чоловічий светр осінь-зима новий в'язаний светр з високою горловиною, теплий, модний суцільний колір, вузький Fit, чоловічий нижній топ, жакардові пуловери</p><p class="articul">арт. 0211B</p><p class="price">458.77 грн</p><a href="https://s.click.aliexpress.com/e/_c4rl2Ie1" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0211B', 'Чоловічий светр', 'Men\'s_clothing_imeg/0211B1.jpg', 'https://s.click.aliexpress.com/e/_c4rl2Ie1')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0212B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Світшот" class="carousel-image active" src="Men's_clothing_imeg/0212B1.jpg"/><img alt="Світшот" class="carousel-image" src="Men's_clothing_imeg/0212B2.jpg"/><img alt="Світшот" class="carousel-image" src="Men's_clothing_imeg/0212B3.jpg"/><img alt="Світшот" class="carousel-image" src="Men's_clothing_imeg/0212B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Світшот</h3><p>Новий чоловічий кашеміровий светр з напівводолазкою, чоловічі светри, в'язані пуловери для чоловіків, молодіжний тонкий трикотажний чоловічий светр</p><p class="articul">арт. 0212B</p><p class="price">456.23 грн</p><a href="https://s.click.aliexpress.com/e/_c4W0oEHf" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0212B', 'Світшот', 'Men\'s_clothing_imeg/0212B1.jpg', 'https://s.click.aliexpress.com/e/_c4W0oEHf')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0213B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Полувер" class="carousel-image active" src="Men's_clothing_imeg/0213B1.jpg"/><img alt="Полувер" class="carousel-image" src="Men's_clothing_imeg/0213B2.jpg"/><img alt="Полувер" class="carousel-image" src="Men's_clothing_imeg/0213B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Полувер</h3><p>Чоловіча мода осінь-зима повсякденна футболка з довгими рукавами суцільна сорочка тренажерний зал фітнес бодібілдінг футболки топи чоловіча мода тонкий смугастий одяг</p><p class="articul">арт. 0213B</p><p class="price">441.28 грн</p><a href="https://s.click.aliexpress.com/e/_c38MXLed" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0213B', 'Полувер', 'Men\'s_clothing_imeg/0213B1.jpg', 'https://s.click.aliexpress.com/e/_c38MXLed')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0214B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Полувер Henley" class="carousel-image active" src="Men's_clothing_imeg/0214B1.jpg"/><img alt="Полувер Henley" class="carousel-image" src="Men's_clothing_imeg/0214B2.jpg"/><img alt="Полувер Henley" class="carousel-image" src="Men's_clothing_imeg/0214B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Полувер Henley</h3><p>Нові чоловічі футболки Henley з довгим рукавом, базові повсякденні футболки з коміром та стрічкою, зручні м'які пуловери</p><p class="articul">арт. 0214B</p><p class="price">255.01 грн</p><a href="https://s.click.aliexpress.com/e/_c2QtPfyp" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0214B', 'Полувер Henley', 'Men\'s_clothing_imeg/0214B1.jpg', 'https://s.click.aliexpress.com/e/_c2QtPfyp')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0215B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Світшот Paris" class="carousel-image active" src="Men's_clothing_imeg/0215B1.jpg"/><img alt="Світшот Paris" class="carousel-image" src="Men's_clothing_imeg/0215B2.jpg"/><img alt="Світшот Paris" class="carousel-image" src="Men's_clothing_imeg/0215B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Світшот Paris</h3><p>Paris повсякденна мода чоловіча толстовка з капюшоном високого класу весна-осінь тепла м'яка довгими рукавами футболки чоловічий домашній відкритий пуловер</p><p class="articul">арт. 0215B</p><p class="price">290.32 грн</p><a href="https://s.click.aliexpress.com/e/_c4lur6k5" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0215B', 'Світшот Paris', 'Men\'s_clothing_imeg/0215B1.jpg', 'https://s.click.aliexpress.com/e/_c4lur6k5')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0216B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Футболка з Гаррі Потером" class="carousel-image active" src="Men's_clothing_imeg/0216B1.jpg"/><img alt="Футболка з Гаррі Потером" class="carousel-image" src="Men's_clothing_imeg/0216B2.jpg"/><img alt="Футболка з Гаррі Потером" class="carousel-image" src="Men's_clothing_imeg/0216B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Футболка з Гаррі Потером</h3><p>Смішні куріння чарівник мем графічна футболка чоловіки жінки мода 100% бавовна футболки мода повсякденне негабаритне літнє футболки чоловічі</p><p class="articul">арт. 0216B</p><p class="price">270.62 грн</p><a href="https://s.click.aliexpress.com/e/_c3053aWp" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0216B', 'Футболка з Гаррі Потером', 'Men\'s_clothing_imeg/0216B1.jpg', 'https://s.click.aliexpress.com/e/_c3053aWp')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0217B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Футболка Berserk" class="carousel-image active" src="Men's_clothing_imeg/0217B1.jpg"/><img alt="Футболка Berserk" class="carousel-image" src="Men's_clothing_imeg/0217B2.jpg"/><img alt="Футболка Berserk" class="carousel-image" src="Men's_clothing_imeg/0217B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Футболка Berserk</h3><p>Чоловіча футболка Berserk Cotton високої якості, дизайнерська, чоловічий одяг 2000-х років</p><p class="articul">арт. 0217B</p><p class="price">173.91 грн</p><a href="https://s.click.aliexpress.com/e/_c3EyW1aH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0217B', 'Футболка Berserk', 'Men\'s_clothing_imeg/0217B1.jpg', 'https://s.click.aliexpress.com/e/_c3EyW1aH')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0218B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловіча толстовка" class="carousel-image active" src="Men's_clothing_imeg/0218B1.jpg"/><img alt="Чоловіча толстовка" class="carousel-image" src="Men's_clothing_imeg/0218B2.jpg"/><img alt="Чоловіча толстовка" class="carousel-image" src="Men's_clothing_imeg/0218B3.jpg"/><img alt="Чоловіча толстовка" class="carousel-image" src="Men's_clothing_imeg/0218B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловіча толстовка</h3><p>Чоловіча толстовка з капюшоном, толстовки з капюшоном, одяг, повсякденний вільний фліс, теплий вуличний одяг, чоловіча мода, осінь-зима, спортивний одяг</p><p class="articul">арт. 0218B</p><p class="price">466.86 грн</p><a href="https://s.click.aliexpress.com/e/_c3w1bXyD" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0218B', 'Чоловіча толстовка', 'Men\'s_clothing_imeg/0218B1.jpg', 'https://s.click.aliexpress.com/e/_c3w1bXyD')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0219B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Однотонна футболка" class="carousel-image active" src="Men's_clothing_imeg/0219B1.jpg"/><img alt="Однотонна футболка" class="carousel-image" src="Men's_clothing_imeg/0219B2.jpg"/><img alt="Однотонна футболка" class="carousel-image" src="Men's_clothing_imeg/0219B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Однотонна футболка</h3><p>MRMT 2025 абсолютно нова чоловіча футболка 100% бавовна, вільна, з середнім рукавом, чоловічі футболки з круглим вирізом, топи та футболки для чоловіків</p><p class="articul">арт. 0219B</p><p class="price">181.34 грн</p><a href="https://s.click.aliexpress.com/e/_c3md8o77" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0219B', 'Однотонна футболка', 'Men\'s_clothing_imeg/0219B1.jpg', 'https://s.click.aliexpress.com/e/_c3md8o77')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0220B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Літня футболка" class="carousel-image active" src="Men's_clothing_imeg/0220B1.jpg"/><img alt="Літня футболка" class="carousel-image" src="Men's_clothing_imeg/0220B2.jpg"/><img alt="Літня футболка" class="carousel-image" src="Men's_clothing_imeg/0220B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Літня футболка</h3><p>Літня футболка негабаритних чоловіків вільні паризькі креативні чоловічі футболки з літерою друку випадкові тонкі круглі шиї короткі рукави футболки</p><p class="articul">арт. 0220B</p><p class="price">114.74 грн</p><a href="https://s.click.aliexpress.com/e/_c4DKHVZF" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0220B', 'Літня футболка', 'Men\'s_clothing_imeg/0220B1.jpg', 'https://s.click.aliexpress.com/e/_c4DKHVZF')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0221B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Футболка з динозавром" class="carousel-image active" src="Men's_clothing_imeg/0221B1.jpg"/><img alt="Футболка з динозавром" class="carousel-image" src="Men's_clothing_imeg/0221B2.jpg"/><img alt="Футболка з динозавром" class="carousel-image" src="Men's_clothing_imeg/0221B3.jpg"/><img alt="Футболка з динозавром" class="carousel-image" src="Men's_clothing_imeg/0221B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Футболка з динозавром</h3><p>Чоловіча футболка 100% бавовна повсякденна кумедна футболка з принтом динозаврів вільна літня футболка з круглим вирізом футболка з короткими рукавами чоловіча футболка Топ</p><p class="articul">арт. 0221B</p><p class="price">185.30 грн</p><a href="https://s.click.aliexpress.com/e/_c3y56MtX" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0221B', 'Футболка з динозавром', 'Men\'s_clothing_imeg/0221B1.jpg', 'https://s.click.aliexpress.com/e/_c3y56MtX')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0222B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловіча нижня білизна" class="carousel-image active" src="Men's_clothing_imeg/0222B1.jpg"/><img alt="Чоловіча нижня білизна" class="carousel-image" src="Men's_clothing_imeg/0222B2.jpg"/><img alt="Чоловіча нижня білизна" class="carousel-image" src="Men's_clothing_imeg/0222B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловіча нижня білизна</h3><p>Чоловіча нижня білизна бавовняні боксерські шорти hombre трусики чоловіки дихаючі труси сексуальні спортивні комфортні чоловічі боксери великого розміру L-7XL</p><p class="articul">арт. 0222B</p><p class="price">46.03 грн</p><a href="https://s.click.aliexpress.com/e/_c2yZCd01" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0222B', 'Чоловіча нижня білизна', 'Men\'s_clothing_imeg/0222B1.jpg', 'https://s.click.aliexpress.com/e/_c2yZCd01')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0223B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловічі штани" class="carousel-image active" src="Men's_clothing_imeg/0223B1.jpg"/><img alt="Чоловічі штани" class="carousel-image" src="Men's_clothing_imeg/0223B2.jpg"/><img alt="Чоловічі штани" class="carousel-image" src="Men's_clothing_imeg/0223B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловічі штани</h3><p>Весна-осінь Новий стиль еластичної талії повсякденні штани для чоловіків стрейч прямі шнурки шаровари бігові спортивні довгі штани чоловічі</p><p class="articul">арт. 0223B</p><p class="price">731.71 грн</p><a href="https://s.click.aliexpress.com/e/_c3BhnkEp" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0223B', 'Чоловічі штани', 'Men\'s_clothing_imeg/0223B1.jpg', 'https://s.click.aliexpress.com/e/_c3BhnkEp')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0224B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Светр" class="carousel-image active" src="Men's_clothing_imeg/0224B1.jpg"/><img alt="Светр" class="carousel-image" src="Men's_clothing_imeg/0224B2.jpg"/><img alt="Светр" class="carousel-image" src="Men's_clothing_imeg/0224B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Светр</h3><p>Стильний чоловічий повсякденний светир з високи воротніком.</p><p class="articul">арт. 0224B</p><p class="price">475.67 грн</p><a href="https://s.click.aliexpress.com/e/_c4lKEnQH" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0224B', 'Светр', 'Men\'s_clothing_imeg/0224B1.jpg', 'https://s.click.aliexpress.com/e/_c4lKEnQH')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0225B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Футболка NEW YORK" class="carousel-image active" src="Men's_clothing_imeg/0225B1.jpg"/><img alt="Футболка NEW YORK" class="carousel-image" src="Men's_clothing_imeg/0225B2.jpg"/><img alt="Футболка NEW YORK" class="carousel-image" src="Men's_clothing_imeg/0225B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Футболка NEW YORK</h3><p>Чоловіча бавовняна футболка 2025 року з короткими рукавами та коротким вирізом, класичний чорний білий топ з коротким рукавом, модний стиль, літо, чоловічий міський повсякденний одяг</p><p class="articul">арт. 0225B</p><p class="price">177.09 грн</p><a href="https://s.click.aliexpress.com/e/_c4K2bJVF" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0225B', 'Футболка NEW YORK', 'Men\'s_clothing_imeg/0225B1.jpg', 'https://s.click.aliexpress.com/e/_c4K2bJVF')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0226B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Спортивний костюм" class="carousel-image active" src="Men's_clothing_imeg/0226B1.jpg"/><img alt="Спортивний костюм" class="carousel-image" src="Men's_clothing_imeg/0226B2.jpg"/><img alt="Спортивний костюм" class="carousel-image" src="Men's_clothing_imeg/0226B3.jpg"/><img alt="Спортивний костюм" class="carousel-image" src="Men's_clothing_imeg/0226B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Спортивний костюм</h3><p>Чоловічий спортивний костюм з капюшоном, толстовка + спортивні штани, 2 шт. комплекти спортивного костюма, повсякденний спортивний одяг, 2 шт. чоловічий флісовий вуличний одяг, комплекти</p><p class="articul">арт. 0226B</p><p class="price">691.99 грн</p><a href="https://s.click.aliexpress.com/e/_c39Mtcvn" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0226B', 'Спортивний костюм', 'Men\'s_clothing_imeg/0226B1.jpg', 'https://s.click.aliexpress.com/e/_c39Mtcvn')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0227B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Светр" class="carousel-image active" src="Men's_clothing_imeg/0227B1.jpg"/><img alt="Светр" class="carousel-image" src="Men's_clothing_imeg/0227B2.jpg"/><img alt="Светр" class="carousel-image" src="Men's_clothing_imeg/0227B3.jpg"/><img alt="Светр" class="carousel-image" src="Men's_clothing_imeg/0227B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Светр</h3><p>Чоловічий флісовий товстіший светр з половиною блискавки, водолазка, теплий пуловер високої якості, чоловічий тонкий в'язаний вовняний светр на весну</p><p class="articul">арт. 0227B</p><p class="price">625.30 грн</p><a href="https://s.click.aliexpress.com/e/_c3uYpWUz" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0227B', 'Светр', 'Men\'s_clothing_imeg/0227B1.jpg', 'https://s.click.aliexpress.com/e/_c3uYpWUz')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0228B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Толстовка" class="carousel-image active" src="Men's_clothing_imeg/0228B1.jpg"/><img alt="Толстовка" class="carousel-image" src="Men's_clothing_imeg/0228B2.jpg"/><img alt="Толстовка" class="carousel-image" src="Men's_clothing_imeg/0228B3.jpg"/><img alt="Толстовка" class="carousel-image" src="Men's_clothing_imeg/0228B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Толстовка</h3><p>Чоловіча повсякденна толстовка з капюшоном на блискавці, толстовка з капюшоном, куртка, чоловічий суцільний колір, кардиган з капюшоном, весна-осінь</p><p class="articul">арт. 0228B</p><p class="price">316.46 грн</p><a href="https://s.click.aliexpress.com/e/_c3NVSNkZ" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0228B', 'Толстовка', 'Men\'s_clothing_imeg/0228B1.jpg', 'https://s.click.aliexpress.com/e/_c3NVSNkZ')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0229B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Куртка" class="carousel-image active" src="Men's_clothing_imeg/0229B1.jpg"/><img alt="Куртка" class="carousel-image" src="Men's_clothing_imeg/0229B2.jpg"/><img alt="Куртка" class="carousel-image" src="Men's_clothing_imeg/0229B3.jpg"/><img alt="Куртка" class="carousel-image" src="Men's_clothing_imeg/0229B4.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Куртка</h3><p>Чоловіча куртка осінь-зима 2024 року з капюшоном, тепла, з капюшоном</p><p class="articul">арт. 0229B</p><p class="price">626.16 грн</p><a href="https://s.click.aliexpress.com/e/_c3FeYU4z" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0229B', 'Куртка', 'Men\'s_clothing_imeg/0229B1.jpg', 'https://s.click.aliexpress.com/e/_c3FeYU4z')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0230B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловічі штани" class="carousel-image active" src="Men's_clothing_imeg/0230B1.jpg"/><img alt="Чоловічі штани" class="carousel-image" src="Men's_clothing_imeg/0230B2.jpg"/><img alt="Чоловічі штани" class="carousel-image" src="Men's_clothing_imeg/0230B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловічі штани</h3><p>Чоловічі штани-карго прямого крою з бавовняними кишенями та клапанами, вільні, повсякденні, для активного відпочинку, тактичні, для походів</p><p class="articul">арт. 0230B</p><p class="price">767.35 грн</p><a href="https://s.click.aliexpress.com/e/_c4qMcV25" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0230B', 'Чоловічі штани', 'Men\'s_clothing_imeg/0230B1.jpg', 'https://s.click.aliexpress.com/e/_c4qMcV25')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0231B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Штани" class="carousel-image active" src="Men's_clothing_imeg/0231B1.jpg"/><img alt="Штани" class="carousel-image" src="Men's_clothing_imeg/0231B2.jpg"/><img alt="Штани" class="carousel-image" src="Men's_clothing_imeg/0231B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Штани</h3><p>Чоловіча мода друк одягу штани шнурок повсякденні штани спортивні штани осінь та зима біг спортивні фітнес штани</p><p class="articul">арт. 0231B</p><p class="price">280.99 грн</p><a href="https://s.click.aliexpress.com/e/_c4B2wBZ7" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0231B', 'Штани', 'Men\'s_clothing_imeg/0231B1.jpg', 'https://s.click.aliexpress.com/e/_c4B2wBZ7')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0232B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловічі молодіжні штани" class="carousel-image active" src="Men's_clothing_imeg/0232B1.jpg"/><img alt="Чоловічі молодіжні штани" class="carousel-image" src="Men's_clothing_imeg/0232B2.jpg"/><img alt="Чоловічі молодіжні штани" class="carousel-image" src="Men's_clothing_imeg/0232B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловічі молодіжні штани</h3><p>Чоловічі штани карго повсякденні хіп-хоп хітовий колір багатокишенькові штани вуличний одяг стрічки технічний одяг спортивні штани</p><p class="articul">арт. 0232B</p><p class="price">670.55 грн</p><a href="https://s.click.aliexpress.com/e/_c3sL9O9R" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0232B', 'Чоловічі молодіжні штани', 'Men\'s_clothing_imeg/0232B1.jpg', 'https://s.click.aliexpress.com/e/_c3sL9O9R')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0233B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Штани камуфляжні" class="carousel-image active" src="Men's_clothing_imeg/0233B1.jpg"/><img alt="Штани камуфляжні" class="carousel-image" src="Men's_clothing_imeg/0233B2.jpg"/><img alt="Штани камуфляжні" class="carousel-image" src="Men's_clothing_imeg/0233B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Штани камуфляжні</h3><p>Бавовняні чоловічі штани-джогери осінні шаровари 2025 чоловічі камуфляжні військові штани вільні зручні вантажні штани камуфляжний джоггер</p><p class="articul">арт. 0233B</p><p class="price">517.06 грн</p><a href="https://s.click.aliexpress.com/e/_c42Ia3v7" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0233B', 'Штани камуфляжні', 'Men\'s_clothing_imeg/0233B1.jpg', 'https://s.click.aliexpress.com/e/_c42Ia3v7')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0234B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Штани" class="carousel-image active" src="Men's_clothing_imeg/0234B1.jpg"/><img alt="Штани" class="carousel-image" src="Men's_clothing_imeg/0234B2.jpg"/><img alt="Штани" class="carousel-image" src="Men's_clothing_imeg/0234B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Штани</h3><p>Нові модні суцільні штани з кількома клапанами та кишенями для чоловіків, вільні повсякденні штани для активного відпочинку, чоловічі робочі штани</p><p class="articul">арт. 0234B</p><p class="price">318.33 грн</p><a href="https://s.click.aliexpress.com/e/_c32QrtCt" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0234B', 'Штани', 'Men\'s_clothing_imeg/0234B1.jpg', 'https://s.click.aliexpress.com/e/_c32QrtCt')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0235B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Штани з принтом" class="carousel-image active" src="Men's_clothing_imeg/0235B1.jpg"/><img alt="Штани з принтом" class="carousel-image" src="Men's_clothing_imeg/0235B2.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Штани з принтом</h3><p>Осінні готичні штани з прямими штанинами, американський тренд, чоловічі вільні спортивні повсякденні штани, американські повсякденні штани</p><p class="articul">арт. 0235B</p><p class="price">693.37 грн</p><a href="https://s.click.aliexpress.com/e/_c3AYid6V" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0235B', 'Штани з принтом', 'Men\'s_clothing_imeg/0235B1.jpg', 'https://s.click.aliexpress.com/e/_c3AYid6V')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0236B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Повсякденні штани" class="carousel-image active" src="Men's_clothing_imeg/0236B1.jpg"/><img alt="Повсякденні штани" class="carousel-image" src="Men's_clothing_imeg/0236B2.jpg"/><img alt="Повсякденні штани" class="carousel-image" src="Men's_clothing_imeg/0236B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Повсякденні штани</h3><p>Оригінальні чоловічі повсякденні спортивні вільні прямі довгі штани в готичному темному стилі, перший вибір для осіннього поєднання нового стилю</p><p class="articul">арт. 0236B</p><p class="price">605.39 грн</p><a href="https://s.click.aliexpress.com/e/_c34Q76fT" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0236B', 'Повсякденні штани', 'Men\'s_clothing_imeg/0236B1.jpg', 'https://s.click.aliexpress.com/e/_c34Q76fT')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0237B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Молодіжні спортивні штани" class="carousel-image active" src="Men's_clothing_imeg/0237B1.jpg"/><img alt="Молодіжні спортивні штани" class="carousel-image" src="Men's_clothing_imeg/0237B2.jpg"/><img alt="Молодіжні спортивні штани" class="carousel-image" src="Men's_clothing_imeg/0237B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Молодіжні спортивні штани</h3><p>Нові європейські та американські осінні чоловічі персоналізовані штани з принтом черепа, зручні м'які штани зі шнурком, вуличні штани</p><p class="articul">арт. 0237B</p><p class="price">371.60 грн</p><a href="https://s.click.aliexpress.com/e/_c3Il9JBR" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0237B', 'Молодіжні спортивні штани', 'Men\'s_clothing_imeg/0237B1.jpg', 'https://s.click.aliexpress.com/e/_c3Il9JBR')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0238B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Штани чоловічі" class="carousel-image active" src="Men's_clothing_imeg/0238B1.jpg"/><img alt="Штани чоловічі" class="carousel-image" src="Men's_clothing_imeg/0238B2.jpg"/><img alt="Штани чоловічі" class="carousel-image" src="Men's_clothing_imeg/0238B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Штани чоловічі</h3><p>Чоловічі спортивні штани з принтом вовка, зимові товсті теплі штани, вільні, повсякденні, з кишенями, спортивні штани з кишенями, чоловічі спортивні штани</p><p class="articul">арт. 0238B</p><p class="price">410.93 грн</p><a href="https://s.click.aliexpress.com/e/_c3QijsZR" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0238B', 'Штани чоловічі', 'Men\'s_clothing_imeg/0238B1.jpg', 'https://s.click.aliexpress.com/e/_c3QijsZR')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0239B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Штани-карго" class="carousel-image active" src="Men's_clothing_imeg/0239B1.jpg"/><img alt="Штани-карго" class="carousel-image" src="Men's_clothing_imeg/0239B2.jpg"/><img alt="Штани-карго" class="carousel-image" src="Men's_clothing_imeg/0239B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Штани-карго</h3><p>Штани-карго класичного дизайну з кількома кишенями, чоловічі повсякденні вільні штани-карго зі шнурком/джоггери для весни та літа на відкритому повітрі</p><p class="articul">арт. 0239B</p><p class="price">314.91 грн</p><a href="https://s.click.aliexpress.com/e/_c3HA8oYd" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0239B', 'Штани-карго', 'Men\'s_clothing_imeg/0239B1.jpg', 'https://s.click.aliexpress.com/e/_c3HA8oYd')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0240B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Штани для спорту" class="carousel-image active" src="Men's_clothing_imeg/0240B1.jpg"/><img alt="Штани для спорту" class="carousel-image" src="Men's_clothing_imeg/0240B2.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Штани для спорту</h3><p>Чоловічі спортивні штани для бігу з кишенями на блискавці, футбол, тренування, біг, спортивні штани, фітнес, футбол</p><p class="articul">арт. 0240B</p><p class="price">463.46 грн</p><a href="https://s.click.aliexpress.com/e/_c4LULjmz" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0240B', 'Штани для спорту', 'Men\'s_clothing_imeg/0240B1.jpg', 'https://s.click.aliexpress.com/e/_c4LULjmz')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0241B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Чоловічі штани карго" class="carousel-image active" src="Men's_clothing_imeg/0241B1.jpg"/><img alt="Чоловічі штани карго" class="carousel-image" src="Men's_clothing_imeg/0241B2.jpg"/><img alt="Чоловічі штани карго" class="carousel-image" src="Men's_clothing_imeg/0241B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Чоловічі штани карго</h3><p>Чоловічі штани карго повсякденні хіп-хоп хітовий колір багатокишенькові штани вуличний одяг стрічки технічний одяг спортивні штани хлопчики</p><p class="articul">арт. 0241B</p><p class="price">532.06 грн</p><a href="https://s.click.aliexpress.com/e/_c4TtDoWv" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0241B', 'Чоловічі штани карго', 'Men\'s_clothing_imeg/0241B1.jpg', 'https://s.click.aliexpress.com/e/_c4TtDoWv')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0242B"><div class="product-image-carousel"><div class="carousel-container"><img alt="Спортивні штани" class="carousel-image active" src="Men's_clothing_imeg/0242B1.jpg"/><img alt="Спортивні штани" class="carousel-image" src="Men's_clothing_imeg/0242B2.jpg"/><img alt="Спортивні штани" class="carousel-image" src="Men's_clothing_imeg/0242B3.jpg"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Спортивні штани</h3><p>Чоловічі спортивні штани з принтом дракона, повсякденні штани для бігу, спортивні штани для фітнесу та спортзалу, вузькі спортивні штани для бігу, чоловічі штани, розмір S-4XL</p><p class="articul">арт. 0242B</p><p class="price">360.35 грн</p><a href="https://s.click.aliexpress.com/e/_c2zKzbC1" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0242B', 'Спортивні штани', 'Men\'s_clothing_imeg/0242B1.jpg', 'https://s.click.aliexpress.com/e/_c2zKzbC1')">Додати до обраного</button></div></div>
 </div>
-
-<!-- Товар 0212B -->
-<div class="product-card" data-articul="0212B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0212B1.jpg" alt="Світшот"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0212B2.jpg" alt="Світшот"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0212B3.jpg" alt="Світшот"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0212B4.jpg" alt="Світшот"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Світшот</h3>
-        <p class="hidden-script-description">Новий чоловічий кашеміровий светр з напівводолазкою, чоловічі светри, в'язані пуловери для чоловіків, молодіжний тонкий трикотажний чоловічий светр</p>
-        <div class="description-container">Новий чоловічий кашеміровий светр з напівводолазкою, чоловічі светри, в'язані пуловери для чоловіків, молодіжний тонкий трикотажний чоловічий светр</div>
-        <p class="articul">арт. 0212B</p>
-        <p class="price">456.23 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c4W0oEHf" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0212B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0213B -->
-<div class="product-card" data-articul="0213B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0213B1.jpg" alt="Полувер"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0213B2.jpg" alt="Полувер"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0213B3.jpg" alt="Полувер"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Полувер</h3>
-        <p class="hidden-script-description">Чоловіча мода осінь-зима повсякденна футболка з довгими рукавами суцільна сорочка тренажерний зал фітнес бодібілдінг футболки топи чоловіча мода тонкий смугастий одяг</p>
-        <div class="description-container">Чоловіча мода осінь-зима повсякденна футболка з довгими рукавами суцільна сорочка тренажерний зал фітнес бодібілдінг футболки топи чоловіча мода тонкий смугастий одяг</div>
-        <p class="articul">арт. 0213B</p>
-        <p class="price">441.28 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c38MXLed" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0213B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0214B -->
-<div class="product-card" data-articul="0214B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0214B1.jpg" alt="Полувер Henley"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0214B2.jpg" alt="Полувер Henley"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0214B3.jpg" alt="Полувер Henley"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Полувер Henley</h3>
-        <p class="hidden-script-description">Нові чоловічі футболки Henley з довгим рукавом, базові повсякденні футболки з коміром та стрічкою, зручні м'які пуловери</p>
-        <div class="description-container">Нові чоловічі футболки Henley з довгим рукавом, базові повсякденні футболки з коміром та стрічкою, зручні м'які пуловери</div>
-        <p class="articul">арт. 0214B</p>
-        <p class="price">255.01 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c2QtPfyp" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0214B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0215B -->
-<div class="product-card" data-articul="0215B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0215B1.jpg" alt="Світшот Paris"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0215B2.jpg" alt="Світшот Paris"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0215B3.jpg" alt="Світшот Paris"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Світшот Paris</h3>
-        <p class="hidden-script-description">Paris повсякденна мода чоловіча толстовка з капюшоном високого класу весна-осінь тепла м'яка довгими рукавами футболки чоловічий домашній відкритий пуловер</p>
-        <div class="description-container">Paris повсякденна мода чоловіча толстовка з капюшоном високого класу весна-осінь тепла м'яка довгими рукавами футболки чоловічий домашній відкритий пуловер</div>
-        <p class="articul">арт. 0215B</p>
-        <p class="price">290.32 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c4lur6k5" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0215B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0216B -->
-<div class="product-card" data-articul="0216B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0216B1.jpg" alt="Футболка з Гаррі Потером"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0216B2.jpg" alt="Футболка з Гаррі Потером"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0216B3.jpg" alt="Футболка з Гаррі Потером"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Футболка з Гаррі Потером</h3>
-        <p class="hidden-script-description">Смішні куріння чарівник мем графічна футболка чоловіки жінки мода 100% бавовна футболки мода повсякденне негабаритне літнє футболки чоловічі</p>
-        <div class="description-container">Смішні куріння чарівник мем графічна футболка чоловіки жінки мода 100% бавовна футболки мода повсякденне негабаритне літнє футболки чоловічі</div>
-        <p class="articul">арт. 0216B</p>
-        <p class="price">270.62 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3053aWp" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0216B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0217B -->
-<div class="product-card" data-articul="0217B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0217B1.jpg" alt="Футболка Berserk"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0217B2.jpg" alt="Футболка Berserk"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0217B3.jpg" alt="Футболка Berserk"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Футболка Berserk</h3>
-        <p class="hidden-script-description">Чоловіча футболка Berserk Cotton високої якості, дизайнерська, чоловічий одяг 2000-х років</p>
-        <div class="description-container">Чоловіча футболка Berserk Cotton високої якості, дизайнерська, чоловічий одяг 2000-х років</div>
-        <p class="articul">арт. 0217B</p>
-        <p class="price">173.91 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3EyW1aH" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0217B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0218B -->
-<div class="product-card" data-articul="0218B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0218B1.jpg" alt="Чоловіча толстовка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0218B2.jpg" alt="Чоловіча толстовка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0218B3.jpg" alt="Чоловіча толстовка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0218B4.jpg" alt="Чоловіча толстовка"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Чоловіча толстовка</h3>
-        <p class="hidden-script-description">Чоловіча толстовка з капюшоном, толстовки з капюшоном, одяг, повсякденний вільний фліс, теплий вуличний одяг, чоловіча мода, осінь-зима, спортивний одяг</p>
-        <div class="description-container">Чоловіча толстовка з капюшоном, толстовки з капюшоном, одяг, повсякденний вільний фліс, теплий вуличний одяг, чоловіча мода, осінь-зима, спортивний одяг</div>
-        <p class="articul">арт. 0218B</p>
-        <p class="price">466.86 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3w1bXyD" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0218B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0219B -->
-<div class="product-card" data-articul="0219B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0219B1.jpg" alt="Однотонна футболка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0219B2.jpg" alt="Однотонна футболка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0219B3.jpg" alt="Однотонна футболка"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Однотонна футболка</h3>
-        <p class="hidden-script-description">MRMT 2025 абсолютно нова чоловіча футболка 100% бавовна, вільна, з середнім рукавом, чоловічі футболки з круглим вирізом, топи та футболки для чоловіків</p>
-        <div class="description-container">MRMT 2025 абсолютно нова чоловіча футболка 100% бавовна, вільна, з середнім рукавом, чоловічі футболки з круглим вирізом, топи та футболки для чоловіків</div>
-        <p class="articul">арт. 0219B</p>
-        <p class="price">181.34 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3md8o77" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0219B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0220B -->
-<div class="product-card" data-articul="0220B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0220B1.jpg" alt="Літня футболка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0220B2.jpg" alt="Літня футболка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0220B3.jpg" alt="Літня футболка"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Літня футболка</h3>
-        <p class="hidden-script-description">Літня футболка негабаритних чоловіків вільні паризькі креативні чоловічі футболки з літерою друку випадкові тонкі круглі шиї короткі рукави футболки</p>
-        <div class="description-container">Літня футболка негабаритних чоловіків вільні паризькі креативні чоловічі футболки з літерою друку випадкові тонкі круглі шиї короткі рукави футболки</div>
-        <p class="articul">арт. 0220B</p>
-        <p class="price">114.74 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c4DKHVZF" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0220B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0221B -->
-<div class="product-card" data-articul="0221B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0221B1.jpg" alt="Футболка з динозавром"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0221B2.jpg" alt="Футболка з динозавром"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0221B3.jpg" alt="Футболка з динозавром"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0221B4.jpg" alt="Футболка з динозавром"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Футболка з динозавром</h3>
-        <p class="hidden-script-description">Чоловіча футболка 100% бавовна повсякденна кумедна футболка з принтом динозаврів вільна літня футболка з круглим вирізом футболка з короткими рукавами чоловіча футболка Топ</p>
-        <div class="description-container">Чоловіча футболка 100% бавовна повсякденна кумедна футболка з принтом динозаврів вільна літня футболка з круглим вирізом футболка з короткими рукавами чоловіча футболка Топ</div>
-        <p class="articul">арт. 0221B</p>
-        <p class="price">185.30 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3y56MtX" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0221B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0222B -->
-<div class="product-card" data-articul="0222B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0222B1.jpg" alt="Чоловіча нижня білизна"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0222B2.jpg" alt="Чоловіча нижня білизна"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0222B3.jpg" alt="Чоловіча нижня білизна"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Чоловіча нижня білизна</h3>
-        <p class="hidden-script-description">Чоловіча нижня білизна бавовняні боксерські шорти hombre трусики чоловіки дихаючі труси сексуальні спортивні комфортні чоловічі боксери великого розміру L-7XL</p>
-        <div class="description-container">Чоловіча нижня білизна бавовняні боксерські шорти hombre трусики чоловіки дихаючі труси сексуальні спортивні комфортні чоловічі боксери великого розміру L-7XL</div>
-        <p class="articul">арт. 0222B</p>
-        <p class="price">46.03 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c2yZCd01" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0222B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0223B -->
-<div class="product-card" data-articul="0223B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0223B1.jpg" alt="Чоловічі штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0223B2.jpg" alt="Чоловічі штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0223B3.jpg" alt="Чоловічі штани"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Чоловічі штани</h3>
-        <p class="hidden-script-description">Весна-осінь Новий стиль еластичної талії повсякденні штани для чоловіків стрейч прямі шнурки шаровари бігові спортивні довгі штани чоловічі</p>
-        <div class="description-container">Весна-осінь Новий стиль еластичної талії повсякденні штани для чоловіків стрейч прямі шнурки шаровари бігові спортивні довгі штани чоловічі</div>
-        <p class="articul">арт. 0223B</p>
-        <p class="price">731.71 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3BhnkEp" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0223B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0224B -->
-<div class="product-card" data-articul="0224B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0224B1.jpg" alt="Светр"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0224B2.jpg" alt="Светр"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0224B3.jpg" alt="Светр"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Светр</h3>
-        <p class="hidden-script-description">Стильний чоловічий повсякденний светир з високи воротніком.</p>
-        <div class="description-container">Стильний чоловічий повсякденний светир з високи воротніком.</div>
-        <p class="articul">арт. 0224B</p>
-        <p class="price">475.67 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c4lKEnQH" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0224B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0225B -->
-<div class="product-card" data-articul="0225B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0225B1.jpg" alt="Футболка NEW YORK"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0225B2.jpg" alt="Футболка NEW YORK"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0225B3.jpg" alt="Футболка NEW YORK"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Футболка NEW YORK</h3>
-        <p class="hidden-script-description">Чоловіча бавовняна футболка 2025 року з короткими рукавами та коротким вирізом, класичний чорний білий топ з коротким рукавом, модний стиль, літо, чоловічий міський повсякденний одяг</p>
-        <div class="description-container">Чоловіча бавовняна футболка 2025 року з короткими рукавами та коротким вирізом, класичний чорний білий топ з коротким рукавом, модний стиль, літо, чоловічий міський повсякденний одяг</div>
-        <p class="articul">арт. 0225B</p>
-        <p class="price">177.09 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c4K2bJVF" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0225B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0226B -->
-<div class="product-card" data-articul="0226B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0226B1.jpg" alt="Спортивний костюм"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0226B2.jpg" alt="Спортивний костюм"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0226B3.jpg" alt="Спортивний костюм"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0226B4.jpg" alt="Спортивний костюм"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Спортивний костюм</h3>
-        <p class="hidden-script-description">Чоловічий спортивний костюм з капюшоном, толстовка + спортивні штани, 2 шт. комплекти спортивного костюма, повсякденний спортивний одяг, 2 шт. чоловічий флісовий вуличний одяг, комплекти</p>
-        <div class="description-container">Чоловічий спортивний костюм з капюшоном, толстовка + спортивні штани, 2 шт. комплекти спортивного костюма, повсякденний спортивний одяг, 2 шт. чоловічий флісовий вуличний одяг, комплекти</div>
-        <p class="articul">арт. 0226B</p>
-        <p class="price">691.99 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c39Mtcvn" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0226B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0227B -->
-<div class="product-card" data-articul="0227B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0227B1.jpg" alt="Светр"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0227B2.jpg" alt="Светр"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0227B3.jpg" alt="Светр"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0227B4.jpg" alt="Светр"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Светр</h3>
-        <p class="hidden-script-description">Чоловічий флісовий товстіший светр з половиною блискавки, водолазка, теплий пуловер високої якості, чоловічий тонкий в'язаний вовняний светр на весну</p>
-        <div class="description-container">Чоловічий флісовий товстіший светр з половиною блискавки, водолазка, теплий пуловер високої якості, чоловічий тонкий в'язаний вовняний светр на весну</div>
-        <p class="articul">арт. 0227B</p>
-        <p class="price">625.30 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3uYpWUz" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0227B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0228B -->
-<div class="product-card" data-articul="0228B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0228B1.jpg" alt="Толстовка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0228B2.jpg" alt="Толстовка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0228B3.jpg" alt="Толстовка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0228B4.jpg" alt="Толстовка"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Толстовка</h3>
-        <p class="hidden-script-description">Чоловіча повсякденна толстовка з капюшоном на блискавці, толстовка з капюшоном, куртка, чоловічий суцільний колір, кардиган з капюшоном, весна-осінь</p>
-        <div class="description-container">Чоловіча повсякденна толстовка з капюшоном на блискавці, толстовка з капюшоном, куртка, чоловічий суцільний колір, кардиган з капюшоном, весна-осінь</div>
-        <p class="articul">арт. 0228B</p>
-        <p class="price">316.46 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3NVSNkZ" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0228B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0229B -->
-<div class="product-card" data-articul="0229B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0229B1.jpg" alt="Куртка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0229B2.jpg" alt="Куртка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0229B3.jpg" alt="Куртка"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0229B4.jpg" alt="Куртка"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Куртка</h3>
-        <p class="hidden-script-description">Чоловіча куртка осінь-зима 2024 року з капюшоном, тепла, з капюшоном</p>
-        <div class="description-container">Чоловіча куртка осінь-зима 2024 року з капюшоном, тепла, з капюшоном</div>
-        <p class="articul">арт. 0229B</p>
-        <p class="price">626.16 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3FeYU4z" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0229B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0230B -->
-<div class="product-card" data-articul="0230B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0230B1.jpg" alt="Чоловічі штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0230B2.jpg" alt="Чоловічі штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0230B3.jpg" alt="Чоловічі штани"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Чоловічі штани</h3>
-        <p class="hidden-script-description">Чоловічі штани-карго прямого крою з бавовняними кишенями та клапанами, вільні, повсякденні, для активного відпочинку, тактичні, для походів</p>
-        <div class="description-container">Чоловічі штани-карго прямого крою з бавовняними кишенями та клапанами, вільні, повсякденні, для активного відпочинку, тактичні, для походів</div>
-        <p class="articul">арт. 0230B</p>
-        <p class="price">767.35 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c4qMcV25" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0230B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0231B -->
-<div class="product-card" data-articul="0231B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0231B1.jpg" alt="Штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0231B2.jpg" alt="Штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0231B3.jpg" alt="Штани"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Штани</h3>
-        <p class="hidden-script-description">Чоловіча мода друк одягу штани шнурок повсякденні штани спортивні штани осінь та зима біг спортивні фітнес штани</p>
-        <div class="description-container">Чоловіча мода друк одягу штани шнурок повсякденні штани спортивні штани осінь та зима біг спортивні фітнес штани</div>
-        <p class="articul">арт. 0231B</p>
-        <p class="price">280.99 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c4B2wBZ7" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0231B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0232B -->
-<div class="product-card" data-articul="0232B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0232B1.jpg" alt="Чоловічі молодіжні штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0232B2.jpg" alt="Чоловічі молодіжні штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0232B3.jpg" alt="Чоловічі молодіжні штани"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Чоловічі молодіжні штани</h3>
-        <p class="hidden-script-description">Чоловічі штани карго повсякденні хіп-хоп хітовий колір багатокишенькові штани вуличний одяг стрічки технічний одяг спортивні штани</p>
-        <div class="description-container">Чоловічі штани карго повсякденні хіп-хоп хітовий колір багатокишенькові штани вуличний одяг стрічки технічний одяг спортивні штани</div>
-        <p class="articul">арт. 0232B</p>
-        <p class="price">670.55 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3sL9O9R" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0232B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0233B -->
-<div class="product-card" data-articul="0233B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0233B1.jpg" alt="Штани камуфляжні"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0233B2.jpg" alt="Штани камуфляжні"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0233B3.jpg" alt="Штани камуфляжні"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Штани камуфляжні</h3>
-        <p class="hidden-script-description">Бавовняні чоловічі штани-джогери осінні шаровари 2025 чоловічі камуфляжні військові штани вільні зручні вантажні штани камуфляжний джоггер</p>
-        <div class="description-container">Бавовняні чоловічі штани-джогери осінні шаровари 2025 чоловічі камуфляжні військові штани вільні зручні вантажні штани камуфляжний джоггер</div>
-        <p class="articul">арт. 0233B</p>
-        <p class="price">517.06 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c42Ia3v7" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0233B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0234B -->
-<div class="product-card" data-articul="0234B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0234B1.jpg" alt="Штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0234B2.jpg" alt="Штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0234B3.jpg" alt="Штани"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Штани</h3>
-        <p class="hidden-script-description">Нові модні суцільні штани з кількома клапанами та кишенями для чоловіків, вільні повсякденні штани для активного відпочинку, чоловічі робочі штани</p>
-        <div class="description-container">Нові модні суцільні штани з кількома клапанами та кишенями для чоловіків, вільні повсякденні штани для активного відпочинку, чоловічі робочі штани</div>
-        <p class="articul">арт. 0234B</p>
-        <p class="price">318.33 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c32QrtCt" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0234B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0235B -->
-<div class="product-card" data-articul="0235B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0235B1.jpg" alt="Штани з принтом"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0235B2.jpg" alt="Штани з принтом"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Штани з принтом</h3>
-        <p class="hidden-script-description">Осінні готичні штани з прямими штанинами, американський тренд, чоловічі вільні спортивні повсякденні штани, американські повсякденні штани</p>
-        <div class="description-container">Осінні готичні штани з прямими штанинами, американський тренд, чоловічі вільні спортивні повсякденні штани, американські повсякденні штани</div>
-        <p class="articul">арт. 0235B</p>
-        <p class="price">693.37 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3AYid6V" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0235B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0236B -->
-<div class="product-card" data-articul="0236B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0236B1.jpg" alt="Повсякденні штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0236B2.jpg" alt="Повсякденні штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0236B3.jpg" alt="Повсякденні штани"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Повсякденні штани</h3>
-        <p class="hidden-script-description">Оригінальні чоловічі повсякденні спортивні вільні прямі довгі штани в готичному темному стилі, перший вибір для осіннього поєднання нового стилю</p>
-        <div class="description-container">Оригінальні чоловічі повсякденні спортивні вільні прямі довгі штани в готичному темному стилі, перший вибір для осіннього поєднання нового стилю</div>
-        <p class="articul">арт. 0236B</p>
-        <p class="price">605.39 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c34Q76fT" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0236B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0237B -->
-<div class="product-card" data-articul="0237B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0237B1.jpg" alt="Молодіжні спортивні штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0237B2.jpg" alt="Молодіжні спортивні штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0237B3.jpg" alt="Молодіжні спортивні штани"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Молодіжні спортивні штани</h3>
-        <p class="hidden-script-description">Нові європейські та американські осінні чоловічі персоналізовані штани з принтом черепа, зручні м'які штани зі шнурком, вуличні штани</p>
-        <div class="description-container">Нові європейські та американські осінні чоловічі персоналізовані штани з принтом черепа, зручні м'які штани зі шнурком, вуличні штани</div>
-        <p class="articul">арт. 0237B</p>
-        <p class="price">371.60 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3Il9JBR" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0237B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0238B -->
-<div class="product-card" data-articul="0238B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0238B1.jpg" alt="Штани чоловічі"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0238B2.jpg" alt="Штани чоловічі"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0238B3.jpg" alt="Штани чоловічі"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Штани чоловічі</h3>
-        <p class="hidden-script-description">Чоловічі спортивні штани з принтом вовка, зимові товсті теплі штани, вільні, повсякденні, з кишенями, спортивні штани з кишенями, чоловічі спортивні штани</p>
-        <div class="description-container">Чоловічі спортивні штани з принтом вовка, зимові товсті теплі штани, вільні, повсякденні, з кишенями, спортивні штани з кишенями, чоловічі спортивні штани</div>
-        <p class="articul">арт. 0238B</p>
-        <p class="price">410.93 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3QijsZR" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0238B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0239B -->
-<div class="product-card" data-articul="0239B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0239B1.jpg" alt="Штани-карго"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0239B2.jpg" alt="Штани-карго"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0239B3.jpg" alt="Штани-карго"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Штани-карго</h3>
-        <p class="hidden-script-description">Штани-карго класичного дизайну з кількома кишенями, чоловічі повсякденні вільні штани-карго зі шнурком/джоггери для весни та літа на відкритому повітрі</p>
-        <div class="description-container">Штани-карго класичного дизайну з кількома кишенями, чоловічі повсякденні вільні штани-карго зі шнурком/джоггери для весни та літа на відкритому повітрі</div>
-        <p class="articul">арт. 0239B</p>
-        <p class="price">314.91 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c3HA8oYd" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0239B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0240B -->
-<div class="product-card" data-articul="0240B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0240B1.jpg" alt="Штани для спорту"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0240B2.jpg" alt="Штани для спорту"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Штани для спорту</h3>
-        <p class="hidden-script-description">Чоловічі спортивні штани для бігу з кишенями на блискавці, футбол, тренування, біг, спортивні штани, фітнес, футбол</p>
-        <div class="description-container">Чоловічі спортивні штани для бігу з кишенями на блискавці, футбол, тренування, біг, спортивні штани, фітнес, футбол</div>
-        <p class="articul">арт. 0240B</p>
-        <p class="price">463.46 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c4LULjmz" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0240B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0241B -->
-<div class="product-card" data-articul="0241B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0241B1.jpg" alt="Чоловічі штани карго"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0241B2.jpg" alt="Чоловічі штани карго"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0241B3.jpg" alt="Чоловічі штани карго"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Чоловічі штани карго</h3>
-        <p class="hidden-script-description">Чоловічі штани карго повсякденні хіп-хоп хітовий колір багатокишенькові штани вуличний одяг стрічки технічний одяг спортивні штани хлопчики</p>
-        <div class="description-container">Чоловічі штани карго повсякденні хіп-хоп хітовий колір багатокишенькові штани вуличний одяг стрічки технічний одяг спортивні штани хлопчики</div>
-        <p class="articul">арт. 0241B</p>
-        <p class="price">532.06 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c4TtDoWv" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0241B')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 0242B -->
-<div class="product-card" data-articul="0242B">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Men's_clothing_imeg/0242B1.jpg" alt="Спортивні штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0242B2.jpg" alt="Спортивні штани"/>
-            <img class="carousel-image" src="Men's_clothing_imeg/0242B3.jpg" alt="Спортивні штани"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-            </div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Спортивні штани</h3>
-        <p class="hidden-script-description">Чоловічі спортивні штани з принтом дракона, повсякденні штани для бігу, спортивні штани для фітнесу та спортзалу, вузькі спортивні штани для бігу, чоловічі штани, розмір S-4XL</p>
-        <div class="description-container">Чоловічі спортивні штани з принтом дракона, повсякденні штани для бігу, спортивні штани для фітнесу та спортзалу, вузькі спортивні штани для бігу, чоловічі штани, розмір S-4XL</div>
-        <p class="articul">арт. 0242B</p>
-        <p class="price">360.35 грн</p>
-        <a href="https://s.click.aliexpress.com/e/_c2zKzbC1" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0242B')">Додати до обраного</button>
-    </div>
-</div>
-</div>
-
-<!-- ПАГІНАЦІЯ - ОРИГІНАЛЬНИЙ СТИЛЬ -->
 <div class="pagination">
     <a href="mens-clothing_page_1.html">1</a>
     <a href="mens-clothing_page_2.html">2</a>
     <a class="active" href="mens-clothing_page_3.html">3</a>
     <a href="mens-clothing_page_4.html">4</a>
 </div>
-
 <footer>
 <div class="social-links">
 <h2>Слідкуй за новинками в</h2>
@@ -1372,21 +413,12 @@
 </div>
 <p>© 2026 AliShop</p>
 </footer>
-
 <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
         import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-        import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
-            authDomain: "alishopping-ced60.firebaseapp.com",
-            projectId: "alishopping-ced60",
-            storageBucket: "alishopping-ced60.firebasestorage.app",
-            messagingSenderId: "869364972631",
-            appId: "1:869364972631:web:f9b736868d9844b3e7f712",
-            measurementId: "G-SF4MY2768F"
-        };
+        const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -1403,37 +435,26 @@
             }
         });
 
-        window.addToFavorites = async function(productId) {
+        window.addToFavorites = async function(id, title, image, link) {
             if (!auth.currentUser) {
                 alert('Будь ласка, увійдіть до облікового запису.');
                 window.location.href = 'login.html';
                 return;
             }
-            
             try {
-                const q = query(collection(db, 'favorites'), 
-                    where('userId', '==', auth.currentUser.uid),
-                    where('productId', '==', productId));
-                const existing = await getDocs(q);
-                
-                if (!existing.empty) {
-                    alert('⚠️ Цей товар вже є у ваших обраних!');
-                    return;
-                }
-                
                 await addDoc(collection(db, 'favorites'), {
                     userId: auth.currentUser.uid,
-                    productId: productId,
-                    addedAt: new Date().toISOString()
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link
                 });
-                alert('✅ Товар додано до обраного!');
+                alert('Товар додано до обраного!');
             } catch (error) {
-                console.error('Помилка:', error);
-                alert('❌ Помилка: ' + error.message);
+                console.error('Помилка додавання:', error);
             }
         };
 
-        // Карусель
         document.querySelectorAll('.product-image-carousel').forEach(carousel => {
             const images = carousel.querySelectorAll('.carousel-image');
             const indicators = carousel.querySelectorAll('.indicator');
@@ -1504,6 +525,15 @@
                 redirectToSearch();
             }
         });
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
+                redirectToSearch();
+            }
+        };
     </script>
 </body>
 </html>

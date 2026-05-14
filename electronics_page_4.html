@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Електроніка - Сторінка 4 - AliShop</title>
+<title>Електроніка - AliShop</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
 <link href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png" rel="icon" type="image/png"/>
@@ -65,14 +65,14 @@
         }
         .search-container input {
             flex-grow: 1;
-            padding: 12px;
+            padding: 10px;
             font-size: 1em;
             border: 1px solid #ddd;
             border-radius: 5px;
             outline: none;
         }
         .search-container button {
-            padding: 12px 24px;
+            padding: 10px 20px;
             background-color: #ff6b6b;
             color: white;
             border: none;
@@ -83,30 +83,37 @@
         .search-container button:hover {
             background-color: #e55a5a;
         }
+        
+        /* СІТКА ТОВАРІВ - 4 КАРТКИ В РЯД */
         .products {
             margin: 20px auto;
             padding: 20px 10px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(4, 285px);
             gap: 20px;
-            max-width: 1200px;
+            justify-content: center;
+            max-width: 1250px;
         }
+        
+        /* ФІКСОВАНИЙ РОЗМІР КАРТКИ 285px × 555px */
         .product-card {
+            box-sizing: border-box;
             background-color: white;
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            aspect-ratio: 3 / 4;
+            width: 285px;
+            height: 555px;
             position: relative;
         }
         .product-image-carousel {
             position: relative;
             width: 100%;
-            height: 150px;
+            height: 160px;
             overflow: hidden;
             margin-bottom: 10px;
         }
@@ -129,25 +136,20 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            width: 32px;
-            height: 32px;
+            padding: 6px 10px;
             cursor: pointer;
             z-index: 10;
-            border-radius: 50%;
-            font-size: 18px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s;
+            border-radius: 3px;
+            font-size: 14px;
         }
-        .carousel-prev { left: 5px; }
-        .carousel-next { right: 5px; }
-        .carousel-prev:hover, .carousel-next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+        .carousel-prev {
+            left: 0;
+        }
+        .carousel-next {
+            right: 0;
         }
         .carousel-indicators {
             position: absolute;
@@ -160,24 +162,24 @@
         .indicator {
             width: 8px;
             height: 8px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.3);
             border-radius: 50%;
             cursor: pointer;
         }
         .indicator.active {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(0, 0, 0, 0.7);
         }
         .product-details {
             flex-grow: 1;
             text-align: center;
-            margin: 10px 0;
+            margin: 5px 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 100%;
         }
         .product-details h3 {
-            margin: 10px 0;
+            margin: 8px 0;
             font-size: 1.1em;
             color: #2c3e50;
             overflow: hidden;
@@ -185,48 +187,52 @@
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            min-height: 45px;
+            min-height: 42px;
             font-weight: bold;
         }
         .product-details .articul {
-            font-size: 0.85em;
+            font-size: 0.9em;
             font-weight: bold;
             color: #000000;
             margin: 5px 0;
         }
         .product-details .price {
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
             color: #000000;
             margin: 5px 0;
         }
-        .description-container {
-            font-size: 0.85em;
-            color: #000000;
+        
+        /* ОПИС - звичайний тег p (для скрипта) */
+        .product-details p:first-of-type {
+            font-size: 0.9em;
+            color: #2c3e50;
             margin: 8px 0;
             line-height: 1.4;
             background-color: #f9f9f9;
             padding: 8px;
             border-radius: 5px;
-            height: 80px;
+            height: 85px;
             overflow-y: auto;
             text-align: left;
-            font-weight: normal;
         }
-        .description-container::-webkit-scrollbar {
-            width: 11px;
+        
+        /* СТИЛІ ДЛЯ СКРОЛБАРА */
+        .product-details p:first-of-type::-webkit-scrollbar {
+            width: 6px;
         }
-        .description-container::-webkit-scrollbar-track {
+        .product-details p:first-of-type::-webkit-scrollbar-track {
             background: #e0e0e0;
             border-radius: 5px;
         }
-        .description-container::-webkit-scrollbar-thumb {
+        .product-details p:first-of-type::-webkit-scrollbar-thumb {
             background: #A9A34C;
             border-radius: 5px;
         }
-        .description-container::-webkit-scrollbar-thumb:hover {
+        .product-details p:first-of-type::-webkit-scrollbar-thumb:hover {
             background: #8e8a3f;
         }
+        
         .product-details a {
             color: #ffffff;
             text-decoration: none;
@@ -234,8 +240,8 @@
             padding: 8px 12px;
             border-radius: 5px;
             display: block;
-            margin: 8px 0;
-            font-size: 0.85em;
+            margin: 6px 0;
+            font-size: 0.9em;
             font-weight: bold;
         }
         .product-details a:hover {
@@ -248,7 +254,7 @@
             padding: 8px 12px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.85em;
+            font-size: 0.9em;
             width: 100%;
             font-weight: bold;
         }
@@ -260,9 +266,13 @@
             color: white;
             text-align: center;
             padding: 20px;
+            position: relative;
+            bottom: 0;
             width: 100%;
         }
-        footer .social-links { text-align: center; }
+        footer .social-links {
+            text-align: center;
+        }
         footer .social-links h2 {
             font-size: clamp(1.2rem, 3vw, 1.4rem);
             margin-bottom: 15px;
@@ -285,11 +295,27 @@
             border-radius: 25px;
             font-size: clamp(0.9rem, 2.5vw, 1rem);
             transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        footer .social-buttons a.tiktok { background-color: #000000; border: 1px solid #fff; }
-        footer .social-buttons a.facebook { background-color: #1877f2; }
-        footer .social-buttons a.instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
-        footer .social-buttons a:hover { transform: scale(1.05); }
+        footer .social-buttons a.tiktok {
+            background-color: #000000;
+            border: 1px solid #fff;
+        }
+        footer .social-buttons a.facebook {
+            background-color: #1877f2;
+        }
+        footer .social-buttons a.instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        }
+        footer .social-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        footer .social-buttons a i {
+            font-size: 1.2em;
+        }
+        
+        /* ПАГІНАЦІЯ */
         .pagination {
             display: flex;
             justify-content: center;
@@ -298,7 +324,7 @@
             padding: 10px;
             border-radius: 10px;
             margin: 20px auto;
-            max-width: 250px;
+            max-width: 33%;
         }
         .pagination a {
             display: inline-block;
@@ -308,25 +334,53 @@
             text-align: center;
             text-decoration: none;
             border-radius: 9px;
+            font-size: 1em;
+            font-weight: normal;
         }
         .pagination a.active {
             background-color: white;
             color: black;
             border: 5px solid #e0930d;
+            line-height: 35px;
         }
         .pagination a:not(.active) {
             background-color: #d3d3d3;
             color: black;
             border: 1px solid #a9a9a9;
         }
-        @media (max-width: 768px) {
-            .search-container { flex-direction: column; align-items: center; }
-            .search-container input, .search-container button { width: 100%; max-width: 200px; }
-            .products { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-            .carousel-prev, .carousel-next { width: 28px; height: 28px; font-size: 14px; }
-            .description-container { height: 70px; font-size: 0.8em; }
-            .description-container::-webkit-scrollbar { width: 8px; }
-            .product-details h3 { font-size: 1em; min-height: 40px; }
+        
+        /* АДАПТАЦІЯ ДЛЯ РІЗНИХ РОЗМІРІВ ЕКРАНУ */
+        @media (max-width: 1250px) {
+            .products {
+                grid-template-columns: repeat(3, 285px);
+            }
+        }
+        @media (max-width: 950px) {
+            .products {
+                grid-template-columns: repeat(2, 285px);
+            }
+        }
+        @media (max-width: 650px) {
+            .products {
+                grid-template-columns: repeat(1, 285px);
+            }
+            .carousel-prev, .carousel-next {
+                display: none;
+            }
+            .product-details p:first-of-type {
+                height: 75px;
+            }
+            .pagination {
+                max-width: 280px;
+            }
+            .pagination a {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+            }
+            .pagination a.active {
+                line-height: 30px;
+            }
         }
     </style>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
@@ -340,61 +394,20 @@
 <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
 <div class="search-container">
 <input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
-<button onclick="searchProducts()">Пошук</button>
+<button onclick="redirectToSearch()">Пошук</button>
 </div>
 </header>
 
 <div class="products">
-<!-- Товар 1: Ноутбук Laptop -->
-<div class="product-card" data-articul="0097A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0097A1.jpg" alt="Ноутбук Laptop"/>
-            <img class="carousel-image" src="Electronics_imeg/0097A2.jpg" alt="Ноутбук Laptop"/>
-            <img class="carousel-image" src="Electronics_imeg/0097A3.jpg" alt="Ноутбук Laptop"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Ноутбук Laptop</h3>
-        <p class="articul">арт. 0097A</p>
-        <p class="price">12192.01 грн</p>
-        <div class="description-container">Новий 14,1-дюймовий ноутбук Intel Core i9-9900 32 ГБ 2 ТБ Ігровий ПК Ультратонкий офісний навчальний комп'ютер Windows 11 Pro 1920*1080 HD</div>
-        <a href="https://s.click.aliexpress.com/e/_c3mcu8ud" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0097A')">Додати до обраного</button>
-    </div>
-</div>
-
-<!-- Товар 2: Ігрова миша -->
-<div class="product-card" data-articul="0098A">
-    <div class="product-image-carousel">
-        <div class="carousel-container">
-            <img class="carousel-image active" src="Electronics_imeg/0098A1.jpg" alt="Ігрова миша"/>
-            <img class="carousel-image" src="Electronics_imeg/0098A2.jpg" alt="Ігрова миша"/>
-            <img class="carousel-image" src="Electronics_imeg/0098A3.jpg" alt="Ігрова миша"/>
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-            <div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div>
-        </div>
-    </div>
-    <div class="product-details">
-        <h3>Ігрова миша</h3>
-        <p class="articul">арт. 0098A</p>
-        <p class="price">1079.38 грн</p>
-        <div class="description-container">Бездротова вертикальна ігрова миша Jomaa з RGB-підсвічуванням та вертикальним керуванням для геймерів, 24000DPI, регульовані програмовані кнопки, дротова</div>
-        <a href="https://s.click.aliexpress.com/e/_c30ZaeQD" target="_blank">Купити на AliExpress</a>
-        <button class="add-to-favorites" onclick="addToFavorites('0098A')">Додати до обраного</button>
-    </div>
-</div>
+<div class="product-card" data-articul="0097A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0097A1.jpg" alt="Ноутбук Laptop"/><img class="carousel-image" src="Electronics_imeg/0097A2.jpg" alt="Ноутбук Laptop"/><img class="carousel-image" src="Electronics_imeg/0097A3.jpg" alt="Ноутбук Laptop"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ноутбук Laptop</h3><p>Новий 14,1-дюймовий ноутбук Intel Core i9-9900 32 ГБ 2 ТБ Ігровий ПК Ультратонкий офісний навчальний комп'ютер Windows 11 Pro 1920*1080 HD</p><p class="articul">арт. 0097A</p><p class="price">12192.01 грн</p><a href="https://s.click.aliexpress.com/e/_c3mcu8ud" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0097A', 'Ноутбук Laptop', 'Electronics_imeg/0097A1.jpg', 'https://s.click.aliexpress.com/e/_c3mcu8ud')">Додати до обраного</button></div></div>
+<div class="product-card" data-articul="0098A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0098A1.jpg" alt="Ігрова миша"/><img class="carousel-image" src="Electronics_imeg/0098A2.jpg" alt="Ігрова миша"/><img class="carousel-image" src="Electronics_imeg/0098A3.jpg" alt="Ігрова миша"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Ігрова миша</h3><p>Бездротова вертикальна ігрова миша Jomaa з RGB-підсвічуванням та вертикальним керуванням для геймерів, 24000DPI, регульовані програмовані кнопки, дротова</p><p class="articul">арт. 0098A</p><p class="price">1079.38 грн</p><a href="https://s.click.aliexpress.com/e/_c30ZaeQD" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0098A', 'Ігрова миша', 'Electronics_imeg/0098A1.jpg', 'https://s.click.aliexpress.com/e/_c30ZaeQD')">Додати до обраного</button></div></div>
 </div>
 
 <div class="pagination">
-<a href="electronics_page_1.html">1</a>
-<a href="electronics_page_2.html">2</a>
-<a href="electronics_page_3.html">3</a>
-<a class="active" href="electronics_page_4.html">4</a>
+    <a href="electronics_page_1.html">1</a>
+    <a href="electronics_page_2.html">2</a>
+    <a href="electronics_page_3.html">3</a>
+    <a class="active" href="electronics_page_4.html">4</a>
 </div>
 
 <footer>
@@ -410,128 +423,139 @@
 </footer>
 
 <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
-    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-    import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
-        authDomain: "alishopping-ced60.firebaseapp.com",
-        projectId: "alishopping-ced60",
-        storageBucket: "alishopping-ced60.firebasestorage.app",
-        messagingSenderId: "869364972631",
-        appId: "1:869364972631:web:f9b736868d9844b3e7f712",
-        measurementId: "G-SF4MY2768F"
-    };
+        const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-    const profileLink = document.getElementById('profileLink');
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            profileLink.href = 'profile.html';
-            profileLink.textContent = 'Мій профіль';
-        } else {
-            profileLink.href = 'login.html';
-            profileLink.textContent = 'Увійти';
-        }
-    });
+        const profileLink = document.getElementById('profileLink');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                profileLink.href = 'profile.html';
+                profileLink.textContent = 'Мій профіль';
+            } else {
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
+            }
+        });
 
-    window.addToFavorites = async function(productId) {
-        if (!auth.currentUser) {
-            alert('Будь ласка, увійдіть до облікового запису.');
-            window.location.href = 'login.html';
-            return;
-        }
-        
-        try {
-            const q = query(collection(db, 'favorites'), 
-                where('userId', '==', auth.currentUser.uid),
-                where('productId', '==', productId));
-            const existing = await getDocs(q);
-            
-            if (!existing.empty) {
-                alert('⚠️ Цей товар вже є у ваших обраних!');
+        window.addToFavorites = async function(id, title, image, link) {
+            if (!auth.currentUser) {
+                alert('Будь ласка, увійдіть до облікового запису.');
+                window.location.href = 'login.html';
                 return;
             }
             
-            await addDoc(collection(db, 'favorites'), {
-                userId: auth.currentUser.uid,
-                productId: productId,
-                addedAt: new Date().toISOString()
-            });
-            alert('✅ Товар додано до обраного!');
-        } catch (error) {
-            console.error('Помилка:', error);
-            alert('❌ Помилка: ' + error.message);
-        }
-    };
+            try {
+                const q = query(collection(db, 'favorites'), 
+                    where('userId', '==', auth.currentUser.uid),
+                    where('id', '==', id));
+                const existing = await getDocs(q);
+                
+                if (!existing.empty) {
+                    alert('⚠️ Цей товар вже є у ваших обраних!');
+                    return;
+                }
+                
+                await addDoc(collection(db, 'favorites'), {
+                    userId: auth.currentUser.uid,
+                    id: id,
+                    title: title,
+                    image: image,
+                    link: link,
+                    addedAt: new Date().toISOString()
+                });
+                alert('✅ Товар додано до обраного!');
+            } catch (error) {
+                console.error('Помилка:', error);
+                alert('❌ Помилка: ' + error.message);
+            }
+        };
 
-    // Карусель зображень
-    document.querySelectorAll('.product-image-carousel').forEach(carousel => {
-        const images = carousel.querySelectorAll('.carousel-image');
-        const indicators = carousel.querySelectorAll('.indicator');
-        const prevButton = carousel.querySelector('.carousel-prev');
-        const nextButton = carousel.querySelector('.carousel-next');
-        let currentIndex = 0;
+        document.querySelectorAll('.product-image-carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('.carousel-image');
+            const indicators = carousel.querySelectorAll('.indicator');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
 
-        function updateCarousel() {
-            images.forEach((img, index) => {
-                img.classList.toggle('active', index === currentIndex);
-            });
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.toggle('active', index === currentIndex);
+                });
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                });
+            }
+
             indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
             });
-        }
 
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                updateCarousel();
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
             });
-        }
 
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % images.length;
-                updateCarousel();
-            });
-        }
-
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                currentIndex = index;
-                updateCarousel();
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateCarousel();
+                } else if (touchEndX > touchStartX + 50) {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateCarousel();
+                }
             });
         });
-    });
 
-    window.searchProducts = function() {
-        const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
-        const products = document.querySelectorAll('.product-card');
-
-        if (!searchInput) {
-            products.forEach(product => product.style.display = 'flex');
-            return;
-        }
-
-        products.forEach(product => {
-            const articul = product.getAttribute('data-articul').toLowerCase();
-            const title = product.querySelector('.product-details h3').textContent.toLowerCase();
-            
-            if (articul.includes(searchInput) || title.includes(searchInput)) {
-                product.style.display = 'flex';
+        window.redirectToSearch = function() {
+            const searchInput = document.getElementById('searchInput').value.trim();
+            if (searchInput) {
+                window.location.href = `search.html?q=${encodeURIComponent(searchInput)}`;
             } else {
-                product.style.display = 'none';
+                alert('Введіть запит для пошуку');
+            }
+        };
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                redirectToSearch();
             }
         });
-    };
 
-    document.getElementById('searchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') searchProducts();
-    });
-</script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                document.getElementById('searchInput').value = decodeURIComponent(searchQuery);
+                redirectToSearch();
+            }
+        };
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Електроніка - Сторінка 2 - AliShop</title>
+<title>Електроніка - AliShop</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" referrerpolicy="no-referrer" rel="stylesheet"/>
 <link href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png" rel="icon" type="image/png"/>
@@ -83,30 +83,37 @@
         .search-container button:hover {
             background-color: #e55a5a;
         }
+        
+        /* СІТКА ТОВАРІВ - 4 КАРТКИ В РЯД */
         .products {
             margin: 20px auto;
             padding: 20px 10px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(4, 285px);
             gap: 20px;
-            max-width: 1200px;
+            justify-content: center;
+            max-width: 1250px;
         }
+        
+        /* ФІКСОВАНИЙ РОЗМІР КАРТКИ 285px × 555px */
         .product-card {
+            box-sizing: border-box;
             background-color: white;
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            aspect-ratio: 3 / 4;
+            width: 285px;
+            height: 555px;
             position: relative;
         }
         .product-image-carousel {
             position: relative;
             width: 100%;
-            height: 150px;
+            height: 160px;
             overflow: hidden;
             margin-bottom: 10px;
         }
@@ -129,29 +136,20 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            width: 32px;
-            height: 32px;
+            padding: 6px 10px;
             cursor: pointer;
             z-index: 10;
-            border-radius: 50%;
-            font-size: 18px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s;
-        }
-        .carousel-prev:hover, .carousel-next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 3px;
+            font-size: 14px;
         }
         .carousel-prev {
-            left: 5px;
+            left: 0;
         }
         .carousel-next {
-            right: 5px;
+            right: 0;
         }
         .carousel-indicators {
             position: absolute;
@@ -164,24 +162,24 @@
         .indicator {
             width: 8px;
             height: 8px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.3);
             border-radius: 50%;
             cursor: pointer;
         }
         .indicator.active {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(0, 0, 0, 0.7);
         }
         .product-details {
             flex-grow: 1;
             text-align: center;
-            margin: 10px 0;
+            margin: 5px 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 100%;
         }
         .product-details h3 {
-            margin: 10px 0;
+            margin: 8px 0;
             font-size: 1.1em;
             color: #2c3e50;
             overflow: hidden;
@@ -189,47 +187,52 @@
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            min-height: 45px;
+            min-height: 42px;
             font-weight: bold;
         }
         .product-details .articul {
-            font-size: 0.85em;
+            font-size: 0.9em;
             font-weight: bold;
             color: #000000;
             margin: 5px 0;
         }
         .product-details .price {
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
             color: #000000;
             margin: 5px 0;
         }
-        .product-details p {
-            font-size: 0.85em;
+        
+        /* ОПИС - звичайний тег p (для скрипта) */
+        .product-details p:first-of-type {
+            font-size: 0.9em;
             color: #2c3e50;
             margin: 8px 0;
             line-height: 1.4;
             background-color: #f9f9f9;
             padding: 8px;
             border-radius: 5px;
-            height: 80px;
+            height: 85px;
             overflow-y: auto;
             text-align: left;
         }
-        .product-details p::-webkit-scrollbar {
-            width: 11px;
+        
+        /* СТИЛІ ДЛЯ СКРОЛБАРА */
+        .product-details p:first-of-type::-webkit-scrollbar {
+            width: 6px;
         }
-        .product-details p::-webkit-scrollbar-track {
+        .product-details p:first-of-type::-webkit-scrollbar-track {
             background: #e0e0e0;
             border-radius: 5px;
         }
-        .product-details p::-webkit-scrollbar-thumb {
+        .product-details p:first-of-type::-webkit-scrollbar-thumb {
             background: #A9A34C;
             border-radius: 5px;
         }
-        .product-details p::-webkit-scrollbar-thumb:hover {
+        .product-details p:first-of-type::-webkit-scrollbar-thumb:hover {
             background: #8e8a3f;
         }
+        
         .product-details a {
             color: #ffffff;
             text-decoration: none;
@@ -237,8 +240,8 @@
             padding: 8px 12px;
             border-radius: 5px;
             display: block;
-            margin: 8px 0;
-            font-size: 0.85em;
+            margin: 6px 0;
+            font-size: 0.9em;
             font-weight: bold;
         }
         .product-details a:hover {
@@ -251,50 +254,20 @@
             padding: 8px 12px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.85em;
+            font-size: 0.9em;
             width: 100%;
             font-weight: bold;
         }
         .add-to-favorites:hover {
             background-color: #8e8a3f;
         }
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            background-color: #e0e0e0;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 20px auto;
-            max-width: 33%;
-        }
-        .pagination a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 9px;
-            font-size: 1em;
-            font-weight: normal;
-        }
-        .pagination a.active {
-            background-color: white;
-            color: black;
-            border: 5px solid #e0930d;
-            line-height: 35px;
-        }
-        .pagination a:not(.active) {
-            background-color: #d3d3d3;
-            color: black;
-            border: 1px solid #a9a9a9;
-        }
         footer {
             background-color: #000000;
             color: white;
             text-align: center;
             padding: 20px;
+            position: relative;
+            bottom: 0;
             width: 100%;
         }
         footer .social-links {
@@ -341,34 +314,61 @@
         footer .social-buttons a i {
             font-size: 1.2em;
         }
-        @media (max-width: 768px) {
-            .search-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .search-container input, .search-container button {
-                width: 100%;
-                max-width: 200px;
-            }
+        
+        /* ПАГІНАЦІЯ */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 33%;
+        }
+        .pagination a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 9px;
+            font-size: 1em;
+            font-weight: normal;
+        }
+        .pagination a.active {
+            background-color: white;
+            color: black;
+            border: 5px solid #e0930d;
+            line-height: 35px;
+        }
+        .pagination a:not(.active) {
+            background-color: #d3d3d3;
+            color: black;
+            border: 1px solid #a9a9a9;
+        }
+        
+        /* АДАПТАЦІЯ ДЛЯ РІЗНИХ РОЗМІРІВ ЕКРАНУ */
+        @media (max-width: 1250px) {
             .products {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                padding: 20px 10px;
+                grid-template-columns: repeat(3, 285px);
+            }
+        }
+        @media (max-width: 950px) {
+            .products {
+                grid-template-columns: repeat(2, 285px);
+            }
+        }
+        @media (max-width: 650px) {
+            .products {
+                grid-template-columns: repeat(1, 285px);
             }
             .carousel-prev, .carousel-next {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
+                display: none;
             }
-            .product-details p {
-                height: 70px;
-                font-size: 0.8em;
-            }
-            .product-details p::-webkit-scrollbar {
-                width: 8px;
-            }
-            .product-details h3 {
-                font-size: 1em;
-                min-height: 40px;
+            .product-details p:first-of-type {
+                height: 75px;
             }
             .pagination {
                 max-width: 280px;
@@ -397,6 +397,7 @@
 <button onclick="redirectToSearch()">Пошук</button>
 </div>
 </header>
+
 <div class="products">
 <div class="product-card" data-articul="0032A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0032A1.jpg" alt="Набір для чистки клавіатури 7-в-1"/><img class="carousel-image" src="Electronics_imeg/0032A2.jpg" alt="Набір для чистки клавіатури 7-в-1"/><img class="carousel-image" src="Electronics_imeg/0032A3.jpg" alt="Набір для чистки клавіатури 7-в-1"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Набір для чистки клавіатури 7-в-1</h3><p>7-в-1 Cleaner Kit комп'ютерна клавіатура щітка для чищення Bluetooth навушників ручка для чищення кейкапів знімач екрану телефону інструменти для чищення ноутбука. Універсальний набір для догляду за технікою. Включає м'яку щітку, гелеву серветку, знімач клавіш, пилосос для клавіатури та інші аксесуари. Компактний кейс для зберігання. Ідеально для догляду за комп'ютером, ноутбуком, телефоном.</p><p class="articul">арт. 0032A</p><p class="price">46.13 грн</p><a href="https://s.click.aliexpress.com/e/_c2v9ZnQz" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0032A', 'Набір для чистки клавіатури 7-в-1', 'Electronics_imeg/0032A1.jpg', 'https://s.click.aliexpress.com/e/_c2v9ZnQz')">Додати до обраного</button></div></div>
 <div class="product-card" data-articul="0033A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0033A1.jpg" alt="Набір для чищення 8-в-1"/><img class="carousel-image" src="Electronics_imeg/0033A2.jpg" alt="Набір для чищення 8-в-1"/><img class="carousel-image" src="Electronics_imeg/0033A3.jpg" alt="Набір для чищення 8-в-1"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Набір для чищення 8-в-1</h3><p>8-в-1 Набір для чищення комп'ютерної клавіатури, щітка для чищення навушників, ручка для чищення планшета, мобільний телефон, інструмент для чищення ковпачків клавіш, набір для вилучення клавіш. Розширений професійний набір для глибокого чищення всіх гаджетів. Пневматичний пилосос для видалення пилу з важкодоступних місць. Мікрофіброві серветки для безпечного протирання екранів.</p><p class="articul">арт. 0033A</p><p class="price">299.61 грн</p><a href="https://s.click.aliexpress.com/e/_c3cxYz3X" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0033A', 'Набір для чищення 8-в-1', 'Electronics_imeg/0033A1.jpg', 'https://s.click.aliexpress.com/e/_c3cxYz3X')">Додати до обраного</button></div></div>
@@ -419,12 +420,14 @@
 <div class="product-card" data-articul="0050A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0050A1.jpg" alt="Нічник Лисиця"/><img class="carousel-image" src="Electronics_imeg/0050A2.jpg" alt="Нічник Лисиця"/><img class="carousel-image" src="Electronics_imeg/0050A3.jpg" alt="Нічник Лисиця"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Нічник Лисиця</h3><p>Нічник у формі лисиці моделі My World, освітлення для приміщень. Силіконова фігурка лисиці з м'яким світінням. 7 кольорів RGB, автоматична зміна кольорів. Живлення від USB, сенсорне керування. Можна використовувати як нічник для дитячої кімнати або декоративний світильник. Милий дизайн, безпечний матеріал.</p><p class="articul">арт. 0050A</p><p class="price">426.84 грн</p><a href="https://s.click.aliexpress.com/e/_c2Qajm8N" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0050A', 'Нічник Лисиця', 'Electronics_imeg/0050A1.jpg', 'https://s.click.aliexpress.com/e/_c2Qajm8N')">Додати до обраного</button></div></div>
 <div class="product-card" data-articul="0051A"><div class="product-image-carousel"><div class="carousel-container"><img class="carousel-image active" src="Electronics_imeg/0051A1.jpg" alt="Гірлянда фея 8 режимів"/><img class="carousel-image" src="Electronics_imeg/0051A2.jpg" alt="Гірлянда фея 8 режимів"/><img class="carousel-image" src="Electronics_imeg/0051A3.jpg" alt="Гірлянда фея 8 режимів"/><button class="carousel-prev">←</button><button class="carousel-next">→</button><div class="carousel-indicators"><span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span></div></div></div><div class="product-details"><h3>Гірлянда фея 8 режимів</h3><p>Різдвяна фея світлодіодна вечірка 8 режимів світлодіодні святкові USB завіса гірлянди день народження прикраса гірлянда весілля домашній декор 3 м 6 м. Гнучка гірлянда (3 м) з 50 світлодіодами. 8 режимів світіння (статичне, миготіння, хвилі тощо). Живлення від USB, водонепроникна. Чудово підходить для декорування кімнати, ялинки, вечірки.</p><p class="articul">арт. 0051A</p><p class="price">67.58 грн</p><a href="https://s.click.aliexpress.com/e/_c4PincuN" target="_blank">Купити на AliExpress</a><button class="add-to-favorites" onclick="addToFavorites('0051A', 'Гірлянда фея 8 режимів', 'Electronics_imeg/0051A1.jpg', 'https://s.click.aliexpress.com/e/_c4PincuN')">Додати до обраного</button></div></div>
 </div>
+
 <div class="pagination">
     <a href="electronics_page_1.html">1</a>
     <a class="active" href="electronics_page_2.html">2</a>
     <a href="electronics_page_3.html">3</a>
     <a href="electronics_page_4.html">4</a>
 </div>
+
 <footer>
 <div class="social-links">
 <h2>Слідкуй за новинками в</h2>
@@ -436,10 +439,11 @@
 </div>
 <p>© 2026 AliShop</p>
 </footer>
+
 <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
         import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+        import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
         const firebaseConfig = {"apiKey": "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q", "authDomain": "alishopping-ced60.firebaseapp.com", "projectId": "alishopping-ced60", "storageBucket": "alishopping-ced60.firebasestorage.app", "messagingSenderId": "869364972631", "appId": "1:869364972631:web:f9b736868d9844b3e7f712", "measurementId": "G-SF4MY2768F"};
 
@@ -464,18 +468,30 @@
                 window.location.href = 'login.html';
                 return;
             }
+            
             try {
+                const q = query(collection(db, 'favorites'), 
+                    where('userId', '==', auth.currentUser.uid),
+                    where('id', '==', id));
+                const existing = await getDocs(q);
+                
+                if (!existing.empty) {
+                    alert('⚠️ Цей товар вже є у ваших обраних!');
+                    return;
+                }
+                
                 await addDoc(collection(db, 'favorites'), {
                     userId: auth.currentUser.uid,
                     id: id,
                     title: title,
                     image: image,
-                    link: link
+                    link: link,
+                    addedAt: new Date().toISOString()
                 });
-                alert('Товар додано до обраного!');
+                alert('✅ Товар додано до обраного!');
             } catch (error) {
-                console.error('Помилка додавання:', error);
-                alert('Помилка: ' + error.message);
+                console.error('Помилка:', error);
+                alert('❌ Помилка: ' + error.message);
             }
         };
 

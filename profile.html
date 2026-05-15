@@ -35,26 +35,43 @@
         header h1 {
             position: relative;
             z-index: 2;
-            margin: 0;
+            margin: 0 0 20px 0;
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        header .home-link, header .logout-link {
+        
+        /* Контейнер для кнопок - центрування по горизонталі */
+        .buttons-container {
             position: relative;
             z-index: 2;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-button {
             color: white;
             text-decoration: none;
             font-size: 1.2em;
-            display: inline-block;
-            margin: 10px 20px;
-            padding: 10px 20px;
             background-color: #ff6b6b;
+            padding: 10px 20px;
             border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Roboto', Arial, sans-serif;
         }
-        header .home-link:hover, header .logout-link:hover {
+        
+        .nav-button:hover {
             background-color: #e55a5a;
             text-decoration: none;
         }
+        
         .search-container {
             position: relative;
             z-index: 2;
@@ -310,6 +327,13 @@
             .product-details .description {
                 height: 75px;
             }
+            .buttons-container {
+                gap: 10px;
+            }
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 1em;
+            }
         }
     </style>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js" type="module"></script>
@@ -319,8 +343,17 @@
 <body>
     <header>
         <h1>Мій профіль</h1>
-        <a class="home-link" href="index.html">Повернутися на головну</a>
-        <a class="logout-link" href="#" id="logoutLink">Вийти</a>
+        <div class="buttons-container">
+            <button class="nav-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Назад
+            </button>
+            <a class="nav-button" href="index.html">
+                <i class="fas fa-home"></i> Головна
+            </a>
+            <a class="nav-button" href="#" id="logoutLink">
+                <i class="fas fa-sign-out-alt"></i> Вийти
+            </a>
+        </div>
         <div class="search-container">
             <input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
             <button onclick="redirectToSearch()">Пошук</button>
@@ -394,16 +427,25 @@
             loadFavorites(user.uid);
         });
 
-        document.getElementById('logoutLink').addEventListener('click', async (e) => {
-            e.preventDefault();
-            try {
-                await signOut(auth);
-                window.location.href = 'login.html';
-            } catch (error) {
-                console.error('Помилка виходу:', error);
-                alert('Помилка виходу: ' + error.message);
-            }
-        });
+        // Обробник кнопки виходу
+        const logoutLink = document.getElementById('logoutLink');
+        if (logoutLink) {
+            logoutLink.addEventListener('click', async (e) => {
+                e.preventDefault();
+                try {
+                    await signOut(auth);
+                    window.location.href = 'login.html';
+                } catch (error) {
+                    console.error('Помилка виходу:', error);
+                    alert('Помилка виходу: ' + error.message);
+                }
+            });
+        }
+
+        // Функція повернення на попередню сторінку
+        window.goBack = function() {
+            window.history.back();
+        };
 
         async function loadFavorites(userId) {
             const favoritesList = document.getElementById('favoritesList');
@@ -518,7 +560,7 @@
                 .replace(/'/g, '&#39;');
         }
 
-        // Функція перенаправлення на сторінку пошуку (як на mens-clothing_page_1.html)
+        // Функція перенаправлення на сторінку пошуку
         window.redirectToSearch = function() {
             const searchInput = document.getElementById('searchInput').value.trim();
             if (searchInput) {

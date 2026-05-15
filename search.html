@@ -32,6 +32,7 @@
         }
         .search-header h1, 
         .search-header .home-link, 
+        .search-header .profile-link,
         .search-header .search-container {
             position: relative;
             z-index: 2;
@@ -41,7 +42,8 @@
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        .search-header .home-link {
+        .search-header .home-link, 
+        .search-header .profile-link {
             color: white;
             text-decoration: none;
             font-size: 1.2em;
@@ -51,7 +53,8 @@
             display: inline-block;
             margin: 10px;
         }
-        .search-header .home-link:hover {
+        .search-header .home-link:hover, 
+        .search-header .profile-link:hover {
             background-color: #e55a5a;
         }
         .search-container {
@@ -361,6 +364,7 @@
     <header class="search-header">
         <h1>Пошук товарів</h1>
         <a class="home-link" href="index.html">Повернутися на головну</a>
+        <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Введіть артикул або назву товару">
             <button onclick="performSearch()">Пошук</button>
@@ -405,6 +409,22 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        // Отримуємо елемент кнопки профілю
+        const profileLink = document.getElementById('profileLink');
+        
+        // Відстеження стану авторизації для оновлення кнопки профілю
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                profileLink.href = 'profile.html';
+                profileLink.textContent = 'Мій профіль';
+                console.log("Користувач авторизований:", user.email);
+            } else {
+                profileLink.href = 'login.html';
+                profileLink.textContent = 'Увійти';
+                console.log("Користувач не авторизований");
+            }
+        });
+
         // Функція додавання в обране (ПОВНІСТЮ як на mens-clothing_page_1.html)
         window.addToFavorites = async function(id, title, image, link) {
             console.log("addToFavorites викликано:", {id, title, image, link});
@@ -443,15 +463,6 @@
                 alert('❌ Помилка: ' + error.message);
             }
         };
-
-        // Перевірка статусу авторизації (для відладки)
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                console.log("Користувач авторизований:", user.email);
-            } else {
-                console.log("Користувач не авторизований");
-            }
-        });
 
         // ========== Логіка пошуку ==========
         const urlParams = new URLSearchParams(window.location.search);

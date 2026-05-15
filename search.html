@@ -423,7 +423,8 @@
         const searchInput = document.getElementById('searchInput');
         if (query) {
             searchInput.value = decodeURIComponent(query);
-            performSearch();
+            // Невелика затримка для завантаження DOM
+            setTimeout(() => performSearch(), 100);
         }
 
         // Очищення запиту від слів "арт", "артикул"
@@ -433,12 +434,17 @@
 
         async function performSearch() {
             const rawTerm = searchInput.value.trim().toLowerCase();
+            const container = document.getElementById('resultsContainer');
+            
             if (!rawTerm) {
-                document.getElementById('resultsContainer').innerHTML = '<p class="no-results">Введіть запит для пошуку</p>';
+                container.innerHTML = '<p class="no-results">Введіть запит для пошуку</p>';
                 return;
             }
 
             const cleanTerm = cleanSearchTerm(rawTerm);
+            
+            // Показуємо індикатор завантаження
+            container.innerHTML = '<p class="no-results">Пошук...</p>';
 
             try {
                 const response = await fetch('products.json');
@@ -446,15 +452,15 @@
                 const products = await response.json();
 
                 const results = products.filter(product => {
-                    const articulMatch = cleanTerm && product.articul.toLowerCase().includes(cleanTerm);
-                    const titleMatch = product.title.toLowerCase().includes(rawTerm);
+                    const articulMatch = cleanTerm && product.articul && product.articul.toLowerCase().includes(cleanTerm);
+                    const titleMatch = product.title && product.title.toLowerCase().includes(rawTerm);
                     return articulMatch || titleMatch;
                 });
 
                 displayResults(results);
             } catch (error) {
                 console.error('Помилка завантаження товарів:', error);
-                document.getElementById('resultsContainer').innerHTML = '<p class="no-results">Помилка завантаження даних</p>';
+                container.innerHTML = '<p class="no-results">Помилка завантаження даних</p>';
             }
         }
 

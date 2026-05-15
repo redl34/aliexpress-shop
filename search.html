@@ -31,32 +31,49 @@
             z-index: 1;
         }
         .search-header h1, 
-        .search-header .home-link, 
-        .search-header .profile-link,
-        .search-header .search-container {
+        .buttons-container,
+        .search-container {
             position: relative;
             z-index: 2;
         }
         .search-header h1 {
-            margin: 0 0 15px 0;
+            margin: 0 0 20px 0;
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        .search-header .home-link, 
-        .search-header .profile-link {
+        
+        /* Контейнер для кнопок - центрування по горизонталі */
+        .buttons-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-button {
             color: white;
             text-decoration: none;
             font-size: 1.2em;
             background-color: #ff6b6b;
             padding: 10px 20px;
             border-radius: 5px;
-            display: inline-block;
-            margin: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Roboto', Arial, sans-serif;
         }
-        .search-header .home-link:hover, 
-        .search-header .profile-link:hover {
+        
+        .nav-button:hover {
             background-color: #e55a5a;
+            text-decoration: none;
         }
+        
         .search-container {
             max-width: 500px;
             margin: 20px auto;
@@ -353,6 +370,13 @@
                 width: 100%;
                 max-width: 280px;
             }
+            .buttons-container {
+                gap: 10px;
+            }
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 1em;
+            }
         }
     </style>
     <!-- Firebase SDK -->
@@ -363,8 +387,17 @@
 <body>
     <header class="search-header">
         <h1>Пошук товарів</h1>
-        <a class="home-link" href="index.html">Повернутися на головну</a>
-        <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
+        <div class="buttons-container">
+            <button class="nav-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Назад
+            </button>
+            <a class="nav-button" href="index.html">
+                <i class="fas fa-home"></i> Головна
+            </a>
+            <a class="nav-button" href="#" id="profileLink">
+                <i class="fas fa-user"></i> Мій профіль
+            </a>
+        </div>
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Введіть артикул або назву товару">
             <button onclick="performSearch()">Пошук</button>
@@ -416,16 +449,21 @@
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 profileLink.href = 'profile.html';
-                profileLink.textContent = 'Мій профіль';
+                profileLink.innerHTML = '<i class="fas fa-user"></i> Мій профіль';
                 console.log("Користувач авторизований:", user.email);
             } else {
                 profileLink.href = 'login.html';
-                profileLink.textContent = 'Увійти';
+                profileLink.innerHTML = '<i class="fas fa-sign-in-alt"></i> Увійти';
                 console.log("Користувач не авторизований");
             }
         });
 
-        // Функція додавання в обране (ПОВНІСТЮ як на mens-clothing_page_1.html)
+        // Функція повернення на попередню сторінку
+        window.goBack = function() {
+            window.history.back();
+        };
+
+        // Функція додавання в обране
         window.addToFavorites = async function(id, title, image, link) {
             console.log("addToFavorites викликано:", {id, title, image, link});
             

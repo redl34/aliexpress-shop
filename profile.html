@@ -83,75 +83,93 @@
         .search-container button:hover {
             background-color: #e55a5a;
         }
+        
+        /* СІТКА ТОВАРІВ - 4 КАРТКИ В РЯД */
         .products {
             margin: 20px auto;
             padding: 20px 10px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(4, 285px);
             gap: 20px;
-            max-width: 1200px;
+            justify-content: center;
+            max-width: 1250px;
         }
+        
+        /* ФІКСОВАНИЙ РОЗМІР КАРТКИ 285px × 555px */
         .product-card {
+            box-sizing: border-box;
             background-color: white;
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            aspect-ratio: 3 / 4;
+            width: 285px;
+            height: 555px;
             position: relative;
         }
+        
         .product-image {
             width: 100%;
-            height: 150px;
+            height: 160px;
             object-fit: contain;
             border-radius: 5px;
             margin-bottom: 10px;
         }
+        
         .product-details {
             flex-grow: 1;
             text-align: center;
-            margin: 10px 0;
+            margin: 5px 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 100%;
         }
         .product-details h3 {
-            margin: 10px 0;
+            margin: 8px 0;
             font-size: 1.1em;
             color: #2c3e50;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            min-height: 42px;
+            font-weight: bold;
         }
         .product-details .articul {
-            font-size: 0.85em;
+            font-size: 0.9em;
             font-weight: bold;
             color: #000000;
             margin: 5px 0;
         }
         .product-details .price {
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
-            color: #e63946;
+            color: #000000;
             margin: 5px 0;
         }
+        
         /* Блок опису з прокруткою */
         .product-details .description {
-            font-size: 0.85em;
-            color: #333333;
+            font-size: 0.9em;
+            color: #2c3e50;
             margin: 8px 0;
             line-height: 1.4;
             background-color: #f9f9f9;
             padding: 8px;
             border-radius: 5px;
-            height: 80px;
+            height: 85px;
             overflow-y: auto;
             text-align: left;
         }
+        
         /* Стилі для скролбара */
         .product-details .description::-webkit-scrollbar {
-            width: 5px;
+            width: 6px;
         }
         .product-details .description::-webkit-scrollbar-track {
             background: #e0e0e0;
@@ -164,6 +182,7 @@
         .product-details .description::-webkit-scrollbar-thumb:hover {
             background: #8e8a3f;
         }
+        
         .product-details a {
             color: #ffffff;
             text-decoration: none;
@@ -171,8 +190,9 @@
             padding: 8px 12px;
             border-radius: 5px;
             display: block;
-            margin: 8px 0;
-            font-size: 0.85em;
+            margin: 6px 0;
+            font-size: 0.9em;
+            font-weight: bold;
         }
         .product-details a:hover {
             background-color: #0e240e;
@@ -184,12 +204,14 @@
             padding: 8px 12px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.85em;
+            font-size: 0.9em;
             width: 100%;
+            font-weight: bold;
         }
         .remove-from-favorites:hover {
             background-color: #c94c4c;
         }
+        
         footer {
             background-color: #000000;
             color: white;
@@ -198,6 +220,7 @@
             position: relative;
             bottom: 0;
             width: 100%;
+            margin-top: 40px;
         }
         footer .social-links {
             text-align: center;
@@ -243,33 +266,49 @@
         footer .social-buttons a i {
             font-size: 1.2em;
         }
+        
         .no-favorites {
             color: white;
             text-align: center;
-            padding: 40px;
+            padding: 60px;
             font-size: 1.2em;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            margin: 40px auto;
+            max-width: 500px;
         }
         .loading {
             color: white;
             text-align: center;
-            padding: 40px;
+            padding: 60px;
             font-size: 1.2em;
         }
-        @media (max-width: 768px) {
+        
+        /* Адаптивність */
+        @media (max-width: 1250px) {
+            .products {
+                grid-template-columns: repeat(3, 285px);
+            }
+        }
+        @media (max-width: 950px) {
+            .products {
+                grid-template-columns: repeat(2, 285px);
+            }
+        }
+        @media (max-width: 650px) {
+            .products {
+                grid-template-columns: repeat(1, 285px);
+            }
             .search-container {
                 flex-direction: column;
                 align-items: center;
             }
             .search-container input, .search-container button {
                 width: 100%;
-                max-width: 200px;
-            }
-            .products {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                padding: 20px 10px;
+                max-width: 280px;
             }
             .product-details .description {
-                height: 70px;
+                height: 75px;
             }
         }
     </style>
@@ -299,7 +338,7 @@
                 <a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
             </div>
         </div>
-        <p>© 2025 Ali.Reed</p>
+        <p>© 2026 AliShop</p>
     </footer>
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
@@ -425,13 +464,13 @@
                     
                     productCard.innerHTML = `
                         <div class="product-image-container">
-                            ${firstImage ? `<img class="product-image" src="${firstImage}" alt="${product.title}" onerror="this.src='https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/no-image.png'; this.onerror=null;">` : '<div style="width:100%; height:150px; background:#f0f0f0; display:flex; align-items:center; justify-content:center;">📷 Немає фото</div>'}
+                            ${firstImage ? `<img class="product-image" src="${firstImage}" alt="${escapeHtml(product.title)}" onerror="this.src='https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/no-image.png'; this.onerror=null;">` : '<div style="width:100%; height:160px; background:#f0f0f0; display:flex; align-items:center; justify-content:center; border-radius:5px;">📷 Немає фото</div>'}
                         </div>
                         <div class="product-details">
                             <h3>${escapeHtml(product.title || 'Без назви')}</h3>
+                            <div class="description">${escapeHtml(product.description || 'Опис відсутній')}</div>
                             <p class="articul">арт. ${escapeHtml(product.articul)}</p>
                             <p class="price">${product.price || 'Ціна не вказана'}</p>
-                            <div class="description">${escapeHtml(product.description || 'Опис відсутній')}</div>
                             <a href="${product.link || '#'}" target="_blank">Купити на AliExpress</a>
                             <button class="remove-from-favorites" data-docid="${product.favoriteDocId}">Видалити з обраного</button>
                         </div>

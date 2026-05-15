@@ -6,7 +6,7 @@
     <title>Пошук - AliShop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* Загальні стилі (копія з mens-clothing_page_1.html) */
+        /* Загальні стилі (копія з electronics_page_1.html) */
         body {
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
@@ -76,36 +76,31 @@
         /* Результати пошуку */
         .search-results {
             margin: 20px auto;
-            padding: 20px 10px;
-            max-width: 1250px;
+            padding: 20px;
+            max-width: 1200px;
         }
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(4, 285px);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            justify-content: center;
         }
-        /* ФІКСОВАНИЙ РОЗМІР КАРТКИ 285px × 555px (як у mens-clothing_page_1.html) */
+        /* Картка товару (така ж, як на сторінках категорій) */
         .product-card {
-            box-sizing: border-box;
             background-color: white;
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            width: 285px;
-            height: 555px;
-            position: relative;
+            aspect-ratio: 3 / 4;
         }
         .product-image-carousel {
             position: relative;
             width: 100%;
-            height: 160px;
+            max-height: 50%;
             overflow: hidden;
-            margin-bottom: 10px;
         }
         .carousel-container {
             position: relative;
@@ -129,11 +124,9 @@
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            padding: 6px 10px;
+            padding: 10px;
             cursor: pointer;
             z-index: 10;
-            border-radius: 3px;
-            font-size: 14px;
         }
         .carousel-prev {
             left: 0;
@@ -143,15 +136,15 @@
         }
         .carousel-indicators {
             position: absolute;
-            bottom: 5px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 5px;
         }
         .indicator {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             background-color: rgba(0, 0, 0, 0.3);
             border-radius: 50%;
             cursor: pointer;
@@ -162,73 +155,42 @@
         .product-details {
             flex-grow: 1;
             text-align: center;
-            margin: 5px 0;
+            margin: 10px 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 100%;
         }
         .product-details h3 {
-            margin: 8px 0;
-            font-size: 1.1em;
+            margin: 10px 0;
+            font-size: 1.3em;
             color: #2c3e50;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            min-height: 42px;
-            font-weight: bold;
         }
         .product-details .articul {
-            font-size: 0.9em;
+            font-size: 0.9375em;
             font-weight: bold;
             color: #000000;
-            margin: 5px 0;
+            margin: 10px 0;
         }
         .product-details .price {
-            font-size: 1.3em;
+            font-size: 1.5em;
             font-weight: bold;
             color: #000000;
-            margin: 5px 0;
+            margin: 10px 0;
         }
-        /* ОПИС - звичайний тег p (з скролбаром) */
-        .product-details p:first-of-type {
-            font-size: 0.9em;
+        .product-details p {
+            font-size: 1em;
             color: #2c3e50;
-            margin: 8px 0;
-            line-height: 1.4;
-            background-color: #f9f9f9;
-            padding: 8px;
-            border-radius: 5px;
-            height: 85px;
-            overflow-y: auto;
-            text-align: left;
-        }
-        .product-details p:first-of-type::-webkit-scrollbar {
-            width: 6px;
-        }
-        .product-details p:first-of-type::-webkit-scrollbar-track {
-            background: #e0e0e0;
-            border-radius: 5px;
-        }
-        .product-details p:first-of-type::-webkit-scrollbar-thumb {
-            background: #A9A34C;
-            border-radius: 5px;
-        }
-        .product-details p:first-of-type::-webkit-scrollbar-thumb:hover {
-            background: #8e8a3f;
+            margin: 10px 0;
         }
         .product-details a {
             color: #ffffff;
             text-decoration: none;
             background-color: #132F13;
-            padding: 8px 12px;
+            padding: 10px 20px;
             border-radius: 5px;
             display: block;
-            margin: 6px 0;
-            font-size: 0.9em;
-            font-weight: bold;
+            margin: 10px 0;
+            font-size: 1em;
         }
         .product-details a:hover {
             background-color: #0e240e;
@@ -237,12 +199,11 @@
             background-color: #A9A34C;
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.9em;
+            font-size: 1em;
             width: 100%;
-            font-weight: bold;
         }
         .add-to-favorites:hover {
             background-color: #8e8a3f;
@@ -250,11 +211,8 @@
         .no-results {
             text-align: center;
             font-size: 1.2em;
-            color: white;
+            color: #333;
             padding: 40px;
-            background-color: rgba(0,0,0,0.6);
-            border-radius: 10px;
-            margin: 20px;
         }
         /* Футер */
         footer {
@@ -275,7 +233,6 @@
             justify-content: center;
             gap: 15px;
             margin-top: 10px;
-            flex-wrap: wrap;
         }
         footer .social-buttons a {
             display: flex;
@@ -308,25 +265,29 @@
             font-size: 1.2em;
         }
         /* Адаптивність */
-        @media (max-width: 1250px) {
-            .results-grid {
-                grid-template-columns: repeat(3, 285px);
-            }
-        }
-        @media (max-width: 950px) {
-            .results-grid {
-                grid-template-columns: repeat(2, 285px);
-            }
-        }
-        @media (max-width: 650px) {
-            .results-grid {
-                grid-template-columns: repeat(1, 285px);
-            }
+        @media (max-width: 900px) {
             .carousel-prev, .carousel-next {
                 display: none;
             }
-            .product-details p:first-of-type {
-                height: 75px;
+            .product-image-carousel {
+                max-height: 50%;
+            }
+            .product-details h3 {
+                font-size: 1.1em;
+            }
+            .product-details .articul {
+                font-size: 0.8125em;
+            }
+            .product-details .price {
+                font-size: 1.3em;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 200px;
             }
         }
     </style>
@@ -360,14 +321,14 @@
                 <a class="instagram" href="https://www.instagram.com/alishop__25?igsh=MXB2YmZoNWEzcWJ1Mw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
             </div>
         </div>
-        <p>© 2026 AliShop</p>
+        <p>© 2025 Ali.Reed</p>
     </footer>
 
     <script type="module">
         // ========== Firebase ініціалізація ==========
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
         import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-        import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
         const firebaseConfig = {
             apiKey: "AIzaSyAGzhOScgX59UvDxFffwPRx9YqYAaqGj-Q",
@@ -390,30 +351,17 @@
                 window.location.href = 'login.html';
                 return;
             }
-            
             try {
-                const q = query(collection(db, 'favorites'), 
-                    where('userId', '==', auth.currentUser.uid),
-                    where('id', '==', id));
-                const existing = await getDocs(q);
-                
-                if (!existing.empty) {
-                    alert('⚠️ Цей товар вже є у ваших обраних!');
-                    return;
-                }
-                
                 await addDoc(collection(db, 'favorites'), {
                     userId: auth.currentUser.uid,
                     id: id,
                     title: title,
                     image: image,
-                    link: link,
-                    addedAt: new Date().toISOString()
+                    link: link
                 });
-                alert('✅ Товар додано до обраного!');
+                alert('Товар додано до обраного!');
             } catch (error) {
                 console.error('Помилка додавання:', error);
-                alert('❌ Помилка: ' + error.message);
             }
         };
 
@@ -423,8 +371,7 @@
         const searchInput = document.getElementById('searchInput');
         if (query) {
             searchInput.value = decodeURIComponent(query);
-            // Невелика затримка для завантаження DOM
-            setTimeout(() => performSearch(), 100);
+            performSearch();
         }
 
         // Очищення запиту від слів "арт", "артикул"
@@ -434,17 +381,12 @@
 
         async function performSearch() {
             const rawTerm = searchInput.value.trim().toLowerCase();
-            const container = document.getElementById('resultsContainer');
-            
             if (!rawTerm) {
-                container.innerHTML = '<p class="no-results">Введіть запит для пошуку</p>';
+                document.getElementById('resultsContainer').innerHTML = '<p class="no-results">Введіть запит для пошуку</p>';
                 return;
             }
 
             const cleanTerm = cleanSearchTerm(rawTerm);
-            
-            // Показуємо індикатор завантаження
-            container.innerHTML = '<p class="no-results">Пошук...</p>';
 
             try {
                 const response = await fetch('products.json');
@@ -452,15 +394,15 @@
                 const products = await response.json();
 
                 const results = products.filter(product => {
-                    const articulMatch = cleanTerm && product.articul && product.articul.toLowerCase().includes(cleanTerm);
-                    const titleMatch = product.title && product.title.toLowerCase().includes(rawTerm);
+                    const articulMatch = cleanTerm && product.articul.toLowerCase().includes(cleanTerm);
+                    const titleMatch = product.title.toLowerCase().includes(rawTerm);
                     return articulMatch || titleMatch;
                 });
 
                 displayResults(results);
             } catch (error) {
                 console.error('Помилка завантаження товарів:', error);
-                container.innerHTML = '<p class="no-results">Помилка завантаження даних</p>';
+                document.getElementById('resultsContainer').innerHTML = '<p class="no-results">Помилка завантаження даних</p>';
             }
         }
 

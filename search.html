@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Пошук - AliShop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png" rel="icon" type="image/png">
     <style>
-        /* Загальні стилі (копія з mens-clothing_page_1.html) */
         body {
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #3E717A;
         }
-        /* Шапка з poshuk.jpg */
+        
+        /* Шапка */
         .search-header {
             background: url('Oformlennya_imeg/poshuk.jpg') no-repeat center center/cover;
             color: white;
             text-align: center;
-            padding: 120px 20px;
+            padding: 80px 20px;
             position: relative;
         }
         .search-header::before {
@@ -33,6 +35,11 @@
         .search-header .search-container {
             position: relative;
             z-index: 2;
+        }
+        .search-header h1 {
+            margin: 0 0 15px 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         .search-header .home-link {
             color: white;
@@ -55,37 +62,41 @@
         }
         .search-container input {
             flex-grow: 1;
-            padding: 10px;
+            padding: 12px;
             font-size: 1em;
             border: 1px solid #ddd;
             border-radius: 5px;
             outline: none;
         }
         .search-container button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: #ff6b6b;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
+            font-weight: bold;
         }
         .search-container button:hover {
             background-color: #e55a5a;
         }
-        /* Результати пошуку */
+        
+        /* СІТКА ТОВАРІВ - 4 КАРТКИ В РЯД (як на сторінці одягу) */
         .search-results {
             margin: 20px auto;
             padding: 20px 10px;
-            max-width: 1250px;
         }
         .results-grid {
             display: grid;
             grid-template-columns: repeat(4, 285px);
             gap: 20px;
             justify-content: center;
+            max-width: 1250px;
+            margin: 0 auto;
         }
-        /* ФІКСОВАНИЙ РОЗМІР КАРТКИ 285px × 555px (як у mens-clothing_page_1.html) */
+        
+        /* ФІКСОВАНИЙ РОЗМІР КАРТКИ 285px × 555px (як на сторінці одягу) */
         .product-card {
             box-sizing: border-box;
             background-color: white;
@@ -100,6 +111,7 @@
             height: 555px;
             position: relative;
         }
+        
         .product-image-carousel {
             position: relative;
             width: 100%;
@@ -159,6 +171,7 @@
         .indicator.active {
             background-color: rgba(0, 0, 0, 0.7);
         }
+        
         .product-details {
             flex-grow: 1;
             text-align: center;
@@ -180,20 +193,7 @@
             min-height: 42px;
             font-weight: bold;
         }
-        .product-details .articul {
-            font-size: 0.9em;
-            font-weight: bold;
-            color: #000000;
-            margin: 5px 0;
-        }
-        .product-details .price {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #000000;
-            margin: 5px 0;
-        }
-        /* ОПИС - звичайний тег p (з скролбаром) */
-        .product-details p:first-of-type {
+        .product-details .description {
             font-size: 0.9em;
             color: #2c3e50;
             margin: 8px 0;
@@ -205,19 +205,28 @@
             overflow-y: auto;
             text-align: left;
         }
-        .product-details p:first-of-type::-webkit-scrollbar {
+        .product-details .description::-webkit-scrollbar {
             width: 6px;
         }
-        .product-details p:first-of-type::-webkit-scrollbar-track {
+        .product-details .description::-webkit-scrollbar-track {
             background: #e0e0e0;
             border-radius: 5px;
         }
-        .product-details p:first-of-type::-webkit-scrollbar-thumb {
+        .product-details .description::-webkit-scrollbar-thumb {
             background: #A9A34C;
             border-radius: 5px;
         }
-        .product-details p:first-of-type::-webkit-scrollbar-thumb:hover {
-            background: #8e8a3f;
+        .product-details .articul {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #000000;
+            margin: 5px 0;
+        }
+        .product-details .price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #000000;
+            margin: 5px 0;
         }
         .product-details a {
             color: #ffffff;
@@ -247,21 +256,25 @@
         .add-to-favorites:hover {
             background-color: #8e8a3f;
         }
+        
         .no-results {
             text-align: center;
             font-size: 1.2em;
-            color: white;
-            padding: 40px;
-            background-color: rgba(0,0,0,0.6);
+            color: #333;
+            padding: 60px;
+            background: white;
             border-radius: 10px;
-            margin: 20px;
+            margin: 40px auto;
+            max-width: 500px;
         }
+        
         /* Футер */
         footer {
-            background-color: #000;
+            background-color: #000000;
             color: white;
             text-align: center;
             padding: 20px;
+            margin-top: 40px;
         }
         footer .social-links {
             text-align: center;
@@ -307,7 +320,8 @@
         footer .social-buttons a i {
             font-size: 1.2em;
         }
-        /* Адаптивність */
+        
+        /* Адаптивність (як на сторінці одягу) */
         @media (max-width: 1250px) {
             .results-grid {
                 grid-template-columns: repeat(3, 285px);
@@ -325,8 +339,16 @@
             .carousel-prev, .carousel-next {
                 display: none;
             }
-            .product-details p:first-of-type {
+            .product-details .description {
                 height: 75px;
+            }
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-container input, .search-container button {
+                width: 100%;
+                max-width: 280px;
             }
         }
     </style>
@@ -383,7 +405,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Функція додавання в обране
+        // Функція додавання в обране (оновлена з перевіркою на дублікати)
         window.addToFavorites = async function(id, title, image, link) {
             if (!auth.currentUser) {
                 alert('Будь ласка, увійдіть до облікового запису.');
@@ -412,75 +434,56 @@
                 });
                 alert('✅ Товар додано до обраного!');
             } catch (error) {
-                console.error('Помилка додавання:', error);
+                console.error('Помилка:', error);
                 alert('❌ Помилка: ' + error.message);
             }
         };
 
         // ========== Логіка пошуку ==========
         const urlParams = new URLSearchParams(window.location.search);
-        const query = urlParams.get('q') || '';
+        const queryParam = urlParams.get('q') || '';
         const searchInput = document.getElementById('searchInput');
-        
-        if (query) {
-            searchInput.value = decodeURIComponent(query);
-            // Виконуємо пошук після завантаження сторінки
-            window.addEventListener('DOMContentLoaded', function() {
-                performSearch();
-            });
+        if (queryParam) {
+            searchInput.value = decodeURIComponent(queryParam);
+            performSearch();
         }
 
         // Очищення запиту від слів "арт", "артикул"
         function cleanSearchTerm(term) {
-            if (!term) return '';
             return term.replace(/\b(арт\.?|артикул)\b/gi, '').replace(/[^\w\d]/g, '').trim();
         }
 
         async function performSearch() {
             const rawTerm = searchInput.value.trim().toLowerCase();
-            const container = document.getElementById('resultsContainer');
-            
             if (!rawTerm) {
-                container.innerHTML = '<p class="no-results">Введіть запит для пошуку</p>';
+                document.getElementById('resultsContainer').innerHTML = '<div class="no-results">Введіть запит для пошуку</div>';
                 return;
             }
 
             const cleanTerm = cleanSearchTerm(rawTerm);
-            
-            // Показуємо індикатор завантаження
-            container.innerHTML = '<p class="no-results">Пошук...</p>';
 
             try {
-                // Додаємо timestamp щоб уникнути кешування
-                const response = await fetch('products.json?v=' + Date.now());
-                if (!response.ok) {
-                    throw new Error('HTTP ' + response.status);
-                }
+                const response = await fetch('products.json');
+                if (!response.ok) throw new Error('Не вдалося завантажити товари');
                 const products = await response.json();
-                
-                console.log('Завантажено товарів:', products.length);
-                console.log('Пошуковий запит:', rawTerm, 'Очищений:', cleanTerm);
 
                 const results = products.filter(product => {
-                    if (!product.articul && !product.title) return false;
-                    
                     const articulMatch = cleanTerm && product.articul && product.articul.toLowerCase().includes(cleanTerm);
                     const titleMatch = product.title && product.title.toLowerCase().includes(rawTerm);
                     return articulMatch || titleMatch;
                 });
 
-                console.log('Знайдено товарів:', results.length);
                 displayResults(results);
             } catch (error) {
                 console.error('Помилка завантаження товарів:', error);
-                container.innerHTML = '<p class="no-results">Помилка завантаження даних: ' + error.message + '</p>';
+                document.getElementById('resultsContainer').innerHTML = '<div class="no-results">Помилка завантаження даних</div>';
             }
         }
 
         function displayResults(products) {
             const container = document.getElementById('resultsContainer');
             if (products.length === 0) {
-                container.innerHTML = '<p class="no-results">Нічого не знайдено</p>';
+                container.innerHTML = '<div class="no-results">Нічого не знайдено 😔<br>Спробуйте змінити запит</div>';
                 return;
             }
 
@@ -495,7 +498,7 @@
 
                 let imagesHtml = '';
                 images.forEach((img, index) => {
-                    imagesHtml += `<img alt="${title.replace(/"/g, '&quot;')}" class="carousel-image ${index === 0 ? 'active' : ''}" src="${img}" onerror="this.src='placeholder.jpg'">`;
+                    imagesHtml += `<img alt="${title}" class="carousel-image ${index === 0 ? 'active' : ''}" src="${img}" onerror="this.src='placeholder.jpg'">`;
                 });
 
                 let indicatorsHtml = '';
@@ -503,27 +506,26 @@
                     indicatorsHtml += `<span class="indicator ${index === 0 ? 'active' : ''}"></span>`;
                 });
 
-                const escapedTitle = title.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                const escapedTitle = title.replace(/'/g, "\\'");
+                const escapedDescription = description.replace(/'/g, "\\'").replace(/"/g, '&quot;');
 
                 html += `
-                    <div class="product-card" data-articul="${articul.replace(/"/g, '&quot;')}">
+                    <div class="product-card" data-articul="${articul}">
                         <div class="product-image-carousel">
                             <div class="carousel-container">
                                 ${imagesHtml}
-                                <button class="carousel-prev">←</button>
+                                ${images.length > 1 ? `<button class="carousel-prev">←</button>
                                 <button class="carousel-next">→</button>
-                                <div class="carousel-indicators">
-                                    ${indicatorsHtml}
-                                </div>
+                                <div class="carousel-indicators">${indicatorsHtml}</div>` : ''}
                             </div>
                         </div>
                         <div class="product-details">
-                            <h3>${title}</h3>
-                            <p>${description}</p>
-                            <p class="articul">арт. ${articul}</p>
-                            <p class="price">${price}</p>
+                            <h3>${escapeHtml(title)}</h3>
+                            <div class="description">${escapeHtml(description)}</div>
+                            <p class="articul">арт. ${escapeHtml(articul)}</p>
+                            <p class="price">${escapeHtml(price)}</p>
                             <a href="${link}" target="_blank">Купити на AliExpress</a>
-                            <button class="add-to-favorites" onclick="addToFavorites('${articul.replace(/'/g, "\\'")}', '${escapedTitle}', '${images[0]}', '${link.replace(/'/g, "\\'")}')">Додати до обраного</button>
+                            <button class="add-to-favorites" onclick="addToFavorites('${escapeHtml(articul)}', '${escapedTitle}', '${images[0]}', '${link}')">Додати до обраного</button>
                         </div>
                     </div>
                 `;
@@ -532,10 +534,25 @@
             container.innerHTML = html;
             initCarousels();
         }
+        
+        // Функція захисту від XSS
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+                return c;
+            });
+        }
 
         function initCarousels() {
             document.querySelectorAll('.product-image-carousel').forEach(carousel => {
                 const images = carousel.querySelectorAll('.carousel-image');
+                if (images.length <= 1) return;
+                
                 const indicators = carousel.querySelectorAll('.indicator');
                 const prevButton = carousel.querySelector('.carousel-prev');
                 const nextButton = carousel.querySelector('.carousel-next');
@@ -545,9 +562,11 @@
                     images.forEach((img, index) => {
                         img.classList.toggle('active', index === currentIndex);
                     });
-                    indicators.forEach((indicator, index) => {
-                        indicator.classList.toggle('active', index === currentIndex);
-                    });
+                    if (indicators.length) {
+                        indicators.forEach((indicator, index) => {
+                            indicator.classList.toggle('active', index === currentIndex);
+                        });
+                    }
                 }
 
                 if (prevButton) {
@@ -566,14 +585,17 @@
                     });
                 }
 
-                indicators.forEach((indicator, index) => {
-                    indicator.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        currentIndex = index;
-                        updateCarousel();
+                if (indicators.length) {
+                    indicators.forEach((indicator, index) => {
+                        indicator.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            currentIndex = index;
+                            updateCarousel();
+                        });
                     });
-                });
+                }
 
+                // Свайп для мобільних пристроїв
                 let touchStartX = 0, touchEndX = 0;
                 carousel.addEventListener('touchstart', (e) => {
                     touchStartX = e.changedTouches[0].screenX;
@@ -591,6 +613,7 @@
             });
         }
 
+        // Пошук по Enter
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 performSearch();

@@ -323,7 +323,7 @@
         <a class="logout-link" href="#" id="logoutLink">Вийти</a>
         <div class="search-container">
             <input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
-            <button onclick="searchProducts()">Пошук</button>
+            <button onclick="redirectToSearch()">Пошук</button>
         </div>
     </header>
     <div class="products" id="favoritesList">
@@ -518,32 +518,20 @@
                 .replace(/'/g, '&#39;');
         }
 
-        window.searchProducts = function() {
-            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
-            const products = document.querySelectorAll('.product-card');
-
-            if (!searchInput) {
-                products.forEach(product => {
-                    product.style.display = 'flex';
-                });
-                return;
+        // Функція перенаправлення на сторінку пошуку (як на mens-clothing_page_1.html)
+        window.redirectToSearch = function() {
+            const searchInput = document.getElementById('searchInput').value.trim();
+            if (searchInput) {
+                window.location.href = `search.html?q=${encodeURIComponent(searchInput)}`;
+            } else {
+                alert('Введіть запит для пошуку');
             }
-
-            products.forEach(product => {
-                const articul = product.getAttribute('data-articul')?.toLowerCase() || '';
-                const title = product.getAttribute('data-title')?.toLowerCase() || '';
-                
-                if (articul.includes(searchInput) || title.includes(searchInput)) {
-                    product.style.display = 'flex';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
         };
 
+        // Пошук по Enter
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                searchProducts();
+                redirectToSearch();
             }
         });
     </script>

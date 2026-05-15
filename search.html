@@ -82,7 +82,7 @@
             background-color: #e55a5a;
         }
         
-        /* СІТКА ТОВАРІВ - 4 КАРТКИ В РЯД (як на сторінці одягу) */
+        /* СІТКА ТОВАРІВ - 4 КАРТКИ В РЯД */
         .search-results {
             margin: 20px auto;
             padding: 20px 10px;
@@ -96,7 +96,7 @@
             margin: 0 auto;
         }
         
-        /* ФІКСОВАНИЙ РОЗМІР КАРТКИ 285px × 555px (як на сторінці одягу) */
+        /* ФІКСОВАНИЙ РОЗМІР КАРТКИ 285px × 555px */
         .product-card {
             box-sizing: border-box;
             background-color: white;
@@ -321,7 +321,7 @@
             font-size: 1.2em;
         }
         
-        /* Адаптивність (як на сторінці одягу) */
+        /* Адаптивність */
         @media (max-width: 1250px) {
             .results-grid {
                 grid-template-columns: repeat(3, 285px);
@@ -405,8 +405,10 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Функція додавання в обране (оновлена з перевіркою на дублікати)
+        // Функція додавання в обране (ПОВНІСТЮ як на mens-clothing_page_1.html)
         window.addToFavorites = async function(id, title, image, link) {
+            console.log("addToFavorites викликано:", {id, title, image, link});
+            
             if (!auth.currentUser) {
                 alert('Будь ласка, увійдіть до облікового запису.');
                 window.location.href = 'login.html';
@@ -414,6 +416,7 @@
             }
             
             try {
+                // Перевіряємо чи вже є товар в обраних
                 const q = query(collection(db, 'favorites'), 
                     where('userId', '==', auth.currentUser.uid),
                     where('id', '==', id));
@@ -424,6 +427,7 @@
                     return;
                 }
                 
+                // Додаємо товар до обраних
                 await addDoc(collection(db, 'favorites'), {
                     userId: auth.currentUser.uid,
                     id: id,
@@ -433,11 +437,21 @@
                     addedAt: new Date().toISOString()
                 });
                 alert('✅ Товар додано до обраного!');
+                console.log("Товар успішно додано!");
             } catch (error) {
-                console.error('Помилка:', error);
+                console.error('Помилка додавання:', error);
                 alert('❌ Помилка: ' + error.message);
             }
         };
+
+        // Перевірка статусу авторизації (для відладки)
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("Користувач авторизований:", user.email);
+            } else {
+                console.log("Користувач не авторизований");
+            }
+        });
 
         // ========== Логіка пошуку ==========
         const urlParams = new URLSearchParams(window.location.search);
@@ -502,15 +516,18 @@
                 });
 
                 let indicatorsHtml = '';
-                images.forEach((_, index) => {
-                    indicatorsHtml += `<span class="indicator ${index === 0 ? 'active' : ''}"></span>`;
-                });
+                if (images.length > 1) {
+                    images.forEach((_, index) => {
+                        indicatorsHtml += `<span class="indicator ${index === 0 ? 'active' : ''}"></span>`;
+                    });
+                }
 
-                const escapedTitle = title.replace(/'/g, "\\'");
-                const escapedDescription = description.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                // Екрануємо спеціальні символи для onclick
+                const escapedTitle = title.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                const escapedArticul = articul.replace(/'/g, "\\'");
 
                 html += `
-                    <div class="product-card" data-articul="${articul}">
+                    <div class="product-card" data-articul="${escapeHtml(articul)}">
                         <div class="product-image-carousel">
                             <div class="carousel-container">
                                 ${imagesHtml}
@@ -538,14 +555,12 @@
         // Функція захисту від XSS
         function escapeHtml(str) {
             if (!str) return '';
-            return str.replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-                return c;
-            });
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
         }
 
         function initCarousels() {

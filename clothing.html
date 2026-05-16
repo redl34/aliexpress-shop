@@ -123,15 +123,15 @@
             background-color: #e55a5a;
         }
         
+        /* КАТЕГОРІЇ - ВЕРТИКАЛЬНЕ РОЗТАШУВАННЯ У СТОВПЧИК ПО ЦЕНТРУ */
         .category-buttons {
-            max-width: 1250px;
+            max-width: 350px;
             margin: 20px auto;
             padding: 20px 15px;
             display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 20px;
         }
         
@@ -147,7 +147,8 @@
             text-align: center;
             transition: background-color 0.2s, transform 0.2s;
             font-weight: bold;
-            min-width: 180px;
+            width: 100%;
+            max-width: 280px;
         }
         
         .category-button:hover {
@@ -239,14 +240,14 @@
             }
             
             .category-buttons {
-                gap: 15px;
                 padding: 20px 10px;
+                gap: 15px;
             }
             
             .category-button {
                 padding: 12px 25px;
                 font-size: 1em;
-                min-width: 160px;
+                max-width: 260px;
             }
             
             footer .social-buttons {
@@ -261,19 +262,6 @@
                 font-size: 0.85rem;
                 min-width: 120px;
                 justify-content: center;
-            }
-        }
-        
-        @media (max-width: 550px) {
-            .category-buttons {
-                flex-direction: column;
-                align-items: stretch;
-                max-width: 300px;
-            }
-            
-            .category-button {
-                width: 100%;
-                min-width: auto;
             }
         }
         
@@ -298,9 +286,15 @@
                 justify-content: center;
             }
             
+            .category-buttons {
+                max-width: 280px;
+                gap: 12px;
+            }
+            
             .category-button {
                 padding: 12px 20px;
                 font-size: 0.95em;
+                max-width: 240px;
             }
             
             footer .social-buttons {

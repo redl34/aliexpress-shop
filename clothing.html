@@ -2,25 +2,42 @@
 <html lang="uk">
 <head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" name="viewport"/>
     <title>Одяг - Ali.Reed</title>
-     <link href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png" rel="icon" type="image/png"/>
-     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://raw.githubusercontent.com/redl34/aliexpress-shop/main/Oformlennya_imeg/AliShopik.png" rel="icon" type="image/png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        /* ===== БАЗОВІ СТИЛІ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #3E717A;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
+        
         header {
             background: url('Oformlennya_imeg/clothing.jpg') no-repeat center center/cover;
             color: white;
             text-align: center;
-            padding: 120px 20px;
+            padding: 80px 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             position: relative;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
         }
         header::before {
             content: '';
@@ -35,79 +52,109 @@
         header h1 {
             position: relative;
             z-index: 2;
-            margin: 0;
-            font-size: 2.5em;
+            margin: 0 0 20px 0;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            word-break: break-word;
+            padding: 0 10px;
         }
-        header .home-link, header .profile-link {
+        
+        /* Контейнер для кнопок */
+        .buttons-container {
             position: relative;
             z-index: 2;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 0 15px;
+        }
+        
+        header .home-link, header .profile-link {
             color: white;
             text-decoration: none;
-            font-size: 1.2em;
-            display: inline-block;
-            margin: 10px 20px;
+            font-size: 1.1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             padding: 10px 20px;
             background-color: #ff6b6b;
             border-radius: 5px;
+            transition: background-color 0.2s;
         }
         header .home-link:hover, header .profile-link:hover {
             background-color: #e55a5a;
             text-decoration: none;
         }
+        
         .search-container {
             position: relative;
             z-index: 2;
             margin: 20px auto;
             max-width: 500px;
+            width: 100%;
             display: flex;
             gap: 10px;
+            padding: 0 15px;
+            box-sizing: border-box;
         }
         .search-container input {
             flex-grow: 1;
-            padding: 10px;
+            padding: 12px;
             font-size: 1em;
             border: 1px solid #ddd;
             border-radius: 5px;
             outline: none;
+            min-width: 0;
         }
         .search-container button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: #ff6b6b;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
+            font-weight: bold;
+            white-space: nowrap;
         }
         .search-container button:hover {
             background-color: #e55a5a;
         }
+        
         .category-buttons {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 20px auto;
-            padding: 20px;
+            padding: 20px 15px;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
             gap: 20px;
         }
+        
         .category-button {
             padding: 15px 30px;
             background-color: #ff6b6b;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1.1em;
             text-decoration: none;
             text-align: center;
-            width: 100%;
-            max-width: 300px;
+            transition: background-color 0.2s, transform 0.2s;
+            font-weight: bold;
+            min-width: 180px;
         }
+        
         .category-button:hover {
             background-color: #e55a5a;
+            transform: translateY(-2px);
         }
+        
         footer {
             background-color: #000000;
             color: white;
@@ -116,6 +163,8 @@
             position: relative;
             bottom: 0;
             width: 100%;
+            margin-top: auto;
+            overflow-x: hidden;
         }
         footer .social-links {
             text-align: center;
@@ -129,6 +178,8 @@
             justify-content: center;
             gap: 15px;
             margin-top: 10px;
+            flex-wrap: wrap;
+            padding: 0 15px;
         }
         footer .social-buttons a {
             display: flex;
@@ -160,25 +211,107 @@
         footer .social-buttons a i {
             font-size: 1.2em;
         }
+        
+        /* ===== АДАПТАЦІЯ ДЛЯ РІЗНИХ РОЗМІРІВ ЕКРАНУ ===== */
         @media (max-width: 768px) {
+            .buttons-container {
+                gap: 10px;
+            }
+            
+            header .home-link, header .profile-link {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            
             .search-container {
                 flex-direction: column;
                 align-items: center;
+                padding: 0 10px;
             }
-            .search-container input {
+            
+            .search-container input, .search-container button {
                 width: 100%;
+                max-width: 280px;
             }
+            
             .search-container button {
-                width: 100%;
-                max-width: 200px;
+                white-space: normal;
             }
+            
+            .category-buttons {
+                gap: 15px;
+                padding: 20px 10px;
+            }
+            
+            .category-button {
+                padding: 12px 25px;
+                font-size: 1em;
+                min-width: 160px;
+            }
+            
+            footer .social-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+            
+            footer .social-buttons a {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+                min-width: 120px;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 550px) {
+            .category-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                max-width: 300px;
+            }
+            
+            .category-button {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 60px 15px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            header .home-link, header .profile-link {
+                width: 90%;
+                max-width: 200px;
+                justify-content: center;
+            }
+            
+            .category-button {
+                padding: 12px 20px;
+                font-size: 0.95em;
+            }
+            
             footer .social-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 10px;
             }
+            
             footer .social-buttons a {
                 width: 100%;
-                max-width: 200px;
+                max-width: 180px;
                 justify-content: center;
             }
         }
@@ -190,18 +323,20 @@
 <body>
     <header>
         <h1>Одяг</h1>
-        <a class="home-link" href="index.html">Повернутися на головну</a>
-        <a class="profile-link" href="#" id="profileLink">Мій профіль</a>
+        <div class="buttons-container">
+            <a class="home-link" href="index.html"><i class="fas fa-home"></i> Головна</a>
+            <a class="profile-link" href="#" id="profileLink"><i class="fas fa-user"></i> Мій профіль</a>
+        </div>
         <div class="search-container">
             <input id="searchInput" placeholder="Введіть артикул або назву товару" type="text"/>
             <button onclick="redirectToSearch()">Пошук</button>
         </div>
     </header>
     <div class="category-buttons">
-        <a href="mens-clothing_page_1.html" class="category-button">Чоловічий одяг</a>
-        <a href="women's-clothing_page_1.html" class="category-button">Жіночий одяг</a>
-        <a href="footwear_page_1.html" class="category-button">Взуття</a>
-        <a href="miscellaneous_page_1.html" class="category-button">Різне</a>
+        <a href="mens-clothing_page_1.html" class="category-button"><i class="fas fa-male"></i> Чоловічий одяг</a>
+        <a href="women's-clothing_page_1.html" class="category-button"><i class="fas fa-female"></i> Жіночий одяг</a>
+        <a href="footwear_page_1.html" class="category-button"><i class="fas fa-shoe-prints"></i> Взуття</a>
+        <a href="miscellaneous_page_1.html" class="category-button"><i class="fas fa-tshirt"></i> Різне</a>
     </div>
     <footer>
         <div class="social-links">
@@ -236,14 +371,14 @@
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 profileLink.href = 'profile.html';
-                profileLink.textContent = 'Мій профіль';
+                profileLink.innerHTML = '<i class="fas fa-user"></i> Мій профіль';
             } else {
                 profileLink.href = 'login.html';
-                profileLink.textContent = 'Увійти';
+                profileLink.innerHTML = '<i class="fas fa-sign-in-alt"></i> Увійти';
             }
         });
 
-        // ========== НОВА ФУНКЦІЯ ПОШУКУ (перенаправлення на search.html) ==========
+        // Функція пошуку (перенаправлення на search.html)
         window.redirectToSearch = function() {
             const searchInput = document.getElementById('searchInput').value.trim();
             if (searchInput) {

@@ -100,7 +100,7 @@
     "articul": "0008A",
     "title": "Ароматичний дифузор Медуза",
     "description": "Новий обертовий ароматичний дифузор медузи для дому на робочому столі зволожувач свіжого повітря з барвистим дифузором навколишнього світла",
-    "price": "1041.56 грн",
+    "price": "45.00 грн",
     "images": [
       "Electronics_imeg/0008A1.jpg",
       "Electronics_imeg/0008A2.jpg",
@@ -125,20 +125,6 @@
     "sourceFile": "garden_page_1.html"
   },
   {
-    "articul": "0009A",
-    "title": "Безпровідні навушники XIAOMI",
-    "description": "XIAOMI Air 7 Bluetooth 5.3 TWS Гарнітура HiFi Бездротові навушники з мікрофоном та шумозаглушенням Навушники Водонепроникні",
-    "price": "307.37 грн",
-    "images": [
-      "Electronics_imeg/0009A1.jpg",
-      "Electronics_imeg/0009A2.jpg",
-      "Electronics_imeg/0009A3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3ZYlgEt",
-    "category": "electronics",
-    "sourceFile": "electronics_page_1.html"
-  },
-  {
     "articul": "0009C",
     "title": "Мікрокультиватор",
     "description": "Ручний мікрокультиватор сільськогосподарського саду багатофункціональний легкий роторний культиватор для квітників",
@@ -151,20 +137,6 @@
     "link": "https://s.click.aliexpress.com/e/_c31bP4Db",
     "category": "garden",
     "sourceFile": "garden_page_1.html"
-  },
-  {
-    "articul": "0010A",
-    "title": "Вентилятор",
-    "description": "Модернізований турбопотужний вентилятор високошвидкісний повітряний вентилятор універсальний безщітковий пилозбірник з комплектом для пилососа міні-турбоструминний вентилятор",
-    "price": "846.92 грн",
-    "images": [
-      "Electronics_imeg/0010A1.jpg",
-      "Electronics_imeg/0010A2.jpg",
-      "Electronics_imeg/0010A3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c2zSg4yV",
-    "category": "electronics",
-    "sourceFile": "electronics_page_1.html"
   },
   {
     "articul": "0010C",

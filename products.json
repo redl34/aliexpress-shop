@@ -1,5 +1,19 @@
 [
   {
+    "articul": "0001A",
+    "title": "Міні-зволожувач повітря",
+    "description": "250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою",
+    "price": "286.93 грн",
+    "images": [
+      "Electronics_imeg/0001A1.jpg",
+      "Electronics_imeg/0001A2.jpg",
+      "Electronics_imeg/0001A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4bAx3hF",
+    "category": "electronics",
+    "sourceFile": "electronics_page_1.html"
+  },
+  {
     "articul": "0001C",
     "title": "Дитячий ігровий будиночок",
     "description": "Дитячий ігровий будиночок на відкритому повітрі, гірка, будиночок на дереві для дітей, мобільна альтанка для саду, дерев'яний будинок",
@@ -17,7 +31,7 @@
     "articul": "0002A",
     "title": "Зволожувач повітря",
     "description": "Зволожувач повітря з ефірними оліями, зволожувачі повітря для дому, ароматичний зволожувач, полум'я, автоматичний ароматичний дифузор зі світлодіодним пультом дистанційного керування",
-    "price": "1.129 грн",
+    "price": "939.04 грн",
     "images": [
       "Electronics_imeg/0002A1.jpg",
       "Electronics_imeg/0002A2.jpg",
@@ -42,6 +56,20 @@
     "sourceFile": "garden_page_1.html"
   },
   {
+    "articul": "0003A",
+    "title": "Зволожувач повітря Полум'я",
+    "description": "Полум'я Ароматний зволожувач повітря Міні USB Ефірна олія Дифузор з пультом дистанційного керування та легким вогнем Ароматерапія Аромат Дифузор",
+    "price": "1002.93 грн",
+    "images": [
+      "Electronics_imeg/0003A1.jpg",
+      "Electronics_imeg/0003A2.jpg",
+      "Electronics_imeg/0003A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3X6hOg9",
+    "category": "electronics",
+    "sourceFile": "electronics_page_1.html"
+  },
+  {
     "articul": "0003C",
     "title": "Прикраса для саду Сніговик",
     "description": "Сонячне освітлення для саду, патіо, гірлянди, садових прикрас, критий, відкритий, святковий, фестиваль, світлодіодний, фея, сніговик, Різдво",
@@ -59,7 +87,7 @@
     "articul": "0004A",
     "title": "Зволожувач повітря Медуза",
     "description": "Динамічний зволожувач повітря з медузою 250 мл дифузор ефірних олій з дистанційним керуванням для спальні з 7 барвистими нічними вогнями",
-    "price": "1.294 грн",
+    "price": "1047.87 грн",
     "images": [
       "Electronics_imeg/0004A1.jpg",
       "Electronics_imeg/0004A2.jpg",
@@ -84,6 +112,20 @@
     "sourceFile": "garden_page_1.html"
   },
   {
+    "articul": "0005A",
+    "title": "Зволожувач повітря Полум'я",
+    "description": "Імітація полум'я Ароматизатор Дифузор Багаття Зволожувач повітря Ультразвуковий Прохолодний Туман Maker Fogger Світлодіодна лампа Ефірна олія Дифузор",
+    "price": "662.34 грн",
+    "images": [
+      "Electronics_imeg/0005A1.jpg",
+      "Electronics_imeg/0005A2.jpg",
+      "Electronics_imeg/0005A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3CZaJXf",
+    "category": "electronics",
+    "sourceFile": "electronics_page_1.html"
+  },
+  {
     "articul": "0005C",
     "title": "Світильник садовий Зайчення",
     "description": "Садові сонячні вуличні статуї кролика світловий кролик з метеликом та 7-кольоровою лампою для зміни кольору патіо пасхальна прикраса для балкону газону",
@@ -101,7 +143,7 @@
     "articul": "0006A",
     "title": "Зволожувач повітря Багаття",
     "description": "Зволожувач повітря багаття, дифузор з кристалічною сіллю, ароматерапія, ультразвуковий дифузор з ефірними оліями, зволожувач повітря з прохолодним туманом для спальні",
-    "price": "1.142 грн",
+    "price": "773.46 грн",
     "images": [
       "Electronics_imeg/0006A1.jpg",
       "Electronics_imeg/0006A2.jpg",
@@ -129,7 +171,7 @@
     "articul": "0007A",
     "title": "Зволожувач повітря Дощ",
     "description": "Арома-зволожувач повітря зволожувач дощу барвисте світло білий шум ефірні олії дифузор домашній ультразвуковий аромат дифузор",
-    "price": "1.360 грн",
+    "price": "1158.87 грн",
     "images": [
       "Electronics_imeg/0007A1.jpg",
       "Electronics_imeg/0007A2.jpg",
@@ -156,7 +198,7 @@
     "articul": "0008A",
     "title": "Ароматичний дифузор Медуза",
     "description": "Новий обертовий ароматичний дифузор медузи для дому на робочому столі зволожувач свіжого повітря з барвистим дифузором навколишнього світла",
-    "price": "1.294 грн",
+    "price": "1041.56 грн",
     "images": [
       "Electronics_imeg/0008A1.jpg",
       "Electronics_imeg/0008A2.jpg",
@@ -181,6 +223,20 @@
     "sourceFile": "garden_page_1.html"
   },
   {
+    "articul": "0009A",
+    "title": "Безпровідні навушники XIAOMI",
+    "description": "XIAOMI Air 7 Bluetooth 5.3 TWS Гарнітура HiFi Бездротові навушники з мікрофоном та шумозаглушенням Навушники Водонепроникні",
+    "price": "307.37 грн",
+    "images": [
+      "Electronics_imeg/0009A1.jpg",
+      "Electronics_imeg/0009A2.jpg",
+      "Electronics_imeg/0009A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3ZYlgEt",
+    "category": "electronics",
+    "sourceFile": "electronics_page_1.html"
+  },
+  {
     "articul": "0009C",
     "title": "Мікрокультиватор",
     "description": "Ручний мікрокультиватор сільськогосподарського саду багатофункціональний легкий роторний культиватор для квітників",
@@ -193,6 +249,20 @@
     "link": "https://s.click.aliexpress.com/e/_c31bP4Db",
     "category": "garden",
     "sourceFile": "garden_page_1.html"
+  },
+  {
+    "articul": "0010A",
+    "title": "Вентилятор",
+    "description": "Модернізований турбопотужний вентилятор високошвидкісний повітряний вентилятор універсальний безщітковий пилозбірник з комплектом для пилососа міні-турбоструминний вентилятор",
+    "price": "846.92 грн",
+    "images": [
+      "Electronics_imeg/0010A1.jpg",
+      "Electronics_imeg/0010A2.jpg",
+      "Electronics_imeg/0010A3.jpg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c2zSg4yV",
+    "category": "electronics",
+    "sourceFile": "electronics_page_1.html"
   },
   {
     "articul": "0010C",
@@ -5060,7 +5130,7 @@
     "articul": "0247B",
     "title": "Міні зволожувач повітря",
     "description": "250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою",
-    "price": "58.55 грн",
+    "price": "76.54 грн",
     "images": [
       "Electronics_imeg/0247B1.jpg",
       "Electronics_imeg/0247B2.jpg",

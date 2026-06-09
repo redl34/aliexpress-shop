@@ -3,7 +3,7 @@
     "articul": "0001C",
     "title": "Дитячий ігровий будиночок",
     "description": "Дитячий ігровий будиночок на відкритому повітрі, гірка, будиночок на дереві для дітей, мобільна альтанка для саду, дерев'яний будинок",
-    "price": "19686.87 грн",
+    "price": "21 752,34 грн",
     "images": [
       "Garden_imeg/0001C1.jpg",
       "Garden_imeg/0001C2.jpg",
@@ -28,34 +28,6 @@
     "sourceFile": "electronics_page_1.html"
   },
   {
-    "articul": "0002C",
-    "title": "Годівниця для птахів",
-    "description": "Вінтажна металева годівниця для птахів у формі метелика, підвісна ванна для птахів та декор для саду",
-    "price": "637.21 грн",
-    "images": [
-      "Garden_imeg/0002C1.jpg",
-      "Garden_imeg/0002C2.jpg",
-      "Garden_imeg/0002C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3nrNaE9",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
-    "articul": "0003C",
-    "title": "Прикраса для саду Сніговик",
-    "description": "Сонячне освітлення для саду, патіо, гірлянди, садових прикрас, критий, відкритий, святковий, фестиваль, світлодіодний, фея, сніговик, Різдво",
-    "price": "445.26 грн",
-    "images": [
-      "Garden_imeg/0003C1.jpg",
-      "Garden_imeg/0003C2.jpg",
-      "Garden_imeg/0003C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3f41y8v",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0004A",
     "title": "Зволожувач повітря Медуза",
     "description": "Динамічний зволожувач повітря з медузою 250 мл дифузор ефірних олій з дистанційним керуванням для спальні з 7 барвистими нічними вогнями",
@@ -70,24 +42,10 @@
     "sourceFile": "electronics_page_1.html"
   },
   {
-    "articul": "0004C",
-    "title": "Світильник Маяк",
-    "description": "Сонячний маяк, що обертається на 360 градусів, водонепроникні світлодіодні сонячні ліхтарі, огорожа для внутрішнього двору, сад, підсвічування статуй, прикраса газону",
-    "price": "810.39 грн",
-    "images": [
-      "Garden_imeg/0004C1.jpg",
-      "Garden_imeg/0004C2.jpg",
-      "Garden_imeg/0004C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c2yvQLX7",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0005C",
     "title": "Світильник садовий Зайчення",
     "description": "Садові сонячні вуличні статуї кролика світловий кролик з метеликом та 7-кольоровою лампою для зміни кольору патіо пасхальна прикраса для балкону газону",
-    "price": "806.26 грн",
+    "price": "942,18 грн",
     "images": [
       "Garden_imeg/0005C1.jpg",
       "Garden_imeg/0005C2.jpg",
@@ -112,20 +70,6 @@
     "sourceFile": "electronics_page_1.html"
   },
   {
-    "articul": "0006C",
-    "title": "Електричний сікатор",
-    "description": "30 мм бездротові електричні обрізки ножиці 2 передачі ручні безщіткові ножиці для різання гілок дерев електроінструменти для акумулятора Makita Pin",
-    "price": "1791.47 грн",
-    "images": [
-      "Garden_imeg/0006C1.jpg",
-      "Garden_imeg/0006C2.jpg",
-      "Garden_imeg/0006C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3dfVtOt",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0007A",
     "title": "Зволожувач повітря Дощ",
     "description": "Арома-зволожувач повітря зволожувач дощу барвисте світло білий шум ефірні олії дифузор домашній ультразвуковий аромат дифузор",
@@ -138,19 +82,6 @@
     "link": "https://s.click.aliexpress.com/e/_c4dJIJw5",
     "category": "electronics",
     "sourceFile": "electronics_page_1.html"
-  },
-  {
-    "articul": "0007C",
-    "title": "Садовий візок",
-    "description": "Сільськогосподарський садовий інструментальний візок зеленого завантаження, візок для зняття навантаження, пасторальний інструментальний візок, візок для зняття опалого листя, садовий візок",
-    "price": "2566.16 грн",
-    "images": [
-      "Garden_imeg/0007C1.jpg",
-      "Garden_imeg/0007C2.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c4TksWqN",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
   },
   {
     "articul": "0008A",
@@ -167,24 +98,10 @@
     "sourceFile": "electronics_page_1.html"
   },
   {
-    "articul": "0008C",
-    "title": "Садові ножиці",
-    "description": "Обрізка гілок ножиці з нержавіючої сталі з нековзною ручкою гостра садова обрізка фруктових дерев дуже гострі садові інструменти",
-    "price": "204.03 грн",
-    "images": [
-      "Garden_imeg/0008C1.jpg",
-      "Garden_imeg/0008C2.jpg",
-      "Garden_imeg/0008C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3X12rbT",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0009C",
     "title": "Мікрокультиватор",
     "description": "Ручний мікрокультиватор сільськогосподарського саду багатофункціональний легкий роторний культиватор для квітників",
-    "price": "12052.38 грн",
+    "price": "14 257,59 грн",
     "images": [
       "Garden_imeg/0009C1.jpg",
       "Garden_imeg/0009C2.jpg",
@@ -198,7 +115,7 @@
     "articul": "0010C",
     "title": "Садовий інструмент",
     "description": "Інструмент для садівничого мистецтва Delixi Horticultural Spade Flower Art Tool, що веде море, мала лопата, побутовий інструмент для садівничого мистецтва квітів",
-    "price": "494.16 грн",
+    "price": "506,83 грн",
     "images": [
       "Garden_imeg/0010C1.jpg",
       "Garden_imeg/0010C2.jpg",
@@ -209,24 +126,10 @@
     "sourceFile": "garden_page_1.html"
   },
   {
-    "articul": "0011C",
-    "title": "Машина для обв'язування рослин",
-    "description": "ALLSOME Машина для обв'язування рослин, садові рослини, стрічковий інструмент Tapener + 10 рулонів стрічки набір для овочів, винограду, помідорів, огірків, перцю, квітів",
-    "price": "1222.18 грн",
-    "images": [
-      "Garden_imeg/0011C1.jpg",
-      "Garden_imeg/0011C2.jpg",
-      "Garden_imeg/0011C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c33p88nJ",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0012C",
     "title": "Інструмент для обвязування рослин",
     "description": "Нові садові інструменти для обв'язування гілок помідорів, машина для обв'язування розсади, інструмент для обв'язування винограду, овочеві стрічки, домашній сад",
-    "price": "939.97 грн",
+    "price": "1 014,98 грн",
     "images": [
       "Garden_imeg/0012C1.jpg",
       "Garden_imeg/0012C2.jpg",
@@ -240,7 +143,7 @@
     "articul": "0013C",
     "title": "Система поливу",
     "description": "3-важільна регульована система поливу з автоматичним обертанням на 360° - водозберігаючий садовий інструмент для поливу газонів для великих подвір'їв та важких умов експлуатації",
-    "price": "216.07 грн",
+    "price": "186,50 грн",
     "images": [
       "Garden_imeg/0013C1.jpg",
       "Garden_imeg/0013C2.jpg",
@@ -254,7 +157,7 @@
     "articul": "0014C",
     "title": "Система поливу",
     "description": "Регульований розпилювач з автоматичним обертанням на 360° для газону, саду, сільського господарства, зрошення, економії води за допомогою швидкоз'єднувальної системи дощувальних систем",
-    "price": "265.38 грн",
+    "price": "210,64 грн",
     "images": [
       "Garden_imeg/0014C1.jpg",
       "Garden_imeg/0014C2.jpg",
@@ -268,7 +171,7 @@
     "articul": "0015C",
     "title": "Акамуляторна міні пила",
     "description": "Міні-бензопила VILASTING 4/6 дюймів Бездротова деревообробка Садова електрична пилка різання електроінструмент підходить для Dewalt/Milwaukee 18V акумуляторний контактний штифт",
-    "price": "2116.37 грн",
+    "price": "1 496,59 грн",
     "images": [
       "Garden_imeg/0015C1.jpg",
       "Garden_imeg/0015C2.jpg",
@@ -279,24 +182,10 @@
     "sourceFile": "garden_page_1.html"
   },
   {
-    "articul": "0016C",
-    "title": "Міні пила",
-    "description": "Makita 6 дюймів ланцюгова пилка бездротова бензопила для деревообробки електрична пилка ручна портативна лісозаготівельна бензопила електроінструменти",
-    "price": "977.71 грн",
-    "images": [
-      "Garden_imeg/0016C1.jpg",
-      "Garden_imeg/0016C2.jpg",
-      "Garden_imeg/0016C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c4onYQFB",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0017C",
     "title": "Міні пила",
     "description": "6-дюймова міні-літій-іонна електрична бензопила однією рукою портативна електрична пилка підходить для акумулятора Makita 18V",
-    "price": "1455.30 грн",
+    "price": "1 558,29 грн",
     "images": [
       "Garden_imeg/0017C1.jpg",
       "Garden_imeg/0017C2.jpg",
@@ -321,20 +210,6 @@
     "sourceFile": "mens-clothing_page_1.html"
   },
   {
-    "articul": "0018C",
-    "title": "Ножовка ручна садова",
-    "description": "Складана ручна пилка для зовнішнього використання для обрізки гілок дерев, кемпінгу, походів, ергономічної нековзної ручки",
-    "price": "162.83 грн",
-    "images": [
-      "Garden_imeg/0018C1.jpg",
-      "Garden_imeg/0018C2.jpg",
-      "Garden_imeg/0018C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3D2QCrr",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0019B",
     "title": "Спортивний комплект",
     "description": "Чоловічий повсякденний спортивний комплект з толстовки та спортивних штанів - чорний з білим принтом. Ідеальний вибір для активного відпочинку.",
@@ -352,7 +227,7 @@
     "articul": "0019C",
     "title": "Складна садова пилка",
     "description": "Складана ручна пилка компактного дизайну ручна пилка для дерев та кемпінгу обрізка пилки з твердими зубцями ножівка для саду інструменти для обрізки",
-    "price": "365.76 грн",
+    "price": "493,86 грн",
     "images": [
       "Garden_imeg/0019C1.jpg",
       "Garden_imeg/0019C2.jpg",
@@ -377,20 +252,6 @@
     "sourceFile": "mens-clothing_page_1.html"
   },
   {
-    "articul": "0020C",
-    "title": "Садова ножовка",
-    "description": "Садова ножовка. Зручний ручний садовий інструмент для обрізування гілок.",
-    "price": "468.16 грн",
-    "images": [
-      "Garden_imeg/0020C1.jpg",
-      "Garden_imeg/0020C2.jpg",
-      "Garden_imeg/0020C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3Bzb3yl",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0021B",
     "title": "Костюм EVERLAST",
     "description": "Чоловічий спортивний костюм, толстовка з капюшоном, спортивний одяг на відкритому повітрі, модний одяг.",
@@ -403,20 +264,6 @@
     "link": "https://s.click.aliexpress.com/e/_ooAb2yT",
     "category": "clothing",
     "sourceFile": "mens-clothing_page_1.html"
-  },
-  {
-    "articul": "0021C",
-    "title": "Пилка Wellhike",
-    "description": "Відкритий Складаний Ручний Пилка Багатофункціональний Портативний Ручний Пилка Кемпінг Швидкий Сталевий Бар Дика Дереворізальний Інструмент",
-    "price": "625.59 грн",
-    "images": [
-      "Garden_imeg/0021C1.jpg",
-      "Garden_imeg/0021C2.jpg",
-      "Garden_imeg/0021C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3LWcDf3",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
   },
   {
     "articul": "0022B",
@@ -436,7 +283,7 @@
     "articul": "0022C",
     "title": "Бур садовий",
     "description": "Садовий бур для земляних шнеків із запобіжним болтом та адаптером, бур для земляних робіт 800 мм для буріння пальових свердловин, земляних робіт, садового спірального бура",
-    "price": "2891.77 грн",
+    "price": "3 530,17 грн",
     "images": [
       "Garden_imeg/0022C1.jpg",
       "Garden_imeg/0022C2.jpg",
@@ -461,20 +308,6 @@
     "sourceFile": "mens-clothing_page_1.html"
   },
   {
-    "articul": "0023C",
-    "title": "Садовий ліхтар",
-    "description": "Сонячний імітація бамбукового ліхтаря зовнішній водонепроникний пластиковий ротанговий ліхтар для прикраси внутрішнього двору перезаряджається садовий ліхтар",
-    "price": "408.70 грн",
-    "images": [
-      "Garden_imeg/0023C1.jpg",
-      "Garden_imeg/0023C2.jpg",
-      "Garden_imeg/0023C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c4kD7e5F",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0024B",
     "title": "Толстовка",
     "description": "Чоловічі толстовки з капюшоном з довгими рукавами, светри Harajuku з капюшоном і O-подібним вирізом.",
@@ -492,7 +325,7 @@
     "articul": "0024C",
     "title": "Вуличний садовий ліхтар",
     "description": "Ліхтар-підвіс на сонячній енергії з лампочкою, підходить для прикраси садів, патіо, газонів та доріжок.",
-    "price": "311.49 грн",
+    "price": "557,95 грн",
     "images": [
       "Garden_imeg/0024C1.jpg",
       "Garden_imeg/0024C2.jpg",
@@ -520,7 +353,7 @@
     "articul": "0025C",
     "title": "Ручний міні інструмент для домашніх квітів",
     "description": "3 шт./лот міні-садові інструменти мала лопата граблі лопата дерев'яна ручка металева головка садові інструменти малий міні",
-    "price": "45.89 грн",
+    "price": "74,72 грн",
     "images": [
       "Garden_imeg/0025C1.jpg",
       "Garden_imeg/0025C2.jpg",
@@ -548,7 +381,7 @@
     "articul": "0026C",
     "title": "Садова сонячна гірлянда",
     "description": "7 м/12 м/22 м/32 м світлодіодні сонячні гірлянди фея вогні відкритий шлях гірлянди лампа патіо водонепроникний різдвяний весільний сад вуличні ліхтарі",
-    "price": "101.54 грн",
+    "price": "48,67 грн",
     "images": [
       "Garden_imeg/0026C1.jpg",
       "Garden_imeg/0026C2.jpg",
@@ -573,20 +406,6 @@
     "sourceFile": "mens-clothing_page_1.html"
   },
   {
-    "articul": "0027C",
-    "title": "Гірлянда садова у вигляді лійки",
-    "description": "Металевий ліхтар Сонячне світло для лійки - Вуличні водонепроникні душові ліхтарі для садових прикрас Світлодіодні декоративні ліхтарі казкового мистецтва",
-    "price": "491.60 грн",
-    "images": [
-      "Garden_imeg/0027C1.jpg",
-      "Garden_imeg/0027C2.jpg",
-      "Garden_imeg/0027C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3UhjJCl",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0028B",
     "title": "Чоловічі джинси",
     "description": "Чоловічі джинси Four Seasons, вільні довгі джинси, корейський стиль, прямі широкі штанини.",
@@ -604,7 +423,7 @@
     "articul": "0028C",
     "title": "Вулична сонячна гірлянда",
     "description": "1 шт. сонячна кришталева куля фея гірлянда 5M20L відкритий водонепроникний різдвяний декор кемпінг фея гірлянда садова вечірка",
-    "price": "100.30 грн",
+    "price": "48,67 грн",
     "images": [
       "Garden_imeg/0028C1.jpg",
       "Garden_imeg/0028C2.jpg",
@@ -632,7 +451,7 @@
     "articul": "0029C",
     "title": "Садове освітлення Фламінго",
     "description": "1/3PCS Фламінго Сонячне світло IP65 Водонепроникний Світлодіодний Світильник для Ландшафтного Наземного Світильника для Зовнішньої Доріжки Різдвяний Садовий Декор",
-    "price": "236.07 грн",
+    "price": "347,05 грн",
     "images": [
       "Garden_imeg/0029C1.jpg",
       "Garden_imeg/0029C2.jpg",
@@ -646,7 +465,7 @@
     "articul": "0030C",
     "title": "Ліхтар садовий",
     "description": "1 шт./2 упаковки. Шестигранний підвісний палацовий ліхтар на сонячній енергії, підходить для садів, внутрішніх дворів, газонів та доріжок на відкритому повітрі.",
-    "price": "129.76 грн",
+    "price": "234,43 грн",
     "images": [
       "Garden_imeg/0030C1.jpg",
       "Garden_imeg/0030C2.jpg",
@@ -660,7 +479,7 @@
     "articul": "0031C",
     "title": "Ліхтарик садовий",
     "description": "Сонячна кругла куля світлодіодна сонячна енергія світло відкритий водонепроникний сад прикраса двір газон вулиця куля наземний світильник",
-    "price": "87.70 грн",
+    "price": "193,24 грн",
     "images": [
       "Garden_imeg/0031C1.jpg",
       "Garden_imeg/0031C2.jpg",
@@ -674,7 +493,7 @@
     "articul": "0032C",
     "title": "Сонячний тротуарний ліхтар",
     "description": "10 шт. Сонячні вуличні ліхтарі садові ліхтарі сонячні лампи водонепроникні ландшафтні освітлення доріжки двір газон сад прикраса",
-    "price": "518.91 грн",
+    "price": "750,94 грн",
     "images": [
       "Garden_imeg/0032C1.jpg",
       "Garden_imeg/0032C2.jpg",

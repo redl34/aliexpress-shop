@@ -14,6 +14,20 @@
     "sourceFile": "electronics_page_1.html"
   },
   {
+    "articul": "0001B",
+    "title": "Класична футболка",
+    "description": "Футболка з високим коміром поло та коротким рукавом, суцільний колір,  бавовняна тканина",
+    "price": "710,58",
+    "images": [
+      "Men's_clothing_imeg/0001B1.jpeg",
+      "Men's_clothing_imeg/0001B2.jpeg",
+      "Men's_clothing_imeg/0001B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c2RyFTfx",
+    "category": "clothing",
+    "sourceFile": "womens-clothing_page_1.html"
+  },
+  {
     "articul": "0001C",
     "title": "Круті High-tops",
     "description": "Хайтопи для яскрвих вечірніх прогулянок для чоловікі, хацйтопи в який не тільки зручно ходити ай бігати також піднімають самоцінку до небес, щоб увас не було рівних.",

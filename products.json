@@ -70,6 +70,20 @@
     "sourceFile": "electronics_page_1.html"
   },
   {
+    "articul": "0003A",
+    "title": "Чоловічі штани",
+    "description": "Чоловічі штани для активного відпочинку, зкількома карманами, зручні повсякденні для активних",
+    "price": "1 028,18 грн",
+    "images": [
+      "Electronics_imeg/0003A1.jpeg",
+      "Electronics_imeg/0003A2.jpeg",
+      "Electronics_imeg/0003A3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4nwQbFF",
+    "category": "clothing",
+    "sourceFile": "mens-clothing_page_1.html"
+  },
+  {
     "articul": "0004A",
     "title": "Зволожувач повітря Медуза",
     "description": "Динамічний зволожувач повітря з медузою 250 мл дифузор ефірних олій з дистанційним керуванням для спальні з 7 барвистими нічними вогнями",

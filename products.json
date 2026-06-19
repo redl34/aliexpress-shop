@@ -70,6 +70,20 @@
     "sourceFile": "electronics_page_1.html"
   },
   {
+    "articul": "0002B",
+    "title": "Чоловічі джинси",
+    "description": "Члоловічі джинси нейтрального суцільного кольору вільні повсякденні модні кишенькові карго",
+    "price": "1 113,59 грн",
+    "images": [
+      "Men's_clothing_imeg/0002B1.jpeg",
+      "Men's_clothing_imeg/0002B2.jpeg",
+      "Men's_clothing_imeg/0002B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3GbPXkl",
+    "category": "clothing",
+    "sourceFile": "womens-clothing_page_1.html"
+  },
+  {
     "articul": "0003A",
     "title": "Чоловічі штани",
     "description": "Чоловічі штани для активного відпочинку, зкількома карманами, зручні повсякденні для активних",

@@ -15,6 +15,20 @@
   },
   {
     "articul": "0001B",
+    "title": "Куртка чоловіча",
+    "description": "Чоловіча ковбойська куртка у стилі дикого западу.",
+    "price": "1 515,16 грн",
+    "images": [
+      "Men's_clothing_imeg/0001B1.jpeg",
+      "Men's_clothing_imeg/0001B2.jpeg",
+      "Men's_clothing_imeg/0001B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3FRX2Rb",
+    "category": "clothing",
+    "sourceFile": "mens-clothing_page_1.html"
+  },
+  {
+    "articul": "0001B",
     "title": "Класична футболка",
     "description": "Футболка з високим коміром поло та коротким рукавом, суцільний колір,  бавовняна тканина",
     "price": "710,58",

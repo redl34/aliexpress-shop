@@ -31,7 +31,7 @@
     "articul": "0001B",
     "title": "Класична футболка",
     "description": "Футболка з високим коміром поло та коротким рукавом, суцільний колір,  бавовняна тканина",
-    "price": "710,58",
+    "price": "689,99 грн",
     "images": [
       "Men's_clothing_imeg/0001B1.jpeg",
       "Men's_clothing_imeg/0001B2.jpeg",
@@ -87,7 +87,7 @@
     "articul": "0002B",
     "title": "Чоловічі джинси",
     "description": "Члоловічі джинси нейтрального суцільного кольору вільні повсякденні модні кишенькові карго",
-    "price": "1 113,59 грн",
+    "price": "1 060,16 грн",
     "images": [
       "Men's_clothing_imeg/0002B1.jpeg",
       "Men's_clothing_imeg/0002B2.jpeg",
@@ -884,7 +884,7 @@
     "articul": "0054B",
     "title": "Жіноча шубка",
     "description": "Тепла жіноча шубка вільного крою.",
-    "price": "5 076,62 грн",
+    "price": "5 075,22 грн",
     "images": [
       "Women's_clothing_imeg/0054B1.jpg",
       "Women's_clothing_imeg/0054B2.jpg",
@@ -912,7 +912,7 @@
     "articul": "0055B",
     "title": "Жіноочі класичні штани",
     "description": "Жіночі штани елегантні офісні штани вільного крою повсякденний одяг широкі штани зручні жіночі штани на замовлення",
-    "price": "3 949,03 грн",
+    "price": "3 947,94 грн",
     "images": [
       "Women's_clothing_imeg/0055B1.jpg",
       "Women's_clothing_imeg/0055B2.jpg",
@@ -968,7 +968,7 @@
     "articul": "0059B",
     "title": "Повсякденний костюм",
     "description": "Осінній костюм жіночий для відпочинку, високоякісний в'язаний двосекційний светр з широкими штанинами та лацканами, 100% чистий кашемір",
-    "price": "4 966,38 грн",
+    "price": "4 936,53 грн",
     "images": [
       "Women's_clothing_imeg/0059B1.jpg",
       "Women's_clothing_imeg/0059B2.jpg",
@@ -1011,7 +1011,7 @@
     "articul": "0062B",
     "title": "Жіночі стильні штани",
     "description": "Жіночі штани, з високою талією, оверсайз, еластичні жіночі вільні прямі повсякденні штани",
-    "price": "1 408,99 грн",
+    "price": "1 400,52 грн",
     "images": [
       "Women's_clothing_imeg/0062B1.jpg",
       "Women's_clothing_imeg/0062B2.jpg",
@@ -1039,7 +1039,7 @@
     "articul": "0063B",
     "title": "Джинси",
     "description": "Стильні жіночі джинси на кожен день, зручні, вільного крою",
-    "price": "1 360,12 грн",
+    "price": "1 162,32 грн",
     "images": [
       "Women's_clothing_imeg/0063B1.jpg",
       "Women's_clothing_imeg/0063B2.jpg",
@@ -1067,7 +1067,7 @@
     "articul": "0064B",
     "title": "Стильні джинси",
     "description": "Молодіжні стильні модні джинси. Багато різних розмірів.",
-    "price": "2 160,52 грн",
+    "price": "2 147,53 грн",
     "images": [
       "Women's_clothing_imeg/0064B1.jpg",
       "Women's_clothing_imeg/0064B2.jpg",
@@ -1138,7 +1138,7 @@
     "articul": "0066B",
     "title": "Жіночий зимовий комплект",
     "description": "Жіночий елегантний светр з довгим рукавом та V-подібним вирізом, елегантний светр та короткі штани, в'язаний жіночий костюм, зима, осінь, повсякденний комплект із двох частин",
-    "price": "1 182,74 грн",
+    "price": "1 100,88 грн",
     "images": [
       "Women's_clothing_imeg/0066B1.jpg",
       "Women's_clothing_imeg/0066B2.jpg",
@@ -1164,20 +1164,6 @@
     "sourceFile": "footwear_page_2.html"
   },
   {
-    "articul": "0067B",
-    "title": "Кашеміровий светр WinvyNee",
-    "description": "Кашеміровий светр WinvyNee для жінок з довгим рукавом, в класичних кольорах",
-    "price": "2 807,83 грн",
-    "images": [
-      "Women's_clothing_imeg/0067B1.jpg",
-      "Women's_clothing_imeg/0067B2.jpg",
-      "Women's_clothing_imeg/0067B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3t1t5nP",
-    "category": "clothing",
-    "sourceFile": "womens-clothing_page_1.html"
-  },
-  {
     "articul": "0067D",
     "title": "Кросівки AIR",
     "description": "Кросівки \"AIR\" GAECRLOF яскраві стильні кросівки для зручних тренувань у літку на свіжому повітрі.",
@@ -1195,7 +1181,7 @@
     "articul": "0068B",
     "title": "Жіноча толстовка",
     "description": "Жіноча толстовка великих розмірів оверсайз - Новинка з вільним кроєм, светр-пуловер, однотонний топ з довгими рукавами та круглим вирізом",
-    "price": "707,05 грн",
+    "price": "702,80 грн",
     "images": [
       "Women's_clothing_imeg/0068B1.jpg",
       "Women's_clothing_imeg/0068B2.jpg",
@@ -1293,7 +1279,7 @@
     "articul": "0073B",
     "title": "Водолазка",
     "description": "Жіночий светр розмірів, суцільний колір, осінньо-зимовий, з довгими рукавами, напіввисоким коміром, в'язаний пуловер, топ, повсякденний трикотаж",
-    "price": "824,56 грн",
+    "price": "819,61 грн",
     "images": [
       "Women's_clothing_imeg/0073B1.jpg",
       "Women's_clothing_imeg/0073B2.jpg",
@@ -1321,7 +1307,7 @@
     "articul": "0075B",
     "title": "Жіночий теплий комплект",
     "description": "Жіночий комплект з 2 в'язаних одиниць топ і спідниці, довгий рукав, укорочений топ, суцільний косі в'язані міні-спідниці, комплект облягаючих пуловерів, светрів, костюмів",
-    "price": "899,21 грн",
+    "price": "819,07 грн",
     "images": [
       "Women's_clothing_imeg/0075B1.jpg",
       "Women's_clothing_imeg/0075B2.jpg",
@@ -1350,7 +1336,7 @@
     "articul": "0077B",
     "title": "Яскравий боді",
     "description": "Помаранчевий неоновий боді для жінок з довгим рукавом Bodycon Sexy осінь-зима вуличний одяг клуб вечірка одяг повсякденний жіночий одяг",
-    "price": "224,96 грн",
+    "price": "148,86 грн",
     "images": [
       "Women's_clothing_imeg/0077B1.jpg",
       "Women's_clothing_imeg/0077B2.jpg",
@@ -1411,7 +1397,7 @@
     "articul": "0078B",
     "title": "Бомбер в'язаний",
     "description": "Жіночий светр-кардиган з довгим рукавом, сірий, на блискавці, осінь-зима, з круглим вирізом, в'язаний, светр",
-    "price": "894,97 грн",
+    "price": "889,59 грн",
     "images": [
       "Women's_clothing_imeg/0078B1.jpg",
       "Women's_clothing_imeg/0078B2.jpg",
@@ -1509,7 +1495,7 @@
     "articul": "0081B",
     "title": "Легінси",
     "description": "Нові осінньо-зимові легінси з акулячої шкіри з кролика, жіночі повсякденні базові потовщені теплі легінси",
-    "price": "719,98 грн",
+    "price": "715,65 грн",
     "images": [
       "Women's_clothing_imeg/0081B1.jpg",
       "Women's_clothing_imeg/0081B2.jpg",
@@ -1565,7 +1551,7 @@
     "articul": "0082B",
     "title": "Зручні легінси",
     "description": "Легінси з низькою посадкою, супер м'які, для жінок - еластичні, еластичні, для йоги, бігу, тренувань, повсякденного одягу",
-    "price": "188,88 грн",
+    "price": "113,01 грн",
     "images": [
       "Women's_clothing_imeg/0082B1.jpg",
       "Women's_clothing_imeg/0082B2.jpg"
@@ -1620,7 +1606,7 @@
     "articul": "0083B",
     "title": "Теплі легінси",
     "description": "Жіночі весняно-осінні флісові матові шкіряні штани з PU шкіряні легінси еластичні тонкі",
-    "price": "1 065,88 грн",
+    "price": "1 101,12 грн",
     "images": [
       "Women's_clothing_imeg/0083B1.jpg",
       "Women's_clothing_imeg/0083B2.jpg",
@@ -1662,7 +1648,7 @@
     "articul": "0084B",
     "title": "Легінси для фітнесу",
     "description": "Жіночі легінси BIVIGAOS Skin-Touch безшовні штани для ніг з акульої шкіри, осінні нові фітнес-спортивні легінси, сексуальні штани для фігури типу \"акула\"",
-    "price": "666,98 грн",
+    "price": "666,79 грн",
     "images": [
       "Women's_clothing_imeg/0084B1.jpg",
       "Women's_clothing_imeg/0084B2.jpg",
@@ -1830,7 +1816,7 @@
     "articul": "0088B",
     "title": "Теплі легінси",
     "description": "Жіночі штани-олівці з високою талією, вузькі чорні товсті оксамитові теплі зимові легінси, джегінси, легінси",
-    "price": "955,53 грн",
+    "price": "875,04 грн",
     "images": [
       "Women's_clothing_imeg/0088B1.jpg",
       "Women's_clothing_imeg/0088B2.jpg",

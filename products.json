@@ -85,6 +85,20 @@
   },
   {
     "articul": "0002B",
+    "title": "Повсякденні штани",
+    "description": "Повсякденні чоловічі штани, звеликими кишеннями, вільного крою. Зручні при різних видах праці.",
+    "price": "856,78 грн",
+    "images": [
+      "Men's_clothing_imeg/0002B1.jpeg",
+      "Men's_clothing_imeg/0002B2.jpeg",
+      "Men's_clothing_imeg/0002B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4BUD9yv",
+    "category": "clothing",
+    "sourceFile": "mens-clothing_page_1.html"
+  },
+  {
+    "articul": "0002B",
     "title": "Чоловічі джинси",
     "description": "Члоловічі джинси нейтрального суцільного кольору вільні повсякденні модні кишенькові карго",
     "price": "1 060,16 грн",

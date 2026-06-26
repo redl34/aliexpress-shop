@@ -140,6 +140,20 @@
     "sourceFile": "mens-clothing_page_1.html"
   },
   {
+    "articul": "0003B",
+    "title": "Джинси карго",
+    "description": "Чоловічі джинси-карго з візерунком, мішкуваті, сині, джинси-карго, брюки-джогери, великі розміри",
+    "price": "710,82 грн",
+    "images": [
+      "Men's_clothing_imeg/0003B1.jpeg",
+      "Men's_clothing_imeg/0003B2.jpeg",
+      "Men's_clothing_imeg/0003B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3NyjMKH",
+    "category": "clothing",
+    "sourceFile": "mens-clothing_page_1.html"
+  },
+  {
     "articul": "0004A",
     "title": "Зволожувач повітря Медуза",
     "description": "Динамічний зволожувач повітря з медузою 250 мл дифузор ефірних олій з дистанційним керуванням для спальні з 7 барвистими нічними вогнями",

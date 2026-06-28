@@ -168,6 +168,20 @@
     "sourceFile": "electronics_page_1.html"
   },
   {
+    "articul": "0004B",
+    "title": "Куртка ROUG STOCK",
+    "description": "Куртка для активного відпочинку і для подорожей у віддалені куточки природи де потрібен  захист від вітру, води, комах, пилу",
+    "price": "1 254,15 грн",
+    "images": [
+      "Men's_clothing_imeg/0004B1.jpeg",
+      "Men's_clothing_imeg/0004B2.jpeg",
+      "Men's_clothing_imeg/0004B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3MOBPXx",
+    "category": "clothing",
+    "sourceFile": "mens-clothing_page_1.html"
+  },
+  {
     "articul": "0005A",
     "title": "Зволожувач повітря ,,Кораблик,,",
     "description": "Жволожувач повітря у вигляді кораблика. Водяний пар красиво імітує дим що виходить з димових труб кораблика, зволожує повітря тапросто створює затишок у вашому домі.",

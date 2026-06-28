@@ -154,6 +154,21 @@
     "sourceFile": "mens-clothing_page_1.html"
   },
   {
+    "articul": "0003B",
+    "title": "Комплек «Пенелопа»",
+    "description": "Класичний комплект для прогулянок у літку «Пенелопа».Стильна легка класика завжди ну моді, це те що вам потрібно для жаркого дня.",
+    "price": "563,13 грн",
+    "images": [
+      "Men's_clothing_imeg/0003B1.jpeg",
+      "Men's_clothing_imeg/0003B2.jpeg",
+      "Men's_clothing_imeg/0003B3.jpeg",
+      "Men's_clothing_imeg/0003B4.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3vtwL7F",
+    "category": "clothing",
+    "sourceFile": "womens-clothing_page_1.html"
+  },
+  {
     "articul": "0004A",
     "title": "Зволожувач повітря Медуза",
     "description": "Динамічний зволожувач повітря з медузою 250 мл дифузор ефірних олій з дистанційним керуванням для спальні з 7 барвистими нічними вогнями",

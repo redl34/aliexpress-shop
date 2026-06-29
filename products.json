@@ -197,6 +197,20 @@
     "sourceFile": "mens-clothing_page_1.html"
   },
   {
+    "articul": "0004B",
+    "title": "Блуза білого кольору",
+    "description": "Елегантна смугаста біла блуза,",
+    "price": "758,98 грн",
+    "images": [
+      "Men's_clothing_imeg/0004B1.jpeg",
+      "Men's_clothing_imeg/0004B2.jpeg",
+      "Men's_clothing_imeg/0004B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3dtj0ot",
+    "category": "clothing",
+    "sourceFile": "womens-clothing_page_1.html"
+  },
+  {
     "articul": "0005A",
     "title": "Зволожувач повітря ,,Кораблик,,",
     "description": "Жволожувач повітря у вигляді кораблика. Водяний пар красиво імітує дим що виходить з димових труб кораблика, зволожує повітря тапросто створює затишок у вашому домі.",

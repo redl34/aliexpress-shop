@@ -282,6 +282,20 @@
     "sourceFile": "electronics_page_1.html"
   },
   {
+    "articul": "0006B",
+    "title": "Костюм Brazil Fashion",
+    "description": "Костюм спортивний чоловічий Brazil Fashion. Для спорту та прогулянок.",
+    "price": "1 283,45 грн",
+    "images": [
+      "Men's_clothing_imeg/0006B1.jpeg",
+      "Men's_clothing_imeg/0006B2.jpeg",
+      "Men's_clothing_imeg/0006B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3151tQ1",
+    "category": "clothing",
+    "sourceFile": "mens-clothing_page_1.html"
+  },
+  {
     "articul": "0007A",
     "title": "Зволожувач повітря Дощ",
     "description": "Арома-зволожувач повітря зволожувач дощу барвисте світло білий шум ефірні олії дифузор домашній ультразвуковий аромат дифузор",

@@ -226,6 +226,21 @@
   },
   {
     "articul": "0005B",
+    "title": "Спортивний костюм PUMA",
+    "description": "Я думаю що для цього товару не потрібен опис і так все зрозуміло.",
+    "price": "1 014.42 грн",
+    "images": [
+      "Men's_clothing_imeg/0005B1.jpeg",
+      "Men's_clothing_imeg/0005B2.jpeg",
+      "Men's_clothing_imeg/0005B3.jpeg",
+      "Men's_clothing_imeg/0005B4.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4Wp9RJx",
+    "category": "clothing",
+    "sourceFile": "mens-clothing_page_1.html"
+  },
+  {
+    "articul": "0005B",
     "title": "Костюм літній",
     "description": "Жіночий повсякденний одяг з бавовняної лляної тканини, весна-літо, без рукавів, висока талія, довгі штани, дихаючі, вільний крій",
     "price": "1 022,99 грн",

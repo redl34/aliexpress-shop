@@ -296,6 +296,20 @@
     "sourceFile": "electronics_page_1.html"
   },
   {
+    "articul": "0007B",
+    "title": "Чоловічій спортивний костюм",
+    "description": "Спортивний одяг весна - осінь або прохолоджні літні раники після дощу в ночі. Сучасний стьль, зручний костюм на кожен день.",
+    "price": "884,85 грн",
+    "images": [
+      "Men's_clothing_imeg/0007B1.jpeg",
+      "Men's_clothing_imeg/0007B2.jpeg",
+      "Men's_clothing_imeg/0007B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4KkDhlj",
+    "category": "clothing",
+    "sourceFile": "mens-clothing_page_1.html"
+  },
+  {
     "articul": "0008A",
     "title": "Ароматичний дифузор Медуза",
     "description": "Новий обертовий ароматичний дифузор медузи для дому на робочому столі зволожувач свіжого повітря з барвистим дифузором навколишнього світла",

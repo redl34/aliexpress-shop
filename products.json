@@ -15,20 +15,6 @@
   },
   {
     "articul": "0001B",
-    "title": "Куртка чоловіча",
-    "description": "Чоловіча ковбойська куртка у стилі дикого западу.",
-    "price": "1 463,65 грн",
-    "images": [
-      "Men's_clothing_imeg/0001B1.jpeg",
-      "Men's_clothing_imeg/0001B2.jpeg",
-      "Men's_clothing_imeg/0001B3.jpeg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3FRX2Rb",
-    "category": "clothing",
-    "sourceFile": "mens-clothing_page_1.html"
-  },
-  {
-    "articul": "0001B",
     "title": "Класична футболка",
     "description": "Футболка з високим коміром поло та коротким рукавом, суцільний колір,  бавовняна тканина",
     "price": "689,99 грн",
@@ -87,7 +73,7 @@
     "articul": "0002B",
     "title": "Повсякденні штани",
     "description": "Повсякденні чоловічі штани, звеликими кишеннями, вільного крою. Зручні при різних видах праці.",
-    "price": "856,78 грн",
+    "price": "901,72 грн",
     "images": [
       "Men's_clothing_imeg/0002B1.jpeg",
       "Men's_clothing_imeg/0002B2.jpeg",
@@ -129,7 +115,7 @@
     "articul": "0003A",
     "title": "Чоловічі штани",
     "description": "Чоловічі штани для активного відпочинку, зкількома карманами, зручні повсякденні для активних",
-    "price": "973,48 грн",
+    "price": "1 017,40 грн",
     "images": [
       "Electronics_imeg/0003A1.jpeg",
       "Electronics_imeg/0003A2.jpeg",
@@ -143,7 +129,7 @@
     "articul": "0003B",
     "title": "Джинси карго",
     "description": "Чоловічі джинси-карго з візерунком, мішкуваті, сині, джинси-карго, брюки-джогери, великі розміри",
-    "price": "710,82 грн",
+    "price": "792,42 грн",
     "images": [
       "Men's_clothing_imeg/0003B1.jpeg",
       "Men's_clothing_imeg/0003B2.jpeg",
@@ -186,7 +172,7 @@
     "articul": "0004B",
     "title": "Куртка ROUG STOCK",
     "description": "Куртка для активного відпочинку і для подорожей у віддалені куточки природи де потрібен  захист від вітру, води, комах, пилу",
-    "price": "1 254,15 грн",
+    "price": "874,58 грн",
     "images": [
       "Men's_clothing_imeg/0004B1.jpeg",
       "Men's_clothing_imeg/0004B2.jpeg",
@@ -228,7 +214,7 @@
     "articul": "0005B",
     "title": "Спортивний костюм PUMA",
     "description": "Я думаю що для цього товару не потрібен опис і так все зрозуміло.",
-    "price": "1 014.42 грн",
+    "price": "1 034,23 грн",
     "images": [
       "Men's_clothing_imeg/0005B1.jpeg",
       "Men's_clothing_imeg/0005B2.jpeg",
@@ -271,7 +257,7 @@
     "articul": "0006B",
     "title": "Костюм Brazil Fashion",
     "description": "Костюм спортивний чоловічий Brazil Fashion. Для спорту та прогулянок.",
-    "price": "1 283,45 грн",
+    "price": "657,96 грн",
     "images": [
       "Men's_clothing_imeg/0006B1.jpeg",
       "Men's_clothing_imeg/0006B2.jpeg",
@@ -299,7 +285,7 @@
     "articul": "0007B",
     "title": "Чоловічій спортивний костюм",
     "description": "Спортивний одяг весна - осінь або прохолоджні літні раники після дощу в ночі. Сучасний стьль, зручний костюм на кожен день.",
-    "price": "884,85 грн",
+    "price": "911,40 грн",
     "images": [
       "Men's_clothing_imeg/0007B1.jpeg",
       "Men's_clothing_imeg/0007B2.jpeg",
@@ -327,7 +313,7 @@
     "articul": "0008B",
     "title": "Спортивний костюм FILA",
     "description": "Весняно-осінній чоловічий повсякденний костюм 2-в-1, толстовка з капюшоном та спортивні штани, зручний костюм 2-в-1, підходить як для чоловіків, так і для жінок",
-    "price": "1 022,08 грн",
+    "price": "1 116,82 грн",
     "images": [
       "Men's_clothing_imeg/0008B1.jpeg",
       "Men's_clothing_imeg/0008B2.jpeg",
@@ -397,7 +383,7 @@
     "articul": "0018B",
     "title": "Толстовка",
     "description": "Толстовка унісекс для чоловіків і жінок з довгими рукавами. Зручний та стильний одяг для повсякденного носіння.",
-    "price": "823,24 грн",
+    "price": "818,79 грн",
     "images": [
       "Men's_clothing_imeg/0018B1.jpg",
       "Men's_clothing_imeg/0018B2.jpg",
@@ -411,7 +397,7 @@
     "articul": "0022B",
     "title": "Толстовка",
     "description": "Толстовки чоловічий одяг довгий рукав жіночий вільний вуличний одяг осінь смішні толстовки мода повсякденні.",
-    "price": "736,38 грн",
+    "price": "731,99 грн",
     "images": [
       "Men's_clothing_imeg/0022B1.jpg",
       "Men's_clothing_imeg/0022B2.jpg",
@@ -439,7 +425,7 @@
     "articul": "0023B",
     "title": "Толстовка",
     "description": "Чоловіча толстовка з капюшоном на блискавці, чоловіча толстовка з довгими рукавами.",
-    "price": "315,65 грн",
+    "price": "313,94 грн",
     "images": [
       "Men's_clothing_imeg/0023B1.jpg",
       "Men's_clothing_imeg/0023B2.jpg",
@@ -481,7 +467,7 @@
     "articul": "0027B",
     "title": "Толстовка",
     "description": "Осінні чоловічі толстовки з довгими рукавами, худі, блискавка, застібка, куртка, чоловічі толстовки.",
-    "price": "621,56 грн",
+    "price": "446,34 грн",
     "images": [
       "Men's_clothing_imeg/0027B1.jpg",
       "Men's_clothing_imeg/0027B2.jpg",
@@ -495,7 +481,7 @@
     "articul": "0029B",
     "title": "Джинси",
     "description": "Чоловічі джинси вільного крою, корейський стиль, модні вільні прямі широкі штани, чоловічий брендовий одяг.",
-    "price": "450,75 грн",
+    "price": "425,93 грн",
     "images": [
       "Men's_clothing_imeg/0029B1.jpg",
       "Men's_clothing_imeg/0029B2.jpg",
@@ -2543,7 +2529,7 @@
     "articul": "0157B",
     "title": "Штани",
     "description": "Чоловічі штани з великою кишенею, вільні комбінезони, спортивні штани на відкритому повітрі, тактичні штани з еластичною талією.",
-    "price": "850,40 грн",
+    "price": "971,41 грн",
     "images": [
       "Men's_clothing_imeg/0157B1.jpg",
       "Men's_clothing_imeg/0157B2.jpg",
@@ -2557,27 +2543,13 @@
     "articul": "0159B",
     "title": "Штани чоловічі M-5XL",
     "description": "Чоловічі міські вантажні осінньо-зимові флісові м'які походи штани риболовля скелелазіння трекінг повсякденні полювання кемпінг штани M-5XL.",
-    "price": "721,06 грн",
+    "price": "766,34 грн",
     "images": [
       "Men's_clothing_imeg/0159B1.jpg",
       "Men's_clothing_imeg/0159B2.jpg",
       "Men's_clothing_imeg/0159B3.jpg"
     ],
     "link": "https://s.click.aliexpress.com/e/_c3GzY6Et",
-    "category": "clothing",
-    "sourceFile": "mens-clothing_page_1.html"
-  },
-  {
-    "articul": "0177B",
-    "title": "Футболка з гусаком",
-    "description": "Мир ніколи не був варіантом друкує чоловічий бавовняний одяг для творчості з коротким рукавом, мода, повсякденний, вільний топ, чоловіча футболка.",
-    "price": "188,21 грн",
-    "images": [
-      "Men's_clothing_imeg/0177B1.jpg",
-      "Men's_clothing_imeg/0177B2.jpg",
-      "Men's_clothing_imeg/0177B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3a8qGqv",
     "category": "clothing",
     "sourceFile": "mens-clothing_page_1.html"
   },

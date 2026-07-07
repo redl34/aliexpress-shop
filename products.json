@@ -59,7 +59,7 @@
     "articul": "0001C",
     "title": "Дитячий ігровий будиночок",
     "description": "Дитячий ігровий будиночок на відкритому повітрі, гірка, будиночок на дереві для дітей, мобільна альтанка для саду, дерев'яний будинок",
-    "price": "21 778,44 грн",
+    "price": "21 660,84 грн",
     "images": [
       "Garden_imeg/0001C1.jpg",
       "Garden_imeg/0001C2.jpg",
@@ -257,7 +257,7 @@
     "articul": "0005C",
     "title": "Світильник садовий Зайчення",
     "description": "Садові сонячні вуличні статуї кролика світловий кролик з метеликом та 7-кольоровою лампою для зміни кольору патіо пасхальна прикраса для балкону газону",
-    "price": "912,50 грн",
+    "price": "1 082,27 грн",
     "images": [
       "Garden_imeg/0005C1.jpg",
       "Garden_imeg/0005C2.jpg",
@@ -341,7 +341,7 @@
     "articul": "0012C",
     "title": "Інструмент для обвязування рослин",
     "description": "Нові садові інструменти для обв'язування гілок помідорів, машина для обв'язування розсади, інструмент для обв'язування винограду, овочеві стрічки, домашній сад",
-    "price": "966,58 грн",
+    "price": "1 010,54 грн",
     "images": [
       "Garden_imeg/0012C1.jpg",
       "Garden_imeg/0012C2.jpg",
@@ -355,7 +355,7 @@
     "articul": "0013C",
     "title": "Система поливу",
     "description": "3-важільна регульована система поливу з автоматичним обертанням на 360° - водозберігаючий садовий інструмент для поливу газонів для великих подвір'їв та важких умов експлуатації",
-    "price": "48,86 грн",
+    "price": "167,41 грн",
     "images": [
       "Garden_imeg/0013C1.jpg",
       "Garden_imeg/0013C2.jpg",
@@ -366,24 +366,10 @@
     "sourceFile": "garden_page_1.html"
   },
   {
-    "articul": "0014C",
-    "title": "Система поливу",
-    "description": "Регульований розпилювач з автоматичним обертанням на 360° для газону, саду, сільського господарства, зрошення, економії води за допомогою швидкоз'єднувальної системи дощувальних систем",
-    "price": "158,74 грн",
-    "images": [
-      "Garden_imeg/0014C1.jpg",
-      "Garden_imeg/0014C2.jpg",
-      "Garden_imeg/0014C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3U7upPT",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0015C",
     "title": "Акамуляторна міні пила",
     "description": "Міні-бензопила VILASTING 4/6 дюймів Бездротова деревообробка Садова електрична пилка різання електроінструмент підходить для Dewalt/Milwaukee 18V акумуляторний контактний штифт",
-    "price": "2 341,22 грн",
+    "price": "2 080,20 грн",
     "images": [
       "Garden_imeg/0015C1.jpg",
       "Garden_imeg/0015C2.jpg",
@@ -397,7 +383,7 @@
     "articul": "0017C",
     "title": "Міні пила",
     "description": "6-дюймова міні-літій-іонна електрична бензопила однією рукою портативна електрична пилка підходить для акумулятора Makita 18V",
-    "price": "1 604,71 грн",
+    "price": "1 669,76 грн",
     "images": [
       "Garden_imeg/0017C1.jpg",
       "Garden_imeg/0017C2.jpg",
@@ -422,20 +408,6 @@
     "sourceFile": "mens-clothing_page_1.html"
   },
   {
-    "articul": "0019C",
-    "title": "Складна садова пилка",
-    "description": "Складана ручна пилка компактного дизайну ручна пилка для дерев та кемпінгу обрізка пилки з твердими зубцями ножівка для саду інструменти для обрізки",
-    "price": "420,08 грн",
-    "images": [
-      "Garden_imeg/0019C1.jpg",
-      "Garden_imeg/0019C2.jpg",
-      "Garden_imeg/0019C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c4OwbNvf",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0022B",
     "title": "Толстовка",
     "description": "Толстовки чоловічий одяг довгий рукав жіночий вільний вуличний одяг осінь смішні толстовки мода повсякденні.",
@@ -453,7 +425,7 @@
     "articul": "0022C",
     "title": "Бур садовий",
     "description": "Садовий бур для земляних шнеків із запобіжним болтом та адаптером, бур для земляних робіт 800 мм для буріння пальових свердловин, земляних робіт, садового спірального бура",
-    "price": "3 462,14 грн",
+    "price": "3 113,48 грн",
     "images": [
       "Garden_imeg/0022C1.jpg",
       "Garden_imeg/0022C2.jpg",
@@ -481,7 +453,7 @@
     "articul": "0024C",
     "title": "Вуличний садовий ліхтар",
     "description": "Ліхтар-підвіс на сонячній енергії з лампочкою, підходить для прикраси садів, патіо, газонів та доріжок.",
-    "price": "350,02 грн",
+    "price": "555,61 грн",
     "images": [
       "Garden_imeg/0024C1.jpg",
       "Garden_imeg/0024C2.jpg",
@@ -495,27 +467,13 @@
     "articul": "0025C",
     "title": "Ручний міні інструмент для домашніх квітів",
     "description": "3 шт./лот міні-садові інструменти мала лопата граблі лопата дерев'яна ручка металева головка садові інструменти малий міні",
-    "price": "90,32 грн",
+    "price": "89,79 грн",
     "images": [
       "Garden_imeg/0025C1.jpg",
       "Garden_imeg/0025C2.jpg",
       "Garden_imeg/0025C3.jpg"
     ],
     "link": "https://s.click.aliexpress.com/e/_c3VsFdq1",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
-    "articul": "0026C",
-    "title": "Садова сонячна гірлянда",
-    "description": "7 м/12 м/22 м/32 м світлодіодні сонячні гірлянди фея вогні відкритий шлях гірлянди лампа патіо водонепроникний різдвяний весільний сад вуличні ліхтарі",
-    "price": "48,86 грн",
-    "images": [
-      "Garden_imeg/0026C1.jpg",
-      "Garden_imeg/0026C2.jpg",
-      "Garden_imeg/0026C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3ldgUXP",
     "category": "garden",
     "sourceFile": "garden_page_1.html"
   },
@@ -534,20 +492,6 @@
     "sourceFile": "mens-clothing_page_1.html"
   },
   {
-    "articul": "0028C",
-    "title": "Вулична сонячна гірлянда",
-    "description": "1 шт. сонячна кришталева куля фея гірлянда 5M20L відкритий водонепроникний різдвяний декор кемпінг фея гірлянда садова вечірка",
-    "price": "48,86 грн",
-    "images": [
-      "Garden_imeg/0028C1.jpg",
-      "Garden_imeg/0028C2.jpg",
-      "Garden_imeg/0028C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c4NEmKrX",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0029B",
     "title": "Джинси",
     "description": "Чоловічі джинси вільного крою, корейський стиль, модні вільні прямі широкі штани, чоловічий брендовий одяг.",
@@ -562,52 +506,10 @@
     "sourceFile": "mens-clothing_page_1.html"
   },
   {
-    "articul": "0029C",
-    "title": "Садове освітлення Фламінго",
-    "description": "1/3PCS Фламінго Сонячне світло IP65 Водонепроникний Світлодіодний Світильник для Ландшафтного Наземного Світильника для Зовнішньої Доріжки Різдвяний Садовий Декор",
-    "price": "388,02 грн",
-    "images": [
-      "Garden_imeg/0029C1.jpg",
-      "Garden_imeg/0029C2.jpg",
-      "Garden_imeg/0029C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3MGJrQD",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
-    "articul": "0030C",
-    "title": "Ліхтар садовий",
-    "description": "1 шт./2 упаковки. Шестигранний підвісний палацовий ліхтар на сонячній енергії, підходить для садів, внутрішніх дворів, газонів та доріжок на відкритому повітрі.",
-    "price": "350,57 грн",
-    "images": [
-      "Garden_imeg/0030C1.jpg",
-      "Garden_imeg/0030C2.jpg",
-      "Garden_imeg/0030C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c2uFgL9f",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
-    "articul": "0031C",
-    "title": "Ліхтарик садовий",
-    "description": "Сонячна кругла куля світлодіодна сонячна енергія світло відкритий водонепроникний сад прикраса двір газон вулиця куля наземний світильник",
-    "price": "48,86 грн",
-    "images": [
-      "Garden_imeg/0031C1.jpg",
-      "Garden_imeg/0031C2.jpg",
-      "Garden_imeg/0031C3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3JoUfrT",
-    "category": "garden",
-    "sourceFile": "garden_page_1.html"
-  },
-  {
     "articul": "0032C",
     "title": "Сонячний тротуарний ліхтар",
     "description": "10 шт. Сонячні вуличні ліхтарі садові ліхтарі сонячні лампи водонепроникні ландшафтні освітлення доріжки двір газон сад прикраса",
-    "price": "610,14 грн",
+    "price": "803,20 грн",
     "images": [
       "Garden_imeg/0032C1.jpg",
       "Garden_imeg/0032C2.jpg",

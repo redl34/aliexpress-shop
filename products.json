@@ -3,7 +3,7 @@
     "articul": "0001A",
     "title": "Автомобільний пилосос Baseus",
     "description": "Автомобільний пилосос Baseus Бездротовий повітряний пилоздув для автомобіля Потужний портативний прилад для чищення автомобіля Бездротовий очищувач транспортного засобу",
-    "price": "1 461,29 грн",
+    "price": "1 473,90 грн",
     "images": [
       "Electronics_imeg/0001A1.jpeg",
       "Electronics_imeg/0001A2.jpeg",
@@ -73,7 +73,7 @@
     "articul": "0002A",
     "title": "Зволожувач повітря",
     "description": "Зволожувач повітря з ефірними оліями, зволожувачі повітря для дому, ароматичний зволожувач, полум'я, автоматичний ароматичний дифузор зі світлодіодним пультом дистанційного керування",
-    "price": "1 264,26 грн",
+    "price": "1 395,48 грн",
     "images": [
       "Electronics_imeg/0002A1.jpg",
       "Electronics_imeg/0002A2.jpg",
@@ -115,7 +115,7 @@
     "articul": "0003A",
     "title": "Зволожувач повітря",
     "description": "1,5-літровий зволожувач повітря великої ємності для дому, безшумний туман, акумулятор 1800 мАг, перезаряджається через USB, зі світлодіодним підсвічуванням",
-    "price": "616,13 грн",
+    "price": "663,31 грн",
     "images": [
       "Electronics_imeg/0003A1.jpeg",
       "Electronics_imeg/0003A2.jpeg",
@@ -172,7 +172,7 @@
     "articul": "0004A",
     "title": "Зволожувач повітря Медуза",
     "description": "Динамічний зволожувач повітря з медузою 250 мл дифузор ефірних олій з дистанційним керуванням для спальні з 7 барвистими нічними вогнями",
-    "price": "1 325,72 грн",
+    "price": "1 367,73 грн",
     "images": [
       "Electronics_imeg/0004A1.jpg",
       "Electronics_imeg/0004A2.jpg",
@@ -214,7 +214,7 @@
     "articul": "0005A",
     "title": "Зволожувач повітря ,,Кораблик,,",
     "description": "Жволожувач повітря у вигляді кораблика. Водяний пар красиво імітує дим що виходить з димових труб кораблика, зволожує повітря тапросто створює затишок у вашому домі.",
-    "price": "1 156,97 грн",
+    "price": "1 173,43 грн",
     "images": [
       "Electronics_imeg/0005A1.jpeg",
       "Electronics_imeg/0005A2.jpeg",
@@ -268,20 +268,6 @@
     "sourceFile": "garden_page_1.html"
   },
   {
-    "articul": "0006A",
-    "title": "Зволожувач повітря Багаття",
-    "description": "Зволожувач повітря багаття, дифузор з кристалічною сіллю, ароматерапія, ультразвуковий дифузор з ефірними оліями, зволожувач повітря з прохолодним туманом для спальні",
-    "price": "979,87 грн",
-    "images": [
-      "Electronics_imeg/0006A1.jpg",
-      "Electronics_imeg/0006A2.jpg",
-      "Electronics_imeg/0006A3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c4LWjHLr",
-    "category": "electronics",
-    "sourceFile": "electronics_page_1.html"
-  },
-  {
     "articul": "0006B",
     "title": "Костюм Brazil Fashion",
     "description": "Костюм спортивний чоловічий Brazil Fashion. Для спорту та прогулянок.",
@@ -299,7 +285,7 @@
     "articul": "0007A",
     "title": "Зволожувач повітря Дощ",
     "description": "Арома-зволожувач повітря зволожувач дощу барвисте світло білий шум ефірні олії дифузор домашній ультразвуковий аромат дифузор",
-    "price": "1 425,25 грн",
+    "price": "1 466,73 грн",
     "images": [
       "Electronics_imeg/0007A1.jpg",
       "Electronics_imeg/0007A2.jpg",
@@ -327,7 +313,7 @@
     "articul": "0008A",
     "title": "Ароматичний дифузор Медуза",
     "description": "Новий обертовий ароматичний дифузор медузи для дому на робочому столі зволожувач свіжого повітря з барвистим дифузором навколишнього світла",
-    "price": "1 232,58 грн",
+    "price": "1 302,24 грн",
     "images": [
       "Electronics_imeg/0008A1.jpg",
       "Electronics_imeg/0008A2.jpg",
@@ -3386,19 +3372,5 @@
     "link": "https://s.click.aliexpress.com/e/_c4t3Md9F",
     "category": "clothing",
     "sourceFile": "mens-clothing_page_4.html"
-  },
-  {
-    "articul": "0247B",
-    "title": "Міні зволожувач повітря",
-    "description": "250 мл USB міні-зволожувач повітря аромат ефірних олій дифузор для дому та автомобіля ультразвуковий вимкнути туман дифузор зі світлодіодною кольоровою лампою",
-    "price": "48,86 грн",
-    "images": [
-      "Electronics_imeg/0247B1.jpg",
-      "Electronics_imeg/0247B2.jpg",
-      "Electronics_imeg/0247B3.jpg"
-    ],
-    "link": "https://s.click.aliexpress.com/e/_c3h88xTr",
-    "category": "electronics",
-    "sourceFile": "electronics_page_1.html"
   }
 ]

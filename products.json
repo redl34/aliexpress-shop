@@ -15,6 +15,21 @@
   },
   {
     "articul": "0001B",
+    "title": "Комбінезон для його",
+    "description": "Жіночий комбінезон з кольоровими блоками та лінією для йоги, безрукавний, цільний, з високою еластичністю, з контролем живота, спортивний одяг для тренажерного залу, йога",
+    "price": "594,23 грн",
+    "images": [
+      "Men's_clothing_imeg/0001B1.jpeg",
+      "Men's_clothing_imeg/0001B2.jpeg",
+      "Men's_clothing_imeg/0001B3.jpeg",
+      "Men's_clothing_imeg/0001B4.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c3XmnznV",
+    "category": "clothing",
+    "sourceFile": "mens-clothing_page_2.html"
+  },
+  {
+    "articul": "0001B",
     "title": "Класична футболка",
     "description": "Футболка з високим коміром поло та коротким рукавом, суцільний колір,  бавовняна тканина",
     "price": "829,13 грн",

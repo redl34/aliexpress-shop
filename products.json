@@ -297,6 +297,20 @@
     "sourceFile": "garden_page_1.html"
   },
   {
+    "articul": "0006A",
+    "title": "Жіночі палаццо",
+    "description": "Американський хіп-хоп стиль чорний широкі штани жіночі вуличні палаццо",
+    "price": "1 277,74 грн",
+    "images": [
+      "Electronics_imeg/0006A1.jpeg",
+      "Electronics_imeg/0006A2.jpeg",
+      "Electronics_imeg/0006A3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c2wYRAgf",
+    "category": "electronics",
+    "sourceFile": "electronics_page_1.html"
+  },
+  {
     "articul": "0006B",
     "title": "Костюм Brazil Fashion",
     "description": "Костюм спортивний чоловічий Brazil Fashion. Для спорту та прогулянок.",

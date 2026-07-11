@@ -44,6 +44,20 @@
   },
   {
     "articul": "0001B",
+    "title": "Жіночі палаццо",
+    "description": "Жіночі літні штани швидкого сухого крою з високою талією, американський стиль, швидковисихаючі, робочі штани",
+    "price": "764,48 грн",
+    "images": [
+      "Men's_clothing_imeg/0001B1.jpeg",
+      "Men's_clothing_imeg/0001B2.jpeg",
+      "Men's_clothing_imeg/0001B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4OwP4vD",
+    "category": "clothing",
+    "sourceFile": "womens-clothing_page_2.html"
+  },
+  {
+    "articul": "0001B",
     "title": "Комплект для спорту",
     "description": "Жіноча суцільна толстовка з довгим рукавом укорочений светр і шнурок талії спортивні штани жіноча толстовка набір для зимового жіночого одягу",
     "price": "1 193,97 грн",

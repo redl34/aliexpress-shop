@@ -127,6 +127,20 @@
     "sourceFile": "womens-clothing_page_1.html"
   },
   {
+    "articul": "0002B",
+    "title": "брюки-палаццо",
+    "description": "Жіночі брюки-лацо ROKBBK-K, красивий жіночий модний стиль.",
+    "price": "1 058,82 грн",
+    "images": [
+      "Men's_clothing_imeg/0002B1.jpeg",
+      "Men's_clothing_imeg/0002B2.jpeg",
+      "Men's_clothing_imeg/0002B3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c36JSztl",
+    "category": "clothing",
+    "sourceFile": "womens-clothing_page_3.html"
+  },
+  {
     "articul": "0003A",
     "title": "Зволожувач повітря",
     "description": "1,5-літровий зволожувач повітря великої ємності для дому, безшумний туман, акумулятор 1800 мАг, перезаряджається через USB, зі світлодіодним підсвічуванням",

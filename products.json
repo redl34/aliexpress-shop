@@ -99,6 +99,21 @@
     "sourceFile": "garden_page_1.html"
   },
   {
+    "articul": "0001C",
+    "title": "Спортивні штани",
+    "description": "Жіночі м'які широкі штани для йоги з маслянистої тканини - еластична талія, охолоджувальні дихаючі, прямі штани для тренувань з натуральної драпіровки",
+    "price": "507,14 грн",
+    "images": [
+      "Women's_clothing_imeg/0001C1.jpeg",
+      "Women's_clothing_imeg/0001C2.jpeg",
+      "Women's_clothing_imeg/0001C3.jpeg",
+      "Women's_clothing_imeg/0001C4.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c2ykxyWB",
+    "category": "clothing",
+    "sourceFile": "womens-clothing_page_1.html"
+  },
+  {
     "articul": "0002A",
     "title": "Зволожувач повітря",
     "description": "Зволожувач повітря з ефірними оліями, зволожувачі повітря для дому, ароматичний зволожувач, полум'я, автоматичний ароматичний дифузор зі світлодіодним пультом дистанційного керування",

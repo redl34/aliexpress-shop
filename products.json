@@ -170,6 +170,20 @@
     "sourceFile": "womens-clothing_page_3.html"
   },
   {
+    "articul": "0002C",
+    "title": "Комплект жіночий",
+    "description": "Жіночий ретро американський стиль блискавки худі та штани з високою талією широкі штани, комфортний та зручний комплект для прогулянок.",
+    "price": "1 020,87 грн",
+    "images": [
+      "Women's_clothing_imeg/0002C1.jpeg",
+      "Women's_clothing_imeg/0002C2.jpeg",
+      "Women's_clothing_imeg/0002C3.jpeg"
+    ],
+    "link": "https://s.click.aliexpress.com/e/_c4dLbRS7",
+    "category": "clothing",
+    "sourceFile": "womens-clothing_page_3.html"
+  },
+  {
     "articul": "0003A",
     "title": "Зволожувач повітря",
     "description": "1,5-літровий зволожувач повітря великої ємності для дому, безшумний туман, акумулятор 1800 мАг, перезаряджається через USB, зі світлодіодним підсвічуванням",
